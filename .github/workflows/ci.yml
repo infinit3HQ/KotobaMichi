@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main, production]
+  pull_request:
+    branches: [main, production]
+
+jobs:
+  filter:
+    name: Detect Changed Packages
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.changes.outputs.frontend }}
+      backend: ${{ steps.changes.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            frontend:
+              - 'KotobaMichi-Frontend/**'
+              - 'pnpm-workspace.yaml'
+              - 'package.json'
+            backend:
+              - 'KotobaMichi-Backend/**'
+              - 'pnpm-workspace.yaml'
+              - 'package.json'
+
+  test-frontend:
+    name: Build & Test Frontend
+    needs: filter
+    if: ${{ needs.filter.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build frontend
+        run: pnpm --filter kotobamichi-frontend build
+
+  test-backend:
+    name: Build & Test Backend
+    needs: filter
+    if: ${{ needs.filter.outputs.backend == 'true' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build backend
+        run: pnpm --filter kotobamichi-backend build

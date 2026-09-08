@@ -1,0 +1,118 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+      - production
+    paths:
+      - 'KotobaMichi-Backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+jobs:
+  build-and-push:
+    name: Build & Push Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU (for multi-arch)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/infinit3hq/kotobamichi-backend
+          tags: |
+            type=raw,value=latest
+            type=ref,event=branch
+            type=sha
+
+      - name: Build and push Backend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./KotobaMichi-Backend
+          file: ./KotobaMichi-Backend/Dockerfile
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Build and push Migration Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./KotobaMichi-Backend
+          file: ./KotobaMichi-Backend/Dockerfile.migration
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/infinit3hq/kotobamichi-backend:migration-latest
+
+  deploy:
+    name: Deploy to Server
+    needs: build-and-push
+    runs-on:
+      - serverone
+      - self-hosted
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy Backend Stack & Migrations
+        shell: bash
+        env:
+          POSTGRES_DB: ${{ secrets.PROD_POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.PROD_POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.PROD_POSTGRES_PASSWORD }}
+          DATABASE_URL: ${{ secrets.PROD_DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.PROD_JWT_SECRET }}
+          JWT_EXPIRES_IN: ${{ secrets.PROD_JWT_EXPIRES_IN }}
+          ACCESS_TOKEN_EXPIRES_IN: ${{ secrets.PROD_ACCESS_TOKEN_EXPIRES_IN }}
+          REFRESH_TOKEN_EXPIRES_IN: ${{ secrets.PROD_REFRESH_TOKEN_EXPIRES_IN }}
+          COOKIE_SECURE: ${{ secrets.PROD_COOKIE_SECURE }}
+          COOKIE_SAMESITE: ${{ secrets.PROD_COOKIE_SAMESITE }}
+          COOKIE_SECRET: ${{ secrets.PROD_COOKIE_SECRET }}
+          CORS_ORIGIN: ${{ secrets.PROD_CORS_ORIGIN }}
+          APP_URL: ${{ secrets.PROD_APP_URL || 'https://kotobamichi.com' }}
+          SMTP_HOST: ${{ secrets.PROD_SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.PROD_SMTP_PORT }}
+          SMTP_SECURE: ${{ secrets.PROD_SMTP_SECURE }}
+          SMTP_USER: ${{ secrets.PROD_SMTP_USER }}
+          SMTP_PASS: ${{ secrets.PROD_SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.PROD_SMTP_FROM }}
+        run: |
+          set -euo pipefail
+          cd KotobaMichi-Backend
+          docker network inspect kotobamichi-network >/dev/null 2>&1 || docker network create kotobamichi-network
+          docker compose -f docker-compose.prod.yml pull
+          docker compose -f docker-compose.prod.yml up -d --remove-orphans
+          docker compose -f docker-compose.prod.yml ps

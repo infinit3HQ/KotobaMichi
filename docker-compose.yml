@@ -1,0 +1,61 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: kotobamichi-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-kotobamichi}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - kotobamichi-network
+
+  backend:
+    build:
+      context: ./KotobaMichi-Backend
+      dockerfile: Dockerfile
+    container_name: kotobamichi-backend
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-kotobamichi}?schema=public
+      PORT: 3001
+      NODE_ENV: development
+      JWT_SECRET: ${JWT_SECRET:-dev_super_secret_jwt_key_that_is_very_long}
+      COOKIE_SECURE: "false"
+      COOKIE_SAMESITE: "lax"
+      CORS_ORIGIN: "http://localhost:3000"
+    ports:
+      - "3001:3001"
+    networks:
+      - kotobamichi-network
+
+  frontend:
+    build:
+      context: ./KotobaMichi-Frontend
+      dockerfile: Dockerfile
+    container_name: kotobamichi-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001/v1
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - kotobamichi-network
+
+networks:
+  kotobamichi-network:
+    name: kotobamichi-network
+    driver: bridge
+
+volumes:
+  postgres_data:

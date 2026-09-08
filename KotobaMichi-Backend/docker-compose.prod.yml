@@ -1,0 +1,81 @@
+services:
+  db:
+    container_name: kotobamichi-db
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-kotobamichi}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # no port expose for security resons all acess internally
+    # ports:
+    #   - '${DB_PORT:-5432}:5432'
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-postgres}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - kotobamichi-network # This part stays the same
+
+  migration:
+    container_name: kotobamichi-migration
+    image: ghcr.io/infinit3hq/kotobamichi-backend-migration:latest
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: 'no'
+    networks:
+      - kotobamichi-network # This part stays the same
+
+  app:
+    container_name: kotobamichi-app
+    image: ghcr.io/infinit3hq/kotobamichi-backend:latest
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT:-3000}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      COOKIE_SECURE: ${COOKIE_SECURE}
+      COOKIE_SAMESITE: ${COOKIE_SAMESITE}
+      ACCESS_TOKEN_EXPIRES_IN: ${ACCESS_TOKEN_EXPIRES_IN}
+      REFRESH_TOKEN_EXPIRES_IN: ${REFRESH_TOKEN_EXPIRES_IN}
+      COOKIE_SECRET: ${COOKIE_SECRET}
+    # port expose blocked and use internal acess only for better security
+    # ports:
+    #   - '${PORT:-3000}:${PORT:-3000}'
+    depends_on:
+      db:
+        condition: service_healthy
+      migration:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl -f http://localhost:${PORT:-3000}/v1/health || exit 1',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    networks:
+      - kotobamichi-network # This part stays the same
+      - nginxnew_default
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  kotobamichi-network:
+    external: true
+  nginxnew_default:
+    external: true

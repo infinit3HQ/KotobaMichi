@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1756015986310,
+      "tag": "0000_init-base-tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1759512190474,
+      "tag": "0001_polite_manta",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1759940247774,
+      "tag": "0002_add_google_oauth_fields",
+      "breakpoints": true
+    }
+  ]
+}
