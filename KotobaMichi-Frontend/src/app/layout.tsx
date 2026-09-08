@@ -10,8 +10,8 @@ const geistMono = { variable: "--font-geist-mono" } as const;
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+    { media: "(prefers-color-scheme: light)", color: "#FAF8F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#0C0F17" },
   ],
   width: "device-width",
   initialScale: 1,
