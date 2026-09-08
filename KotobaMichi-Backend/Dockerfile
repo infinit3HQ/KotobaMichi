@@ -8,8 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
 
-# Install pnpm
-RUN npm install -g pnpm
+# Install pnpm (pinned to v9 to prevent v11+ ignored build scripts failure)
+RUN npm install -g pnpm@9.15.4
 
 # Install build dependencies for native modules (e.g., bcrypt)
 RUN apk add --no-cache python3 make g++ libc6-compat

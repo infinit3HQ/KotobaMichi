@@ -4,8 +4,8 @@ FROM node:24.6.0-alpine AS migration
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
+# Install pnpm (pinned to v9 to prevent v11+ ignored build scripts failure)
+RUN npm install -g pnpm@9.15.4
 
 # Install runtime utilities (minimal set for Alpine)
 RUN apk add --no-cache curl
