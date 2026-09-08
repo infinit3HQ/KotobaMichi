@@ -210,24 +210,24 @@ jobs:
 
             if [ ! -f .env ] || [ ! -s .env ]; then
               echo "Creating fallback .env..."
-              cat << 'EOF' > .env
-NODE_ENV=production
-PORT=3000
-DB_PORT=5432
-POSTGRES_DB=kotobamichi
-POSTGRES_USER=kotobamichi
-POSTGRES_PASSWORD=dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d
-DATABASE_URL=postgresql://kotobamichi:dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d@db:5432/kotobamichi?schema=public
-JWT_SECRET=your_super_secret_jwt_key_that_is_very_long
-JWT_EXPIRES_IN=7d
-ACCESS_TOKEN_EXPIRES_IN=15m
-REFRESH_TOKEN_EXPIRES_IN=7d
-COOKIE_SECURE=true
-COOKIE_SAMESITE=none
-COOKIE_SECRET=your_super_secret_cookie_key_that_is_very_long
-APP_URL=https://kotobamichi.com
-CORS_ORIGIN=https://kotobamichi.com
-EOF
+              {
+                echo "NODE_ENV=production"
+                echo "PORT=3000"
+                echo "DB_PORT=5432"
+                echo "POSTGRES_DB=kotobamichi"
+                echo "POSTGRES_USER=kotobamichi"
+                echo "POSTGRES_PASSWORD=dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d"
+                echo "DATABASE_URL=postgresql://kotobamichi:dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d@db:5432/kotobamichi?schema=public"
+                echo "JWT_SECRET=your_super_secret_jwt_key_that_is_very_long"
+                echo "JWT_EXPIRES_IN=7d"
+                echo "ACCESS_TOKEN_EXPIRES_IN=15m"
+                echo "REFRESH_TOKEN_EXPIRES_IN=7d"
+                echo "COOKIE_SECURE=true"
+                echo "COOKIE_SAMESITE=none"
+                echo "COOKIE_SECRET=your_super_secret_cookie_key_that_is_very_long"
+                echo "APP_URL=https://kotobamichi.com"
+                echo "CORS_ORIGIN=https://kotobamichi.com"
+              } > .env
             fi
           fi
 
