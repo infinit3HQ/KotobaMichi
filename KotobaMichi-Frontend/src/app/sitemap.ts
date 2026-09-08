@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
+import { SITE_URL } from "@/lib/seo-config";
 
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/v1/";
+const API =
+  process.env.NEXT_PUBLIC_API_URL || "https://kotobamichi-api.012140.xyz/v1";
 
-export const revalidate = 3600; // refresh daily-ish
+export const revalidate = 3600; // Refresh every hour
 
 async function getPublicQuizzes() {
   try {
     const res = await fetch(`${API.replace(/\/$/, "")}/quizzes`, {
-      // Public endpoint listing quizzes; adjust if your API differs
       next: { revalidate },
       headers: { "content-type": "application/json" },
     });
@@ -24,24 +25,52 @@ async function getPublicQuizzes() {
 }
 
 async function resolveSiteUrl(): Promise<string> {
-  // Prefer explicit env when provided
   const envSite = process.env.NEXT_PUBLIC_SITE_URL;
   if (envSite && envSite.trim().length > 0) return envSite.replace(/\/$/, "");
 
-  // Fall back to incoming request headers (works behind reverse proxy)
-  const h = await headers();
-  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "localhost:3000";
-  const proto = h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  return `${proto}://${host}`.replace(/\/$/, "");
+  try {
+    const h = await headers();
+    const host = h.get("x-forwarded-host") ?? h.get("host");
+    if (host && !host.includes("localhost")) {
+      const proto = h.get("x-forwarded-proto") ?? "https";
+      return `${proto}://${host}`.replace(/\/$/, "");
+    }
+  } catch {
+    // headers() might not be available during static export / SSG
+  }
+
+  return SITE_URL;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const SITE = await resolveSiteUrl();
   const now = new Date();
+
   const base: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${SITE}/words`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${SITE}/quizzes`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    {
+      url: `${SITE}/`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${SITE}/practice`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE}/words`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE}/quizzes`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 
   const quizzes = await getPublicQuizzes();

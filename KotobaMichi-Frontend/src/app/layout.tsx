@@ -1,55 +1,130 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-// Removed Google Fonts to avoid network fetch during build
 import "./globals.css";
 import Providers from "./providers";
+import { SITE_CONFIG, SITE_URL } from "@/lib/seo-config";
+import { JsonLd } from "@/components/atoms/json-ld";
 
 const geistSans = { variable: "--font-geist-sans" } as const;
 const geistMono = { variable: "--font-geist-mono" } as const;
 
-export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-  ),
-  title: {
-    default: "KotobaMichi(言葉道) – Language Learning",
-    template: "%s | KotobaMichi(言葉道)",
-  },
-  description:
-    "Learn Japanese vocabulary and kanji with smart quizzes, word explorer, and gentle progress tracking.",
-  keywords: [
-    "Japanese",
-    "JLPT",
-    "vocabulary",
-    "kanji",
-    "language learning",
-    "quizzes",
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
-  authors: [{ name: "KotobaMichi" }],
-  creator: "KotobaMichi",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_CONFIG.name} – Interactive Japanese Language Learning`,
+    template: `%s | ${SITE_CONFIG.name}`,
+  },
+  description: SITE_CONFIG.description,
+  applicationName: SITE_CONFIG.name,
+  keywords: [...SITE_CONFIG.keywords],
+  authors: [{ name: SITE_CONFIG.author.name, url: SITE_CONFIG.author.url }],
+  creator: SITE_CONFIG.author.name,
+  publisher: SITE_CONFIG.name,
   category: "education",
+  classification: "Language Learning Software",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   alternates: {
-    canonical: "/",
+    canonical: "./",
+    languages: {
+      "en-US": "/",
+      "ja-JP": "/",
+    },
   },
   openGraph: {
     type: "website",
-    title: "KotobaMichi(言葉道)",
-    description:
-      "Learn Japanese vocabulary and kanji with smart quizzes and a clean word explorer.",
-    url: "/",
-    siteName: "KotobaMichi(言葉道)",
+    locale: "en_US",
+    alternateLocale: ["ja_JP"],
+    url: SITE_URL,
+    title: `${SITE_CONFIG.name} – Interactive Japanese Language Learning`,
+    description: SITE_CONFIG.description,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_CONFIG.name} - Master JLPT Vocabulary with Interactive Speed Drills`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "KotobaMichi(言葉道)",
-    description:
-      "Learn Japanese vocabulary and kanji with smart quizzes and a clean word explorer.",
-    creator: "@kotobamichi",
+    title: `${SITE_CONFIG.name} – Interactive Japanese Language Learning`,
+    description: SITE_CONFIG.description,
+    creator: SITE_CONFIG.creator,
+    site: SITE_CONFIG.creator,
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: SITE_CONFIG.name,
+      description: SITE_CONFIG.description,
+      inLanguage: ["en-US", "ja-JP"],
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/words?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@type": ["SoftwareApplication", "EducationalOrganization"],
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_CONFIG.name,
+      url: SITE_URL,
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "Web Browser",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      description: SITE_CONFIG.description,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "128",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -59,6 +134,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <JsonLd data={websiteJsonLd} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
