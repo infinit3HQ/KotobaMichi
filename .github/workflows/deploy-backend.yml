@@ -240,6 +240,7 @@ jobs:
           set -euo pipefail
           cd KotobaMichi-Backend
           docker network inspect kotobamichi-network >/dev/null 2>&1 || docker network create kotobamichi-network
+          docker network inspect proxy >/dev/null 2>&1 || docker network create proxy
           docker compose -f docker-compose.prod.yml pull
           docker compose -f docker-compose.prod.yml up -d --remove-orphans
           docker compose -f docker-compose.prod.yml ps

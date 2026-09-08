@@ -67,8 +67,15 @@ services:
       retries: 3
       start_period: 5s
     networks:
-      - kotobamichi-network # This part stays the same
-      - nginxnew_default
+      - kotobamichi-network
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.kotobamichi-api.entrypoints=websecure"
+      - "traefik.http.routers.kotobamichi-api.rule=Host(`kotobamichi-api.012140.xyz`)"
+      - "traefik.http.routers.kotobamichi-api.tls.certresolver=cloudflare"
+      - "traefik.http.services.kotobamichi-api.loadbalancer.server.port=3000"
 
 volumes:
   postgres_data:
@@ -77,5 +84,5 @@ volumes:
 networks:
   kotobamichi-network:
     external: true
-  nginxnew_default:
+  proxy:
     external: true
