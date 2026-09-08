@@ -23,7 +23,7 @@ services:
 
   migration:
     container_name: kotobamichi-migration
-    image: ghcr.io/infinit3hq/kotobamichi-backend-migration:latest
+    image: ghcr.io/infinit3hq/kotobamichi-migration:latest
     env_file:
       - .env
     depends_on:
@@ -35,7 +35,7 @@ services:
 
   app:
     container_name: kotobamichi-app
-    image: ghcr.io/infinit3hq/kotobamichi-backend:latest
+    image: ghcr.io/infinit3hq/kotobamichi-api:latest
     env_file:
       - .env
     environment:

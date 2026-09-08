@@ -1,7 +1,7 @@
 services:
   web:
     container_name: kotobamichi-web
-    image: ghcr.io/infinit3hq/kotobamichi-frontend:latest
+    image: ghcr.io/infinit3hq/kotobamichi-web:latest
     env_file:
       - .env
     environment:
