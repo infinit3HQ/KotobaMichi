@@ -6,13 +6,18 @@ services:
       - .env
     environment:
       HOSTNAME: "0.0.0.0"
-    # ports expose wont use cause using a reverse proxy
-    # ports:
-    #   - "${FRONTEND_PORT:-8080}:3000"
+    ports:
+      - "${FRONTEND_PORT:-8080}:3000"
     restart: unless-stopped
     networks:
-      - kotobamichi-network
-      - nginxnew_default
+      kotobamichi-network:
+        aliases:
+          - kotobamichi-frontend
+          - kotobamichi-web
+      nginxnew_default:
+        aliases:
+          - kotobamichi-frontend
+          - kotobamichi-web
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:3000/ || exit 1"]
       interval: 30s

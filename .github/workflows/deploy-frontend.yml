@@ -127,3 +127,26 @@ jobs:
           docker compose -f docker-compose.prod.yml pull
           docker compose -f docker-compose.prod.yml up -d --remove-orphans
           docker compose -f docker-compose.prod.yml ps
+
+      - name: Inspect Nginx and Network Routing Diagnostics
+        shell: bash
+        run: |
+          echo "=== DOCKER CONTAINERS ON HOST ==="
+          docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}\t{{.Networks}}"
+
+          echo "=== TEST LOCAL REACHABILITY INSIDE KOTOBAMICHI-WEB ==="
+          docker exec kotobamichi-web curl -sI http://localhost:3000/ || true
+
+          echo "=== REVERSE PROXY DIAGNOSTICS ==="
+          NGINX_CONTAINERS=$(docker ps --format "{{.Names}}" | grep -iE "nginx|proxy" || true)
+          echo "Found proxy containers: $NGINX_CONTAINERS"
+          for c in $NGINX_CONTAINERS; do
+            echo "--- Testing connectivity from $c ---"
+            docker exec "$c" curl -sI http://kotobamichi-web:3000/ || true
+            docker exec "$c" curl -sI http://kotobamichi-frontend:3000/ || true
+            docker exec "$c" curl -sI http://127.0.0.1:8080/ || true
+            echo "--- Nginx configs in $c mentioning kotobamichi or 012140 ---"
+            docker exec "$c" grep -rnE "kotobamichi|012140|8080|3000" /etc/nginx/ 2>/dev/null || true
+            echo "--- Recent access/error logs from $c ---"
+            docker logs --tail=40 "$c" || true
+          done
