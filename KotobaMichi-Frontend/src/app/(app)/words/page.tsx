@@ -1,11 +1,17 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useVirtualizer } from "@tanstack/react-virtual";
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { api } from "@/lib/api";
 import type { WordsListResponse, Word } from "@/types/api";
 import { Input } from "@/components/atoms/input";
 import { Button } from "@/components/atoms/button";
 import { Badge } from "@/components/atoms/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/atoms/select";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Volume2,
@@ -213,8 +219,9 @@ export default function WordsPage() {
 
       {/* Controls & Search Command Deck */}
       <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card/90 p-4 sm:p-5 shadow-xs backdrop-blur-sm">
-        {/* Search Input Bar */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        {/* Search & Filter Bar */}
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+          {/* Search Input */}
           <div className="relative flex-1">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70" />
             <Input
@@ -222,7 +229,7 @@ export default function WordsPage() {
               placeholder="Search by English, Hiragana, Kanji, or Romaji... (Press '/' to focus)"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-9 h-11 text-sm sm:text-base bg-background/60 border-border/80 rounded-lg focus-visible:ring-primary/40 transition-all placeholder:text-muted-foreground/60"
+              className="pl-10 pr-9 h-11 text-sm bg-background/60 border-border/80 rounded-lg focus-visible:ring-primary/40 transition-all placeholder:text-muted-foreground/60"
             />
             {search && (
               <button
@@ -236,18 +243,42 @@ export default function WordsPage() {
             )}
           </div>
 
+          {/* Topic Filter Dropdown (shadcn Select) */}
+          <div className="w-full sm:w-auto min-w-[210px]">
+            <Select value={selectedTopic} onValueChange={setSelectedTopic}>
+              <SelectTrigger className="h-11 w-full bg-background/60 border-border/80 rounded-lg text-xs sm:text-sm font-medium">
+                <div className="flex items-center gap-2 truncate">
+                  <ListFilter className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <span className="truncate">
+                    {selectedTopic === "All" ? "All Topics" : selectedTopic} ({topicCounts[selectedTopic] || 0})
+                  </span>
+                </div>
+              </SelectTrigger>
+              <SelectContent className="max-h-72">
+                <SelectItem value="All">
+                  All Topics ({topicCounts["All"] || 0})
+                </SelectItem>
+                {JLPT_TOPICS.map((topic) => (
+                  <SelectItem key={topic} value={topic}>
+                    {topic} ({topicCounts[topic] || 0})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           {/* Quick Count & View Toggle */}
           <div className="flex items-center justify-between sm:justify-end gap-2 text-xs">
-            <Badge variant="secondary" className="h-9 px-3 font-mono font-medium rounded-lg">
+            <Badge variant="secondary" className="h-11 px-3 font-mono font-medium rounded-lg shrink-0">
               {filtered.length} / {words.length} words
             </Badge>
 
             {/* View Switcher */}
-            <div className="flex items-center rounded-lg border border-border/70 p-0.5 bg-background/50">
+            <div className="flex items-center rounded-lg border border-border/70 p-0.5 bg-background/50 h-11 shrink-0">
               <button
                 type="button"
                 onClick={() => setViewMode("flashcards")}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   viewMode === "flashcards"
                     ? "bg-secondary text-foreground shadow-2xs font-semibold"
                     : "text-muted-foreground hover:text-foreground"
@@ -260,7 +291,7 @@ export default function WordsPage() {
               <button
                 type="button"
                 onClick={() => setViewMode("table")}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   viewMode === "table"
                     ? "bg-secondary text-foreground shadow-2xs font-semibold"
                     : "text-muted-foreground hover:text-foreground"
@@ -274,37 +305,48 @@ export default function WordsPage() {
           </div>
         </div>
 
-        {/* Topic Filter Chips */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 pt-0.5 scrollbar-none text-xs">
-          <span className="text-muted-foreground text-[11px] font-medium mr-1 flex items-center gap-1 flex-shrink-0">
-            <ListFilter className="h-3 w-3" /> Topics:
-          </span>
-          <button
-            type="button"
-            onClick={() => setSelectedTopic("All")}
-            className={`px-3 py-1 rounded-full text-xs font-medium transition-all flex-shrink-0 cursor-pointer ${
-              selectedTopic === "All"
-                ? "bg-primary text-primary-foreground shadow-xs font-semibold"
-                : "bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary"
-            }`}
-          >
-            All ({topicCounts["All"] || 0})
-          </button>
-          {JLPT_TOPICS.map((topic) => (
+        {/* Active Filter Indicators */}
+        {(selectedTopic !== "All" || search.trim() !== "") && (
+          <div className="flex flex-wrap items-center gap-2 text-xs pt-1 border-t border-border/40">
+            <span className="text-muted-foreground text-[11px] font-medium">Active filters:</span>
+            {selectedTopic !== "All" && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-medium">
+                Topic: {selectedTopic}
+                <button
+                  type="button"
+                  onClick={() => setSelectedTopic("All")}
+                  className="hover:opacity-75 p-0.5 rounded-full cursor-pointer"
+                  aria-label="Clear topic filter"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </span>
+            )}
+            {search.trim() !== "" && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary text-foreground text-xs font-medium">
+                Search: &ldquo;{search}&rdquo;
+                <button
+                  type="button"
+                  onClick={() => setSearch("")}
+                  className="hover:opacity-75 p-0.5 rounded-full cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </span>
+            )}
             <button
-              key={topic}
               type="button"
-              onClick={() => setSelectedTopic(topic)}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all flex-shrink-0 cursor-pointer ${
-                selectedTopic === topic
-                  ? "bg-primary text-primary-foreground shadow-xs font-semibold"
-                  : "bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary"
-              }`}
+              onClick={() => {
+                setSelectedTopic("All");
+                setSearch("");
+              }}
+              className="text-[11px] text-muted-foreground hover:text-foreground underline cursor-pointer ml-1"
             >
-              {topic} ({topicCounts[topic] || 0})
+              Reset all
             </button>
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* Study Toolbar: Grid Density & Card Actions */}
         {viewMode === "flashcards" && (
@@ -586,6 +628,7 @@ function VirtualizedCardsGrid({
 }) {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
+  const [scrollMargin, setScrollMargin] = useState(0);
 
   const getColumns = useCallback((width: number) => {
     if (width < 640) return 1;
@@ -597,28 +640,29 @@ function VirtualizedCardsGrid({
 
   const columns = forceColumns ?? getColumns(parentWidth);
   const itemHeight = 224; // Card height (208px) + gap (16px)
-  const gap = 16;
   const totalRows = Math.ceil(items.length / columns);
-
-  const rowVirtualizer = useVirtualizer({
-    count: totalRows,
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => itemHeight,
-    overscan: 3,
-    paddingStart: 8,
-    paddingEnd: 24,
-    gap: gap,
-  });
 
   useEffect(() => {
     const parent = parentRef.current;
     if (!parent) return;
-    const updateWidth = () => setParentWidth(parent.clientWidth);
-    updateWidth();
-    const resizeObserver = new ResizeObserver(updateWidth);
+
+    const updateMeasurements = () => {
+      setParentWidth(parent.clientWidth);
+      setScrollMargin(parent.offsetTop);
+    };
+    updateMeasurements();
+
+    const resizeObserver = new ResizeObserver(updateMeasurements);
     resizeObserver.observe(parent);
     return () => resizeObserver.disconnect();
   }, []);
+
+  const rowVirtualizer = useWindowVirtualizer({
+    count: totalRows,
+    estimateSize: () => itemHeight,
+    overscan: 4,
+    scrollMargin: scrollMargin,
+  });
 
   const virtualItems = rowVirtualizer.getVirtualItems();
   useEffect(() => {
@@ -629,67 +673,57 @@ function VirtualizedCardsGrid({
   }, [virtualItems, totalRows, onLoadMore]);
 
   return (
-    <div className="space-y-4">
+    <div ref={parentRef} className="w-full space-y-4">
       <div
-        ref={parentRef}
-        className="h-[calc(100vh-270px)] min-h-[520px] overflow-y-auto rounded-xl pr-1"
-        style={{ contain: "strict" }}
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          width: "100%",
+          position: "relative",
+        }}
       >
-        <div
-          style={{
-            height: `${rowVirtualizer.getTotalSize()}px`,
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          {virtualItems.map((virtualRow) => {
-            const rowStartIndex = virtualRow.index * columns;
-            const rowItems = items.slice(rowStartIndex, rowStartIndex + columns);
+        {virtualItems.map((virtualRow) => {
+          const rowStartIndex = virtualRow.index * columns;
+          const rowItems = items.slice(rowStartIndex, rowStartIndex + columns);
 
-            return (
+          return (
+            <div
+              key={virtualRow.index}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: `${virtualRow.size}px`,
+                transform: `translateY(${virtualRow.start - scrollMargin}px)`,
+              }}
+            >
               <div
-                key={virtualRow.index}
+                className="grid gap-4 h-full"
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: `${virtualRow.size}px`,
-                  transform: `translateY(${virtualRow.start}px)`,
+                  gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
                 }}
               >
-                <div
-                  className="grid gap-4 h-full"
-                  style={{
-                    gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-                  }}
-                >
-                  {rowItems.map((word) => (
-                    <ModernFlashcard
-                      key={word.id}
-                      word={word}
-                      flipped={!!flippedMap[word.id]}
-                      onToggle={() => onToggleCard(word.id)}
-                      speechRate={speechRate}
-                    />
-                  ))}
-                </div>
+                {rowItems.map((word) => (
+                  <ModernFlashcard
+                    key={word.id}
+                    word={word}
+                    flipped={!!flippedMap[word.id]}
+                    onToggle={() => onToggleCard(word.id)}
+                    speechRate={speechRate}
+                  />
+                ))}
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
       {isLoading && (
-        <div className="flex items-center justify-center gap-2 p-4 text-xs text-muted-foreground">
+        <div className="flex items-center justify-center gap-2 p-6 text-xs text-muted-foreground">
           <div className="h-4 w-4 rounded-full border-2 border-primary border-t-transparent animate-spin" />
           <span>Loading more words...</span>
         </div>
       )}
-
-      <div className="text-center text-xs text-muted-foreground/80 pt-2 border-t border-border/50">
-        Displaying {items.length} words with high-performance virtualization
-      </div>
     </div>
   );
 }
