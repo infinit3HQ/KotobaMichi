@@ -179,12 +179,60 @@ jobs:
               if [ -n "$ADMIN_PASSWORD" ]; then echo "ADMIN_PASSWORD=$ADMIN_PASSWORD"; fi
             } > .env
           elif [ ! -f .env ]; then
-            echo "Secrets not set in repository; attempting recovery from existing server container..."
-            if docker inspect kotobamichi-app >/dev/null 2>&1; then
-              docker inspect kotobamichi-app --format '{{range .Config.Env}}{{println .}}{{end}}' | grep -v '^PATH=' > .env || true
-              echo "Extracted .env from running kotobamichi-app container."
+            echo "Secrets not set in repository; searching server workspace for existing production .env..."
+            FOUND_ENV=""
+            for p in \
+              "/home/kotobamichi/actions-runner/_work/KotobaMichi-Backend/KotobaMichi-Backend/.env" \
+              "/home/kotobamichi/actions-runner/_work/KotobaMichi-Backend/.env" \
+              "../../KotobaMichi-Backend/KotobaMichi-Backend/.env" \
+              "../../KotobaMichi-Backend/.env"; do
+              if [ -f "$p" ]; then
+                FOUND_ENV="$p"
+                break
+              fi
+            done
+
+            if [ -z "$FOUND_ENV" ]; then
+              FOUND_ENV=$(find /home/kotobamichi/actions-runner/_work -name ".env" 2>/dev/null | grep -i "KotobaMichi-Backend" | head -n 1 || true)
+            fi
+
+            if [ -n "$FOUND_ENV" ] && [ -f "$FOUND_ENV" ]; then
+              echo "Restored production .env from: $FOUND_ENV"
+              cp "$FOUND_ENV" .env
+            else
+              echo "Attempting recovery from running or stopped containers..."
+              CONTAINER_ID=$(docker ps -a --filter "name=kotobamichi.*app" --format "{{.ID}}" | head -n 1 || true)
+              if [ -n "$CONTAINER_ID" ]; then
+                docker inspect "$CONTAINER_ID" --format '{{range .Config.Env}}{{println .}}{{end}}' | grep -v '^PATH=' > .env || true
+                echo "Extracted .env from container $CONTAINER_ID."
+              fi
+            fi
+
+            if [ ! -f .env ] || [ ! -s .env ]; then
+              echo "Creating fallback .env..."
+              cat << 'EOF' > .env
+NODE_ENV=production
+PORT=3000
+DB_PORT=5432
+POSTGRES_DB=kotobamichi
+POSTGRES_USER=kotobamichi
+POSTGRES_PASSWORD=dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d
+DATABASE_URL=postgresql://kotobamichi:dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d@db:5432/kotobamichi?schema=public
+JWT_SECRET=your_super_secret_jwt_key_that_is_very_long
+JWT_EXPIRES_IN=7d
+ACCESS_TOKEN_EXPIRES_IN=15m
+REFRESH_TOKEN_EXPIRES_IN=7d
+COOKIE_SECURE=true
+COOKIE_SAMESITE=none
+COOKIE_SECRET=your_super_secret_cookie_key_that_is_very_long
+APP_URL=https://kotobamichi.com
+CORS_ORIGIN=https://kotobamichi.com
+EOF
             fi
           fi
+
+          echo "Verified .env status:"
+          ls -la .env
 
       - name: Deploy Backend Stack & Migrations
         shell: bash
