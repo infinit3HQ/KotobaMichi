@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - production
     paths:
       - 'KotobaMichi-Backend/**'
       - '.github/workflows/deploy-backend.yml'
@@ -139,7 +138,7 @@ jobs:
             ADMIN_PASSWORD="${ADMIN_PASSWORD_SECRET:-}"
             DATABASE_URL="${DATABASE_URL_SECRET:-}"
             COOKIE_SECRET="${COOKIE_SECRET_SECRET:-}"
-            APP_URL="${APP_URL_SECRET:-https://kotobamichi.com}"
+            APP_URL="${APP_URL_SECRET:-https://kotobamichi.012140.xyz}"
             SMTP_HOST="${SMTP_HOST_SECRET:-}"
             SMTP_PORT="${SMTP_PORT_SECRET:-}"
             SMTP_SECURE="${SMTP_SECURE_SECRET:-}"
@@ -225,8 +224,8 @@ jobs:
                 echo "COOKIE_SECURE=true"
                 echo "COOKIE_SAMESITE=none"
                 echo "COOKIE_SECRET=your_super_secret_cookie_key_that_is_very_long"
-                echo "APP_URL=https://kotobamichi.com"
-                echo "CORS_ORIGIN=https://kotobamichi.com"
+                echo "APP_URL=https://kotobamichi.012140.xyz"
+                echo "CORS_ORIGIN=https://kotobamichi.012140.xyz"
               } > .env
             fi
           fi
