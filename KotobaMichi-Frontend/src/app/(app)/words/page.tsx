@@ -26,14 +26,36 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { speakJapanese } from "@/lib/audio";
-import { JLPT_N5_WORDS, JLPT_TOPICS, type JLPTWord } from "@/data/vocab-n5";
+import { JLPT_N5_WORDS, type JLPTWord } from "@/data/vocab-n5";
+import {
+  TANOS_N5_WORDS,
+  TANOS_N4_WORDS,
+  TANOS_N3_WORDS,
+  TANOS_N2_WORDS,
+  TANOS_N1_WORDS,
+  ALL_TANOS_WORDS,
+  getTanosWordsByLevel,
+} from "@/data/vocab-tanos";
+import type { JLPTLevel } from "@/data/grammar";
 
 interface EnrichedWord extends Word {
   topic?: string;
   partOfSpeech?: string;
 }
 
+export type WordFilterLevel = "ALL" | JLPTLevel;
+
+const LEVEL_TABS: { id: WordFilterLevel; label: string; kanji: string; count: number; desc: string }[] = [
+  { id: "ALL", label: "All Levels", kanji: "全", count: ALL_TANOS_WORDS.length, desc: "N5 to N1 Complete Vault" },
+  { id: "N5", label: "N5", kanji: "五", count: TANOS_N5_WORDS.length, desc: "Beginner Foundations" },
+  { id: "N4", label: "N4", kanji: "四", count: TANOS_N4_WORDS.length, desc: "Elementary Japanese" },
+  { id: "N3", label: "N3", kanji: "三", count: TANOS_N3_WORDS.length, desc: "Intermediate Bridge" },
+  { id: "N2", label: "N2", kanji: "二", count: TANOS_N2_WORDS.length, desc: "Pre-Advanced Fluency" },
+  { id: "N1", label: "N1", kanji: "一", count: TANOS_N1_WORDS.length, desc: "Advanced Native Nuance" },
+];
+
 export default function WordsPage() {
+  const [selectedLevel, setSelectedLevel] = useState<WordFilterLevel>("ALL");
   const [search, setSearch] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("All");
   const [gridColumns, setGridColumns] = useState<number | "auto">("auto");
@@ -44,7 +66,6 @@ export default function WordsPage() {
   const limit = 1000;
 
   const {
-    data,
     isLoading,
     hasNextPage,
     fetchNextPage,
@@ -65,7 +86,7 @@ export default function WordsPage() {
     retry: 1,
   });
 
-  // Map fallback word metadata (topic, partOfSpeech)
+  // Map enriched word metadata (topic, partOfSpeech) from N5 master set
   const vocabMetaMap = useMemo(() => {
     const map = new Map<string, JLPTWord>();
     JLPT_N5_WORDS.forEach((w) => {
@@ -75,33 +96,25 @@ export default function WordsPage() {
     return map;
   }, []);
 
-  const fallbackWords: EnrichedWord[] = useMemo(() => {
-    return JLPT_N5_WORDS.map((w) => ({
-      id: w.id,
-      kanji: w.kanji,
-      hiragana: w.hiragana,
-      romaji: w.romaji,
-      english: w.english,
-      level: w.level,
-      topic: w.topic,
-      partOfSpeech: w.partOfSpeech,
-      pronunciationUrl: "",
-      createdAt: new Date().toISOString(),
-    }));
-  }, []);
-
+  // Multi-tier word list based on selectedLevel (All 8,447 Tanos words or level specific)
   const words: EnrichedWord[] = useMemo(() => {
-    const fetched = (data?.pages ?? []).flatMap((p) => p.words);
-    const source = fetched.length > 0 ? fetched : fallbackWords;
-    return source.map((w) => {
+    const rawList: JLPTWord[] = selectedLevel === "ALL" ? ALL_TANOS_WORDS : getTanosWordsByLevel(selectedLevel);
+    return rawList.map((w) => {
       const meta = vocabMetaMap.get(w.id) || vocabMetaMap.get(w.hiragana);
       return {
-        ...w,
+        id: w.id,
+        kanji: w.kanji,
+        hiragana: w.hiragana,
+        romaji: w.romaji,
+        english: w.english,
+        level: w.level,
         topic: meta?.topic ?? (w as EnrichedWord).topic ?? "General",
         partOfSpeech: meta?.partOfSpeech ?? (w as EnrichedWord).partOfSpeech ?? "Vocabulary",
+        pronunciationUrl: "",
+        createdAt: new Date().toISOString(),
       };
     });
-  }, [data?.pages, fallbackWords, vocabMetaMap]);
+  }, [selectedLevel, vocabMetaMap]);
 
   // Topic counts for filter chips
   const topicCounts = useMemo(() => {
@@ -111,6 +124,16 @@ export default function WordsPage() {
       counts[t] = (counts[t] || 0) + 1;
     });
     return counts;
+  }, [words]);
+
+  // Dynamically extract available topics for the current level
+  const availableTopics = useMemo(() => {
+    const topicsSet = new Set<string>();
+    words.forEach((w) => {
+      if (w.topic && w.topic !== "General") topicsSet.add(w.topic);
+    });
+    const sorted = Array.from(topicsSet).sort();
+    return ["All", ...sorted, ...(sorted.includes("General") ? [] : ["General"])];
   }, [words]);
 
   // Filtered words
@@ -179,18 +202,20 @@ export default function WordsPage() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2">
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold rounded bg-primary/10 text-primary border border-primary/25">
-                JLPT N5
+              <span className="inline-flex items-center justify-center px-2.5 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary border border-primary/25">
+                {selectedLevel === "ALL" ? "JLPT N5 – N1 Master Vault" : `JLPT ${selectedLevel} Track`}
               </span>
               <span className="font-jp text-xs text-muted-foreground font-medium">
-                言葉道 · 語彙探索
+                言葉道 · 語彙大辞典
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground flex items-center gap-3">
               Vocabulary Explorer
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
-              Master 560+ core Japanese words through tactile 3D flashcards, native audio pronunciation, and topic-based immersion.
+              {selectedLevel === "ALL"
+                ? "Explore the full catalog of 8,447+ authentic Japanese words across all JLPT levels (N5 to N1) with tactile 3D cards, native speech synthesis, and topic immersion."
+                : `Master ${words.length.toLocaleString()}+ verified JLPT ${selectedLevel} Japanese words through tactile 3D flashcards, native audio pronunciation, and topic-based immersion.`}
             </p>
           </div>
 
@@ -219,6 +244,46 @@ export default function WordsPage() {
 
       {/* Controls & Search Command Deck */}
       <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card/90 p-4 sm:p-5 shadow-xs backdrop-blur-sm">
+        {/* JLPT Level Selector Tabs */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground shrink-0">Level:</span>
+            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-background/70 border border-border/70 shrink-0">
+              {LEVEL_TABS.map((tab) => {
+                const isActive = selectedLevel === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedLevel(tab.id);
+                      setSelectedTopic("All");
+                    }}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer shrink-0 ${
+                      isActive
+                        ? "bg-primary text-primary-foreground shadow-xs scale-102"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
+                  >
+                    <span className="font-jp font-bold text-[11px] opacity-80">{tab.kanji}</span>
+                    <span>{tab.label}</span>
+                    <span
+                      className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
+                        isActive ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {tab.count.toLocaleString()}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground hidden lg:block font-medium">
+            {LEVEL_TABS.find((t) => t.id === selectedLevel)?.desc}
+          </div>
+        </div>
+
         {/* Search & Filter Bar */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
           {/* Search Input */}
@@ -255,12 +320,9 @@ export default function WordsPage() {
                 </div>
               </SelectTrigger>
               <SelectContent className="max-h-72">
-                <SelectItem value="All">
-                  All Topics ({topicCounts["All"] || 0})
-                </SelectItem>
-                {JLPT_TOPICS.map((topic) => (
+                {availableTopics.map((topic) => (
                   <SelectItem key={topic} value={topic}>
-                    {topic} ({topicCounts[topic] || 0})
+                    {topic === "All" ? "All Topics" : topic} ({topicCounts[topic] || 0})
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -306,9 +368,22 @@ export default function WordsPage() {
         </div>
 
         {/* Active Filter Indicators */}
-        {(selectedTopic !== "All" || search.trim() !== "") && (
+        {(selectedLevel !== "ALL" || selectedTopic !== "All" || search.trim() !== "") && (
           <div className="flex flex-wrap items-center gap-2 text-xs pt-1 border-t border-border/40">
             <span className="text-muted-foreground text-[11px] font-medium">Active filters:</span>
+            {selectedLevel !== "ALL" && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25 text-xs font-semibold">
+                Level: {selectedLevel}
+                <button
+                  type="button"
+                  onClick={() => setSelectedLevel("ALL")}
+                  className="hover:opacity-75 p-0.5 rounded-full cursor-pointer"
+                  aria-label="Clear level filter"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </span>
+            )}
             {selectedTopic !== "All" && (
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-medium">
                 Topic: {selectedTopic}
@@ -338,6 +413,7 @@ export default function WordsPage() {
             <button
               type="button"
               onClick={() => {
+                setSelectedLevel("ALL");
                 setSelectedTopic("All");
                 setSearch("");
               }}
@@ -728,7 +804,7 @@ function VirtualizedCardsGrid({
   );
 }
 
-/* Compact Table View */
+/* Compact Table View with Snappy Pagination */
 function CompactTableView({
   items,
   speechRate,
@@ -736,12 +812,27 @@ function CompactTableView({
   items: EnrichedWord[];
   speechRate: number;
 }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 50;
+  const totalPages = Math.max(1, Math.ceil(items.length / pageSize));
+
+  // Reset to page 1 whenever total items changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [items.length]);
+
+  const pagedItems = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return items.slice(start, start + pageSize);
+  }, [items, currentPage, pageSize]);
+
   return (
     <div className="overflow-hidden rounded-xl border border-border/80 bg-card shadow-2xs">
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs sm:text-sm">
           <thead className="bg-secondary/60 text-muted-foreground uppercase text-[11px] font-semibold border-b border-border/80">
             <tr>
+              <th className="py-3 px-4 w-16">Level</th>
               <th className="py-3 px-4">Japanese (Kanji / Kana)</th>
               <th className="py-3 px-4">Romaji</th>
               <th className="py-3 px-4">English Meaning</th>
@@ -751,12 +842,64 @@ function CompactTableView({
             </tr>
           </thead>
           <tbody className="divide-y divide-border/50">
-            {items.map((word) => (
+            {pagedItems.map((word) => (
               <TableRowItem key={word.id} word={word} speechRate={speechRate} />
             ))}
           </tbody>
         </table>
       </div>
+
+      {/* Pagination Footer */}
+      {totalPages > 1 && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-border/60 bg-background/50 text-xs">
+          <div className="text-muted-foreground">
+            Showing <span className="font-semibold text-foreground">{(currentPage - 1) * pageSize + 1}</span> to{" "}
+            <span className="font-semibold text-foreground">{Math.min(currentPage * pageSize, items.length)}</span> of{" "}
+            <span className="font-semibold text-foreground">{items.length.toLocaleString()}</span> entries
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(1)}
+              className="h-8 px-2.5 text-xs border-border/80"
+            >
+              First
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              className="h-8 px-2.5 text-xs border-border/80"
+            >
+              Prev
+            </Button>
+            <span className="px-3 py-1 text-xs font-mono font-medium">
+              Page {currentPage} / {totalPages}
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              className="h-8 px-2.5 text-xs border-border/80"
+            >
+              Next
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(totalPages)}
+              className="h-8 px-2.5 text-xs border-border/80"
+            >
+              Last
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -778,6 +921,11 @@ function TableRowItem({ word, speechRate }: { word: EnrichedWord; speechRate: nu
 
   return (
     <tr className="hover:bg-secondary/40 transition-colors">
+      <td className="py-3 px-4">
+        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-primary/10 text-primary border border-primary/20">
+          {word.level || "N5"}
+        </span>
+      </td>
       <td className="py-3 px-4 font-jp">
         <div className="flex flex-col">
           {word.kanji ? (

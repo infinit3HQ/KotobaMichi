@@ -84496,3 +84496,11 @@ export function getTanosWordsByLevel(level: JLPTLevel): JLPTWord[] {
     default: return TANOS_N5_WORDS;
   }
 }
+
+export const ALL_TANOS_WORDS: JLPTWord[] = [
+  ...TANOS_N5_WORDS,
+  ...TANOS_N4_WORDS,
+  ...TANOS_N3_WORDS,
+  ...TANOS_N2_WORDS,
+  ...TANOS_N1_WORDS,
+];
