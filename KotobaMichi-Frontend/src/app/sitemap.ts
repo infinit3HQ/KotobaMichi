@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { headers } from "next/headers";
 import { SITE_URL } from "@/lib/seo-config";
 
 const API =
@@ -24,26 +23,14 @@ async function getPublicQuizzes() {
   }
 }
 
-async function resolveSiteUrl(): Promise<string> {
+function resolveSiteUrl(): string {
   const envSite = process.env.NEXT_PUBLIC_SITE_URL;
   if (envSite && envSite.trim().length > 0) return envSite.replace(/\/$/, "");
-
-  try {
-    const h = await headers();
-    const host = h.get("x-forwarded-host") ?? h.get("host");
-    if (host && !host.includes("localhost")) {
-      const proto = h.get("x-forwarded-proto") ?? "https";
-      return `${proto}://${host}`.replace(/\/$/, "");
-    }
-  } catch {
-    // headers() might not be available during static export / SSG
-  }
-
-  return SITE_URL;
+  return SITE_URL.replace(/\/$/, "");
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const SITE = await resolveSiteUrl();
+  const SITE = resolveSiteUrl();
   const now = new Date();
 
   const base: MetadataRoute.Sitemap = [
