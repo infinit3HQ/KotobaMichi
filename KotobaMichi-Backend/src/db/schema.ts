@@ -9,6 +9,7 @@ import {
 	uniqueIndex,
 	vector,
 	integer,
+	jsonb,
 } from 'drizzle-orm/pg-core';
 
 // Enum equivalent of Prisma UserRole
@@ -225,13 +226,159 @@ export const passwordResetTokens = pgTable(
 	t => [index('password_reset_tokens_user_idx').on(t.userId)]
 );
 
-// NOTE: Foreign keys & cascades are defined directly since dev DB can be reset.
+// Grammar Questions (Star-Order Puzzles & Particle Cloze)
+export const grammarQuestions = pgTable(
+	'grammar_questions',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		level: varchar('level', { length: 8 }).notNull().default('N5'),
+		type: varchar('type', { length: 32 }).notNull(), // 'STAR_ORDER' | 'PARTICLE_CLOZE'
+		grammarPoint: text('grammar_point'),
+		category: text('category'),
+		sentenceBefore: text('sentence_before'),
+		sentenceAfter: text('sentence_after'),
+		fragments: jsonb('fragments'), // [string, string, string, string]
+		correctOrder: jsonb('correct_order'), // [number, number, number, number]
+		starSlotIndex: integer('star_slot_index'), // 0, 1, 2, 3
+		options: jsonb('options'), // string[] for cloze
+		correctAnswer: text('correct_answer'),
+		fullSentence: text('full_sentence').notNull(),
+		english: text('english').notNull(),
+		explanation: text('explanation'),
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [index('grammar_questions_level_idx').on(t.level)]
+);
 
-// Placeholder for future vector column example:
-// import { vector, index } from 'drizzle-orm/pg-core';
-// export const embeddingsExample = pgTable('embeddings_example', {
-//   id: varchar('id', { length: 128 }).primaryKey(),
-//   embedding: vector('embedding', { dimensions: 15128 })
-// }, (t) => [
-//   index('embedding_cosine_idx').using('hnsw', t.embedding.op('vector_cosine_ops'))
-// ]);
+// Listening Comprehension Scenarios (Choukai)
+export const listeningScenarios = pgTable(
+	'listening_scenarios',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		level: varchar('level', { length: 8 }).notNull().default('N5'),
+		title: text('title').notNull(),
+		category: text('category'),
+		situationJapanese: text('situation_japanese').notNull(),
+		situationEnglish: text('situation_english'),
+		questionJapanese: text('question_japanese').notNull(),
+		questionEnglish: text('question_english'),
+		dialogue: jsonb('dialogue').notNull(), // array of DialogueLine
+		options: jsonb('options').notNull(), // string[]
+		correctAnswerIndex: integer('correct_answer_index').notNull(),
+		explanation: text('explanation'),
+		vocabulary: jsonb('vocabulary'), // array of { word, reading, meaning }
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [index('listening_scenarios_level_idx').on(t.level)]
+);
+
+// Reading & Paragraph Passages (Dokkai)
+export const readingPassages = pgTable(
+	'reading_passages',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		level: varchar('level', { length: 8 }).notNull().default('N5'),
+		title: text('title').notNull(),
+		passageType: varchar('passage_type', { length: 64 }).notNull(), // 'SHORT' | 'MEDIUM' | 'NOTICE'
+		contentJapanese: text('content_japanese').notNull(),
+		sentences: jsonb('sentences').notNull(), // string[]
+		contentEnglish: text('content_english'),
+		glossary: jsonb('glossary'), // array of { word, reading, meaning }
+		questions: jsonb('questions').notNull(), // array of ReadingQuestion
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [index('reading_passages_level_idx').on(t.level)]
+);
+
+// JLPT Grammar Points Master (N5-N1 Reference Dictionary)
+export const grammarPoints = pgTable(
+	'grammar_points',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		level: varchar('level', { length: 8 }).notNull().default('N5'),
+		point: text('point').notNull(),
+		meaning: text('meaning').notNull(),
+		formation: text('formation'),
+		exampleJapanese: text('example_japanese').notNull(),
+		exampleRomaji: text('example_romaji'),
+		exampleEnglish: text('example_english').notNull(),
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [index('grammar_points_level_idx').on(t.level)]
+);
+
+// JLPT Kanji Master (N5-N1 with Radicals & Compounds)
+export const kanjiCharacters = pgTable(
+	'kanji_characters',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		level: varchar('level', { length: 8 }).notNull().default('N5'),
+		character: varchar('character', { length: 16 }).notNull(),
+		meaning: text('meaning').notNull(),
+		dominantReading: text('dominant_reading'),
+		onYomi: jsonb('on_yomi'),
+		kunYomi: jsonb('kun_yomi'),
+		radicals: jsonb('radicals').notNull(), // array of { character, meaning }
+		mnemonic: text('mnemonic'),
+		vocabulary: jsonb('vocabulary'), // array of { word, reading, meaning }
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [
+		index('kanji_characters_level_idx').on(t.level),
+		uniqueIndex('kanji_characters_character_unique').on(t.character),
+	]
+);
+
+// Example Sentences Master (5,193 Authentic Sentences with Romaji & English)
+export const exampleSentences = pgTable(
+	'example_sentences',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		word: text('word'),
+		category: varchar('category', { length: 64 }).notNull().default('General'),
+		sentenceJapanese: text('sentence_japanese').notNull(),
+		sentenceRomaji: text('sentence_romaji'),
+		sentenceEnglish: text('sentence_english').notNull(),
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [
+		index('example_sentences_word_idx').on(t.word),
+		index('example_sentences_category_idx').on(t.category),
+	]
+);

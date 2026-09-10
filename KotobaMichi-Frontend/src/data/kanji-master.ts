@@ -1,0 +1,28480 @@
+// src/data/kanji-master.ts
+// Comprehensive JLPT Kanji Master Dataset synthesized from Hanabira & Kanjidic
+// Hybrid Offline-First dataset for the KotobaMichi Kanji Dojo
+
+export interface KanjiRadicalItem {
+  character: string;
+  meaning: string;
+}
+
+export interface KanjiVocabItem {
+  word: string;
+  reading: string;
+  meaning: string;
+}
+
+export interface KanjiMasterItem {
+  id: string;
+  character: string;
+  meaning: string;
+  level: "N5" | "N4" | "N3" | "N2" | "N1";
+  dominantReading?: string;
+  onYomi?: string[];
+  kunYomi?: string[];
+  radicals: KanjiRadicalItem[];
+  mnemonic?: string;
+  vocabulary: KanjiVocabItem[];
+}
+
+export const ALL_JLPT_KANJI_MASTER: KanjiMasterItem[] = [
+  {
+    "id": "k-n5-1",
+    "character": "日",
+    "meaning": "Sun, Day",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-2",
+    "character": "一",
+    "meaning": "One, Line, Radical",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-3",
+    "character": "国",
+    "meaning": "Country",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 囗 (enclosure), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-4",
+    "character": "人",
+    "meaning": "Person",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-5",
+    "character": "年",
+    "meaning": "Year",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 干 (dry)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-6",
+    "character": "大",
+    "meaning": "Big",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-7",
+    "character": "十",
+    "meaning": "Ten",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-8",
+    "character": "二",
+    "meaning": "Two",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-9",
+    "character": "本",
+    "meaning": "book, origin, main, true",
+    "level": "N5",
+    "dominantReading": "ホン (hon)",
+    "onYomi": [
+      "ホン (hon)"
+    ],
+    "kunYomi": [
+      "もと (moto)"
+    ],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Books are made from trees.",
+    "vocabulary": [
+      {
+        "word": "本当",
+        "reading": "ほんとう",
+        "meaning": "truth, reality"
+      },
+      {
+        "word": "日本",
+        "reading": "にほん",
+        "meaning": "Japan"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-10",
+    "character": "中",
+    "meaning": "Middle",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-11",
+    "character": "長",
+    "meaning": "Long, Boss",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "長",
+        "meaning": "long"
+      }
+    ],
+    "mnemonic": "Composed of 長 (long)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-12",
+    "character": "出",
+    "meaning": "Pull, Out, Hand, Over",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 山 (mountain), 凵 (container)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-13",
+    "character": "三",
+    "meaning": "Three",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-14",
+    "character": "時",
+    "meaning": "Time",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 土 (earth), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-15",
+    "character": "行",
+    "meaning": "Go",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "行",
+        "meaning": "go"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      }
+    ],
+    "mnemonic": "Composed of 行 (go), 彳 (step)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-16",
+    "character": "見",
+    "meaning": "Look",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "見",
+        "meaning": "see"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 見 (see), 目 (eye), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-17",
+    "character": "月",
+    "meaning": "Moon, Organ",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-18",
+    "character": "後",
+    "meaning": "Afterwards, Behind",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      }
+    ],
+    "mnemonic": "Composed of 夂 (winter), 幺 (short thread), 彳 (step)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-19",
+    "character": "前",
+    "meaning": "Before",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 刈 (component), 月 (meat)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-20",
+    "character": "生",
+    "meaning": "Life, Birth",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "生",
+        "meaning": "life"
+      }
+    ],
+    "mnemonic": "Composed of 生 (life)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-21",
+    "character": "五",
+    "meaning": "Five",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "五",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 五 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-22",
+    "character": "間",
+    "meaning": "A, Period, Of, Time",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 門 (gate)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-23",
+    "character": "上",
+    "meaning": "Above",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 卜 (divination to)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-24",
+    "character": "東",
+    "meaning": "East",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-25",
+    "character": "四",
+    "meaning": "The, Numeral, 4",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 儿 (legs), 囗 (enclosure)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-26",
+    "character": "今",
+    "meaning": "Now",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 个 (component), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-27",
+    "character": "金",
+    "meaning": "Gold",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 王 (king; ball), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-28",
+    "character": "九",
+    "meaning": "The, Number, 9",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "九",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 九 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-29",
+    "character": "入",
+    "meaning": "Putgo, In",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "入",
+        "meaning": "enter"
+      }
+    ],
+    "mnemonic": "Composed of 入 (enter)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-30",
+    "character": "学",
+    "meaning": "study, learning, science",
+    "level": "N5",
+    "dominantReading": "ガク (gaku)",
+    "onYomi": [
+      "ガク (gaku)"
+    ],
+    "kunYomi": [
+      "まな(ぶ) (mana(bu))"
+    ],
+    "radicals": [
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      }
+    ],
+    "mnemonic": "A child under a roof studying represents learning.",
+    "vocabulary": [
+      {
+        "word": "学校",
+        "reading": "がっこう",
+        "meaning": "school"
+      },
+      {
+        "word": "科学",
+        "reading": "かがく",
+        "meaning": "science"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-31",
+    "character": "高",
+    "meaning": "Tall",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "高",
+        "meaning": "tall"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 高 (tall), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-32",
+    "character": "円",
+    "meaning": "Yencircle",
+    "level": "N5",
+    "dominantReading": "エン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      }
+    ],
+    "mnemonic": "Composed of 冂 (inverted box), 亠 (component), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "円",
+        "reading": "えん",
+        "meaning": "round, yen (currency)"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-33",
+    "character": "子",
+    "meaning": "Child",
+    "level": "N5",
+    "dominantReading": "こ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "子",
+        "meaning": "child"
+      }
+    ],
+    "mnemonic": "Composed of 子 (child)",
+    "vocabulary": [
+      {
+        "word": "子ども",
+        "reading": "こども",
+        "meaning": "child, children"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-34",
+    "character": "外",
+    "meaning": "Outside",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      }
+    ],
+    "mnemonic": "Composed of 卜 (divination to), 夕 (evening)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-35",
+    "character": "八",
+    "meaning": "Eight",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-36",
+    "character": "六",
+    "meaning": "Six",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ハ (eight), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-37",
+    "character": "下",
+    "meaning": "Below",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 卜 (divination to)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-38",
+    "character": "来",
+    "meaning": "Comefuture",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 二 (two), 米 (rice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-39",
+    "character": "気",
+    "meaning": "Mood",
+    "level": "N5",
+    "dominantReading": "キ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "气",
+        "meaning": "steam"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 气 (steam), 丶 (dot), ノ (bend)",
+    "vocabulary": [
+      {
+        "word": "元気",
+        "reading": "げんき",
+        "meaning": "healthy"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-40",
+    "character": "小",
+    "meaning": "Small, Size",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-41",
+    "character": "七",
+    "meaning": "Seven",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 匕 (spoon hi), ノ (bend)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-42",
+    "character": "山",
+    "meaning": "Mountain",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "山",
+        "meaning": "mountain"
+      }
+    ],
+    "mnemonic": "Composed of 山 (mountain)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-43",
+    "character": "話",
+    "meaning": "talk, speak, story",
+    "level": "N5",
+    "dominantReading": "ワ (wa)",
+    "onYomi": [
+      "ワ (wa)"
+    ],
+    "kunYomi": [
+      "はな(す) (hana(su))"
+    ],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "舌",
+        "meaning": "tongue"
+      }
+    ],
+    "mnemonic": "Speech comes from the tongue.",
+    "vocabulary": [
+      {
+        "word": "電話",
+        "reading": "でんわ",
+        "meaning": "telephone"
+      },
+      {
+        "word": "会話",
+        "reading": "かいわ",
+        "meaning": "conversation"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-44",
+    "character": "女",
+    "meaning": "Woman",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-45",
+    "character": "北",
+    "meaning": "North",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "爿",
+        "meaning": "split wood"
+      }
+    ],
+    "mnemonic": "Composed of 匕 (spoon hi), 爿 (split wood)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-46",
+    "character": "午",
+    "meaning": "Noon",
+    "level": "N5",
+    "dominantReading": "ゴ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 干 (dry), 十 (ten)",
+    "vocabulary": [
+      {
+        "word": "午後",
+        "reading": "ごご",
+        "meaning": "afternoon"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-47",
+    "character": "百",
+    "meaning": "Hundred",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 白 (white)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-48",
+    "character": "書",
+    "meaning": "Write",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "聿",
+        "meaning": "brush"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 聿 (brush)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-49",
+    "character": "先",
+    "meaning": "Earlier, The, Tip",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 土 (earth), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-50",
+    "character": "名",
+    "meaning": "Name, Famous",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 夕 (evening)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-51",
+    "character": "川",
+    "meaning": "River",
+    "level": "N5",
+    "dominantReading": "かわ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "川",
+        "meaning": "river"
+      }
+    ],
+    "mnemonic": "Composed of 川 (river)",
+    "vocabulary": [
+      {
+        "word": "川",
+        "reading": "かわ",
+        "meaning": "river"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-52",
+    "character": "千",
+    "meaning": "Thousand",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-53",
+    "character": "水",
+    "meaning": "Water",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "水",
+        "meaning": "water"
+      }
+    ],
+    "mnemonic": "Composed of 水 (water)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-54",
+    "character": "半",
+    "meaning": "Half",
+    "level": "N5",
+    "dominantReading": "ハン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 二 (two), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "一時間半",
+        "reading": "いちじかんはん",
+        "meaning": "one hour and a half"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-55",
+    "character": "男",
+    "meaning": "Man",
+    "level": "N5",
+    "dominantReading": "おとこ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 力 (power)",
+    "vocabulary": [
+      {
+        "word": "男の子",
+        "reading": "おとこのこ",
+        "meaning": "boy"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-56",
+    "character": "西",
+    "meaning": "West",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "西",
+        "meaning": "west"
+      }
+    ],
+    "mnemonic": "Composed of 西 (west)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-57",
+    "character": "電",
+    "meaning": "Electricity",
+    "level": "N5",
+    "dominantReading": "デン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "雨",
+        "meaning": "rain"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "乙",
+        "meaning": "second"
+      }
+    ],
+    "mnemonic": "Composed of 雨 (rain), 田 (field), 乙 (second)",
+    "vocabulary": [
+      {
+        "word": "電気",
+        "reading": "でんき",
+        "meaning": "electricity, electric light"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-58",
+    "character": "校",
+    "meaning": "School",
+    "level": "N5",
+    "dominantReading": "コウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "父",
+        "meaning": "father"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 父 (father), 木 (tree), 亠 (component)",
+    "vocabulary": [
+      {
+        "word": "学校",
+        "reading": "がっこう",
+        "meaning": "school"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-59",
+    "character": "語",
+    "meaning": "language, word, speech",
+    "level": "N5",
+    "dominantReading": "ゴ (go)",
+    "onYomi": [
+      "ゴ (go)"
+    ],
+    "kunYomi": [
+      "かた(る) (kata(ru))"
+    ],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "吾",
+        "meaning": "I, self"
+      }
+    ],
+    "mnemonic": "Words come from our own speech.",
+    "vocabulary": [
+      {
+        "word": "日本語",
+        "reading": "にほんご",
+        "meaning": "Japanese language"
+      },
+      {
+        "word": "英語",
+        "reading": "えいご",
+        "meaning": "English language"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-60",
+    "character": "土",
+    "meaning": "Earth",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-61",
+    "character": "木",
+    "meaning": "Tree",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-62",
+    "character": "聞",
+    "meaning": "Listen, Ask",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "耳",
+        "meaning": "ear"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      }
+    ],
+    "mnemonic": "Composed of 耳 (ear), 門 (gate)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-63",
+    "character": "食",
+    "meaning": "Eat",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "食",
+        "meaning": "eat"
+      }
+    ],
+    "mnemonic": "Composed of 食 (eat)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-64",
+    "character": "車",
+    "meaning": "Car",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "車",
+        "meaning": "cart"
+      }
+    ],
+    "mnemonic": "Composed of 車 (cart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-65",
+    "character": "何",
+    "meaning": "What",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-66",
+    "character": "南",
+    "meaning": "South",
+    "level": "N5",
+    "dominantReading": "みなみ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 十 (ten), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "南口",
+        "reading": "みなみぐち",
+        "meaning": "south exit"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-67",
+    "character": "万",
+    "meaning": "10000",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-68",
+    "character": "毎",
+    "meaning": "Every",
+    "level": "N5",
+    "dominantReading": "マイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "母",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "毋",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 母 (do not; mother), 毋 (do not; mother), 乞 (component)",
+    "vocabulary": [
+      {
+        "word": "毎日",
+        "reading": "まいにち",
+        "meaning": "every day"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-69",
+    "character": "白",
+    "meaning": "White",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 白 (white)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-70",
+    "character": "天",
+    "meaning": "Heaven",
+    "level": "N5",
+    "dominantReading": "テン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 大 (big), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "天気",
+        "reading": "てんき",
+        "meaning": "weather"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-71",
+    "character": "母",
+    "meaning": "Your, Moms",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "母",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "毋",
+        "meaning": "do not; mother"
+      }
+    ],
+    "mnemonic": "Composed of 母 (do not; mother), 毋 (do not; mother)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-72",
+    "character": "火",
+    "meaning": "Fire",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-73",
+    "character": "右",
+    "meaning": "Right",
+    "level": "N5",
+    "dominantReading": "みぎ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "右",
+        "reading": "みぎ",
+        "meaning": "right (side)"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-74",
+    "character": "読",
+    "meaning": "Read",
+    "level": "N5",
+    "dominantReading": "よむ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 士 (scholar), 儿 (legs)",
+    "vocabulary": [
+      {
+        "word": "読む",
+        "reading": "よむ",
+        "meaning": "to read"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-75",
+    "character": "友",
+    "meaning": "Friend",
+    "level": "N5",
+    "dominantReading": "とも",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 又 (again)",
+    "vocabulary": [
+      {
+        "word": "友だち",
+        "reading": "ともだち",
+        "meaning": "friend"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-76",
+    "character": "左",
+    "meaning": "Left",
+    "level": "N5",
+    "dominantReading": "ひだり",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "工",
+        "meaning": "work"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 工 (work)",
+    "vocabulary": [
+      {
+        "word": "左",
+        "reading": "ひだり",
+        "meaning": "left (side)"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-77",
+    "character": "休",
+    "meaning": "Rest",
+    "level": "N5",
+    "dominantReading": "やすむ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "昼休み",
+        "reading": "ひるやすみ",
+        "meaning": "lunch break"
+      }
+    ]
+  },
+  {
+    "id": "k-n5-78",
+    "character": "父",
+    "meaning": "Dad",
+    "level": "N5",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "父",
+        "meaning": "father"
+      }
+    ],
+    "mnemonic": "Composed of 父 (father)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n5-79",
+    "character": "雨",
+    "meaning": "Rain",
+    "level": "N5",
+    "dominantReading": "あめ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "雨",
+        "meaning": "rain"
+      }
+    ],
+    "mnemonic": "Composed of 雨 (rain)",
+    "vocabulary": [
+      {
+        "word": "雨",
+        "reading": "あめ",
+        "meaning": "rain"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-80",
+    "character": "会",
+    "meaning": "Big, Meeting",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two), 个 (component), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-81",
+    "character": "同",
+    "meaning": "Same",
+    "level": "N4",
+    "dominantReading": "おなじ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 冂 (inverted box), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "同じ",
+        "reading": "おなじ",
+        "meaning": "the same"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-82",
+    "character": "事",
+    "meaning": "Action, Incident",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 口 (mouth), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-83",
+    "character": "自",
+    "meaning": "My, Own",
+    "level": "N4",
+    "dominantReading": "ジ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 自 (oneself), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "自動",
+        "reading": "じどう",
+        "meaning": "automatic"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-84",
+    "character": "社",
+    "meaning": "Company",
+    "level": "N4",
+    "dominantReading": "シャ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 礼 (component)",
+    "vocabulary": [
+      {
+        "word": "会社",
+        "reading": "かいしゃ",
+        "meaning": "company"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-85",
+    "character": "発",
+    "meaning": "Launch",
+    "level": "N4",
+    "dominantReading": "ハツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "癶",
+        "meaning": "footsteps"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two), 儿 (legs), 癶 (footsteps)",
+    "vocabulary": [
+      {
+        "word": "発音",
+        "reading": "はつおん",
+        "meaning": "pronounciation"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-86",
+    "character": "者",
+    "meaning": "Professional",
+    "level": "N4",
+    "dominantReading": "シャ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 老 (old)",
+    "vocabulary": [
+      {
+        "word": "歯医者",
+        "reading": "はいしゃ",
+        "meaning": "dentist"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-87",
+    "character": "地",
+    "meaning": "Area",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "也",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 也 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-88",
+    "character": "業",
+    "meaning": "Business",
+    "level": "N4",
+    "dominantReading": "ギョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      },
+      {
+        "character": "耒",
+        "meaning": "plow"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 王 (king; ball)",
+    "vocabulary": [
+      {
+        "word": "授業",
+        "reading": "じゅぎょう",
+        "meaning": "class, lesson"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-89",
+    "character": "方",
+    "meaning": "Direction, Method, Person",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "方",
+        "meaning": "way"
+      }
+    ],
+    "mnemonic": "Composed of 方 (way)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-90",
+    "character": "新",
+    "meaning": "New",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "辛",
+        "meaning": "spicy"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 斤 (axe), 辛 (spicy), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-91",
+    "character": "場",
+    "meaning": "Place",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "勿",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 日 (sun), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-92",
+    "character": "員",
+    "meaning": "Clerk",
+    "level": "N4",
+    "dominantReading": "イン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "会社員",
+        "reading": "かいしゃいん",
+        "meaning": "company employee"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-93",
+    "character": "立",
+    "meaning": "Stand, Up",
+    "level": "N4",
+    "dominantReading": "たつ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 立 (stand)",
+    "vocabulary": [
+      {
+        "word": "立つ",
+        "reading": "たつ",
+        "meaning": "to stand"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-94",
+    "character": "開",
+    "meaning": "Open",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 門 (gate), 廾 (two hands)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-95",
+    "character": "手",
+    "meaning": "Hand",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "手",
+        "meaning": "hand"
+      }
+    ],
+    "mnemonic": "Composed of 手 (hand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-96",
+    "character": "力",
+    "meaning": "Strong",
+    "level": "N4",
+    "dominantReading": "ちから",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 力 (power)",
+    "vocabulary": [
+      {
+        "word": "力",
+        "reading": "ちから",
+        "meaning": "strength, power"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-97",
+    "character": "問",
+    "meaning": "Question, Problem",
+    "level": "N4",
+    "dominantReading": "モン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 門 (gate)",
+    "vocabulary": [
+      {
+        "word": "問題",
+        "reading": "もんだい",
+        "meaning": "problem, question"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-98",
+    "character": "代",
+    "meaning": "Generation, Instead, Of",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "弋",
+        "meaning": "ceremony"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 弋 (ceremony)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-99",
+    "character": "明",
+    "meaning": "Bright",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-100",
+    "character": "動",
+    "meaning": "Movement",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-101",
+    "character": "京",
+    "meaning": "Capital",
+    "level": "N4",
+    "dominantReading": "キョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 小 (small), 亠 (component)",
+    "vocabulary": [
+      {
+        "word": "京都",
+        "reading": "きょうと",
+        "meaning": "Kyoto"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-102",
+    "character": "目",
+    "meaning": "Eye",
+    "level": "N4",
+    "dominantReading": "め",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "目",
+        "reading": "め",
+        "meaning": "eye"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-103",
+    "character": "通",
+    "meaning": "Pass",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "用",
+        "meaning": "use;"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 用 (use;), マ (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-104",
+    "character": "言",
+    "meaning": "Say",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-105",
+    "character": "理",
+    "meaning": "Reason",
+    "level": "N4",
+    "dominantReading": "リ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 里 (village)",
+    "vocabulary": [
+      {
+        "word": "理由",
+        "reading": "りゆう",
+        "meaning": "reason"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-106",
+    "character": "体",
+    "meaning": "Body",
+    "level": "N4",
+    "dominantReading": "からだ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 一 (one), 化 (component)",
+    "vocabulary": [
+      {
+        "word": "体",
+        "reading": "からだ",
+        "meaning": "body"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-107",
+    "character": "田",
+    "meaning": "Rice, Field",
+    "level": "N4",
+    "dominantReading": "た",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field)",
+    "vocabulary": [
+      {
+        "word": "羽田空港",
+        "reading": "はねだくうこう",
+        "meaning": "Haneda Airport"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-108",
+    "character": "主",
+    "meaning": "Mastermainly",
+    "level": "N4",
+    "dominantReading": "シュ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "主人",
+        "reading": "しゅじん",
+        "meaning": "husband"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-109",
+    "character": "題",
+    "meaning": "Topic",
+    "level": "N4",
+    "dominantReading": "ダイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "疋",
+        "meaning": "bolt of cloth"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "宿題",
+        "reading": "しゅくだい",
+        "meaning": "homework"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-110",
+    "character": "意",
+    "meaning": "Meaning",
+    "level": "N4",
+    "dominantReading": "イ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 心 (heart), 日 (sun)",
+    "vocabulary": [
+      {
+        "word": "意見",
+        "reading": "いけん",
+        "meaning": "opinion"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-111",
+    "character": "不",
+    "meaning": "Un",
+    "level": "N4",
+    "dominantReading": "フ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "不便な",
+        "reading": "ふべんな",
+        "meaning": "inconvenient"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-112",
+    "character": "作",
+    "meaning": "Make",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 化 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-113",
+    "character": "用",
+    "meaning": "Utilize",
+    "level": "N4",
+    "dominantReading": "ヨウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "用",
+        "meaning": "use;"
+      }
+    ],
+    "mnemonic": "Composed of 用 (use;)",
+    "vocabulary": [
+      {
+        "word": "利用する",
+        "reading": "りようする",
+        "meaning": "to use"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-114",
+    "character": "度",
+    "meaning": "Times",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of 又 (again), 广 (dotted cliff), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-115",
+    "character": "強",
+    "meaning": "Burly",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "弓",
+        "meaning": "bow"
+      },
+      {
+        "character": "虫",
+        "meaning": "insect"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 弓 (bow), 虫 (insect), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-116",
+    "character": "公",
+    "meaning": "Public",
+    "level": "N4",
+    "dominantReading": "コウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of ハ (eight), 厶 (private)",
+    "vocabulary": [
+      {
+        "word": "公園",
+        "reading": "こうえん",
+        "meaning": "a park"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-117",
+    "character": "持",
+    "meaning": "Hold",
+    "level": "N4",
+    "dominantReading": "もつ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 土 (earth), 扎 (component)",
+    "vocabulary": [
+      {
+        "word": "気持ち",
+        "reading": "きもち",
+        "meaning": "feeling"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-118",
+    "character": "野",
+    "meaning": "Field",
+    "level": "N4",
+    "dominantReading": "ヤ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "矛",
+        "meaning": "spear"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of 矛 (spear), 里 (village), 亅 (hook)",
+    "vocabulary": [
+      {
+        "word": "野球",
+        "reading": "やきゅう",
+        "meaning": "baseball"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-119",
+    "character": "以",
+    "meaning": "Compared, To",
+    "level": "N4",
+    "dominantReading": "イ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 人 (human), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "以外",
+        "reading": "いがい",
+        "meaning": "except"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-120",
+    "character": "思",
+    "meaning": "Think",
+    "level": "N4",
+    "dominantReading": "おもう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart), 田 (field)",
+    "vocabulary": [
+      {
+        "word": "思い出す",
+        "reading": "おもいだす",
+        "meaning": "to remember, to recall"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-121",
+    "character": "家",
+    "meaning": "Home",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "豕",
+        "meaning": "pig"
+      }
+    ],
+    "mnemonic": "Composed of 宀 (component), 豕 (pig)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-122",
+    "character": "世",
+    "meaning": "Society",
+    "level": "N4",
+    "dominantReading": "セ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "世",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 世 (component)",
+    "vocabulary": [
+      {
+        "word": "世話をする",
+        "reading": "せわをする",
+        "meaning": "to take care"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-123",
+    "character": "多",
+    "meaning": "Many",
+    "level": "N4",
+    "dominantReading": "おおい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夕",
+        "meaning": "evening"
+      }
+    ],
+    "mnemonic": "Composed of 夕 (evening)",
+    "vocabulary": [
+      {
+        "word": "多い",
+        "reading": "おおい",
+        "meaning": "many, a lot"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-124",
+    "character": "正",
+    "meaning": "Correct",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 止 (stop)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-125",
+    "character": "安",
+    "meaning": "Cheap, Safe",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-126",
+    "character": "院",
+    "meaning": "Institution",
+    "level": "N4",
+    "dominantReading": "イン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      },
+      {
+        "character": "元",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two), 儿 (legs), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "入院する",
+        "reading": "にゅういんする",
+        "meaning": "to be hospitalized"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-127",
+    "character": "心",
+    "meaning": "Heart",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-128",
+    "character": "界",
+    "meaning": "The, World",
+    "level": "N4",
+    "dominantReading": "カイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 个 (component), 儿 (legs)",
+    "vocabulary": [
+      {
+        "word": "世界",
+        "reading": "せかい",
+        "meaning": "world"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-129",
+    "character": "教",
+    "meaning": "Teach",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 子 (child), 老 (old), 攵 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-130",
+    "character": "文",
+    "meaning": "sentence, literature, style, art",
+    "level": "N4",
+    "dominantReading": "ブン (bun)",
+    "onYomi": [
+      "ブン (bun)",
+      "モン (mon)"
+    ],
+    "kunYomi": [
+      "ふみ (fumi)"
+    ],
+    "radicals": [
+      {
+        "character": "文",
+        "meaning": "sentence"
+      }
+    ],
+    "mnemonic": "A person with open arms expressing ideas through writing.",
+    "vocabulary": [
+      {
+        "word": "文化",
+        "reading": "ぶんか",
+        "meaning": "culture"
+      },
+      {
+        "word": "文字",
+        "reading": "もじ",
+        "meaning": "letter, character"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-131",
+    "character": "元",
+    "meaning": "Original",
+    "level": "N4",
+    "dominantReading": "ゲン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "元",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two), 儿 (legs), 元 (component)",
+    "vocabulary": [
+      {
+        "word": "元気な",
+        "reading": "げんきな",
+        "meaning": "fine, healthy"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-132",
+    "character": "重",
+    "meaning": "Heavy, Overlap",
+    "level": "N4",
+    "dominantReading": "おもい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "重い",
+        "reading": "おもい",
+        "meaning": "heavy, serious"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-133",
+    "character": "近",
+    "meaning": "Near",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 斤 (axe), 込 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-134",
+    "character": "考",
+    "meaning": "Consider",
+    "level": "N4",
+    "dominantReading": "かんがえる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "老",
+        "meaning": "old"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 老 (old), 勹 (embrace)",
+    "vocabulary": [
+      {
+        "word": "考える",
+        "reading": "かんがえる",
+        "meaning": "to think"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-135",
+    "character": "画",
+    "meaning": "A, Drawing",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 田 (field), 凵 (container)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-136",
+    "character": "海",
+    "meaning": "Ocean",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "母",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "毋",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 母 (do not; mother), 毋 (do not; mother)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-137",
+    "character": "売",
+    "meaning": "Sell",
+    "level": "N4",
+    "dominantReading": "うる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 士 (scholar), 儿 (legs), 冖 (cover)",
+    "vocabulary": [
+      {
+        "word": "売り場",
+        "reading": "うりば",
+        "meaning": "sales floor"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-138",
+    "character": "知",
+    "meaning": "Know",
+    "level": "N4",
+    "dominantReading": "しる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 矢 (arrow), 乞 (component)",
+    "vocabulary": [
+      {
+        "word": "知らせる",
+        "reading": "しらせる",
+        "meaning": "to inform, to notice"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-139",
+    "character": "道",
+    "meaning": "Street",
+    "level": "N4",
+    "dominantReading": "みち",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "首",
+        "meaning": "neck"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 自 (oneself), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "道",
+        "reading": "みち",
+        "meaning": "road, street"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-140",
+    "character": "集",
+    "meaning": "Collect",
+    "level": "N4",
+    "dominantReading": "あつまる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 隹 (old bird)",
+    "vocabulary": [
+      {
+        "word": "集まる",
+        "reading": "あつまる",
+        "meaning": "to gather"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-141",
+    "character": "別",
+    "meaning": "Separate",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 口 (mouth), 力 (power)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-142",
+    "character": "物",
+    "meaning": "Animal, Thing",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "勿",
+        "meaning": "component"
+      },
+      {
+        "character": "牛",
+        "meaning": "cow"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 勿 (component), 牛 (cow), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-143",
+    "character": "使",
+    "meaning": "Use",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 化 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-144",
+    "character": "品",
+    "meaning": "Products",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "品",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 品 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-145",
+    "character": "計",
+    "meaning": "Measure",
+    "level": "N4",
+    "dominantReading": "ケイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 十 (ten)",
+    "vocabulary": [
+      {
+        "word": "計画",
+        "reading": "けいかく",
+        "meaning": "a plan"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-146",
+    "character": "死",
+    "meaning": "Death",
+    "level": "N4",
+    "dominantReading": "しぬ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "歹",
+        "meaning": "death"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 夕 (evening), 匕 (spoon hi)",
+    "vocabulary": [
+      {
+        "word": "死ぬ",
+        "reading": "しぬ",
+        "meaning": "to die"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-147",
+    "character": "特",
+    "meaning": "Special",
+    "level": "N4",
+    "dominantReading": "トク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "牛",
+        "meaning": "cow"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 牛 (cow), 寸 (sun), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "特別な",
+        "reading": "とくべつな",
+        "meaning": "special"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-148",
+    "character": "私",
+    "meaning": "Me, Private",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-149",
+    "character": "始",
+    "meaning": "Begin",
+    "level": "N4",
+    "dominantReading": "はじまる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 女 (woman), 厶 (private)",
+    "vocabulary": [
+      {
+        "word": "始まる",
+        "reading": "はじまる",
+        "meaning": "to begin, to start"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-150",
+    "character": "朝",
+    "meaning": "Morning",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 十 (ten), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-151",
+    "character": "運",
+    "meaning": "Carry, Luck",
+    "level": "N4",
+    "dominantReading": "ウン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 車 (cart), 冖 (cover)",
+    "vocabulary": [
+      {
+        "word": "運動",
+        "reading": "うんどう",
+        "meaning": "excercise"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-152",
+    "character": "終",
+    "meaning": "End",
+    "level": "N4",
+    "dominantReading": "おわる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": [
+      {
+        "word": "終わる",
+        "reading": "おわる",
+        "meaning": "to finish, to end"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-153",
+    "character": "台",
+    "meaning": "Big, Thing, Counter",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-154",
+    "character": "広",
+    "meaning": "Wide",
+    "level": "N4",
+    "dominantReading": "ひろい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 厶 (private), 广 (dotted cliff)",
+    "vocabulary": [
+      {
+        "word": "広い",
+        "reading": "ひろい",
+        "meaning": "spacious, wide"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-155",
+    "character": "住",
+    "meaning": "Dwell",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 化 (component), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-156",
+    "character": "真",
+    "meaning": "Really",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 十 (ten), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-157",
+    "character": "有",
+    "meaning": "Exist",
+    "level": "N4",
+    "dominantReading": "ユウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 月 (meat)",
+    "vocabulary": [
+      {
+        "word": "有名な",
+        "reading": "ゆうめいな",
+        "meaning": "famous"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-158",
+    "character": "口",
+    "meaning": "Mouth, Small, Box, Radical",
+    "level": "N4",
+    "dominantReading": "くち",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of 囗 (enclosure), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "口",
+        "reading": "くち",
+        "meaning": "mouth, exit"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-159",
+    "character": "少",
+    "meaning": "A, Little, Amount",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-160",
+    "character": "町",
+    "meaning": "Neighborhood, Small, Town",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 田 (field), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-161",
+    "character": "料",
+    "meaning": "Ingredients, Fees",
+    "level": "N4",
+    "dominantReading": "リョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斗",
+        "meaning": "dipper"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      }
+    ],
+    "mnemonic": "Composed of 斗 (dipper), 米 (rice)",
+    "vocabulary": [
+      {
+        "word": "料理",
+        "reading": "りょうり",
+        "meaning": "cooking"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-162",
+    "character": "工",
+    "meaning": "Craft, Or, Industry",
+    "level": "N4",
+    "dominantReading": "コウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "工",
+        "meaning": "work"
+      }
+    ],
+    "mnemonic": "Composed of 工 (work)",
+    "vocabulary": [
+      {
+        "word": "工事",
+        "reading": "こうじ",
+        "meaning": "construction"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-163",
+    "character": "建",
+    "meaning": "Build",
+    "level": "N4",
+    "dominantReading": "たてる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "廴",
+        "meaning": "long stride"
+      },
+      {
+        "character": "聿",
+        "meaning": "brush"
+      }
+    ],
+    "mnemonic": "Composed of 廴 (long stride), 聿 (brush)",
+    "vocabulary": [
+      {
+        "word": "建物",
+        "reading": "たてもの",
+        "meaning": "building"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-164",
+    "character": "空",
+    "meaning": "Air",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "穴",
+        "meaning": "cave"
+      },
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 穴 (cave), 工 (work), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-165",
+    "character": "急",
+    "meaning": "Urgent",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 心 (heart), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-166",
+    "character": "止",
+    "meaning": "Stop",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "止",
+        "meaning": "stop"
+      }
+    ],
+    "mnemonic": "Composed of 止 (stop)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-167",
+    "character": "送",
+    "meaning": "Send",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 并 (component), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-168",
+    "character": "切",
+    "meaning": "Cut, Important",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 刀 (sword), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-169",
+    "character": "転",
+    "meaning": "Roll, Over",
+    "level": "N4",
+    "dominantReading": "テン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 車 (cart), 二 (two), 厶 (private)",
+    "vocabulary": [
+      {
+        "word": "自転車",
+        "reading": "じてんしゃ",
+        "meaning": "bicicle"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-170",
+    "character": "研",
+    "meaning": "Polish, Sharpen",
+    "level": "N4",
+    "dominantReading": "ケン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 口 (mouth), 石 (stone)",
+    "vocabulary": [
+      {
+        "word": "研究する",
+        "reading": "けんきゅうする",
+        "meaning": "research"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-171",
+    "character": "足",
+    "meaning": "Foot, Be, Enough",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "足",
+        "meaning": "foot"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 足 (foot), 止 (stop)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-172",
+    "character": "究",
+    "meaning": "Research",
+    "level": "N4",
+    "dominantReading": "キュウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "穴",
+        "meaning": "cave"
+      },
+      {
+        "character": "九",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 穴 (cave), 九 (component), 儿 (legs)",
+    "vocabulary": [
+      {
+        "word": "研究者",
+        "reading": "けんきゅうしゃ",
+        "meaning": "researcher"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-173",
+    "character": "楽",
+    "meaning": "Enjoy",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 白 (white), 木 (tree), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-174",
+    "character": "起",
+    "meaning": "Wake, Up, Occur",
+    "level": "N4",
+    "dominantReading": "おこす",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "走",
+        "meaning": "run"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of 走 (run), 土 (earth), 已 (oneself)",
+    "vocabulary": [
+      {
+        "word": "起こす",
+        "reading": "おこす",
+        "meaning": "to wake (someone) up"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-175",
+    "character": "着",
+    "meaning": "Wear, Arrive",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 王 (king; ball), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-176",
+    "character": "店",
+    "meaning": "Shop",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 卜 (divination to), 广 (dotted cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-177",
+    "character": "病",
+    "meaning": "Sick, Kanji",
+    "level": "N4",
+    "dominantReading": "ビョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "疔",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 人 (human), 冂 (inverted box)",
+    "vocabulary": [
+      {
+        "word": "病気",
+        "reading": "びょうき",
+        "meaning": "illness, disease"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-178",
+    "character": "質",
+    "meaning": "Quality",
+    "level": "N4",
+    "dominantReading": "シツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "斤",
+        "meaning": "axe"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "質問する",
+        "reading": "しつもんする",
+        "meaning": "to ask questions"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-179",
+    "character": "待",
+    "meaning": "Wait",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 土 (earth), 彳 (step)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-180",
+    "character": "試",
+    "meaning": "Attempt, To, Do",
+    "level": "N4",
+    "dominantReading": "シ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "弋",
+        "meaning": "ceremony"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 工 (work), 弋 (ceremony)",
+    "vocabulary": [
+      {
+        "word": "試合",
+        "reading": "しあい",
+        "meaning": "match"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-181",
+    "character": "族",
+    "meaning": "Family",
+    "level": "N4",
+    "dominantReading": "ゾク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "方",
+        "meaning": "way"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 方 (way), 矢 (arrow), 乞 (component)",
+    "vocabulary": [
+      {
+        "word": "水族館",
+        "reading": "すいぞくかん",
+        "meaning": "aquarium"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-182",
+    "character": "銀",
+    "meaning": "Silver",
+    "level": "N4",
+    "dominantReading": "ギン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "艮",
+        "meaning": "stopping"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 艮 (stopping)",
+    "vocabulary": [
+      {
+        "word": "銀行",
+        "reading": "ぎんこう",
+        "meaning": "bank"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-183",
+    "character": "早",
+    "meaning": "Early",
+    "level": "N4",
+    "dominantReading": "はやい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 日 (sun)",
+    "vocabulary": [
+      {
+        "word": "早い",
+        "reading": "はやい",
+        "meaning": "early"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-184",
+    "character": "映",
+    "meaning": "Project, Reflect",
+    "level": "N4",
+    "dominantReading": "エイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 日 (sun), 大 (big)",
+    "vocabulary": [
+      {
+        "word": "映画",
+        "reading": "えいが",
+        "meaning": "movie"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-185",
+    "character": "親",
+    "meaning": "Parentskindness",
+    "level": "N4",
+    "dominantReading": "シン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "見",
+        "meaning": "see"
+      },
+      {
+        "character": "辛",
+        "meaning": "spicy"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 見 (see), 辛 (spicy), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "親切な",
+        "reading": "しんせつな",
+        "meaning": "kind, gentle"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-186",
+    "character": "験",
+    "meaning": "Test",
+    "level": "N4",
+    "dominantReading": "ケン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "馬",
+        "meaning": "horse"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 人 (human), 馬 (horse)",
+    "vocabulary": [
+      {
+        "word": "経験する",
+        "reading": "けいけんする",
+        "meaning": "to experience"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-187",
+    "character": "英",
+    "meaning": "Heroic",
+    "level": "N4",
+    "dominantReading": "エイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 艾 (component), 大 (big)",
+    "vocabulary": [
+      {
+        "word": "英語",
+        "reading": "えいご",
+        "meaning": "English"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-188",
+    "character": "医",
+    "meaning": "Doctor",
+    "level": "N4",
+    "dominantReading": "イ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "匚",
+        "meaning": "box frame"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 矢 (arrow), 匚 (box frame), 乞 (component)",
+    "vocabulary": [
+      {
+        "word": "医者",
+        "reading": "いしゃ",
+        "meaning": "doctor"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-189",
+    "character": "仕",
+    "meaning": "Work",
+    "level": "N4",
+    "dominantReading": "シ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 士 (scholar)",
+    "vocabulary": [
+      {
+        "word": "仕方",
+        "reading": "しかた",
+        "meaning": "way of doing"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-190",
+    "character": "去",
+    "meaning": "Past, Tense",
+    "level": "N4",
+    "dominantReading": "キョ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 厶 (private)",
+    "vocabulary": [
+      {
+        "word": "去年",
+        "reading": "きょねん",
+        "meaning": "last year"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-191",
+    "character": "味",
+    "meaning": "Flavor",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 口 (mouth), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-192",
+    "character": "写",
+    "meaning": "Copy",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 冖 (cover), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-193",
+    "character": "字",
+    "meaning": "character, letter, word",
+    "level": "N4",
+    "dominantReading": "ジ (ji)",
+    "onYomi": [
+      "ジ (ji)"
+    ],
+    "kunYomi": [
+      "あざ (aza)"
+    ],
+    "radicals": [
+      {
+        "character": "宀",
+        "meaning": "roof"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      }
+    ],
+    "mnemonic": "A child under a roof learning to write characters.",
+    "vocabulary": [
+      {
+        "word": "漢字",
+        "reading": "かんじ",
+        "meaning": "kanji, Chinese character"
+      },
+      {
+        "word": "文字",
+        "reading": "もじ",
+        "meaning": "letter, character"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-194",
+    "character": "答",
+    "meaning": "Answer",
+    "level": "N4",
+    "dominantReading": "こたえる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 竹 (bamboo), 个 (component)",
+    "vocabulary": [
+      {
+        "word": "答える",
+        "reading": "こたえる",
+        "meaning": "to answer"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-195",
+    "character": "夜",
+    "meaning": "Late, Night",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 夕 (evening), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-196",
+    "character": "音",
+    "meaning": "Sound",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 日 (sun), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-197",
+    "character": "注",
+    "meaning": "Pour, Be, Careful",
+    "level": "N4",
+    "dominantReading": "チュウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 汁 (component), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "注意する",
+        "reading": "ちゅういする",
+        "meaning": "to pay attention"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-198",
+    "character": "帰",
+    "meaning": "Go, Back, Home",
+    "level": "N4",
+    "dominantReading": "かえる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 刈 (component), 巾 (cloth)",
+    "vocabulary": [
+      {
+        "word": "帰る",
+        "reading": "かえる",
+        "meaning": "to go home"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-199",
+    "character": "古",
+    "meaning": "Old",
+    "level": "N4",
+    "dominantReading": "ふるい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten)",
+    "vocabulary": [
+      {
+        "word": "古い",
+        "reading": "ふるい",
+        "meaning": "old"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-200",
+    "character": "歌",
+    "meaning": "Sing",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 欠 (yawn), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-201",
+    "character": "買",
+    "meaning": "Buy",
+    "level": "N4",
+    "dominantReading": "かう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "買",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "買う",
+        "reading": "かう",
+        "meaning": "to buy"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-202",
+    "character": "悪",
+    "meaning": "Bad",
+    "level": "N4",
+    "dominantReading": "わるい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "悪い",
+        "reading": "わるい",
+        "meaning": "bad"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-203",
+    "character": "図",
+    "meaning": "Diagram, Map",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斗",
+        "meaning": "dipper"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 斗 (dipper), 囗 (enclosure)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-204",
+    "character": "週",
+    "meaning": "Week",
+    "level": "N4",
+    "dominantReading": "シュウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 込 (component), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "先週",
+        "reading": "せんしゅう",
+        "meaning": "last week"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-205",
+    "character": "室",
+    "meaning": "Room, Suffix",
+    "level": "N4",
+    "dominantReading": "シツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "至",
+        "meaning": "arrive"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 至 (arrive), 土 (earth), 厶 (private)",
+    "vocabulary": [
+      {
+        "word": "会議室",
+        "reading": "かいぎしつ",
+        "meaning": "conference room"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-206",
+    "character": "歩",
+    "meaning": "Walk",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 止 (stop), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-207",
+    "character": "風",
+    "meaning": "Wind, The, Flu, Style",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "風",
+        "meaning": "wind"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "虫",
+        "meaning": "insect"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 風 (wind), 几 (desk), 虫 (insect)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-208",
+    "character": "紙",
+    "meaning": "Paper",
+    "level": "N4",
+    "dominantReading": "かみ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "氏",
+        "meaning": "clan"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of 氏 (clan), 糸 (thread), 幺 (short thread)",
+    "vocabulary": [
+      {
+        "word": "手紙",
+        "reading": "てがみ",
+        "meaning": "a letter"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-209",
+    "character": "黒",
+    "meaning": "Black",
+    "level": "N4",
+    "dominantReading": "くろい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "黒",
+        "meaning": "black"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 黒 (black), 里 (village), 杰 (component)",
+    "vocabulary": [
+      {
+        "word": "黒い",
+        "reading": "くろい",
+        "meaning": "black"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-210",
+    "character": "花",
+    "meaning": "Flower",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 匕 (spoon hi), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-211",
+    "character": "春",
+    "meaning": "Spring, Sexy",
+    "level": "N4",
+    "dominantReading": "はる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 二 (two), 日 (sun)",
+    "vocabulary": [
+      {
+        "word": "春休み",
+        "reading": "はるやすみ",
+        "meaning": "spring break"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-212",
+    "character": "赤",
+    "meaning": "Red",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "赤",
+        "meaning": "red"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 赤 (red), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-213",
+    "character": "青",
+    "meaning": "Blue",
+    "level": "N4",
+    "dominantReading": "あおい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "青",
+        "meaning": "green"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 青 (green), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "青い",
+        "reading": "あおい",
+        "meaning": "blue"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-214",
+    "character": "館",
+    "meaning": "Big, Hall",
+    "level": "N4",
+    "dominantReading": "カン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "食",
+        "meaning": "eat"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 食 (eat), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "美術館",
+        "reading": "びじゅつかん",
+        "meaning": "museum"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-215",
+    "character": "屋",
+    "meaning": "Store",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "至",
+        "meaning": "arrive"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 至 (arrive), 土 (earth), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-216",
+    "character": "色",
+    "meaning": "Color",
+    "level": "N4",
+    "dominantReading": "いろ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "色",
+        "meaning": "colour"
+      },
+      {
+        "character": "巴",
+        "meaning": "component"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 色 (colour), 巴 (component), 勹 (embrace)",
+    "vocabulary": [
+      {
+        "word": "茶色",
+        "reading": "ちゃいろ",
+        "meaning": "brown"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-217",
+    "character": "走",
+    "meaning": "Run",
+    "level": "N4",
+    "dominantReading": "はしる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "走",
+        "meaning": "run"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 走 (run), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "走る",
+        "reading": "はしる",
+        "meaning": "to run"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-218",
+    "character": "秋",
+    "meaning": "Fall",
+    "level": "N4",
+    "dominantReading": "あき",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 禾 (two-branch tree)",
+    "vocabulary": [
+      {
+        "word": "秋",
+        "reading": "あき",
+        "meaning": "fall (season)"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-219",
+    "character": "夏",
+    "meaning": "Summer",
+    "level": "N4",
+    "dominantReading": "なつ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 自 (oneself), 夂 (winter)",
+    "vocabulary": [
+      {
+        "word": "夏休み",
+        "reading": "なつやすみ",
+        "meaning": "summer vacation"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-220",
+    "character": "習",
+    "meaning": "Learn",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "羽",
+        "meaning": "feather"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 羽 (feather), 白 (white), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-221",
+    "character": "駅",
+    "meaning": "Train, Station",
+    "level": "N4",
+    "dominantReading": "エキ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "馬",
+        "meaning": "horse"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 馬 (horse), 尸 (corpse), 杰 (component)",
+    "vocabulary": [
+      {
+        "word": "駅",
+        "reading": "えき",
+        "meaning": "station"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-222",
+    "character": "洋",
+    "meaning": "Pacific, Ocean, The, West",
+    "level": "N4",
+    "dominantReading": "ヨウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 汁 (component), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "西洋",
+        "reading": "せいよう",
+        "meaning": "the West, western"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-223",
+    "character": "旅",
+    "meaning": "Trip",
+    "level": "N4",
+    "dominantReading": "リョ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "方",
+        "meaning": "way"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 方 (way), 乞 (component)",
+    "vocabulary": [
+      {
+        "word": "旅行",
+        "reading": "りょこう",
+        "meaning": "trip"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-224",
+    "character": "服",
+    "meaning": "Clothes",
+    "level": "N4",
+    "dominantReading": "フク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 又 (again), 卩 (seal)",
+    "vocabulary": [
+      {
+        "word": "洋服",
+        "reading": "ようふく",
+        "meaning": "western clothes"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-225",
+    "character": "夕",
+    "meaning": "Evening",
+    "level": "N4",
+    "dominantReading": "ゆう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夕",
+        "meaning": "evening"
+      }
+    ],
+    "mnemonic": "Composed of 夕 (evening)",
+    "vocabulary": [
+      {
+        "word": "夕方",
+        "reading": "ゆうがた",
+        "meaning": "evening"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-226",
+    "character": "借",
+    "meaning": "Borrow",
+    "level": "N4",
+    "dominantReading": "かりる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 日 (sun), 廾 (two hands)",
+    "vocabulary": [
+      {
+        "word": "借りる",
+        "reading": "かりる",
+        "meaning": "to borrow, to rent"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-227",
+    "character": "曜",
+    "meaning": "Day, Of, The, Week",
+    "level": "N4",
+    "dominantReading": "ヨウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 日 (sun), 隹 (old bird)",
+    "vocabulary": [
+      {
+        "word": "月曜日",
+        "reading": "げつようび",
+        "meaning": "Monday"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-228",
+    "character": "飲",
+    "meaning": "Drink",
+    "level": "N4",
+    "dominantReading": "のむ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "食",
+        "meaning": "eat"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 食 (eat)",
+    "vocabulary": [
+      {
+        "word": "飲む",
+        "reading": "のむ",
+        "meaning": "to drink"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-229",
+    "character": "肉",
+    "meaning": "Meat",
+    "level": "N4",
+    "dominantReading": "ニク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "肉",
+        "meaning": "meat"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      }
+    ],
+    "mnemonic": "Composed of 肉 (meat), 冂 (inverted box), 人 (human)",
+    "vocabulary": [
+      {
+        "word": "牛肉",
+        "reading": "ぎゅうにく",
+        "meaning": "beef"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-230",
+    "character": "貸",
+    "meaning": "Lend",
+    "level": "N4",
+    "dominantReading": "かす",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "弋",
+        "meaning": "ceremony"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 貝 (shell), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "貸す",
+        "reading": "かす",
+        "meaning": "to lend"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-231",
+    "character": "堂",
+    "meaning": "Assembly, Hall",
+    "level": "N4",
+    "dominantReading": "ドウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 尚 (component), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "食堂",
+        "reading": "しょくどう",
+        "meaning": "cafeteria"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-232",
+    "character": "鳥",
+    "meaning": "Bird",
+    "level": "N4",
+    "dominantReading": "とり",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "鳥",
+        "meaning": "bird"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 鳥 (bird), 杰 (component)",
+    "vocabulary": [
+      {
+        "word": "小鳥",
+        "reading": "ことり",
+        "meaning": "small bird"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-233",
+    "character": "飯",
+    "meaning": "Rice, Meal",
+    "level": "N4",
+    "dominantReading": "ハン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "食",
+        "meaning": "eat"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 食 (eat), 又 (again), 厂 (cliff)",
+    "vocabulary": [
+      {
+        "word": "朝ご飯",
+        "reading": "あさごはん",
+        "meaning": "breakfast"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-234",
+    "character": "勉",
+    "meaning": "Try, Hard",
+    "level": "N4",
+    "dominantReading": "ベン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "免",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 力 (power), 免 (component), 儿 (legs)",
+    "vocabulary": [
+      {
+        "word": "勉強する",
+        "reading": "べんきょうする",
+        "meaning": "to study"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-235",
+    "character": "冬",
+    "meaning": "Winter",
+    "level": "N4",
+    "dominantReading": "ふゆ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 夂 (winter), 丶 (dot), 攵 (component)",
+    "vocabulary": [
+      {
+        "word": "冬休み",
+        "reading": "ふゆやすみ",
+        "meaning": "winter vacation"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-236",
+    "character": "昼",
+    "meaning": "Noon",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 日 (sun), 尸 (corpse)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-237",
+    "character": "茶",
+    "meaning": "Tea",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 个 (component), 艾 (component), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-238",
+    "character": "弟",
+    "meaning": "Younger, Brother",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "弓",
+        "meaning": "bow"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 弓 (bow)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-239",
+    "character": "牛",
+    "meaning": "Cow",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "牛",
+        "meaning": "cow"
+      }
+    ],
+    "mnemonic": "Composed of 牛 (cow)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-240",
+    "character": "魚",
+    "meaning": "Fish",
+    "level": "N4",
+    "dominantReading": "さかな",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "魚",
+        "meaning": "fish"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 魚 (fish), 田 (field), 杰 (component)",
+    "vocabulary": [
+      {
+        "word": "魚",
+        "reading": "さかな",
+        "meaning": "fish"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-241",
+    "character": "兄",
+    "meaning": "Older, Brother",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-242",
+    "character": "犬",
+    "meaning": "Dog",
+    "level": "N4",
+    "dominantReading": "いぬ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "犬",
+        "meaning": "dog"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 犬 (dog), 大 (big), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "犬",
+        "reading": "いぬ",
+        "meaning": "dog"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-243",
+    "character": "妹",
+    "meaning": "Little, Sister",
+    "level": "N4",
+    "dominantReading": "いもうと",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 女 (woman), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "妹",
+        "reading": "いもうと",
+        "meaning": "younger sister"
+      }
+    ]
+  },
+  {
+    "id": "k-n4-244",
+    "character": "姉",
+    "meaning": "Older, Sister",
+    "level": "N4",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 巾 (cloth), 女 (woman), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n4-245",
+    "character": "漢",
+    "meaning": "Chinese character, China",
+    "level": "N4",
+    "dominantReading": "カン (kan)",
+    "onYomi": [
+      "カン (kan)"
+    ],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "氵",
+        "meaning": "water"
+      },
+      {
+        "character": "廴",
+        "meaning": "stretching"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Water flowing far reaching the mouth represents the spread of Chinese culture.",
+    "vocabulary": [
+      {
+        "word": "漢字",
+        "reading": "かんじ",
+        "meaning": "kanji, Chinese character"
+      },
+      {
+        "word": "漢文",
+        "reading": "かんぶん",
+        "meaning": "Chinese classics"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-246",
+    "character": "政",
+    "meaning": "Politics",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 止 (stop), 攵 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-247",
+    "character": "議",
+    "meaning": "deliberation, discussion, council",
+    "level": "N3",
+    "dominantReading": "ギ (gi)",
+    "onYomi": [
+      "ギ (gi)"
+    ],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "義",
+        "meaning": "justice"
+      }
+    ],
+    "mnemonic": "Combining 'speech' and 'justice' signifies a discussion to reach justice.",
+    "vocabulary": [
+      {
+        "word": "会議",
+        "reading": "かいぎ",
+        "meaning": "meeting, conference"
+      },
+      {
+        "word": "議論",
+        "reading": "ぎろん",
+        "meaning": "argument, discussion"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-248",
+    "character": "民",
+    "meaning": "Folk",
+    "level": "N3",
+    "dominantReading": "ミン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "氏",
+        "meaning": "clan"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 氏 (clan), 尸 (corpse)",
+    "vocabulary": [
+      {
+        "word": "市民",
+        "reading": "しみん",
+        "meaning": "citizen"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-249",
+    "character": "連",
+    "meaning": "Take, With, Inform, Of",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "車",
+        "meaning": "cart"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 車 (cart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-250",
+    "character": "対",
+    "meaning": "Against",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "文",
+        "meaning": "script"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 文 (script)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-251",
+    "character": "部",
+    "meaning": "Section",
+    "level": "N3",
+    "dominantReading": "ブ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "邦",
+        "meaning": "component"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 邦 (component), 立 (stand)",
+    "vocabulary": [
+      {
+        "word": "部分",
+        "reading": "ぶぶん",
+        "meaning": "part"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-252",
+    "character": "合",
+    "meaning": "To, Suit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 个 (component), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-253",
+    "character": "市",
+    "meaning": "Small, City, Dagger, Radical",
+    "level": "N3",
+    "dominantReading": "シ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 巾 (cloth), 亠 (component)",
+    "vocabulary": [
+      {
+        "word": "市民",
+        "reading": "しみん",
+        "meaning": "citizen"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-254",
+    "character": "内",
+    "meaning": "The, Inside",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-255",
+    "character": "相",
+    "meaning": "Partner",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-256",
+    "character": "定",
+    "meaning": "Plan",
+    "level": "N3",
+    "dominantReading": "テイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "疋",
+        "meaning": "bolt of cloth"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 疋 (bolt of cloth), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "安定",
+        "reading": "あんてい",
+        "meaning": "stability"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-257",
+    "character": "回",
+    "meaning": "Rotate, Times",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 囗 (enclosure)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-258",
+    "character": "選",
+    "meaning": "Choose",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 込 (component), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-259",
+    "character": "米",
+    "meaning": "Rice, America",
+    "level": "N3",
+    "dominantReading": "こめ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "米",
+        "meaning": "rice"
+      }
+    ],
+    "mnemonic": "Composed of 米 (rice)",
+    "vocabulary": [
+      {
+        "word": "米",
+        "reading": "こめ",
+        "meaning": "rice"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-260",
+    "character": "実",
+    "meaning": "Truth",
+    "level": "N3",
+    "dominantReading": "ジツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 士 (scholar), 大 (big), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "実験",
+        "reading": "じっけん",
+        "meaning": "an experiment"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-261",
+    "character": "関",
+    "meaning": "Connected, To",
+    "level": "N3",
+    "dominantReading": "カン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human), 大 (big), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "関心",
+        "reading": "カンシン",
+        "meaning": "interest"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-262",
+    "character": "決",
+    "meaning": "Decide",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ユ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 人 (human), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-263",
+    "character": "全",
+    "meaning": "All",
+    "level": "N3",
+    "dominantReading": "ゼン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), ハ (eight), 个 (component)",
+    "vocabulary": [
+      {
+        "word": "安全",
+        "reading": "あんぜん な",
+        "meaning": "safe (adjective)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-264",
+    "character": "表",
+    "meaning": "Express",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 士 (scholar), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-265",
+    "character": "戦",
+    "meaning": "Fight",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 尚 (component), 田 (field)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-266",
+    "character": "経",
+    "meaning": "Experience",
+    "level": "N3",
+    "dominantReading": "ケイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": [
+      {
+        "word": "経験",
+        "reading": "けいけん",
+        "meaning": "an experience"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-267",
+    "character": "最",
+    "meaning": "Most",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "耳",
+        "meaning": "ear"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 耳 (ear), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-268",
+    "character": "現",
+    "meaning": "Reality",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "見",
+        "meaning": "see"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 見 (see)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-269",
+    "character": "調",
+    "meaning": "Check, Out",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 口 (mouth), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-270",
+    "character": "化",
+    "meaning": "Transform",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-271",
+    "character": "当",
+    "meaning": "Hit, The, Target",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 尚 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-272",
+    "character": "約",
+    "meaning": "Promise, Roughly, Speaking",
+    "level": "N3",
+    "dominantReading": "ヤク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": [
+      {
+        "word": "予約",
+        "reading": "よやく",
+        "meaning": "an appointment, a reservation"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-273",
+    "character": "首",
+    "meaning": "Neck",
+    "level": "N3",
+    "dominantReading": "くび",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "首",
+        "meaning": "neck"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 自 (oneself), 首 (neck), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "首",
+        "reading": "くび",
+        "meaning": "neck"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-274",
+    "character": "法",
+    "meaning": "Law",
+    "level": "N3",
+    "dominantReading": "ホウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 土 (earth), 厶 (private)",
+    "vocabulary": [
+      {
+        "word": "方法",
+        "reading": "ほうほう",
+        "meaning": "a method/way"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-275",
+    "character": "性",
+    "meaning": "Sex, Essential, Nature",
+    "level": "N3",
+    "dominantReading": "セイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "生",
+        "meaning": "life"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 生 (life), 忙 (component)",
+    "vocabulary": [
+      {
+        "word": "性格",
+        "reading": "せいかく",
+        "meaning": "personality"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-276",
+    "character": "要",
+    "meaning": "Important",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "西",
+        "meaning": "west"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 西 (west)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-277",
+    "character": "制",
+    "meaning": "System",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "牛",
+        "meaning": "cow"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 刈 (component), 牛 (cow)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-278",
+    "character": "治",
+    "meaning": "Cure",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-279",
+    "character": "務",
+    "meaning": "Perform, A, Task",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "矛",
+        "meaning": "spear"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 矛 (spear), 力 (power), 攵 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-280",
+    "character": "成",
+    "meaning": "Become",
+    "level": "N3",
+    "dominantReading": "セイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 戈 (spear)",
+    "vocabulary": [
+      {
+        "word": "完成",
+        "reading": "かんせい",
+        "meaning": "completion, perfection, accomplishment"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-281",
+    "character": "期",
+    "meaning": "Period, Of, Time",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "甘",
+        "meaning": "sweet"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 甘 (sweet), 月 (meat), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-282",
+    "character": "取",
+    "meaning": "Take",
+    "level": "N3",
+    "dominantReading": "とる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "耳",
+        "meaning": "ear"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 耳 (ear), 又 (again)",
+    "vocabulary": [
+      {
+        "word": "受取人",
+        "reading": "うけとりにん",
+        "meaning": "recipient"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-283",
+    "character": "都",
+    "meaning": "Major, City",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "邦",
+        "meaning": "component"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 邦 (component), 老 (old)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-284",
+    "character": "和",
+    "meaning": "Peace, Japan",
+    "level": "N3",
+    "dominantReading": "ワ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "平和",
+        "reading": "へいわ",
+        "meaning": "peace, harmony"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-285",
+    "character": "機",
+    "meaning": "Machine",
+    "level": "N3",
+    "dominantReading": "キ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 木 (tree), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "飛行機",
+        "reading": "ひこうき",
+        "meaning": "an airplane"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-286",
+    "character": "平",
+    "meaning": "Equal, Level",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-287",
+    "character": "加",
+    "meaning": "Add",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 力 (power)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-288",
+    "character": "受",
+    "meaning": "Receive",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "爪",
+        "meaning": "claw"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 爪 (claw), 又 (again), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-289",
+    "character": "続",
+    "meaning": "Continue",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 士 (scholar), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-290",
+    "character": "進",
+    "meaning": "Progress",
+    "level": "N3",
+    "dominantReading": "すすむ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 隹 (old bird)",
+    "vocabulary": [
+      {
+        "word": "進む",
+        "reading": "すすむ",
+        "meaning": "to advance"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-291",
+    "character": "数",
+    "meaning": "Integer, To, Count",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 米 (rice), 攵 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-292",
+    "character": "記",
+    "meaning": "Diary",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 已 (oneself)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-293",
+    "character": "初",
+    "meaning": "First, Time",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "初",
+        "meaning": "component"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      }
+    ],
+    "mnemonic": "Composed of 初 (component), 刀 (sword)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-294",
+    "character": "指",
+    "meaning": "Finger, Point, At",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 匕 (spoon hi), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-295",
+    "character": "権",
+    "meaning": "Rights",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 矢 (arrow), 木 (tree), 隹 (old bird)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-296",
+    "character": "支",
+    "meaning": "Support",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "支",
+        "meaning": "branch"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 支 (branch), 十 (ten), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-297",
+    "character": "産",
+    "meaning": "Childbirth, Production, Of, Things",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "生",
+        "meaning": "life"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 生 (life), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-298",
+    "character": "点",
+    "meaning": "Point",
+    "level": "N3",
+    "dominantReading": "テン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 卜 (divination to), 杰 (component)",
+    "vocabulary": [
+      {
+        "word": "交差点",
+        "reading": "こうさてん",
+        "meaning": "an intersection"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-299",
+    "character": "報",
+    "meaning": "Data",
+    "level": "N3",
+    "dominantReading": "ホウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "辛",
+        "meaning": "spicy"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 辛 (spicy), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "報告",
+        "reading": "ほうこく",
+        "meaning": "report"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-300",
+    "character": "済",
+    "meaning": "Economy, To, Be, Over",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "文",
+        "meaning": "script"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "斉",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 汁 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-301",
+    "character": "活",
+    "meaning": "Vivid, Lively",
+    "level": "N3",
+    "dominantReading": "カツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "舌",
+        "meaning": "tongue"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 十 (ten)",
+    "vocabulary": [
+      {
+        "word": "活動",
+        "reading": "かつどう",
+        "meaning": "activity"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-302",
+    "character": "原",
+    "meaning": "Original, High, Plain",
+    "level": "N3",
+    "dominantReading": "ゲン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 小 (small), 白 (white), 厂 (cliff)",
+    "vocabulary": [
+      {
+        "word": "原料",
+        "reading": "げんりょう",
+        "meaning": "(raw) material"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-303",
+    "character": "共",
+    "meaning": "With",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of ハ (eight), ｜ (line), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-304",
+    "character": "得",
+    "meaning": "Bargain, Obtain",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 日 (sun), 彳 (step)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-305",
+    "character": "解",
+    "meaning": "Solve, Untie",
+    "level": "N3",
+    "dominantReading": "カイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "角",
+        "meaning": "horn"
+      },
+      {
+        "character": "牛",
+        "meaning": "cow"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      }
+    ],
+    "mnemonic": "Composed of 角 (horn), 牛 (cow), 刀 (sword)",
+    "vocabulary": [
+      {
+        "word": "理解",
+        "reading": "りかい",
+        "meaning": "understanding"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-306",
+    "character": "交",
+    "meaning": "Combine",
+    "level": "N3",
+    "dominantReading": "コウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "父",
+        "meaning": "father"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 父 (father), 亠 (component)",
+    "vocabulary": [
+      {
+        "word": "交通",
+        "reading": "こうつう",
+        "meaning": "traffic, transport"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-307",
+    "character": "資",
+    "meaning": "Capital, As, In",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-308",
+    "character": "予",
+    "meaning": "Beforehand",
+    "level": "N3",
+    "dominantReading": "ヨ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "マ",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of マ (component), 一 (one), 亅 (hook)",
+    "vocabulary": [
+      {
+        "word": "予定",
+        "reading": "よてい",
+        "meaning": "a plan/schedule"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-309",
+    "character": "向",
+    "meaning": "Turn, To, Face",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-310",
+    "character": "際",
+    "meaning": "Edge",
+    "level": "N3",
+    "dominantReading": "サイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "癶",
+        "meaning": "footsteps"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 示 (altar), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "国際",
+        "reading": "こくさい(の)",
+        "meaning": "international"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-311",
+    "character": "勝",
+    "meaning": "Win",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 人 (human), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-312",
+    "character": "面",
+    "meaning": "Front, Surface, Face",
+    "level": "N3",
+    "dominantReading": "メン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "面",
+        "meaning": "face"
+      }
+    ],
+    "mnemonic": "Composed of 面 (face)",
+    "vocabulary": [
+      {
+        "word": "画面",
+        "reading": "がめん",
+        "meaning": "a screen"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-313",
+    "character": "告",
+    "meaning": "Inform",
+    "level": "N3",
+    "dominantReading": "コク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "広告",
+        "reading": "こうこく",
+        "meaning": "advertisement"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-314",
+    "character": "反",
+    "meaning": "Anti",
+    "level": "N3",
+    "dominantReading": "ハン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 又 (again), 厂 (cliff)",
+    "vocabulary": [
+      {
+        "word": "反対",
+        "reading": "はんたい",
+        "meaning": "the opposite"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-315",
+    "character": "判",
+    "meaning": "Judgement",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 刈 (component), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-316",
+    "character": "認",
+    "meaning": "Admit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 心 (heart), 刀 (sword)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-317",
+    "character": "参",
+    "meaning": "Admit, Defeat, Visit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "彡",
+        "meaning": "hair"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 厶 (private), 彡 (hair)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-318",
+    "character": "利",
+    "meaning": "Handy",
+    "level": "N3",
+    "dominantReading": "リ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 刈 (component)",
+    "vocabulary": [
+      {
+        "word": "利用する",
+        "reading": "りようする",
+        "meaning": "to use"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-319",
+    "character": "組",
+    "meaning": "Ones, Team",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-320",
+    "character": "信",
+    "meaning": "Believe",
+    "level": "N3",
+    "dominantReading": "シン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "言",
+        "meaning": "speech"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 言 (speech)",
+    "vocabulary": [
+      {
+        "word": "信用",
+        "reading": "しんよう",
+        "meaning": "trust"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-321",
+    "character": "在",
+    "meaning": "Be, Real",
+    "level": "N3",
+    "dominantReading": "ザイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "現在",
+        "reading": "げんざい",
+        "meaning": "present time"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-322",
+    "character": "件",
+    "meaning": "Incident",
+    "level": "N3",
+    "dominantReading": "ケン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "牛",
+        "meaning": "cow"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 牛 (cow)",
+    "vocabulary": [
+      {
+        "word": "事件",
+        "reading": "じけん",
+        "meaning": "an incident"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-323",
+    "character": "側",
+    "meaning": "Side, Of, Something",
+    "level": "N3",
+    "dominantReading": "かわ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 貝 (shell), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "窓側",
+        "reading": "まどがわ",
+        "meaning": "the window side"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-324",
+    "character": "任",
+    "meaning": "Have, Responsibility, For",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 王 (king; ball), 化 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-325",
+    "character": "引",
+    "meaning": "Pull",
+    "level": "N3",
+    "dominantReading": "ひく",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "弓",
+        "meaning": "bow"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 弓 (bow)",
+    "vocabulary": [
+      {
+        "word": "引き出し",
+        "reading": "ひきだし",
+        "meaning": "drawer"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-326",
+    "character": "求",
+    "meaning": "Demandask",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 水 (water), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-327",
+    "character": "所",
+    "meaning": "Area, Attribute",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 斤 (axe), 戸 (door), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-328",
+    "character": "次",
+    "meaning": "Next",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-329",
+    "character": "昨",
+    "meaning": "Yesterday",
+    "level": "N3",
+    "dominantReading": "サク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 日 (sun)",
+    "vocabulary": [
+      {
+        "word": "昨夜",
+        "reading": "さくや",
+        "meaning": "last night"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-330",
+    "character": "論",
+    "meaning": "Make, A, Case, For",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "冊",
+        "meaning": "component"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 言 (speech)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-331",
+    "character": "官",
+    "meaning": "Federal",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 宀 (component), ｜ (line)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-332",
+    "character": "増",
+    "meaning": "Increase",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 土 (earth), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-333",
+    "character": "係",
+    "meaning": "Be, Involved, With",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 化 (component), 糸 (thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-334",
+    "character": "感",
+    "meaning": "Feeling",
+    "level": "N3",
+    "dominantReading": "かんじる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 心 (heart)",
+    "vocabulary": [
+      {
+        "word": "感動",
+        "reading": "かんどう",
+        "meaning": "inspiration"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-335",
+    "character": "情",
+    "meaning": "Emotion",
+    "level": "N3",
+    "dominantReading": "ジョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "青",
+        "meaning": "green"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 青 (green), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "感情",
+        "reading": "かんじょう",
+        "meaning": "emotions"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-336",
+    "character": "投",
+    "meaning": "Throw",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 扎 (component), 殳 (weapon), 几 (desk)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-337",
+    "character": "示",
+    "meaning": "Show, Altar, Radical",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of 示 (altar), 二 (two), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-338",
+    "character": "変",
+    "meaning": "Change",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      }
+    ],
+    "mnemonic": "Composed of 亠 (component), 夂 (winter)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-339",
+    "character": "打",
+    "meaning": "Pound",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 亅 (hook), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-340",
+    "character": "直",
+    "meaning": "Correct, A, Problem, Direct, Contact",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 目 (eye), ｜ (line)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-341",
+    "character": "両",
+    "meaning": "Both",
+    "level": "N3",
+    "dominantReading": "リョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 冂 (inverted box)",
+    "vocabulary": [
+      {
+        "word": "両親",
+        "reading": "りょうしん",
+        "meaning": "parents"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-342",
+    "character": "式",
+    "meaning": "Ritual",
+    "level": "N3",
+    "dominantReading": "シキ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "弋",
+        "meaning": "ceremony"
+      }
+    ],
+    "mnemonic": "Composed of 工 (work), 弋 (ceremony)",
+    "vocabulary": [
+      {
+        "word": "数式",
+        "reading": "すうしき",
+        "meaning": "numerical formula"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-343",
+    "character": "確",
+    "meaning": "Make, Certain",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 石 (stone), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-344",
+    "character": "果",
+    "meaning": "Fruit, Result",
+    "level": "N3",
+    "dominantReading": "カ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 田 (field), 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "結果",
+        "reading": "けっか",
+        "meaning": "a result"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-345",
+    "character": "容",
+    "meaning": "Appearance",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "穴",
+        "meaning": "cave"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "谷",
+        "meaning": "valley"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 穴 (cave), 口 (mouth), 谷 (valley)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-346",
+    "character": "必",
+    "meaning": "Surely",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-347",
+    "character": "演",
+    "meaning": "Performance",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 田 (field), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-348",
+    "character": "歳",
+    "meaning": "Years, Old",
+    "level": "N3",
+    "dominantReading": "サイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 止 (stop), 小 (small)",
+    "vocabulary": [
+      {
+        "word": "～歳",
+        "reading": "～さい",
+        "meaning": "... years old"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-349",
+    "character": "争",
+    "meaning": "Battle",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 一 (one), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-350",
+    "character": "談",
+    "meaning": "Consult",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "言",
+        "meaning": "speech"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 言 (speech)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-351",
+    "character": "能",
+    "meaning": "Talent",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 匕 (spoon hi), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-352",
+    "character": "位",
+    "meaning": "Rank",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-353",
+    "character": "置",
+    "meaning": "Put, Down, On, Table",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "買",
+        "meaning": "component"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 買 (component), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-354",
+    "character": "流",
+    "meaning": "Flow",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "川",
+        "meaning": "river"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 川 (river), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-355",
+    "character": "格",
+    "meaning": "Character, Aspect",
+    "level": "N3",
+    "dominantReading": "カク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 木 (tree), 夂 (winter)",
+    "vocabulary": [
+      {
+        "word": "合格する",
+        "reading": "ごうかくする",
+        "meaning": "to pass an exam"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-356",
+    "character": "疑",
+    "meaning": "Doubt",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "疋",
+        "meaning": "bolt of cloth"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 疋 (bolt of cloth), 矢 (arrow), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-357",
+    "character": "過",
+    "meaning": "Surpass, Too, Much",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 込 (component), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-358",
+    "character": "局",
+    "meaning": "Department",
+    "level": "N3",
+    "dominantReading": "キョク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 尸 (corpse)",
+    "vocabulary": [
+      {
+        "word": "郵便局",
+        "reading": "ゆうびんきょく",
+        "meaning": "a post office"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-359",
+    "character": "放",
+    "meaning": "Release",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "方",
+        "meaning": "way"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 方 (way), 攵 (component), 乞 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-360",
+    "character": "常",
+    "meaning": "Usual",
+    "level": "N3",
+    "dominantReading": "ジョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 巾 (cloth), 口 (mouth), 尚 (component)",
+    "vocabulary": [
+      {
+        "word": "正常",
+        "reading": "せいじょうな",
+        "meaning": "normal"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-361",
+    "character": "状",
+    "meaning": "Circumstance",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "犬",
+        "meaning": "dog"
+      },
+      {
+        "character": "爿",
+        "meaning": "split wood"
+      }
+    ],
+    "mnemonic": "Composed of 犬 (dog), 爿 (split wood)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-362",
+    "character": "球",
+    "meaning": "Sphere",
+    "level": "N3",
+    "dominantReading": "キュウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 水 (water), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "地球",
+        "reading": "ちきゅう",
+        "meaning": "the Earth"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-363",
+    "character": "職",
+    "meaning": "Employment",
+    "level": "N3",
+    "dominantReading": "ショク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "耳",
+        "meaning": "ear"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 耳 (ear), 日 (sun)",
+    "vocabulary": [
+      {
+        "word": "職場",
+        "reading": "しょくば",
+        "meaning": "a workplace"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-364",
+    "character": "与",
+    "meaning": "Bestow",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      }
+    ],
+    "mnemonic": "Composed of 勹 (embrace), 一 (one), 卜 (divination to)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-365",
+    "character": "供",
+    "meaning": "Follower",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 化 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-366",
+    "character": "役",
+    "meaning": "Role",
+    "level": "N3",
+    "dominantReading": "ヤク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "彳",
+        "meaning": "step"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 彳 (step), 殳 (weapon), 几 (desk)",
+    "vocabulary": [
+      {
+        "word": "役に立つ",
+        "reading": "やくにたつ",
+        "meaning": "useful"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-367",
+    "character": "構",
+    "meaning": "Set, Up, Care, About",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 冂 (inverted box), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-368",
+    "character": "割",
+    "meaning": "Divide",
+    "level": "N3",
+    "dominantReading": "われる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 口 (mouth), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "割引",
+        "reading": "わりびき",
+        "meaning": "a price discount"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-369",
+    "character": "費",
+    "meaning": "Expenses",
+    "level": "N3",
+    "dominantReading": "ヒ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "弓",
+        "meaning": "bow"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 貝 (shell), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "費用",
+        "reading": "ひよう",
+        "meaning": "an expense/cost"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-370",
+    "character": "付",
+    "meaning": "Stick, To",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 寸 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-371",
+    "character": "由",
+    "meaning": "Freedom, Reason",
+    "level": "N3",
+    "dominantReading": "ユウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 田 (field)",
+    "vocabulary": [
+      {
+        "word": "理由",
+        "reading": "りゆう",
+        "meaning": "a reason"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-372",
+    "character": "説",
+    "meaning": "Explain",
+    "level": "N3",
+    "dominantReading": "セツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 口 (mouth), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "小説",
+        "reading": "しょうせつ",
+        "meaning": "a novel"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-373",
+    "character": "難",
+    "meaning": "Difficult",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 艾 (component), 隹 (old bird), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-374",
+    "character": "優",
+    "meaning": "Kindheartedexcel",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "自",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 化 (component), 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-375",
+    "character": "夫",
+    "meaning": "Husband",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human), 二 (two), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-376",
+    "character": "収",
+    "meaning": "Get",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-377",
+    "character": "断",
+    "meaning": "Decisionjudgementrefuse",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 斤 (axe), 米 (rice), ｜ (line)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-378",
+    "character": "石",
+    "meaning": "Rock",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 石 (stone)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-379",
+    "character": "違",
+    "meaning": "Different, And, Therefore, Wrong",
+    "level": "N3",
+    "dominantReading": "ちがう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "韋",
+        "meaning": "tanned leather"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 込 (component), 韋 (tanned leather)",
+    "vocabulary": [
+      {
+        "word": "間違い",
+        "reading": "まちがい",
+        "meaning": "a mistake"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-380",
+    "character": "消",
+    "meaning": "Erase",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 汁 (component), 尚 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-381",
+    "character": "神",
+    "meaning": "God, Kanji",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 礼 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-382",
+    "character": "番",
+    "meaning": "Number",
+    "level": "N3",
+    "dominantReading": "バン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "釆",
+        "meaning": "divide"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 釆 (divide), 米 (rice)",
+    "vocabulary": [
+      {
+        "word": "番号",
+        "reading": "ばんごう",
+        "meaning": "a number"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-383",
+    "character": "規",
+    "meaning": "Criteria",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "見",
+        "meaning": "see"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      }
+    ],
+    "mnemonic": "Composed of 見 (see), 土 (earth), 人 (human)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-384",
+    "character": "術",
+    "meaning": "Art, Technique",
+    "level": "N3",
+    "dominantReading": "ジュツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "行",
+        "meaning": "go"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 行 (go), 十 (ten), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "美術",
+        "reading": "びじゅつ",
+        "meaning": "(fine) art"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-385",
+    "character": "備",
+    "meaning": "Furnish",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "用",
+        "meaning": "use;"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 用 (use;), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-386",
+    "character": "宅",
+    "meaning": "Residence",
+    "level": "N3",
+    "dominantReading": "タク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 乙 (second)",
+    "vocabulary": [
+      {
+        "word": "宅配",
+        "reading": "たくはい",
+        "meaning": "home delivery"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-387",
+    "character": "害",
+    "meaning": "Damage",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 土 (earth), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-388",
+    "character": "配",
+    "meaning": "Distribute",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "酉",
+        "meaning": "sake"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of 酉 (sake), 已 (oneself)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-389",
+    "character": "警",
+    "meaning": "The, Fuzz",
+    "level": "N3",
+    "dominantReading": "ケイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 口 (mouth), 勹 (embrace)",
+    "vocabulary": [
+      {
+        "word": "警官",
+        "reading": "けいかん",
+        "meaning": "a police officer"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-390",
+    "character": "育",
+    "meaning": "Grow, Up, Be, Raised",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 亠 (component), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-391",
+    "character": "席",
+    "meaning": "Seat",
+    "level": "N3",
+    "dominantReading": "セキ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of 巾 (cloth), 广 (dotted cliff), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "出席",
+        "reading": "しゅっせき",
+        "meaning": "attendance"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-392",
+    "character": "訪",
+    "meaning": "Formal, Visit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "方",
+        "meaning": "way"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 方 (way)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-393",
+    "character": "乗",
+    "meaning": "Ride, A, Vehicle",
+    "level": "N3",
+    "dominantReading": "のる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "乗り換える",
+        "reading": "のりかえる",
+        "meaning": "to transfer, to change"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-394",
+    "character": "残",
+    "meaning": "Remain, Behind",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "歹",
+        "meaning": "death"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 歹 (death), 戈 (spear), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-395",
+    "character": "想",
+    "meaning": "Ideaimagination",
+    "level": "N3",
+    "dominantReading": "ソウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart), 木 (tree), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "予想",
+        "reading": "よそう",
+        "meaning": "an anticipation, a forecast"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-396",
+    "character": "声",
+    "meaning": "Voice",
+    "level": "N3",
+    "dominantReading": "こえ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 士 (scholar), 尸 (corpse)",
+    "vocabulary": [
+      {
+        "word": "声",
+        "reading": "こえ",
+        "meaning": "voice"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-397",
+    "character": "念",
+    "meaning": "Concern",
+    "level": "N3",
+    "dominantReading": "ネン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 心 (heart)",
+    "vocabulary": [
+      {
+        "word": "記念",
+        "reading": "きねん",
+        "meaning": "commemoration"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-398",
+    "character": "助",
+    "meaning": "Save",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 目 (eye), 力 (power)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-399",
+    "character": "労",
+    "meaning": "Labor",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 尚 (component), 力 (power), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-400",
+    "character": "例",
+    "meaning": "Example",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "歹",
+        "meaning": "death"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 刈 (component), 歹 (death)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-401",
+    "character": "然",
+    "meaning": "Nature",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "犬",
+        "meaning": "dog"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 犬 (dog), 夕 (evening), 杰 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-402",
+    "character": "限",
+    "meaning": "Limit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "艮",
+        "meaning": "stopping"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 艮 (stopping), 阡 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-403",
+    "character": "追",
+    "meaning": "Follow",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 口 (mouth), 込 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-404",
+    "character": "商",
+    "meaning": "Merchandise",
+    "level": "N3",
+    "dominantReading": "ショウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 并 (component), 立 (stand)",
+    "vocabulary": [
+      {
+        "word": "商品",
+        "reading": "しょうひん",
+        "meaning": "goods"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-405",
+    "character": "葉",
+    "meaning": "Leaf",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "世",
+        "meaning": "component"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 世 (component), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-406",
+    "character": "伝",
+    "meaning": "Transmit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 二 (two), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-407",
+    "character": "働",
+    "meaning": "To, Do, Your, Job",
+    "level": "N3",
+    "dominantReading": "はたらく",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 化 (component)",
+    "vocabulary": [
+      {
+        "word": "働く",
+        "reading": "はたらく",
+        "meaning": "to work"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-408",
+    "character": "形",
+    "meaning": "Form",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "彡",
+        "meaning": "hair"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 廾 (two hands), 彡 (hair), ノ (bend)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-409",
+    "character": "景",
+    "meaning": "Scene",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 小 (small), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-410",
+    "character": "落",
+    "meaning": "Falldrop",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 夂 (winter)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-411",
+    "character": "好",
+    "meaning": "Like",
+    "level": "N3",
+    "dominantReading": "すく",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      }
+    ],
+    "mnemonic": "Composed of 子 (child), 女 (woman)",
+    "vocabulary": [
+      {
+        "word": "大好きな",
+        "reading": "だいすきな",
+        "meaning": "precious"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-412",
+    "character": "退",
+    "meaning": "Retreat",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "艮",
+        "meaning": "stopping"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 艮 (stopping)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-413",
+    "character": "頭",
+    "meaning": "Head",
+    "level": "N3",
+    "dominantReading": "あたま",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "豆",
+        "meaning": "bean"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "頭",
+        "reading": "あたま",
+        "meaning": "head"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-414",
+    "character": "負",
+    "meaning": "Lose",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-415",
+    "character": "渡",
+    "meaning": "Pass, By",
+    "level": "N3",
+    "dominantReading": "わたる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 又 (again), 广 (dotted cliff)",
+    "vocabulary": [
+      {
+        "word": "渡る",
+        "reading": "わたる",
+        "meaning": "to cross over"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-416",
+    "character": "失",
+    "meaning": "Miss, Out, On",
+    "level": "N3",
+    "dominantReading": "シツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 人 (human), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "失礼する",
+        "reading": "しつれいする",
+        "meaning": "to be excused"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-417",
+    "character": "差",
+    "meaning": "Discriminate",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 王 (king; ball), 工 (work)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-418",
+    "character": "末",
+    "meaning": "The, Tip",
+    "level": "N3",
+    "dominantReading": "マツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "週末",
+        "reading": "しゅうまつ",
+        "meaning": "the weekend"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-419",
+    "character": "守",
+    "meaning": "Protect",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-420",
+    "character": "若",
+    "meaning": "Young",
+    "level": "N3",
+    "dominantReading": "わかい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "若い",
+        "reading": "わかい",
+        "meaning": "young"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-421",
+    "character": "種",
+    "meaning": "Seed, Type, Or, Kind",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 禾 (two-branch tree), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-422",
+    "character": "美",
+    "meaning": "Beauty",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 大 (big), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-423",
+    "character": "命",
+    "meaning": "Life",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 个 (component), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-424",
+    "character": "福",
+    "meaning": "Good, Luck",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 口 (mouth), 田 (field)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-425",
+    "character": "望",
+    "meaning": "Desire",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "亡",
+        "meaning": "dead"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 亡 (dead), 月 (meat)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-426",
+    "character": "非",
+    "meaning": "Injustice, Mistake",
+    "level": "N3",
+    "dominantReading": "ヒ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "非",
+        "meaning": "wrong"
+      }
+    ],
+    "mnemonic": "Composed of 非 (wrong)",
+    "vocabulary": [
+      {
+        "word": "非常に",
+        "reading": "ひじょうに",
+        "meaning": "extremely"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-427",
+    "character": "観",
+    "meaning": "Point, Of, View",
+    "level": "N3",
+    "dominantReading": "カン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "見",
+        "meaning": "see"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 見 (see), 隹 (old bird), 矢 (arrow)",
+    "vocabulary": [
+      {
+        "word": "観光",
+        "reading": "かんこう",
+        "meaning": "sightseeing"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-428",
+    "character": "察",
+    "meaning": "Police",
+    "level": "N3",
+    "dominantReading": "サツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "癶",
+        "meaning": "footsteps"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 示 (altar), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "警察署",
+        "reading": "けいさつしょ",
+        "meaning": "a police station"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-429",
+    "character": "段",
+    "meaning": "Step, Stairs",
+    "level": "N3",
+    "dominantReading": "(ダン)",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 殳 (weapon), 几 (desk)",
+    "vocabulary": [
+      {
+        "word": "階段",
+        "reading": "かいだん",
+        "meaning": "stairs"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-430",
+    "character": "横",
+    "meaning": "Side, Arrogant",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "黄",
+        "meaning": "yellow"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 黄 (yellow), 田 (field)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-431",
+    "character": "深",
+    "meaning": "Deep",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 木 (tree), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-432",
+    "character": "申",
+    "meaning": "Humbly, Say, God, Radical",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 田 (field)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-433",
+    "character": "様",
+    "meaning": "Important, Person",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 水 (water), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-434",
+    "character": "財",
+    "meaning": "Loot",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 貝 (shell)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-435",
+    "character": "港",
+    "meaning": "Harbor",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      },
+      {
+        "character": "井",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), ハ (eight), 已 (oneself)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-436",
+    "character": "識",
+    "meaning": "Be, Conscious",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 言 (speech), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-437",
+    "character": "呼",
+    "meaning": "Call, To, Someone",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-438",
+    "character": "達",
+    "meaning": "Pluraldelivery",
+    "level": "N3",
+    "dominantReading": "タツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 込 (component), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "上達",
+        "reading": "じょうたつ",
+        "meaning": "progress, improvement"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-439",
+    "character": "良",
+    "meaning": "Good",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "艮",
+        "meaning": "stopping"
+      }
+    ],
+    "mnemonic": "Composed of 艮 (stopping)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-440",
+    "character": "候",
+    "meaning": "Climatecandidate",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "ユ",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 化 (component), 矢 (arrow)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-441",
+    "character": "程",
+    "meaning": "Extent",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 禾 (two-branch tree), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-442",
+    "character": "満",
+    "meaning": "Full",
+    "level": "N3",
+    "dominantReading": "マン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 汁 (component)",
+    "vocabulary": [
+      {
+        "word": "満車",
+        "reading": "まんしゃ",
+        "meaning": "full of cars"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-443",
+    "character": "敗",
+    "meaning": "Be, Defeated",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-444",
+    "character": "値",
+    "meaning": "Price, Or, Ranking",
+    "level": "N3",
+    "dominantReading": "ね",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 十 (ten), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "値上げ",
+        "reading": "ねあげ",
+        "meaning": "a price increase"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-445",
+    "character": "突",
+    "meaning": "Thrust",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "穴",
+        "meaning": "cave"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 穴 (cave), 大 (big), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-446",
+    "character": "光",
+    "meaning": "Shining",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 尚 (component), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-447",
+    "character": "路",
+    "meaning": "Road",
+    "level": "N3",
+    "dominantReading": "ロ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "足",
+        "meaning": "foot"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 足 (foot), 夂 (winter)",
+    "vocabulary": [
+      {
+        "word": "道路",
+        "reading": "どうろ",
+        "meaning": "a road"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-448",
+    "character": "科",
+    "meaning": "Science",
+    "level": "N3",
+    "dominantReading": "カ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "斗",
+        "meaning": "dipper"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 斗 (dipper)",
+    "vocabulary": [
+      {
+        "word": "科学",
+        "reading": "かがく",
+        "meaning": "science"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-449",
+    "character": "積",
+    "meaning": "Pile, Up",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 貝 (shell), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-450",
+    "character": "他",
+    "meaning": "Other",
+    "level": "N3",
+    "dominantReading": "タ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "也",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 也 (component)",
+    "vocabulary": [
+      {
+        "word": "その他",
+        "reading": "そのた",
+        "meaning": "besides, the others"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-451",
+    "character": "処",
+    "meaning": "Dispose, Of, Or, Manage",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 几 (desk), 夂 (winter), 攵 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-452",
+    "character": "太",
+    "meaning": "Fat",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-453",
+    "character": "客",
+    "meaning": "Customer",
+    "level": "N3",
+    "dominantReading": "キャク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 夂 (winter), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "お客様",
+        "reading": "おきゃくさま",
+        "meaning": "a customer (honorific)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-454",
+    "character": "否",
+    "meaning": "No",
+    "level": "N3",
+    "dominantReading": "ヒ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "否定",
+        "reading": "ひてい",
+        "meaning": "negation"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-455",
+    "character": "師",
+    "meaning": "Master, Teacher",
+    "level": "N3",
+    "dominantReading": "シ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 巾 (cloth)",
+    "vocabulary": [
+      {
+        "word": "医師",
+        "reading": "いし",
+        "meaning": "a doctor"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-456",
+    "character": "登",
+    "meaning": "Climb",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "豆",
+        "meaning": "bean"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "癶",
+        "meaning": "footsteps"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 豆 (bean), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-457",
+    "character": "易",
+    "meaning": "Easy",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "勿",
+        "meaning": "component"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 勿 (component), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-458",
+    "character": "速",
+    "meaning": "Fast",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-459",
+    "character": "存",
+    "meaning": "Be, Aware, Of",
+    "level": "N3",
+    "dominantReading": "ゾン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "存じません",
+        "reading": "ぞんじません",
+        "meaning": "I do not know (humble form)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-460",
+    "character": "飛",
+    "meaning": "Fly",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "飛",
+        "meaning": "fly"
+      }
+    ],
+    "mnemonic": "Composed of 飛 (fly)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-461",
+    "character": "殺",
+    "meaning": "Kill",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 殳 (weapon), ノ (bend)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-462",
+    "character": "号",
+    "meaning": "Id, Number",
+    "level": "N3",
+    "dominantReading": "ゴウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 口 (mouth), 勹 (embrace)",
+    "vocabulary": [
+      {
+        "word": "信号",
+        "reading": "シンゴウ",
+        "meaning": "a signal, a traffic light"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-463",
+    "character": "単",
+    "meaning": "Merely",
+    "level": "N3",
+    "dominantReading": "タン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 尚 (component), 田 (field)",
+    "vocabulary": [
+      {
+        "word": "単語",
+        "reading": "たんご",
+        "meaning": "a word, vocabulary"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-464",
+    "character": "座",
+    "meaning": "Sit",
+    "level": "N3",
+    "dominantReading": "すわる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 土 (earth), 人 (human)",
+    "vocabulary": [
+      {
+        "word": "座る",
+        "reading": "すわる",
+        "meaning": "to sit"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-465",
+    "character": "破",
+    "meaning": "Rend",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      },
+      {
+        "character": "皮",
+        "meaning": "skin"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 石 (stone), 皮 (skin)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-466",
+    "character": "除",
+    "meaning": "Exclude",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 示 (altar), 个 (component), 阡 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-467",
+    "character": "完",
+    "meaning": "Complete",
+    "level": "N3",
+    "dominantReading": "カン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "元",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two), 儿 (legs), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "完了",
+        "reading": "かんりょう",
+        "meaning": "completion"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-468",
+    "character": "降",
+    "meaning": "Descend, Rainfall, Get, Out, Of, Vehicle",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 夂 (winter), 阡 (component), 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-469",
+    "character": "責",
+    "meaning": "Condemn",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-470",
+    "character": "捕",
+    "meaning": "Capture",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "用",
+        "meaning": "use;"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 用 (use;), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-471",
+    "character": "危",
+    "meaning": "Dangerous",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of 勹 (embrace), 厂 (cliff), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-472",
+    "character": "給",
+    "meaning": "Provide",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-473",
+    "character": "苦",
+    "meaning": "Suffer",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-474",
+    "character": "迎",
+    "meaning": "Go, To, Pick, Someone, Up",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-475",
+    "character": "園",
+    "meaning": "Public, Park",
+    "level": "N3",
+    "dominantReading": "エン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 口 (mouth), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "動物園",
+        "reading": "どうぶつえん",
+        "meaning": "a zoo"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-476",
+    "character": "具",
+    "meaning": "Tool",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), ハ (eight), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-477",
+    "character": "辞",
+    "meaning": "Quit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "辛",
+        "meaning": "spicy"
+      },
+      {
+        "character": "舌",
+        "meaning": "tongue"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten), 辛 (spicy)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-478",
+    "character": "因",
+    "meaning": "Origin",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 囗 (enclosure)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-479",
+    "character": "馬",
+    "meaning": "Horse",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "馬",
+        "meaning": "horse"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 馬 (horse), 杰 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-480",
+    "character": "愛",
+    "meaning": "Love",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "爪",
+        "meaning": "claw"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart), 爪 (claw), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-481",
+    "character": "富",
+    "meaning": "Get, Rich",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 田 (field), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-482",
+    "character": "彼",
+    "meaning": "Him",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "皮",
+        "meaning": "skin"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      }
+    ],
+    "mnemonic": "Composed of 皮 (skin), 又 (again), 彳 (step)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-483",
+    "character": "未",
+    "meaning": "Not, Yet",
+    "level": "N3",
+    "dominantReading": "ミ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 二 (two), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "未定",
+        "reading": "みてい",
+        "meaning": "undecided"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-484",
+    "character": "舞",
+    "meaning": "Dance, Flutter",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "舛",
+        "meaning": "opposite"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "無",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-485",
+    "character": "亡",
+    "meaning": "Dying",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "亡",
+        "meaning": "dead"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 亡 (dead), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-486",
+    "character": "冷",
+    "meaning": "Cold, Thing",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 个 (component), 冫 (ice), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-487",
+    "character": "適",
+    "meaning": "Suitable",
+    "level": "N3",
+    "dominantReading": "テキ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "滴",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 込 (component), 十 (ten)",
+    "vocabulary": [
+      {
+        "word": "快適",
+        "reading": "かいてき",
+        "meaning": "comfortable　(な adjective)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-488",
+    "character": "婦",
+    "meaning": "Housewife, Lady",
+    "level": "N3",
+    "dominantReading": "フ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 巾 (cloth), 女 (woman)",
+    "vocabulary": [
+      {
+        "word": "主婦",
+        "reading": "しゅふ",
+        "meaning": "a housewife"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-489",
+    "character": "寄",
+    "meaning": "Get, Close",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 口 (mouth), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-490",
+    "character": "込",
+    "meaning": "Get, Crowded",
+    "level": "N3",
+    "dominantReading": "こむ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "入",
+        "meaning": "enter"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 入 (enter)",
+    "vocabulary": [
+      {
+        "word": "振り込む",
+        "reading": "ふりこむ",
+        "meaning": "to transfer money"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-491",
+    "character": "顔",
+    "meaning": "Face",
+    "level": "N3",
+    "dominantReading": "かお",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      },
+      {
+        "character": "彡",
+        "meaning": "hair"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "顔",
+        "reading": "かお",
+        "meaning": "face"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-492",
+    "character": "類",
+    "meaning": "Categorytype",
+    "level": "N3",
+    "dominantReading": "ルイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "書類",
+        "reading": "しょるい",
+        "meaning": "a document"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-493",
+    "character": "余",
+    "meaning": "Excess",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 二 (two), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-494",
+    "character": "王",
+    "meaning": "King",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-495",
+    "character": "返",
+    "meaning": "Return, Or, Respond",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 又 (again), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-496",
+    "character": "妻",
+    "meaning": "Wife",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ヨ (component), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-497",
+    "character": "背",
+    "meaning": "Stature, Back, Of, The, Body",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "爿",
+        "meaning": "split wood"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 匕 (spoon hi), 爿 (split wood)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-498",
+    "character": "熱",
+    "meaning": "Hot, Thing, Fever",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "九",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 九 (component), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-499",
+    "character": "宿",
+    "meaning": "Lodge, At",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 白 (white), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-500",
+    "character": "薬",
+    "meaning": "Medicine",
+    "level": "N3",
+    "dominantReading": "くすり",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 木 (tree), 冫 (ice)",
+    "vocabulary": [
+      {
+        "word": "薬",
+        "reading": "くすり",
+        "meaning": "medicine"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-501",
+    "character": "険",
+    "meaning": "Steep, Risky",
+    "level": "N3",
+    "dominantReading": "ケン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 人 (human), 个 (component)",
+    "vocabulary": [
+      {
+        "word": "危険",
+        "reading": "きけんな",
+        "meaning": "danger"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-502",
+    "character": "頼",
+    "meaning": "Ask, A, Favor",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 貝 (shell), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-503",
+    "character": "覚",
+    "meaning": "Bear, In, Mind",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "見",
+        "meaning": "see"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 見 (see), 尚 (component), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-504",
+    "character": "船",
+    "meaning": "Ship",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "舟",
+        "meaning": "boat"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 舟 (boat), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-505",
+    "character": "途",
+    "meaning": "On, The, Way",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), ハ (eight), 个 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-506",
+    "character": "許",
+    "meaning": "Allow",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 干 (dry), 言 (speech)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-507",
+    "character": "抜",
+    "meaning": "Extract",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 夂 (winter), 亠 (component), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-508",
+    "character": "便",
+    "meaning": "Convenient, Poop",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-509",
+    "character": "留",
+    "meaning": "Absent, Stopped",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 刀 (sword), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-510",
+    "character": "罪",
+    "meaning": "Sin",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "買",
+        "meaning": "component"
+      },
+      {
+        "character": "非",
+        "meaning": "wrong"
+      }
+    ],
+    "mnemonic": "Composed of 買 (component), 非 (wrong)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-511",
+    "character": "努",
+    "meaning": "Make, An, Effort",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 又 (again), 力 (power)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-512",
+    "character": "精",
+    "meaning": "Spirit",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "青",
+        "meaning": "green"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 青 (green), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-513",
+    "character": "散",
+    "meaning": "Scatter",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 攵 (component), 廾 (two hands)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-514",
+    "character": "静",
+    "meaning": "Quiet",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "青",
+        "meaning": "green"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 青 (green), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-515",
+    "character": "婚",
+    "meaning": "Marriage",
+    "level": "N3",
+    "dominantReading": "コン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "氏",
+        "meaning": "clan"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 氏 (clan), 女 (woman), 日 (sun)",
+    "vocabulary": [
+      {
+        "word": "結婚",
+        "reading": "けっこん",
+        "meaning": "a marriage"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-516",
+    "character": "喜",
+    "meaning": "Rejoice",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "豆",
+        "meaning": "bean"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 士 (scholar), 豆 (bean)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-517",
+    "character": "浮",
+    "meaning": "Float",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "爪",
+        "meaning": "claw"
+      }
+    ],
+    "mnemonic": "Composed of 子 (child), 汁 (component), 爪 (claw)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-518",
+    "character": "絶",
+    "meaning": "Extinct",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "色",
+        "meaning": "colour"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-519",
+    "character": "幸",
+    "meaning": "Luck, Happiness",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "辛",
+        "meaning": "spicy"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 辛 (spicy), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-520",
+    "character": "押",
+    "meaning": "Push",
+    "level": "N3",
+    "dominantReading": "おす",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 扎 (component)",
+    "vocabulary": [
+      {
+        "word": "押し入れ",
+        "reading": "おしいれ",
+        "meaning": "closet"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-521",
+    "character": "倒",
+    "meaning": "Knock, Down",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "至",
+        "meaning": "arrive"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 刈 (component), 至 (arrive)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-522",
+    "character": "等",
+    "meaning": "Equal, Etcplural",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 竹 (bamboo), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-523",
+    "character": "老",
+    "meaning": "Get, Old",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "老",
+        "meaning": "old"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 老 (old), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-524",
+    "character": "曲",
+    "meaning": "Song, Turn, Or, Bend",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-525",
+    "character": "払",
+    "meaning": "Pay",
+    "level": "N3",
+    "dominantReading": "はらう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 厶 (private), 扎 (component)",
+    "vocabulary": [
+      {
+        "word": "払う",
+        "reading": "はらう",
+        "meaning": "to pay, to sweep away"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-526",
+    "character": "庭",
+    "meaning": "Garden",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      },
+      {
+        "character": "廴",
+        "meaning": "long stride"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 广 (dotted cliff), 廴 (long stride)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-527",
+    "character": "徒",
+    "meaning": "Pupil, Follower",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "走",
+        "meaning": "run"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      }
+    ],
+    "mnemonic": "Composed of 走 (run), 土 (earth), 彳 (step)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-528",
+    "character": "勤",
+    "meaning": "Be, Employed, At",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 力 (power), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-529",
+    "character": "遅",
+    "meaning": "Slow, Late",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 込 (component), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-530",
+    "character": "居",
+    "meaning": "Live",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten), 尸 (corpse)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-531",
+    "character": "雑",
+    "meaning": "Miscellaneous, Random",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      },
+      {
+        "character": "九",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 隹 (old bird), 九 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-532",
+    "character": "招",
+    "meaning": "Beckon",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 刀 (sword), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-533",
+    "character": "困",
+    "meaning": "Trouble",
+    "level": "N3",
+    "dominantReading": "こまる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 囗 (enclosure)",
+    "vocabulary": [
+      {
+        "word": "困る",
+        "reading": "こまる",
+        "meaning": "be in trouble"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-534",
+    "character": "欠",
+    "meaning": "Lack",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 勹 (embrace), 人 (human)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-535",
+    "character": "更",
+    "meaning": "All, Over, Again",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-536",
+    "character": "刻",
+    "meaning": "Engrave",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 亠 (component), 人 (human)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-537",
+    "character": "賛",
+    "meaning": "Agree",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-538",
+    "character": "抱",
+    "meaning": "Hug",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 勹 (embrace), 已 (oneself), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-539",
+    "character": "犯",
+    "meaning": "Commit, A, Crime",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "犯",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 犯 (component), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-540",
+    "character": "恐",
+    "meaning": "Dread",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      }
+    ],
+    "mnemonic": "Composed of 工 (work), 心 (heart), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-541",
+    "character": "息",
+    "meaning": "Son, Breath",
+    "level": "N3",
+    "dominantReading": "いき",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 自 (oneself), 心 (heart), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "息切れ",
+        "reading": "いききれ",
+        "meaning": "shortness of breath"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-542",
+    "character": "遠",
+    "meaning": "Far",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 口 (mouth), 込 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-543",
+    "character": "戻",
+    "meaning": "Return",
+    "level": "N3",
+    "dominantReading": "もどす",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 戸 (door), 大 (big), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "戻す",
+        "reading": "もどす",
+        "meaning": "to return, put back"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-544",
+    "character": "願",
+    "meaning": "Beseech",
+    "level": "N3",
+    "dominantReading": "ねがう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "願う",
+        "reading": "ねがう",
+        "meaning": "to desire, to wish"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-545",
+    "character": "絵",
+    "meaning": "Picture",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-546",
+    "character": "越",
+    "meaning": "Go, Beyond",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "走",
+        "meaning": "run"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 走 (run), 土 (earth), 戈 (spear)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-547",
+    "character": "欲",
+    "meaning": "Want",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "谷",
+        "meaning": "valley"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 口 (mouth), 谷 (valley)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-548",
+    "character": "痛",
+    "meaning": "Hurts",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "用",
+        "meaning": "use;"
+      },
+      {
+        "character": "疔",
+        "meaning": "component"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 用 (use;), 疔 (component), マ (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-549",
+    "character": "笑",
+    "meaning": "Laugh",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 竹 (bamboo), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-550",
+    "character": "互",
+    "meaning": "Reciprocal",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "彑",
+        "meaning": "pig's head"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 一 (one), 彑 (pig's head)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-551",
+    "character": "束",
+    "meaning": "Bundle, Of, Sticks",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-552",
+    "character": "似",
+    "meaning": "Resemble",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 人 (human), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-553",
+    "character": "列",
+    "meaning": "Row",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "歹",
+        "meaning": "death"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 歹 (death)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-554",
+    "character": "探",
+    "meaning": "Look, For",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 儿 (legs), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-555",
+    "character": "逃",
+    "meaning": "Escape",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 儿 (legs), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-556",
+    "character": "遊",
+    "meaning": "Play, Around",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "方",
+        "meaning": "way"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 子 (child), 方 (way)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-557",
+    "character": "迷",
+    "meaning": "Perplexed",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 米 (rice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-558",
+    "character": "夢",
+    "meaning": "Dream",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "買",
+        "meaning": "component"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 買 (component), 夕 (evening), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-559",
+    "character": "君",
+    "meaning": "Buddy",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 口 (mouth), ノ (bend)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-560",
+    "character": "閉",
+    "meaning": "Close, Store",
+    "level": "N3",
+    "dominantReading": "しめる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 門 (gate)",
+    "vocabulary": [
+      {
+        "word": "閉める",
+        "reading": "しめる",
+        "meaning": "to close (something)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-561",
+    "character": "緒",
+    "meaning": "Together",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-562",
+    "character": "折",
+    "meaning": "Fold",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 斤 (axe), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-563",
+    "character": "草",
+    "meaning": "Grass",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 日 (sun), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-564",
+    "character": "暮",
+    "meaning": "Make, A, Living",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 日 (sun), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-565",
+    "character": "酒",
+    "meaning": "Liquor",
+    "level": "N3",
+    "dominantReading": "さけ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "酉",
+        "meaning": "sake"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 酉 (sake)",
+    "vocabulary": [
+      {
+        "word": "お酒",
+        "reading": "おさけ",
+        "meaning": "sake (rice wine)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-566",
+    "character": "悲",
+    "meaning": "Sad",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "非",
+        "meaning": "wrong"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart), 非 (wrong)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-567",
+    "character": "晴",
+    "meaning": "Weather, Get, Good, Now",
+    "level": "N3",
+    "dominantReading": "はれる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "青",
+        "meaning": "green"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 青 (green), 土 (earth)",
+    "vocabulary": [
+      {
+        "word": "晴れる",
+        "reading": "はれる",
+        "meaning": "to be sunny"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-568",
+    "character": "掛",
+    "meaning": "Hang, Halfway, Done",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 卜 (divination to), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-569",
+    "character": "到",
+    "meaning": "Arrive",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "至",
+        "meaning": "arrive"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 至 (arrive), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-570",
+    "character": "寝",
+    "meaning": "Go, To, Bed",
+    "level": "N3",
+    "dominantReading": "ねる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "爿",
+        "meaning": "split wood"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 又 (again), 冖 (cover)",
+    "vocabulary": [
+      {
+        "word": "寝坊",
+        "reading": "ねぼう",
+        "meaning": "oversleep"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-571",
+    "character": "暗",
+    "meaning": "Dark",
+    "level": "N3",
+    "dominantReading": "くらい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 日 (sun), 立 (stand)",
+    "vocabulary": [
+      {
+        "word": "暗い",
+        "reading": "くらい",
+        "meaning": "dark"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-572",
+    "character": "盗",
+    "meaning": "Steal, By, Stealth",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "皿",
+        "meaning": "dish"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 皿 (dish), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-573",
+    "character": "吸",
+    "meaning": "Suck",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "及",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 及 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-574",
+    "character": "陽",
+    "meaning": "Sun",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      },
+      {
+        "character": "勿",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 日 (sun), 阡 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-575",
+    "character": "御",
+    "meaning": "The, Honorific, O",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 止 (stop), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-576",
+    "character": "歯",
+    "meaning": "Tooth",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "歯",
+        "meaning": "tooth"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of 止 (stop), 歯 (tooth), 米 (rice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-577",
+    "character": "忘",
+    "meaning": "Forget",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "亡",
+        "meaning": "dead"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart), 亡 (dead), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-578",
+    "character": "雪",
+    "meaning": "Snow",
+    "level": "N3",
+    "dominantReading": "ゆき",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "雨",
+        "meaning": "rain"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 雨 (rain)",
+    "vocabulary": [
+      {
+        "word": "雪",
+        "reading": "ゆき",
+        "meaning": "snow, a snowfall"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-579",
+    "character": "吹",
+    "meaning": "Blow",
+    "level": "N3",
+    "dominantReading": "ふく",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 口 (mouth)",
+    "vocabulary": [
+      {
+        "word": "吹く",
+        "reading": "ふく",
+        "meaning": "to blow　(eg. wind)"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-580",
+    "character": "娘",
+    "meaning": "Daughter",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "艮",
+        "meaning": "stopping"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      }
+    ],
+    "mnemonic": "Composed of 艮 (stopping), 女 (woman)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-581",
+    "character": "誤",
+    "meaning": "Mistake",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 口 (mouth), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-582",
+    "character": "洗",
+    "meaning": "Wash",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 汁 (component), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-583",
+    "character": "慣",
+    "meaning": "Adapt",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "母",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      },
+      {
+        "character": "毋",
+        "meaning": "do not; mother"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-584",
+    "character": "礼",
+    "meaning": "Polite",
+    "level": "N3",
+    "dominantReading": "レイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 礼 (component)",
+    "vocabulary": [
+      {
+        "word": "お礼",
+        "reading": "おれい",
+        "meaning": "thanks"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-585",
+    "character": "窓",
+    "meaning": "Window",
+    "level": "N3",
+    "dominantReading": "まど",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "穴",
+        "meaning": "cave"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 穴 (cave), 心 (heart), 儿 (legs)",
+    "vocabulary": [
+      {
+        "word": "窓",
+        "reading": "まど",
+        "meaning": "a window"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-586",
+    "character": "昔",
+    "meaning": "Long, Ago",
+    "level": "N3",
+    "dominantReading": "むかし",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "昔",
+        "reading": "むかし",
+        "meaning": "long ago, old times"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-587",
+    "character": "貧",
+    "meaning": "Poverty",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), 刀 (sword)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-588",
+    "character": "怒",
+    "meaning": "Get, Mad",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 心 (heart), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-589",
+    "character": "泳",
+    "meaning": "Swim",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 水 (water), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-590",
+    "character": "祖",
+    "meaning": "Ancestor",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 目 (eye), 礼 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-591",
+    "character": "杯",
+    "meaning": "One, Cup, Of, Liquid",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-592",
+    "character": "疲",
+    "meaning": "Get, Tired, From, Hard, Work",
+    "level": "N3",
+    "dominantReading": "つかれる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "皮",
+        "meaning": "skin"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "疔",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 皮 (skin), 又 (again), 疔 (component)",
+    "vocabulary": [
+      {
+        "word": "疲れる",
+        "reading": "つかれる",
+        "meaning": "to get tired"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-593",
+    "character": "皆",
+    "meaning": "Everyone",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "比",
+        "meaning": "compare"
+      }
+    ],
+    "mnemonic": "Composed of 白 (white), 比 (compare)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-594",
+    "character": "鳴",
+    "meaning": "Animal, Cry",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "鳥",
+        "meaning": "bird"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 鳥 (bird), 杰 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-595",
+    "character": "腹",
+    "meaning": "Entrails",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 日 (sun), 夂 (winter)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-596",
+    "character": "煙",
+    "meaning": "Smoky",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "西",
+        "meaning": "west"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 西 (west), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-597",
+    "character": "眠",
+    "meaning": "Sleepy",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "氏",
+        "meaning": "clan"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 氏 (clan), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-598",
+    "character": "怖",
+    "meaning": "Scary",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 巾 (cloth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-599",
+    "character": "耳",
+    "meaning": "Ear",
+    "level": "N3",
+    "dominantReading": "みみ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "耳",
+        "meaning": "ear"
+      }
+    ],
+    "mnemonic": "Composed of 耳 (ear)",
+    "vocabulary": [
+      {
+        "word": "耳",
+        "reading": "みみ",
+        "meaning": "ear"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-600",
+    "character": "頂",
+    "meaning": "Summitclimax",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 貝 (shell), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-601",
+    "character": "箱",
+    "meaning": "Box",
+    "level": "N3",
+    "dominantReading": "はこ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 竹 (bamboo), 木 (tree), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "箱",
+        "reading": "はこ",
+        "meaning": "a box"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-602",
+    "character": "晩",
+    "meaning": "Night",
+    "level": "N3",
+    "dominantReading": "バン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "免",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      }
+    ],
+    "mnemonic": "Composed of 免 (component), 日 (sun), 儿 (legs)",
+    "vocabulary": [
+      {
+        "word": "毎晩",
+        "reading": "まいばん",
+        "meaning": "every night"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-603",
+    "character": "寒",
+    "meaning": "Cold",
+    "level": "N3",
+    "dominantReading": "さむい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "井",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), ハ (eight), 宀 (component)",
+    "vocabulary": [
+      {
+        "word": "寒い",
+        "reading": "さむい",
+        "meaning": "cold"
+      }
+    ]
+  },
+  {
+    "id": "k-n3-604",
+    "character": "髪",
+    "meaning": "Hair",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "長",
+        "meaning": "long"
+      },
+      {
+        "character": "彡",
+        "meaning": "hair"
+      },
+      {
+        "character": "髟",
+        "meaning": "hair"
+      }
+    ],
+    "mnemonic": "Composed of 夂 (winter), 一 (one), 長 (long)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-605",
+    "character": "忙",
+    "meaning": "Busy",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "亡",
+        "meaning": "dead"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 亡 (dead), 忙 (component), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-606",
+    "character": "才",
+    "meaning": "Skill, Age",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-607",
+    "character": "靴",
+    "meaning": "Shoe",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "革",
+        "meaning": "leather"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 革 (leather), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-608",
+    "character": "恥",
+    "meaning": "Disgrace",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "耳",
+        "meaning": "ear"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      }
+    ],
+    "mnemonic": "Composed of 耳 (ear), 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-609",
+    "character": "偶",
+    "meaning": "Coincidence",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "禹",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 田 (field), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-610",
+    "character": "偉",
+    "meaning": "High, Powered, Prestigious",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "韋",
+        "meaning": "tanned leather"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 韋 (tanned leather)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-611",
+    "character": "猫",
+    "meaning": "Cat",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "犯",
+        "meaning": "component"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 犯 (component), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n3-612",
+    "character": "幾",
+    "meaning": "How, Much",
+    "level": "N3",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 幺 (short thread), 戈 (spear)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-613",
+    "character": "党",
+    "meaning": "Political, Party",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 尚 (component), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-614",
+    "character": "協",
+    "meaning": "Cooperate",
+    "level": "N2",
+    "dominantReading": "キョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 力 (power)",
+    "vocabulary": [
+      {
+        "word": "協力",
+        "reading": "きょうりょく",
+        "meaning": "cooperation"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-615",
+    "character": "総",
+    "meaning": "General, Total",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-616",
+    "character": "区",
+    "meaning": "Ward",
+    "level": "N2",
+    "dominantReading": "ク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "匚",
+        "meaning": "box frame"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 匚 (box frame), 丶 (dot), ノ (bend)",
+    "vocabulary": [
+      {
+        "word": "区",
+        "reading": "く",
+        "meaning": "ward"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-617",
+    "character": "領",
+    "meaning": "Territory",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-618",
+    "character": "県",
+    "meaning": "Prefecture",
+    "level": "N2",
+    "dominantReading": "ケン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 小 (small), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "青森県",
+        "reading": "あおもりけん",
+        "meaning": "Aomori Prefecture"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-619",
+    "character": "設",
+    "meaning": "Establish",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 殳 (weapon), 几 (desk)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-620",
+    "character": "改",
+    "meaning": "Renew, Improve",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "已",
+        "meaning": "oneself"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 已 (oneself), 攵 (component), 乞 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-621",
+    "character": "府",
+    "meaning": "Government",
+    "level": "N2",
+    "dominantReading": "フ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 寸 (sun), 广 (dotted cliff)",
+    "vocabulary": [
+      {
+        "word": "政府",
+        "reading": "せいふ",
+        "meaning": "government, administration"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-622",
+    "character": "査",
+    "meaning": "Inspect",
+    "level": "N2",
+    "dominantReading": "サ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 木 (tree), 目 (eye)",
+    "vocabulary": [
+      {
+        "word": "調査",
+        "reading": "ちょうさ",
+        "meaning": "an investigation, an inquiry"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-623",
+    "character": "委",
+    "meaning": "Member",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 女 (woman)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-624",
+    "character": "軍",
+    "meaning": "Army",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 車 (cart), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-625",
+    "character": "団",
+    "meaning": "Group",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 囗 (enclosure)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-626",
+    "character": "各",
+    "meaning": "Each",
+    "level": "N2",
+    "dominantReading": "カク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 夂 (winter), 攵 (component)",
+    "vocabulary": [
+      {
+        "word": "各駅",
+        "reading": "かくえき",
+        "meaning": "every station"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-627",
+    "character": "島",
+    "meaning": "Island",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "鳥",
+        "meaning": "bird"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 山 (mountain), 鳥 (bird), 白 (white)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-628",
+    "character": "革",
+    "meaning": "Leatherrevolution",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "革",
+        "meaning": "leather"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 革 (leather), 廾 (two hands), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-629",
+    "character": "村",
+    "meaning": "Hicktown",
+    "level": "N2",
+    "dominantReading": "むら",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "村",
+        "reading": "むら",
+        "meaning": "village"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-630",
+    "character": "勢",
+    "meaning": "Power",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "九",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 力 (power), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-631",
+    "character": "減",
+    "meaning": "Decrease",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-632",
+    "character": "再",
+    "meaning": "Again, Once, More",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-633",
+    "character": "税",
+    "meaning": "Tax",
+    "level": "N2",
+    "dominantReading": "ゼイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 口 (mouth), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "税金",
+        "reading": "ぜいきん",
+        "meaning": "a tax"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-634",
+    "character": "営",
+    "meaning": "Manage, A, Business",
+    "level": "N2",
+    "dominantReading": "エイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 尚 (component), 冖 (cover)",
+    "vocabulary": [
+      {
+        "word": "営業",
+        "reading": "えいぎょう",
+        "meaning": "business"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-635",
+    "character": "比",
+    "meaning": "Compare",
+    "level": "N2",
+    "dominantReading": "くらべる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "比",
+        "meaning": "compare"
+      }
+    ],
+    "mnemonic": "Composed of 比 (compare)",
+    "vocabulary": [
+      {
+        "word": "比べる",
+        "reading": "くらべる",
+        "meaning": "to compare"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-636",
+    "character": "防",
+    "meaning": "Ward, Off",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "方",
+        "meaning": "way"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 方 (way), 阡 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-637",
+    "character": "補",
+    "meaning": "Supplement",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "初",
+        "meaning": "component"
+      },
+      {
+        "character": "用",
+        "meaning": "use;"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 初 (component), 用 (use;)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-638",
+    "character": "境",
+    "meaning": "Border",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 土 (earth), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-639",
+    "character": "導",
+    "meaning": "Lead",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "首",
+        "meaning": "neck"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 自 (oneself), 寸 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-640",
+    "character": "副",
+    "meaning": "Side, Or, Vice",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 刈 (component), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-641",
+    "character": "算",
+    "meaning": "Calculate",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 竹 (bamboo), 目 (eye), 廾 (two hands)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-642",
+    "character": "輸",
+    "meaning": "Transport",
+    "level": "N2",
+    "dominantReading": "ユ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 月 (meat), 車 (cart)",
+    "vocabulary": [
+      {
+        "word": "輸送",
+        "reading": "ゆそう",
+        "meaning": "transportation"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-643",
+    "character": "述",
+    "meaning": "Refer, To",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 十 (ten), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-644",
+    "character": "線",
+    "meaning": "Line",
+    "level": "N2",
+    "dominantReading": "セン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": [
+      {
+        "word": "～番線",
+        "reading": "ばんせん",
+        "meaning": "line (platform) number ..."
+      }
+    ]
+  },
+  {
+    "id": "k-n2-645",
+    "character": "農",
+    "meaning": "Farming",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "辰",
+        "meaning": "morning"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 衣 (clothes), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-646",
+    "character": "州",
+    "meaning": "State",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "川",
+        "meaning": "river"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 川 (river), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-647",
+    "character": "武",
+    "meaning": "Military",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "弋",
+        "meaning": "ceremony"
+      }
+    ],
+    "mnemonic": "Composed of 止 (stop), 弋 (ceremony)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-648",
+    "character": "象",
+    "meaning": "Elephant, Phenomenon",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "豕",
+        "meaning": "pig"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 勹 (embrace), 豕 (pig), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-649",
+    "character": "域",
+    "meaning": "Region",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 土 (earth), 戈 (spear)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-650",
+    "character": "額",
+    "meaning": "Amount, Of, Money, Forehead",
+    "level": "N2",
+    "dominantReading": "ガク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "半額",
+        "reading": "はんがく",
+        "meaning": "half price"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-651",
+    "character": "欧",
+    "meaning": "Europe",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "匚",
+        "meaning": "box frame"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 匚 (box frame), ノ (bend)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-652",
+    "character": "担",
+    "meaning": "Carry, On, Your, Back",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 日 (sun), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-653",
+    "character": "準",
+    "meaning": "Prepare, Criteria",
+    "level": "N2",
+    "dominantReading": "ジュン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 汁 (component), 隹 (old bird)",
+    "vocabulary": [
+      {
+        "word": "準備",
+        "reading": "じゅんび",
+        "meaning": "preparation"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-654",
+    "character": "賞",
+    "meaning": "Prize",
+    "level": "N2",
+    "dominantReading": "ショウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "賞金",
+        "reading": "しょうきん",
+        "meaning": "prize money"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-655",
+    "character": "辺",
+    "meaning": "Around, Herearound, That, Time",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 刀 (sword)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-656",
+    "character": "造",
+    "meaning": "Produce",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 込 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-657",
+    "character": "被",
+    "meaning": "Get, Injured",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "初",
+        "meaning": "component"
+      },
+      {
+        "character": "皮",
+        "meaning": "skin"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 初 (component), 皮 (skin), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-658",
+    "character": "技",
+    "meaning": "Technique",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "支",
+        "meaning": "branch"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 支 (branch), 扎 (component), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-659",
+    "character": "低",
+    "meaning": "Low",
+    "level": "N2",
+    "dominantReading": "ひくい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "氏",
+        "meaning": "clan"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 氏 (clan), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "低い",
+        "reading": "ひくい",
+        "meaning": "low"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-660",
+    "character": "復",
+    "meaning": "Return, Or, Re, Do",
+    "level": "N2",
+    "dominantReading": "フク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "彳",
+        "meaning": "step"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 夂 (winter), 彳 (step)",
+    "vocabulary": [
+      {
+        "word": "回復",
+        "reading": "かいふく",
+        "meaning": "recovery"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-661",
+    "character": "移",
+    "meaning": "Transfer",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 夕 (evening)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-662",
+    "character": "個",
+    "meaning": "Individual",
+    "level": "N2",
+    "dominantReading": "コ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 十 (ten)",
+    "vocabulary": [
+      {
+        "word": "～個",
+        "reading": "こ",
+        "meaning": "counter for general objects"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-663",
+    "character": "門",
+    "meaning": "Gate",
+    "level": "N2",
+    "dominantReading": "モン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "門",
+        "meaning": "gate"
+      }
+    ],
+    "mnemonic": "Composed of 門 (gate)",
+    "vocabulary": [
+      {
+        "word": "門",
+        "reading": "もん",
+        "meaning": "gate"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-664",
+    "character": "課",
+    "meaning": "Section, Or, Lesson",
+    "level": "N2",
+    "dominantReading": "カ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 田 (field), 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "課長",
+        "reading": "かちょう",
+        "meaning": "a section chief"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-665",
+    "character": "脳",
+    "meaning": "Brain",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 尚 (component), 凵 (container)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-666",
+    "character": "極",
+    "meaning": "Extreme",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 又 (again), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-667",
+    "character": "含",
+    "meaning": "Include",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 个 (component), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-668",
+    "character": "蔵",
+    "meaning": "Traditional, Storehouse",
+    "level": "N2",
+    "dominantReading": "ゾウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "臣",
+        "meaning": "minister"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 臣 (minister), 戈 (spear)",
+    "vocabulary": [
+      {
+        "word": "冷蔵庫",
+        "reading": "れいぞうこ",
+        "meaning": "a refridgerator"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-669",
+    "character": "量",
+    "meaning": "Quantity",
+    "level": "N2",
+    "dominantReading": "リョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 日 (sun), 里 (village)",
+    "vocabulary": [
+      {
+        "word": "増量",
+        "reading": "ぞうりょう",
+        "meaning": "an increase in quantity"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-670",
+    "character": "型",
+    "meaning": "Type, Proper, Way",
+    "level": "N2",
+    "dominantReading": "かた",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 土 (earth), 廾 (two hands)",
+    "vocabulary": [
+      {
+        "word": "新型",
+        "reading": "しんがた",
+        "meaning": "a new version/model (of something)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-671",
+    "character": "況",
+    "meaning": "Condition",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-672",
+    "character": "針",
+    "meaning": "Needle",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-673",
+    "character": "専",
+    "meaning": "Specialty",
+    "level": "N2",
+    "dominantReading": "セン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 寸 (sun), 田 (field)",
+    "vocabulary": [
+      {
+        "word": "専門家",
+        "reading": "せんもんか",
+        "meaning": "an expert"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-674",
+    "character": "谷",
+    "meaning": "Valley, Swamp, Thing, Radical",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "谷",
+        "meaning": "valley"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 谷 (valley), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-675",
+    "character": "史",
+    "meaning": "History",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-676",
+    "character": "階",
+    "meaning": "Story, Of, A, Building",
+    "level": "N2",
+    "dominantReading": "カイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "白",
+        "meaning": "white"
+      },
+      {
+        "character": "比",
+        "meaning": "compare"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 白 (white), 比 (compare), 阡 (component)",
+    "vocabulary": [
+      {
+        "word": "～階",
+        "reading": "かい",
+        "meaning": "floor"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-677",
+    "character": "管",
+    "meaning": "Tube",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 竹 (bamboo), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-678",
+    "character": "兵",
+    "meaning": "Soldier",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 斤 (axe), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-679",
+    "character": "接",
+    "meaning": "Directly, Contact",
+    "level": "N2",
+    "dominantReading": "セツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 立 (stand), 扎 (component)",
+    "vocabulary": [
+      {
+        "word": "接続",
+        "reading": "せつぞく",
+        "meaning": "connection"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-680",
+    "character": "細",
+    "meaning": "Slender",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-681",
+    "character": "効",
+    "meaning": "Effective",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "父",
+        "meaning": "father"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 父 (father), 力 (power), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-682",
+    "character": "丸",
+    "meaning": "Round",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "九",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 九 (component), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-683",
+    "character": "湾",
+    "meaning": "Bay",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "弓",
+        "meaning": "bow"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 弓 (bow), 汁 (component), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-684",
+    "character": "録",
+    "meaning": "Record",
+    "level": "N2",
+    "dominantReading": "ロク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "隶",
+        "meaning": "slave"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 金 (metal), 水 (water)",
+    "vocabulary": [
+      {
+        "word": "録音",
+        "reading": "ろくおん",
+        "meaning": "recording (sound)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-685",
+    "character": "省",
+    "meaning": "Ministry, Cut, Down, On",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 小 (small), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-686",
+    "character": "旧",
+    "meaning": "Former",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-687",
+    "character": "橋",
+    "meaning": "Bridge",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-688",
+    "character": "岸",
+    "meaning": "Shore",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 山 (mountain), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-689",
+    "character": "周",
+    "meaning": "Circumference",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 土 (earth), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-690",
+    "character": "材",
+    "meaning": "Raw, Materials",
+    "level": "N2",
+    "dominantReading": "ザイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "材料",
+        "reading": "ざいりょう",
+        "meaning": "ingredients, materials"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-691",
+    "character": "戸",
+    "meaning": "Door",
+    "level": "N2",
+    "dominantReading": "と",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 戸 (door), 一 (one), 尸 (corpse)",
+    "vocabulary": [
+      {
+        "word": "雨戸",
+        "reading": "あまど",
+        "meaning": "a sliding storm door"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-692",
+    "character": "央",
+    "meaning": "Central",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-693",
+    "character": "券",
+    "meaning": "Certificate, Cupon",
+    "level": "N2",
+    "dominantReading": "ケン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 人 (human), 大 (big)",
+    "vocabulary": [
+      {
+        "word": "乗車券",
+        "reading": "じょうしゃけん",
+        "meaning": "a (boarding) ticket"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-694",
+    "character": "編",
+    "meaning": "Knit",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "冊",
+        "meaning": "component"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 戸 (door)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-695",
+    "character": "捜",
+    "meaning": "Search",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-696",
+    "character": "竹",
+    "meaning": "Bamboo",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 竹 (bamboo), 乞 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-697",
+    "character": "超",
+    "meaning": "Exceed, Go, Over",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "走",
+        "meaning": "run"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 走 (run), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-698",
+    "character": "並",
+    "meaning": "Line, Up, Ordinary",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-699",
+    "character": "療",
+    "meaning": "Medical, Therapy",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "疔",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 小 (small), 日 (sun), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-700",
+    "character": "採",
+    "meaning": "Gather",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "爪",
+        "meaning": "claw"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 爪 (claw), 木 (tree), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-701",
+    "character": "森",
+    "meaning": "Forest",
+    "level": "N2",
+    "dominantReading": "もり",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "森",
+        "reading": "もり",
+        "meaning": "forest"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-702",
+    "character": "競",
+    "meaning": "Contest",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 立 (stand), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-703",
+    "character": "介",
+    "meaning": "Introduce, Intervene",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ハ (eight), 个 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-704",
+    "character": "根",
+    "meaning": "Root",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "艮",
+        "meaning": "stopping"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 艮 (stopping), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-705",
+    "character": "販",
+    "meaning": "Transaction",
+    "level": "N2",
+    "dominantReading": "ハン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "自動販売機",
+        "reading": "じどうはんばいき",
+        "meaning": "vending machine"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-706",
+    "character": "歴",
+    "meaning": "Chronicle",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "麻",
+        "meaning": "hemp"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 止 (stop), 麻 (hemp), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-707",
+    "character": "将",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "爪",
+        "meaning": "claw"
+      },
+      {
+        "character": "爿",
+        "meaning": "split wood"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 爪 (claw), 爿 (split wood)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-708",
+    "character": "幅",
+    "meaning": "Width",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 巾 (cloth), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-709",
+    "character": "般",
+    "meaning": "General, Overall",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "舟",
+        "meaning": "boat"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 舟 (boat), 殳 (weapon), 几 (desk)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-710",
+    "character": "貿",
+    "meaning": "International, Trading",
+    "level": "N2",
+    "dominantReading": "ボウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "貿易",
+        "reading": "ぼうえき",
+        "meaning": "(foreign) trade"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-711",
+    "character": "講",
+    "meaning": "Lecture",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 冂 (inverted box), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-712",
+    "character": "林",
+    "meaning": "Grove",
+    "level": "N2",
+    "dominantReading": "はやし",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree)",
+    "vocabulary": [
+      {
+        "word": "林",
+        "reading": "はやし",
+        "meaning": "woods"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-713",
+    "character": "装",
+    "meaning": "Dress, Up",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "爿",
+        "meaning": "split wood"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 士 (scholar), 爿 (split wood)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-714",
+    "character": "諸",
+    "meaning": "Various",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 日 (sun), 老 (old)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-715",
+    "character": "劇",
+    "meaning": "Play",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      },
+      {
+        "character": "虍",
+        "meaning": "tiger stripes"
+      },
+      {
+        "character": "豕",
+        "meaning": "pig"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 卜 (divination to), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-716",
+    "character": "河",
+    "meaning": "Stream",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-717",
+    "character": "航",
+    "meaning": "Navigation",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "舟",
+        "meaning": "boat"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      }
+    ],
+    "mnemonic": "Composed of 舟 (boat), 亠 (component), 几 (desk)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-718",
+    "character": "鉄",
+    "meaning": "Iron",
+    "level": "N2",
+    "dominantReading": "テツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 金 (metal), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "鉄道",
+        "reading": "てつどう",
+        "meaning": "a railway"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-719",
+    "character": "児",
+    "meaning": "Baby",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-720",
+    "character": "禁",
+    "meaning": "Prohibition",
+    "level": "N2",
+    "dominantReading": "キン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 示 (altar), 二 (two), 小 (small)",
+    "vocabulary": [
+      {
+        "word": "禁止",
+        "reading": "きんし",
+        "meaning": "prohibition"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-721",
+    "character": "印",
+    "meaning": "Stamp",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-722",
+    "character": "逆",
+    "meaning": "Opposite",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "込",
+        "meaning": "component"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "屮",
+        "meaning": "sprout"
+      }
+    ],
+    "mnemonic": "Composed of 込 (component), 并 (component), 屮 (sprout)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-723",
+    "character": "換",
+    "meaning": "Exchange",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 儿 (legs), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-724",
+    "character": "久",
+    "meaning": "Been, A, Long, Time",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "入",
+        "meaning": "enter"
+      },
+      {
+        "character": "久",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 入 (enter), 久 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-725",
+    "character": "短",
+    "meaning": "Short, Brief",
+    "level": "N2",
+    "dominantReading": "みじかい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "豆",
+        "meaning": "bean"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "矢",
+        "meaning": "arrow"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 豆 (bean), 并 (component)",
+    "vocabulary": [
+      {
+        "word": "短い",
+        "reading": "みじかい",
+        "meaning": "short"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-726",
+    "character": "油",
+    "meaning": "Oil",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 汁 (component), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-727",
+    "character": "暴",
+    "meaning": "Rampage",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "井",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 水 (water)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-728",
+    "character": "輪",
+    "meaning": "Ringtire",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "冊",
+        "meaning": "component"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 車 (cart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-729",
+    "character": "占",
+    "meaning": "Fortune, Teller, Occupy",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 卜 (divination to)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-730",
+    "character": "植",
+    "meaning": "Plant",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 木 (tree), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-731",
+    "character": "清",
+    "meaning": "Pure",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "青",
+        "meaning": "green"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 汁 (component), 青 (green)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-732",
+    "character": "倍",
+    "meaning": "Double",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-733",
+    "character": "均",
+    "meaning": "Average",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 冫 (ice), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-734",
+    "character": "億",
+    "meaning": "A, Hundred, Million",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 化 (component), 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-735",
+    "character": "圧",
+    "meaning": "Pressure",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-736",
+    "character": "芸",
+    "meaning": "Art",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 二 (two), 厶 (private), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-737",
+    "character": "署",
+    "meaning": "Government, Office",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "買",
+        "meaning": "component"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 買 (component), 老 (old)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-738",
+    "character": "伸",
+    "meaning": "Stretch",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 化 (component), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-739",
+    "character": "停",
+    "meaning": "Bring, To, A, Halt",
+    "level": "N2",
+    "dominantReading": "テイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 亅 (hook)",
+    "vocabulary": [
+      {
+        "word": "停車",
+        "reading": "ていしゃ",
+        "meaning": "stopping of a vehicle"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-740",
+    "character": "爆",
+    "meaning": "Explode",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "井",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 火 (fire)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-741",
+    "character": "陸",
+    "meaning": "Continent",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 儿 (legs), 阡 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-742",
+    "character": "玉",
+    "meaning": "Ball",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-743",
+    "character": "波",
+    "meaning": "Wave",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "皮",
+        "meaning": "skin"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 皮 (skin), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-744",
+    "character": "帯",
+    "meaning": "Belt",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 巾 (cloth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-745",
+    "character": "延",
+    "meaning": "Prolong",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "廴",
+        "meaning": "long stride"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 止 (stop), 廴 (long stride)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-746",
+    "character": "羽",
+    "meaning": "Feathers",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "羽",
+        "meaning": "feather"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 羽 (feather), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-747",
+    "character": "固",
+    "meaning": "Hard",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten), 囗 (enclosure)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-748",
+    "character": "則",
+    "meaning": "Rule",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-749",
+    "character": "乱",
+    "meaning": "Disorder",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "舌",
+        "meaning": "tongue"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 口 (mouth), 舌 (tongue)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-750",
+    "character": "普",
+    "meaning": "Normal",
+    "level": "N2",
+    "dominantReading": "フ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "普通",
+        "reading": "ふつうの",
+        "meaning": "ordinary"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-751",
+    "character": "測",
+    "meaning": "Scientific, Measurement",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-752",
+    "character": "豊",
+    "meaning": "Plentiful",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "豆",
+        "meaning": "bean"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-753",
+    "character": "厚",
+    "meaning": "Thick",
+    "level": "N2",
+    "dominantReading": "あつい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 子 (child), 日 (sun), 厂 (cliff)",
+    "vocabulary": [
+      {
+        "word": "厚い",
+        "reading": "あつい",
+        "meaning": "thick"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-754",
+    "character": "齢",
+    "meaning": "Stage, Of, Life",
+    "level": "N2",
+    "dominantReading": "レイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "歯",
+        "meaning": "tooth"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 止 (stop), 歯 (tooth), 米 (rice)",
+    "vocabulary": [
+      {
+        "word": "年齢",
+        "reading": "ねんれい",
+        "meaning": "an age"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-755",
+    "character": "囲",
+    "meaning": "Surround",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "囗",
+        "meaning": "enclosure"
+      },
+      {
+        "character": "井",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 囗 (enclosure), 井 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-756",
+    "character": "卒",
+    "meaning": "Graduate",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 人 (human), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-757",
+    "character": "略",
+    "meaning": "Abbreviation",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 田 (field), 夂 (winter)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-758",
+    "character": "承",
+    "meaning": "To, Be, Told, Consent",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "手",
+        "meaning": "hand"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 二 (two), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-759",
+    "character": "順",
+    "meaning": "Sequence",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "川",
+        "meaning": "river"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-760",
+    "character": "岩",
+    "meaning": "Boulder",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 山 (mountain), 石 (stone)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-761",
+    "character": "練",
+    "meaning": "Practice",
+    "level": "N2",
+    "dominantReading": "レン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 糸 (thread), 幺 (short thread)",
+    "vocabulary": [
+      {
+        "word": "練習",
+        "reading": "れんしゅう",
+        "meaning": "practice, training"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-762",
+    "character": "軽",
+    "meaning": "Lightweight",
+    "level": "N2",
+    "dominantReading": "かるい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 車 (cart), 土 (earth), 又 (again)",
+    "vocabulary": [
+      {
+        "word": "軽い",
+        "reading": "かるい",
+        "meaning": "light, not serious"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-763",
+    "character": "了",
+    "meaning": "Total",
+    "level": "N2",
+    "dominantReading": "リョウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 亅 (hook)",
+    "vocabulary": [
+      {
+        "word": "了解",
+        "reading": "りょうかい",
+        "meaning": "understanding, agreement"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-764",
+    "character": "庁",
+    "meaning": "Metropolitan, Government",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 亅 (hook), 广 (dotted cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-765",
+    "character": "城",
+    "meaning": "Castle",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 土 (earth), 戈 (spear)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-766",
+    "character": "患",
+    "meaning": "Medical, Patient",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 口 (mouth), 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-767",
+    "character": "層",
+    "meaning": "Layer",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 日 (sun), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-768",
+    "character": "版",
+    "meaning": "Printing, Plate",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "片",
+        "meaning": "(a) slice (かた, kata)"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 片 ((a) slice (かた, kata)), 又 (again), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-769",
+    "character": "令",
+    "meaning": "Command",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 个 (component), 卩 (seal), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-770",
+    "character": "角",
+    "meaning": "Horncorner",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "角",
+        "meaning": "horn"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "｜",
+        "meaning": "line"
+      }
+    ],
+    "mnemonic": "Composed of 角 (horn), 勹 (embrace), 月 (meat)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-771",
+    "character": "絡",
+    "meaning": "Get, Entangled",
+    "level": "N2",
+    "dominantReading": "ラク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 糸 (thread), 幺 (short thread)",
+    "vocabulary": [
+      {
+        "word": "連絡",
+        "reading": "れんらく",
+        "meaning": "contact, connection"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-772",
+    "character": "損",
+    "meaning": "Harm",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-773",
+    "character": "募",
+    "meaning": "Recruit",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 日 (sun), 力 (power)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-774",
+    "character": "裏",
+    "meaning": "Backside",
+    "level": "N2",
+    "dominantReading": "うら",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 里 (village), 亠 (component)",
+    "vocabulary": [
+      {
+        "word": "裏",
+        "reading": "うら",
+        "meaning": "the reverse/back"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-775",
+    "character": "仏",
+    "meaning": "Buddha",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 厶 (private)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-776",
+    "character": "績",
+    "meaning": "Achievements",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-777",
+    "character": "築",
+    "meaning": "Architect",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      }
+    ],
+    "mnemonic": "Composed of 工 (work), 竹 (bamboo), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-778",
+    "character": "貨",
+    "meaning": "Cargo",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 貝 (shell), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-779",
+    "character": "混",
+    "meaning": "Mix",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "比",
+        "meaning": "compare"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 日 (sun), 比 (compare)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-780",
+    "character": "昇",
+    "meaning": "Ascend",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 日 (sun), 廾 (two hands)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-781",
+    "character": "池",
+    "meaning": "Pond",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "也",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 也 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-782",
+    "character": "血",
+    "meaning": "Blood",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "血",
+        "meaning": "blood"
+      },
+      {
+        "character": "皿",
+        "meaning": "dish"
+      }
+    ],
+    "mnemonic": "Composed of 血 (blood), 皿 (dish)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-783",
+    "character": "温",
+    "meaning": "Hot, Or, Warm, Thing",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "皿",
+        "meaning": "dish"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 皿 (dish), 汁 (component), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-784",
+    "character": "季",
+    "meaning": "Season",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 子 (child)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-785",
+    "character": "星",
+    "meaning": "Star",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "生",
+        "meaning": "life"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 生 (life), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-786",
+    "character": "永",
+    "meaning": "Forever",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 水 (water), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-787",
+    "character": "著",
+    "meaning": "Author",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "老",
+        "meaning": "old"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 日 (sun), 老 (old), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-788",
+    "character": "誌",
+    "meaning": "Magazine",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      },
+      {
+        "character": "心",
+        "meaning": "heart"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 士 (scholar), 心 (heart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-789",
+    "character": "庫",
+    "meaning": "Warehouse",
+    "level": "N2",
+    "dominantReading": "コ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "車",
+        "meaning": "cart"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 車 (cart), 广 (dotted cliff)",
+    "vocabulary": [
+      {
+        "word": "金庫",
+        "reading": "きんこ",
+        "meaning": "a safe"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-790",
+    "character": "刊",
+    "meaning": "Edition",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "干",
+        "meaning": "dry"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 干 (dry)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-791",
+    "character": "像",
+    "meaning": "Statue, Image",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "豕",
+        "meaning": "pig"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 勹 (embrace), 豕 (pig)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-792",
+    "character": "香",
+    "meaning": "Good, Smell",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "香",
+        "meaning": "fragrant"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of 禾 (two-branch tree), 香 (fragrant), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-793",
+    "character": "坂",
+    "meaning": "Slope",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 又 (again), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-794",
+    "character": "底",
+    "meaning": "Bottom",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "氏",
+        "meaning": "clan"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 氏 (clan), 广 (dotted cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-795",
+    "character": "布",
+    "meaning": "Fabric",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 巾 (cloth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-796",
+    "character": "寺",
+    "meaning": "Temple",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-797",
+    "character": "宇",
+    "meaning": "Cosmos",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 亅 (hook), 宀 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-798",
+    "character": "巨",
+    "meaning": "Giant, Super, Huge",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "匚",
+        "meaning": "box frame"
+      },
+      {
+        "character": "巨",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 匚 (box frame), 巨 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-799",
+    "character": "震",
+    "meaning": "Shake, Tremble",
+    "level": "N2",
+    "dominantReading": "シン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "雨",
+        "meaning": "rain"
+      },
+      {
+        "character": "辰",
+        "meaning": "morning"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 雨 (rain), 辰 (morning)",
+    "vocabulary": [
+      {
+        "word": "地震",
+        "reading": "じしん",
+        "meaning": "an earthquake"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-800",
+    "character": "希",
+    "meaning": "Request, Uncommon",
+    "level": "N2",
+    "dominantReading": "キ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 巾 (cloth)",
+    "vocabulary": [
+      {
+        "word": "希望",
+        "reading": "きぼう",
+        "meaning": "a hope"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-801",
+    "character": "触",
+    "meaning": "Touch",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "角",
+        "meaning": "horn"
+      },
+      {
+        "character": "虫",
+        "meaning": "insect"
+      }
+    ],
+    "mnemonic": "Composed of 角 (horn), 虫 (insect)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-802",
+    "character": "依",
+    "meaning": "Depend, On",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 化 (component), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-803",
+    "character": "籍",
+    "meaning": "Family, Register",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "耒",
+        "meaning": "plow"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 竹 (bamboo)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-804",
+    "character": "汚",
+    "meaning": "Dirty",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 汁 (component), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-805",
+    "character": "枚",
+    "meaning": "Counter, For, Flat, Objects",
+    "level": "N2",
+    "dominantReading": "マイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 攵 (component), 乞 (component)",
+    "vocabulary": [
+      {
+        "word": "～枚",
+        "reading": "～まい",
+        "meaning": "counter for flat objects"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-806",
+    "character": "複",
+    "meaning": "Complicated, Or, Compound",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "初",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 初 (component), 日 (sun), 夂 (winter)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-807",
+    "character": "郵",
+    "meaning": "Mail",
+    "level": "N2",
+    "dominantReading": "ユウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "邦",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "郵便",
+        "reading": "ゆうびん",
+        "meaning": "mail (service)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-808",
+    "character": "仲",
+    "meaning": "Friendship",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 化 (component), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-809",
+    "character": "栄",
+    "meaning": "Glory",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 尚 (component), 木 (tree), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-810",
+    "character": "札",
+    "meaning": "Card, Label, Bill",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-811",
+    "character": "板",
+    "meaning": "Plank",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 又 (again), 木 (tree), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-812",
+    "character": "骨",
+    "meaning": "Bone",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "骨",
+        "meaning": "bone"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 冖 (cover), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-813",
+    "character": "傾",
+    "meaning": "Lean",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 貝 (shell), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-814",
+    "character": "届",
+    "meaning": "Extend, To",
+    "level": "N2",
+    "dominantReading": "とどける",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 日 (sun), 尸 (corpse)",
+    "vocabulary": [
+      {
+        "word": "届ける",
+        "reading": "とどける",
+        "meaning": "to deliver"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-815",
+    "character": "巻",
+    "meaning": "Roll, Up",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 二 (two), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-816",
+    "character": "燃",
+    "meaning": "Burn",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "犬",
+        "meaning": "dog"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 犬 (dog), 夕 (evening)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-817",
+    "character": "跡",
+    "meaning": "Vestiges",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      },
+      {
+        "character": "赤",
+        "meaning": "red"
+      },
+      {
+        "character": "足",
+        "meaning": "foot"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 止 (stop), 赤 (red)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-818",
+    "character": "包",
+    "meaning": "Wrap",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "已",
+        "meaning": "oneself"
+      }
+    ],
+    "mnemonic": "Composed of 勹 (embrace), 已 (oneself)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-819",
+    "character": "駐",
+    "meaning": "Stop, At",
+    "level": "N2",
+    "dominantReading": "チュウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "馬",
+        "meaning": "horse"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 馬 (horse), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "駐車",
+        "reading": "ちゅうしゃ",
+        "meaning": "parking"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-820",
+    "character": "弱",
+    "meaning": "Weak",
+    "level": "N2",
+    "dominantReading": "よわい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "弓",
+        "meaning": "bow"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 弓 (bow), 冫 (ice)",
+    "vocabulary": [
+      {
+        "word": "弱い",
+        "reading": "よわい",
+        "meaning": "weak"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-821",
+    "character": "紹",
+    "meaning": "Acquaint",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-822",
+    "character": "雇",
+    "meaning": "Hire",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 戸 (door), 隹 (old bird), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-823",
+    "character": "替",
+    "meaning": "Substitute",
+    "level": "N2",
+    "dominantReading": "かえる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human), 大 (big), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "取り替える",
+        "reading": "とりかえる",
+        "meaning": "exchange (one thing for another)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-824",
+    "character": "預",
+    "meaning": "Deposit",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "頁",
+        "meaning": "big shell"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-825",
+    "character": "焼",
+    "meaning": "Roast, Grill",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 十 (ten), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-826",
+    "character": "簡",
+    "meaning": "Simplicity",
+    "level": "N2",
+    "dominantReading": "カン",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "門",
+        "meaning": "gate"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 竹 (bamboo), 日 (sun), 門 (gate)",
+    "vocabulary": [
+      {
+        "word": "簡単",
+        "reading": "かんたん",
+        "meaning": "easy (な adjective)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-827",
+    "character": "章",
+    "meaning": "Emblem, Chapter",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "音",
+        "meaning": "sound"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 音 (sound), 十 (ten), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-828",
+    "character": "臓",
+    "meaning": "Internal, Organ",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "臣",
+        "meaning": "minister"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 月 (meat), 臣 (minister)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-829",
+    "character": "律",
+    "meaning": "Regulation",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "彳",
+        "meaning": "step"
+      },
+      {
+        "character": "聿",
+        "meaning": "brush"
+      }
+    ],
+    "mnemonic": "Composed of 彳 (step), 聿 (brush)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-830",
+    "character": "贈",
+    "meaning": "Give",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-831",
+    "character": "照",
+    "meaning": "Contrast",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 刀 (sword), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-832",
+    "character": "薄",
+    "meaning": "Weak, Or, Thin",
+    "level": "N2",
+    "dominantReading": "うすい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 汁 (component), 寸 (sun)",
+    "vocabulary": [
+      {
+        "word": "薄い",
+        "reading": "うすい",
+        "meaning": "thin (material), light (color), weak(drink)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-833",
+    "character": "群",
+    "meaning": "Flock",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "羊",
+        "meaning": "sheep"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 王 (king; ball), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-834",
+    "character": "秒",
+    "meaning": "One, Second",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "禾",
+        "meaning": "two-branch tree"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 禾 (two-branch tree), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-835",
+    "character": "奥",
+    "meaning": "Waaay, In, The, Back",
+    "level": "N2",
+    "dominantReading": "おく",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 大 (big), 米 (rice), 冂 (inverted box)",
+    "vocabulary": [
+      {
+        "word": "奥さん",
+        "reading": "おくさん",
+        "meaning": "wife"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-836",
+    "character": "詰",
+    "meaning": "Cram, In",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "士",
+        "meaning": "scholar"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 口 (mouth), 士 (scholar)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-837",
+    "character": "双",
+    "meaning": "Pair",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 又 (again), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-838",
+    "character": "刺",
+    "meaning": "Stab, Business, Card",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 巾 (cloth), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-839",
+    "character": "純",
+    "meaning": "Epitome",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "屯",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-840",
+    "character": "翌",
+    "meaning": "The, Next, The, Following",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "羽",
+        "meaning": "feather"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 羽 (feather), 立 (stand), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-841",
+    "character": "快",
+    "meaning": "Pleasant",
+    "level": "N2",
+    "dominantReading": "カイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      },
+      {
+        "character": "ユ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human), 大 (big), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "快速",
+        "reading": "かいそく",
+        "meaning": "high speed"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-842",
+    "character": "片",
+    "meaning": "Fragment",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "片",
+        "meaning": "(a) slice (かた, kata)"
+      }
+    ],
+    "mnemonic": "Composed of 片 ((a) slice (かた, kata))",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-843",
+    "character": "敬",
+    "meaning": "Respect",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 勹 (embrace), 攵 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-844",
+    "character": "悩",
+    "meaning": "Worry",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "尚",
+        "meaning": "component"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of 尚 (component), 忙 (component), 凵 (container)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-845",
+    "character": "泉",
+    "meaning": "Spring",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 水 (water), 白 (white)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-846",
+    "character": "皮",
+    "meaning": "Skin",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "皮",
+        "meaning": "skin"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 皮 (skin), 又 (again)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-847",
+    "character": "漁",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "魚",
+        "meaning": "fish"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 魚 (fish), 汁 (component), 田 (field)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-848",
+    "character": "荒",
+    "meaning": "Go, Wild, Rough",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "川",
+        "meaning": "river"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "亡",
+        "meaning": "dead"
+      }
+    ],
+    "mnemonic": "Composed of 川 (river), 艾 (component), 亡 (dead)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-849",
+    "character": "貯",
+    "meaning": "Save, Up",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 貝 (shell), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-850",
+    "character": "硬",
+    "meaning": "Hard, Like, A, Rock",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 口 (mouth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-851",
+    "character": "埋",
+    "meaning": "Bury",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "里",
+        "meaning": "village"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 里 (village)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-852",
+    "character": "柱",
+    "meaning": "Pillar",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 木 (tree), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-853",
+    "character": "祭",
+    "meaning": "Festival",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "示",
+        "meaning": "altar"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "癶",
+        "meaning": "footsteps"
+      }
+    ],
+    "mnemonic": "Composed of 示 (altar), 二 (two), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-854",
+    "character": "袋",
+    "meaning": "Sack",
+    "level": "N2",
+    "dominantReading": "ふくろ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "弋",
+        "meaning": "ceremony"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 化 (component), 弋 (ceremony)",
+    "vocabulary": [
+      {
+        "word": "ごみ袋",
+        "reading": "ごみぶくろ",
+        "meaning": "a garbage bag"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-855",
+    "character": "筆",
+    "meaning": "Paintbrush",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "聿",
+        "meaning": "brush"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 竹 (bamboo), 聿 (brush), 乞 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-856",
+    "character": "訓",
+    "meaning": "Kunyomi",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "川",
+        "meaning": "river"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 川 (river)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-857",
+    "character": "浴",
+    "meaning": "Bathe",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "谷",
+        "meaning": "valley"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 谷 (valley)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-858",
+    "character": "童",
+    "meaning": "Kid",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "里",
+        "meaning": "village"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 里 (village), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-859",
+    "character": "宝",
+    "meaning": "Treasure",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 宀 (component), 丶 (dot)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-860",
+    "character": "封",
+    "meaning": "Seal, In",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-861",
+    "character": "胸",
+    "meaning": "Chestbreast",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      },
+      {
+        "character": "勹",
+        "meaning": "embrace"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 凵 (container), 勹 (embrace)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-862",
+    "character": "砂",
+    "meaning": "Sand",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 口 (mouth), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-863",
+    "character": "塩",
+    "meaning": "Salt",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "皿",
+        "meaning": "dish"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 皿 (dish), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-864",
+    "character": "賢",
+    "meaning": "Clever",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "臣",
+        "meaning": "minister"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-865",
+    "character": "腕",
+    "meaning": "Arm, Skill",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 夕 (evening), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-866",
+    "character": "兆",
+    "meaning": "Omen",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      }
+    ],
+    "mnemonic": "Composed of 儿 (legs), 冫 (ice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-867",
+    "character": "床",
+    "meaning": "Floor",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 广 (dotted cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-868",
+    "character": "毛",
+    "meaning": "Fur",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "毛",
+        "meaning": "fur"
+      }
+    ],
+    "mnemonic": "Composed of 毛 (fur)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-869",
+    "character": "緑",
+    "meaning": "Green",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "隶",
+        "meaning": "slave"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-870",
+    "character": "尊",
+    "meaning": "Esteem",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "酉",
+        "meaning": "sake"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 寸 (sun), 酉 (sake), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-871",
+    "character": "祝",
+    "meaning": "Celebrate",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 礼 (component), 儿 (legs)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-872",
+    "character": "柔",
+    "meaning": "Flexible",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "矛",
+        "meaning": "spear"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 矛 (spear), 木 (tree), マ (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-873",
+    "character": "殿",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      },
+      {
+        "character": "殳",
+        "meaning": "weapon"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-874",
+    "character": "濃",
+    "meaning": "Thick, Dense",
+    "level": "N2",
+    "dominantReading": "こい",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "辰",
+        "meaning": "morning"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 衣 (clothes), 一 (one)",
+    "vocabulary": [
+      {
+        "word": "濃い",
+        "reading": "こい",
+        "meaning": "concentrated, dark (color)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-875",
+    "character": "液",
+    "meaning": "Liquid",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "攵",
+        "meaning": "component"
+      },
+      {
+        "character": "夕",
+        "meaning": "evening"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 汁 (component), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-876",
+    "character": "衣",
+    "meaning": "Cloth",
+    "level": "N2",
+    "dominantReading": "イ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "衣",
+        "meaning": "clothes"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 衣 (clothes), 亠 (component)",
+    "vocabulary": [
+      {
+        "word": "衣服",
+        "reading": "いふく",
+        "meaning": "dress, clothes"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-877",
+    "character": "肩",
+    "meaning": "Shoulder",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 戸 (door), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-878",
+    "character": "零",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "雨",
+        "meaning": "rain"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 雨 (rain), 个 (component), 卩 (seal)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-879",
+    "character": "幼",
+    "meaning": "Childhood",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      }
+    ],
+    "mnemonic": "Composed of 力 (power), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-880",
+    "character": "荷",
+    "meaning": "Luggage",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-881",
+    "character": "泊",
+    "meaning": "Stay, For, The, Night",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 白 (white)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-882",
+    "character": "黄",
+    "meaning": "Yellow",
+    "level": "N2",
+    "dominantReading": "き",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "黄",
+        "meaning": "yellow"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 黄 (yellow), 田 (field), ハ (eight)",
+    "vocabulary": [
+      {
+        "word": "黄色い",
+        "reading": "きいろい",
+        "meaning": "yellow (adjective)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-883",
+    "character": "甘",
+    "meaning": "Sweet",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "甘",
+        "meaning": "sweet"
+      }
+    ],
+    "mnemonic": "Composed of 甘 (sweet)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-884",
+    "character": "臣",
+    "meaning": "Vassal",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "臣",
+        "meaning": "minister"
+      },
+      {
+        "character": "匚",
+        "meaning": "box frame"
+      }
+    ],
+    "mnemonic": "Composed of 臣 (minister), 匚 (box frame)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-885",
+    "character": "浅",
+    "meaning": "Shallow",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 戈 (spear), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-886",
+    "character": "掃",
+    "meaning": "Sweep",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 巾 (cloth), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-887",
+    "character": "雲",
+    "meaning": "Cloud",
+    "level": "N2",
+    "dominantReading": "くも",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "雨",
+        "meaning": "rain"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 雨 (rain), 二 (two)",
+    "vocabulary": [
+      {
+        "word": "雲",
+        "reading": "くも",
+        "meaning": "a cloud, clouds"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-888",
+    "character": "掘",
+    "meaning": "Dig",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 山 (mountain), 尸 (corpse)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-889",
+    "character": "捨",
+    "meaning": "Throw, Away",
+    "level": "N2",
+    "dominantReading": "すてる",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 土 (earth), 个 (component)",
+    "vocabulary": [
+      {
+        "word": "捨てる",
+        "reading": "すてる",
+        "meaning": "to throw away"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-890",
+    "character": "軟",
+    "meaning": "Soft",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "欠",
+        "meaning": "yawn"
+      },
+      {
+        "character": "車",
+        "meaning": "cart"
+      }
+    ],
+    "mnemonic": "Composed of 欠 (yawn), 車 (cart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-891",
+    "character": "沈",
+    "meaning": "Sink",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "尢",
+        "meaning": "lame"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 尢 (lame), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-892",
+    "character": "凍",
+    "meaning": "To, Freeze",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "冫",
+        "meaning": "ice"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-893",
+    "character": "乳",
+    "meaning": "Milk",
+    "level": "N2",
+    "dominantReading": "ニュウ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "爪",
+        "meaning": "claw"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 子 (child), 爪 (claw)",
+    "vocabulary": [
+      {
+        "word": "牛乳",
+        "reading": "ぎゅうにゅう",
+        "meaning": "(cow's) milk"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-894",
+    "character": "恋",
+    "meaning": "Passion",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "心",
+        "meaning": "heart"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 心 (heart), ハ (eight), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-895",
+    "character": "紅",
+    "meaning": "Dark, Lipstick, Red, Color",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "工",
+        "meaning": "work"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of 工 (work), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-896",
+    "character": "郊",
+    "meaning": "Suburb",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "父",
+        "meaning": "father"
+      },
+      {
+        "character": "邦",
+        "meaning": "component"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 父 (father), 邦 (component), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-897",
+    "character": "腰",
+    "meaning": "Waist",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "西",
+        "meaning": "west"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 女 (woman), 西 (west)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-898",
+    "character": "炭",
+    "meaning": "Carbon",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 山 (mountain), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-899",
+    "character": "踊",
+    "meaning": "Dance",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "足",
+        "meaning": "foot"
+      },
+      {
+        "character": "用",
+        "meaning": "use;"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 足 (foot), 用 (use;)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-900",
+    "character": "冊",
+    "meaning": "Counter, For, Books",
+    "level": "N2",
+    "dominantReading": "サツ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "冊",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 亅 (hook)",
+    "vocabulary": [
+      {
+        "word": "～冊",
+        "reading": "～さつ",
+        "meaning": "counter for books"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-901",
+    "character": "勇",
+    "meaning": "Courage",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "力",
+        "meaning": "power"
+      },
+      {
+        "character": "マ",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 力 (power), マ (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-902",
+    "character": "械",
+    "meaning": "Contraption",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "戈",
+        "meaning": "spear"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 廾 (two hands), 戈 (spear)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-903",
+    "character": "菜",
+    "meaning": "Vegetable",
+    "level": "N2",
+    "dominantReading": "サイ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "爪",
+        "meaning": "claw"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 爪 (claw), 木 (tree), 艾 (component)",
+    "vocabulary": [
+      {
+        "word": "野菜",
+        "reading": "やさい",
+        "meaning": "vegetable"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-904",
+    "character": "珍",
+    "meaning": "Very, Rare",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "王",
+        "meaning": "king; ball"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "彡",
+        "meaning": "hair"
+      }
+    ],
+    "mnemonic": "Composed of 王 (king; ball), 个 (component), 彡 (hair)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-905",
+    "character": "卵",
+    "meaning": "Egg",
+    "level": "N2",
+    "dominantReading": "たまご",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "卩",
+        "meaning": "seal"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 卜 (divination to), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "卵焼き",
+        "reading": "たまごやき",
+        "meaning": "a Japanese omelet"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-906",
+    "character": "湖",
+    "meaning": "Big, Lake",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 口 (mouth), 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-907",
+    "character": "喫",
+    "meaning": "Enjoy, A, Drink, And, A, Smoke",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 大 (big), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-908",
+    "character": "干",
+    "meaning": "Dry, Out",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 十 (ten), 一 (one)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-909",
+    "character": "虫",
+    "meaning": "Insizzect",
+    "level": "N2",
+    "dominantReading": "むし",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "虫",
+        "meaning": "insect"
+      }
+    ],
+    "mnemonic": "Composed of 虫 (insect)",
+    "vocabulary": [
+      {
+        "word": "虫",
+        "reading": "むし",
+        "meaning": "an insect"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-910",
+    "character": "刷",
+    "meaning": "Print",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刈",
+        "meaning": "component"
+      },
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 刈 (component), 巾 (cloth), 尸 (corpse)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-911",
+    "character": "湯",
+    "meaning": "Hot, Water",
+    "level": "N2",
+    "dominantReading": "(ゆ)",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "勿",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 汁 (component)",
+    "vocabulary": [
+      {
+        "word": "お湯",
+        "reading": "(おゆ)",
+        "meaning": "hot water"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-912",
+    "character": "溶",
+    "meaning": "Melt",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "穴",
+        "meaning": "cave"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "谷",
+        "meaning": "valley"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "宀",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 穴 (cave), 口 (mouth), 汁 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-913",
+    "character": "鉱",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 厶 (private), 广 (dotted cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-914",
+    "character": "涙",
+    "meaning": "Teardrop",
+    "level": "N2",
+    "dominantReading": "なみだ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "戸",
+        "meaning": "door"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 戸 (door), 汁 (component), 大 (big)",
+    "vocabulary": [
+      {
+        "word": "涙",
+        "reading": "なみだ",
+        "meaning": "a tear, tears"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-915",
+    "character": "匹",
+    "meaning": "Small, Animal",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "儿",
+        "meaning": "legs"
+      },
+      {
+        "character": "匚",
+        "meaning": "box frame"
+      }
+    ],
+    "mnemonic": "Composed of 儿 (legs), 匚 (box frame)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-916",
+    "character": "孫",
+    "meaning": "Grandchild",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "子",
+        "meaning": "child"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 子 (child), 糸 (thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-917",
+    "character": "鋭",
+    "meaning": "Sharp",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "儿",
+        "meaning": "legs"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 口 (mouth), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-918",
+    "character": "枝",
+    "meaning": "Branch",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "支",
+        "meaning": "branch"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "又",
+        "meaning": "again"
+      }
+    ],
+    "mnemonic": "Composed of 支 (branch), 木 (tree), 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-919",
+    "character": "塗",
+    "meaning": "Paint",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 土 (earth), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-920",
+    "character": "軒",
+    "meaning": "Counter, For, Shops",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "車",
+        "meaning": "cart"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 車 (cart)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-921",
+    "character": "毒",
+    "meaning": "Poison, Addict",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "母",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "毋",
+        "meaning": "do not; mother"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      }
+    ],
+    "mnemonic": "Composed of 土 (earth), 母 (do not; mother), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-922",
+    "character": "叫",
+    "meaning": "Shout",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 口 (mouth), 十 (ten)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-923",
+    "character": "拝",
+    "meaning": "Worship",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 干 (dry)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-924",
+    "character": "氷",
+    "meaning": "Ice",
+    "level": "N2",
+    "dominantReading": "こおり",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "水",
+        "meaning": "water"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      }
+    ],
+    "mnemonic": "Composed of 水 (water), 丶 (dot)",
+    "vocabulary": [
+      {
+        "word": "氷",
+        "reading": "こおり",
+        "meaning": "ice"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-925",
+    "character": "乾",
+    "meaning": "Dessicate",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "乙",
+        "meaning": "second"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 乙 (second), 十 (ten), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-926",
+    "character": "棒",
+    "meaning": "Pole",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 一 (one), 人 (human)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-927",
+    "character": "祈",
+    "meaning": "Pray",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "斤",
+        "meaning": "axe"
+      },
+      {
+        "character": "礼",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 斤 (axe), 礼 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-928",
+    "character": "拾",
+    "meaning": "Pick, Up, Off, The, Ground",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 个 (component), 扎 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-929",
+    "character": "粉",
+    "meaning": "Powder",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "刀",
+        "meaning": "sword"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 刀 (sword), 并 (component), 米 (rice)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-930",
+    "character": "糸",
+    "meaning": "String",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      }
+    ],
+    "mnemonic": "Composed of 糸 (thread), 幺 (short thread), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-931",
+    "character": "綿",
+    "meaning": "Cotton",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "糸",
+        "meaning": "thread"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "白",
+        "meaning": "white"
+      }
+    ],
+    "mnemonic": "Composed of 巾 (cloth), 糸 (thread), 幺 (short thread)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-932",
+    "character": "汗",
+    "meaning": "Sweat",
+    "level": "N2",
+    "dominantReading": "あせ",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "干",
+        "meaning": "dry"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 干 (dry), 汁 (component)",
+    "vocabulary": [
+      {
+        "word": "汗をかく",
+        "reading": "あせをかく",
+        "meaning": "to perspire, to sweat"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-933",
+    "character": "銅",
+    "meaning": "Bronze",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 口 (mouth), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-934",
+    "character": "湿",
+    "meaning": "Become, Damp, Moisten",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 汁 (component), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-935",
+    "character": "瓶",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "瓦",
+        "meaning": "tile"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of 瓦 (tile), 并 (component), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-936",
+    "character": "咲",
+    "meaning": "Bloom",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 人 (human), 大 (big)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-937",
+    "character": "召",
+    "meaning": "Summon",
+    "level": "N2",
+    "dominantReading": "めす",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "刀",
+        "meaning": "sword"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 刀 (sword)",
+    "vocabulary": [
+      {
+        "word": "召し上がる",
+        "reading": "めしあがる",
+        "meaning": "eat (honorific form)"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-938",
+    "character": "缶",
+    "meaning": "Can, Like, Canned, Beef",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "缶",
+        "meaning": "can"
+      },
+      {
+        "character": "凵",
+        "meaning": "container"
+      },
+      {
+        "character": "山",
+        "meaning": "mountain"
+      }
+    ],
+    "mnemonic": "Composed of 缶 (can), 凵 (container), 山 (mountain)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-939",
+    "character": "隻",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "又",
+        "meaning": "again"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of 又 (again), 隹 (old bird)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-940",
+    "character": "脂",
+    "meaning": "Animal, Fat",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 日 (sun), 匕 (spoon hi)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-941",
+    "character": "蒸",
+    "meaning": "Humid",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "杰",
+        "meaning": "component"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ノ (bend), 一 (one), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-942",
+    "character": "肌",
+    "meaning": "Human, Skin",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 几 (desk)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-943",
+    "character": "耕",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "耒",
+        "meaning": "plow"
+      },
+      {
+        "character": "井",
+        "meaning": "component"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), 土 (earth), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-944",
+    "character": "鈍",
+    "meaning": "Dull",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "金",
+        "meaning": "metal"
+      },
+      {
+        "character": "屯",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 金 (metal), 屯 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-945",
+    "character": "泥",
+    "meaning": "Mud",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "尸",
+        "meaning": "corpse"
+      }
+    ],
+    "mnemonic": "Composed of 汁 (component), 匕 (spoon hi), 尸 (corpse)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-946",
+    "character": "隅",
+    "meaning": "Corner, Of, Room",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      },
+      {
+        "character": "禹",
+        "meaning": "component"
+      },
+      {
+        "character": "阡",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 日 (sun), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-947",
+    "character": "灯",
+    "meaning": "Streetlight",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 火 (fire), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-948",
+    "character": "辛",
+    "meaning": "Spicy, Painful",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "辛",
+        "meaning": "spicy"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 十 (ten), 辛 (spicy), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-949",
+    "character": "磨",
+    "meaning": "To, Brush",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "石",
+        "meaning": "stone"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "广",
+        "meaning": "dotted cliff"
+      },
+      {
+        "character": "麻",
+        "meaning": "hemp"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 石 (stone), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-950",
+    "character": "麦",
+    "meaning": "Barley",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "麦",
+        "meaning": "wheat"
+      },
+      {
+        "character": "夂",
+        "meaning": "winter"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 麦 (wheat), 夂 (winter), 土 (earth)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-951",
+    "character": "姓",
+    "meaning": "Family, Name",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "女",
+        "meaning": "woman"
+      },
+      {
+        "character": "生",
+        "meaning": "life"
+      }
+    ],
+    "mnemonic": "Composed of 女 (woman), 生 (life)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-952",
+    "character": "筒",
+    "meaning": "Cylinder, Pipe",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 竹 (bamboo), 冂 (inverted box)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-953",
+    "character": "鼻",
+    "meaning": "Nose",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "自",
+        "meaning": "oneself"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "廾",
+        "meaning": "two hands"
+      },
+      {
+        "character": "鼻",
+        "meaning": "nose"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 自 (oneself), 田 (field), 廾 (two hands)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-954",
+    "character": "粒",
+    "meaning": "Grain",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "米",
+        "meaning": "rice"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      }
+    ],
+    "mnemonic": "Composed of 米 (rice), 立 (stand)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-955",
+    "character": "詞",
+    "meaning": "Part, Of, Speech",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "言",
+        "meaning": "speech"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 言 (speech), 口 (mouth), 亅 (hook)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-956",
+    "character": "胃",
+    "meaning": "Stomach",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 田 (field)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-957",
+    "character": "畳",
+    "meaning": "Tatami, Mat",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "一",
+        "meaning": "one"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "冖",
+        "meaning": "cover"
+      }
+    ],
+    "mnemonic": "Composed of 一 (one), 田 (field), 冖 (cover)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-958",
+    "character": "机",
+    "meaning": "Desk",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "几",
+        "meaning": "desk"
+      }
+    ],
+    "mnemonic": "Composed of 木 (tree), 几 (desk)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-959",
+    "character": "膚",
+    "meaning": "Epidermis",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "卜",
+        "meaning": "divination to"
+      },
+      {
+        "character": "匕",
+        "meaning": "spoon hi"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      },
+      {
+        "character": "虍",
+        "meaning": "tiger stripes"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 田 (field), 卜 (divination to)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-960",
+    "character": "濯",
+    "meaning": "Rinse",
+    "level": "N2",
+    "dominantReading": "タク",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "ヨ",
+        "meaning": "component"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "隹",
+        "meaning": "old bird"
+      }
+    ],
+    "mnemonic": "Composed of ヨ (component), 汁 (component), 隹 (old bird)",
+    "vocabulary": [
+      {
+        "word": "洗濯する",
+        "reading": "せんたくする",
+        "meaning": "to do laundry"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-961",
+    "character": "塔",
+    "meaning": "Tower",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "土",
+        "meaning": "earth"
+      },
+      {
+        "character": "个",
+        "meaning": "component"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 土 (earth), 个 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-962",
+    "character": "沸",
+    "meaning": "Boil, Water",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "｜",
+        "meaning": "line"
+      },
+      {
+        "character": "ノ",
+        "meaning": "bend"
+      },
+      {
+        "character": "弓",
+        "meaning": "bow"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of ｜ (line), ノ (bend), 弓 (bow)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-963",
+    "character": "灰",
+    "meaning": "Ash, Gray",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "厂",
+        "meaning": "cliff"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 厂 (cliff)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-964",
+    "character": "菓",
+    "meaning": "Sweetspastry",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "艾",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 木 (tree), 艾 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-965",
+    "character": "帽",
+    "meaning": "Hat",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "巾",
+        "meaning": "cloth"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      }
+    ],
+    "mnemonic": "Composed of 巾 (cloth), 日 (sun), 目 (eye)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-966",
+    "character": "枯",
+    "meaning": "Wither",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-967",
+    "character": "涼",
+    "meaning": "Cool, Place",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "小",
+        "meaning": "small"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 汁 (component), 小 (small)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-968",
+    "character": "舟",
+    "meaning": "Boat",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "舟",
+        "meaning": "boat"
+      }
+    ],
+    "mnemonic": "Composed of 舟 (boat)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-969",
+    "character": "貝",
+    "meaning": "Shellfish, Money",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "貝",
+        "meaning": "shell"
+      },
+      {
+        "character": "目",
+        "meaning": "eye"
+      },
+      {
+        "character": "ハ",
+        "meaning": "eight"
+      }
+    ],
+    "mnemonic": "Composed of 貝 (shell), 目 (eye), ハ (eight)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-970",
+    "character": "符",
+    "meaning": "Ticket",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "寸",
+        "meaning": "sun"
+      },
+      {
+        "character": "竹",
+        "meaning": "bamboo"
+      },
+      {
+        "character": "乞",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 寸 (sun), 竹 (bamboo)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-971",
+    "character": "憎",
+    "meaning": "Detest",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "忙",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 田 (field), 日 (sun), 并 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-972",
+    "character": "皿",
+    "meaning": "Plate",
+    "level": "N2",
+    "dominantReading": "さら",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "皿",
+        "meaning": "dish"
+      }
+    ],
+    "mnemonic": "Composed of 皿 (dish)",
+    "vocabulary": [
+      {
+        "word": "灰皿",
+        "reading": "はいざら",
+        "meaning": "an ashtray"
+      }
+    ]
+  },
+  {
+    "id": "k-n2-973",
+    "character": "肯",
+    "meaning": "Consent",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "月",
+        "meaning": "meat"
+      },
+      {
+        "character": "止",
+        "meaning": "stop"
+      }
+    ],
+    "mnemonic": "Composed of 月 (meat), 止 (stop)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-974",
+    "character": "燥",
+    "meaning": "Kanji character",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "火",
+        "meaning": "fire"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "木",
+        "meaning": "tree"
+      },
+      {
+        "character": "品",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 火 (fire), 口 (mouth), 木 (tree)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-975",
+    "character": "畜",
+    "meaning": "Raising, Of, Domestic, Animals",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "玄",
+        "meaning": "dark"
+      },
+      {
+        "character": "田",
+        "meaning": "field"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "幺",
+        "meaning": "short thread"
+      }
+    ],
+    "mnemonic": "Composed of 玄 (dark), 田 (field), 亠 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-976",
+    "character": "挟",
+    "meaning": "Pinch",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "人",
+        "meaning": "human"
+      },
+      {
+        "character": "大",
+        "meaning": "big"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "丶",
+        "meaning": "dot"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "扎",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 人 (human), 大 (big), 二 (two)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-977",
+    "character": "曇",
+    "meaning": "Get, Cloudy",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "雨",
+        "meaning": "rain"
+      },
+      {
+        "character": "二",
+        "meaning": "two"
+      },
+      {
+        "character": "日",
+        "meaning": "sun"
+      },
+      {
+        "character": "厶",
+        "meaning": "private"
+      }
+    ],
+    "mnemonic": "Composed of 雨 (rain), 二 (two), 日 (sun)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-978",
+    "character": "滴",
+    "meaning": "Drip",
+    "level": "N2",
+    "dominantReading": "",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "十",
+        "meaning": "ten"
+      },
+      {
+        "character": "汁",
+        "meaning": "component"
+      },
+      {
+        "character": "并",
+        "meaning": "component"
+      },
+      {
+        "character": "立",
+        "meaning": "stand"
+      },
+      {
+        "character": "亠",
+        "meaning": "component"
+      },
+      {
+        "character": "冂",
+        "meaning": "inverted box"
+      },
+      {
+        "character": "滴",
+        "meaning": "component"
+      }
+    ],
+    "mnemonic": "Composed of 口 (mouth), 十 (ten), 汁 (component)",
+    "vocabulary": []
+  },
+  {
+    "id": "k-n2-979",
+    "character": "伺",
+    "meaning": "Formal, Visit, Question",
+    "level": "N2",
+    "dominantReading": "うかがう",
+    "onYomi": [],
+    "kunYomi": [],
+    "radicals": [
+      {
+        "character": "化",
+        "meaning": "component"
+      },
+      {
+        "character": "口",
+        "meaning": "mouth"
+      },
+      {
+        "character": "亅",
+        "meaning": "hook"
+      },
+      {
+        "character": "一",
+        "meaning": "one"
+      }
+    ],
+    "mnemonic": "Composed of 化 (component), 口 (mouth), 亅 (hook)",
+    "vocabulary": [
+      {
+        "word": "伺う",
+        "reading": "うかがう",
+        "meaning": "visit, ask (humble form)"
+      }
+    ]
+  }
+];

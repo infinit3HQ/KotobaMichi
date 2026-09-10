@@ -89,6 +89,58 @@ export function speakJapanese(text: string, options: SpeakOptions = {}): Promise
 }
 
 /**
+ * Stops any ongoing Japanese speech immediately.
+ */
+export function stopSpeaking(): void {
+  if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+export interface DialogueLineAudio {
+  speaker: string;
+  japanese: string;
+  romaji?: string;
+  english?: string;
+}
+
+/**
+ * Speaks a sequential multi-turn dialogue with distinct speaker voice acoustics (pitch & tone modulation).
+ */
+export async function speakDialogue(
+  lines: DialogueLineAudio[],
+  options: {
+    rate?: number;
+    onLineChange?: (index: number) => void;
+    onEnd?: () => void;
+  } = {}
+): Promise<void> {
+  stopSpeaking();
+  const speed = options.rate ?? 0.92;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    options.onLineChange?.(i);
+
+    // Speaker acoustics: modulate pitch to give distinct character voices
+    // Speaker A / Man: slightly deeper pitch
+    // Speaker B / Woman: brighter higher pitch
+    const isFemale = line.speaker.includes("女") || line.speaker.toLowerCase().includes("woman") || line.speaker.toLowerCase().includes("clerk") || i % 2 === 1;
+    const pitch = isFemale ? 1.25 : 0.88;
+
+    await speakJapanese(line.japanese, {
+      rate: speed,
+      pitch,
+    });
+
+    // Natural pause between conversational turns (450ms)
+    await new Promise((res) => setTimeout(res, 450));
+  }
+
+  options.onEnd?.();
+}
+
+/**
  * Lightweight Web Audio synthesizer for immediate gamification feedback.
  * No MP3s or network requests required.
  */
