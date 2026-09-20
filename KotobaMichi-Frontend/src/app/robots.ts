@@ -7,6 +7,14 @@ function resolveSiteUrl(): string {
   return SITE_URL.replace(/\/$/, "");
 }
 
+function resolveHost(siteUrl: string): string {
+  try {
+    return new URL(siteUrl).host;
+  } catch {
+    return siteUrl.replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+  }
+}
+
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const SITE = resolveSiteUrl();
   return {
@@ -27,6 +35,6 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
       },
     ],
     sitemap: `${SITE}/sitemap.xml`,
-    host: SITE,
+    host: resolveHost(SITE),
   };
 }

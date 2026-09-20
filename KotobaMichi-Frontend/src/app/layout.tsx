@@ -38,16 +38,18 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "./",
-    languages: {
-      "en-US": "/",
-      "ja-JP": "/",
-    },
+    canonical: SITE_URL,
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": [process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION] }
+      : undefined,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    alternateLocale: ["ja_JP"],
     url: SITE_URL,
     title: `${SITE_CONFIG.name} – Interactive Japanese Language Learning`,
     description: SITE_CONFIG.description,
@@ -95,7 +97,7 @@ const websiteJsonLd = {
       url: SITE_URL,
       name: SITE_CONFIG.name,
       description: SITE_CONFIG.description,
-      inLanguage: ["en-US", "ja-JP"],
+      inLanguage: "en-US",
       potentialAction: {
         "@type": "SearchAction",
         target: {
@@ -106,23 +108,31 @@ const websiteJsonLd = {
       },
     },
     {
-      "@type": ["SoftwareApplication", "EducationalOrganization"],
+      "@type": "EducationalOrganization",
       "@id": `${SITE_URL}/#organization`,
+      name: SITE_CONFIG.name,
+      url: SITE_URL,
+      logo: `${SITE_URL}/favicon.ico`,
+      sameAs: [SITE_CONFIG.links.twitter, SITE_CONFIG.links.github],
+    },
+    {
+      "@type": "WebApplication",
+      "@id": `${SITE_URL}/#application`,
       name: SITE_CONFIG.name,
       url: SITE_URL,
       applicationCategory: "EducationalApplication",
       operatingSystem: "Web Browser",
+      browserRequirements: "Requires JavaScript. Requires HTML5.",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
       },
       description: SITE_CONFIG.description,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "128",
+      provider: {
+        "@id": `${SITE_URL}/#organization`,
       },
+      inLanguage: ["en-US", "ja-JP"],
     },
   ],
 };

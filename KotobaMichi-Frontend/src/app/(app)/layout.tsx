@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { default: "App", template: "%s | KotobaMichi(言葉道)" },
+  title: { default: "Practice & Vocabulary Dojo", template: "%s | KotobaMichi(言葉道)" },
   description: "Explore words, take quizzes, and view your results.",
 };
 
