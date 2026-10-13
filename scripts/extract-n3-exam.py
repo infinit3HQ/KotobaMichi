@@ -153,11 +153,22 @@ def format_lines(lines: list[dict]) -> str:
     return "\n".join("".join(part["text"] for part in block) for block in blocks)
 
 
-def question_number(line: dict) -> int | None:
+def question_number(line: dict, expected: int | None = None) -> int | None:
     if line["x"] > 96:
         return None
-    # Some sittings print "1 急に" and others print "1急に".
-    match = re.match(r"^([0-9]{1,2})(?:\s+|(?=[^\d])|$)", line["text"])
+    text = line["text"]
+    # "16100年" is question 16 followed by "100年".
+    if expected is not None:
+        prefix = str(expected)
+        if text.startswith(prefix):
+            rest = text[len(prefix):]
+            if rest == "" or rest[0].isspace() or rest[0] in "（(" or not rest[0].isdigit():
+                return expected
+            glued = re.match(r"(\d+)", rest)
+            after = rest[glued.end():] if glued else ""
+            if expected >= 10 or after[:1].isspace() or after[:1] in "（(":
+                return expected
+    match = re.match(r"^([0-9]{1,2})(?:\s+|(?=[^\d])|$)", text)
     if not match:
         return None
     return int(match.group(1))
@@ -203,7 +214,9 @@ def ban_numbers(text: str) -> list[int]:
 
 
 def mondai_number(text: str) -> int | None:
-    match = re.match(r"^問題(?:（[^）]*）)?\s*([0-9]{1,2})", text)
+    text = text.replace("間題", "問題").replace("問题", "問題")
+    text = re.sub(r"^(問(?:（[^）]*）)?題(?:（[^）]*）)?\s*)[Il|Ｉ]", r"\g<1>1", text)
+    match = re.match(r"^問(?:（[^）]*）)?題(?:（[^）]*）)?\s*([0-9]{1,2})", text)
     return int(match.group(1)) if match else None
 
 
@@ -260,10 +273,11 @@ def parse_paper(doc: pymupdf.Document) -> dict:
 
     def open_mondai(number: int, instruction: str) -> None:
         nonlocal mondai, item, passage
+        if part is None:
+            return
         item = None
         passage = None
         mondai = {"number": number, "instruction": instruction, "items": []}
-        assert part is not None
         part["mondai"].append(mondai)
 
     for page_index, page in enumerate(doc):
@@ -274,7 +288,9 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                 mondai["image"] = "images/reading-7-guide.png"
             continue
         for line in lines_of(page):
-            if line["y"] > 720 or line["y"] < 55 or line["text"].startswith("JLPT・"):
+            if line["y"] > page.rect.height - 36 or line["text"].startswith(("JLPT・", "N3 ", "N2 ", "N1 ")):
+                continue
+            if line["y"] < 48 and re.match(r"^N[1-5]\b", line["text"]):
                 continue
             text = line["text"]
             if text in ("文字・語彙", "文法", "読解", "聴解"):
@@ -300,6 +316,29 @@ def parse_paper(doc: pymupdf.Document) -> dict:
 
             found_mondai = mondai_number(text)
             if found_mondai is not None and line["x"] < 100:
+                if part is not None and mondai is not None and mondai["number"] == found_mondai and not mondai["items"]:
+                    mondai["instruction"] = clean(mondai["instruction"] + text)
+                    continue
+                restarted = mondai is not None and found_mondai == 1 and mondai["number"] > 1
+                if part is None:
+                    ensure_section("vocabulary", "文字・語彙", 30)
+                    ensure_part("vocabulary", "文字・語彙")
+                    expected = 1
+                elif restarted and section is not None and section["id"] == "vocabulary":
+                    ensure_section("grammar-reading", "文法・読解", 70)
+                    ensure_part("grammar", "文法")
+                    expected = 1
+                    listening = False
+                elif restarted:
+                    ensure_section("listening", "聴解", 40)
+                    ensure_part("listening", "聴解")
+                    listening = True
+                elif part["id"] == "grammar" and found_mondai >= 4:
+                    ensure_section("grammar-reading", "文法・読解", 70)
+                    ensure_part("reading", "読解")
+                    listening = False
+                if any(existing["number"] == found_mondai and existing["items"] for existing in part["mondai"]):
+                    continue
                 open_mondai(found_mondai, text)
                 continue
 
@@ -314,6 +353,8 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                 numbers = ban_numbers(text) if line["x"] < 160 else []
                 if numbers and "問題" not in text:
                     for number in numbers:
+                        if any(existing["number"] == number for existing in mondai["items"]):
+                            continue
                         item = new_item(number, f"{number}番", page_no)
                         if passage is not None:
                             item["passage"] = passage.get("label")
@@ -334,12 +375,23 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                     mondai["instruction"] = clean(mondai["instruction"] + text)
                 continue
 
-            number = question_number(line)
+            number = question_number(line, expected)
+            if number != expected and expected is not None:
+                # A reconstructed paper sometimes skips one printed number.
+                if question_number(line, expected + 1) == expected + 1:
+                    expected += 1
+                    number = expected
             if number == expected and mondai is not None:
-                prompt = re.sub(r"^[0-9]{1,2}\s*", "", text)
-                if not prompt:
+                rest = text[len(str(number)):].strip()
+                same_line_options = option_chunks(rest) if rest else None
+                if same_line_options and same_line_options[0][0] == 1 and len(same_line_options) >= 2:
                     prompt = f"（{number}）"
+                else:
+                    same_line_options = None
+                    prompt = rest or f"（{number}）"
                 item = new_item(number, prompt, page_no)
+                if same_line_options:
+                    item["options"] = [{"number": n, "text": body} for n, body in same_line_options]
                 if passage is not None:
                     item["passage"] = passage["label"]
                     passage["questionNumbers"].append(number)
@@ -721,13 +773,21 @@ def parse_answers(path: Path) -> dict:
                     break
     # Grammar column parser also catches vocab 26-35 if y is low. Split by range.
     for number, value in list(grammar.items()):
-        if number <= 22:
+        if number <= 23:
             continue
         grammar.pop(number, None)
     return {"vocabulary": vocab, "grammar": grammar, "reading": reading, "listening": listening}
 
 
 def apply_answers(exam: dict, answers: dict) -> None:
+    reading_numbers = {
+        item["number"]
+        for section in exam["sections"]
+        for part in section["parts"]
+        if part["id"] == "reading"
+        for mondai in part["mondai"]
+        for item in mondai["items"]
+    }
     for section in exam["sections"]:
         for part in section["parts"]:
             bucket = answers["vocabulary"] if part["id"] == "vocabulary" else None
@@ -741,6 +801,12 @@ def apply_answers(exam: dict, answers: dict) -> None:
                         item["answer"] = answers["listening"].get(mondai["number"], {}).get(item["number"])
                     elif bucket is not None:
                         item["answer"] = bucket.get(item["number"])
+                        if (
+                            item["answer"] is None
+                            and part["id"] == "grammar"
+                            and item["number"] not in reading_numbers
+                        ):
+                            item["answer"] = answers["reading"].get(item["number"])
 
 
 def parse_script(path: Path) -> dict[int, dict[int, dict]]:
@@ -767,7 +833,9 @@ def parse_script(path: Path) -> dict[int, dict[int, dict]]:
 
     for page in doc:
         for line in lines_of(page):
-            if line["y"] > 720 or line["y"] < 55 or line["text"].startswith("JLPT・"):
+            if line["y"] > page.rect.height - 36 or line["text"].startswith(("JLPT・", "N3 ", "N2 ", "N1 ")):
+                continue
+            if line["y"] < 48 and re.match(r"^N[1-5]\b", line["text"]):
                 continue
             text = line["text"]
             header = re.match(r"^問題\s*([0-9]{1,2})", text)

@@ -6,12 +6,66 @@ import { mockExamAttempts, type MockExamScore } from '@/db/schema';
 import n3December2025 from './keys/n3-2025-12.json';
 import n3July2025 from './keys/n3-2025-07.json';
 import n3December2024 from './keys/n3-2024-12.json';
+import n3July2024 from './keys/n3-2024-07.json';
+import n3December2023 from './keys/n3-2023-12.json';
+import n3July2023 from './keys/n3-2023-07.json';
+import n3December2022 from './keys/n3-2022-12.json';
+import n3July2022 from './keys/n3-2022-07.json';
+import n3December2021 from './keys/n3-2021-12.json';
+import n3July2021 from './keys/n3-2021-07.json';
+import n3December2020 from './keys/n3-2020-12.json';
+import n3December2019 from './keys/n3-2019-12.json';
+import n3July2019 from './keys/n3-2019-07.json';
+import n3December2018 from './keys/n3-2018-12.json';
+import n3July2018 from './keys/n3-2018-07.json';
+import n3December2017 from './keys/n3-2017-12.json';
+import n3July2017 from './keys/n3-2017-07.json';
+import n3December2016 from './keys/n3-2016-12.json';
+import n3July2016 from './keys/n3-2016-07.json';
+import n3December2015 from './keys/n3-2015-12.json';
+import n3July2015 from './keys/n3-2015-07.json';
+import n3December2014 from './keys/n3-2014-12.json';
+import n3July2014 from './keys/n3-2014-07.json';
+import n3December2013 from './keys/n3-2013-12.json';
+import n3July2013 from './keys/n3-2013-07.json';
+import n3December2012 from './keys/n3-2012-12.json';
+import n3July2012 from './keys/n3-2012-07.json';
+import n3December2011 from './keys/n3-2011-12.json';
+import n3July2011 from './keys/n3-2011-07.json';
+import n3July2010 from './keys/n3-2010-07.json';
 import { SaveMockAttemptDto } from './dto/save-mock-attempt.dto';
 
 const ANSWER_KEYS: Record<string, Record<string, number>> = {
 	'n3-2025-12': n3December2025,
 	'n3-2025-07': n3July2025,
 	'n3-2024-12': n3December2024,
+	'n3-2024-07': n3July2024,
+	'n3-2023-12': n3December2023,
+	'n3-2023-07': n3July2023,
+	'n3-2022-12': n3December2022,
+	'n3-2022-07': n3July2022,
+	'n3-2021-12': n3December2021,
+	'n3-2021-07': n3July2021,
+	'n3-2020-12': n3December2020,
+	'n3-2019-12': n3December2019,
+	'n3-2019-07': n3July2019,
+	'n3-2018-12': n3December2018,
+	'n3-2018-07': n3July2018,
+	'n3-2017-12': n3December2017,
+	'n3-2017-07': n3July2017,
+	'n3-2016-12': n3December2016,
+	'n3-2016-07': n3July2016,
+	'n3-2015-12': n3December2015,
+	'n3-2015-07': n3July2015,
+	'n3-2014-12': n3December2014,
+	'n3-2014-07': n3July2014,
+	'n3-2013-12': n3December2013,
+	'n3-2013-07': n3July2013,
+	'n3-2012-12': n3December2012,
+	'n3-2012-07': n3July2012,
+	'n3-2011-12': n3December2011,
+	'n3-2011-07': n3July2011,
+	'n3-2010-07': n3July2010,
 };
 
 type AttemptRow = typeof mockExamAttempts.$inferSelect;
