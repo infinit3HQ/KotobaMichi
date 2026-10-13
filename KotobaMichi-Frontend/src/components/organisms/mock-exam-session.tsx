@@ -661,11 +661,11 @@ function Results({
         })}
       </div>
       <div className="rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
-        A group’s 60 is split evenly across its parts, so vocabulary and grammar are 30 each. Each 問題 then
-        takes an equal slice of that part, and the items inside the 問題 split that slice. 読解 is one part, so
-        its four 問題 each get 15, and 問題7’s two items each get 7.5. The real report then shifts the number
-        for item difficulty, which is not published. Vocabulary and grammar letters are the report’s bands: A
-        is 67% or more, B is 34–66%, C is under 34%.
+        Each paper is 60. 文字・語彙 is one part, so its five 問題 split that 60. 文法・読解 has two parts, so
+        grammar and reading are 30 each, then each 問題 splits that 30, then the items split the 問題. The real
+        report groups vocabulary with grammar instead, and shifts the number for item difficulty, which is not
+        published. Vocabulary and grammar letters are the report’s bands: A is 67% or more, B is 34–66%, C is
+        under 34%.
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {areas.map((area) => (

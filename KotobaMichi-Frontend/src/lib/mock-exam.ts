@@ -159,9 +159,8 @@ export function scoreByMondai(exam: MockExam, answers: Record<string, number>): 
           const chosen = answers[answerKey(section.id, part.id, mondai.number, item.number)];
           if (chosen != null && chosen === item.answer) correct += 1;
         }
-        const scoredId = part.id === "reading" ? "reading" : part.id === "listening" ? "listening" : "language";
         rows.push({
-          sectionId: scoredId,
+          sectionId: section.id,
           sectionTitle: section.title,
           partTitle: part.title,
           mondai: mondai.number,
@@ -200,25 +199,17 @@ export function pointsForSection(rows: MondaiScore[], sectionId: string) {
 }
 
 export function scoreExam(exam: MockExam, answers: Record<string, number>): SectionScore[] {
-  const buckets: Record<string, SectionScore> = {
-    language: { id: "language", title: "言語知識", correct: 0, total: 0 },
-    reading: { id: "reading", title: "読解", correct: 0, total: 0 },
-    listening: { id: "listening", title: "聴解", correct: 0, total: 0 },
-  };
-
-  for (const section of exam.sections) {
+  return exam.sections.map((section) => {
+    const score: SectionScore = { id: section.id, title: section.title, correct: 0, total: 0 };
     for (const part of section.parts) {
-      const bucket =
-        part.id === "reading" ? buckets.reading : part.id === "listening" ? buckets.listening : buckets.language;
       for (const mondai of part.mondai) {
         for (const item of mondai.items) {
-          bucket.total += 1;
+          score.total += 1;
           const chosen = answers[answerKey(section.id, part.id, mondai.number, item.number)];
-          if (chosen != null && chosen === item.answer) bucket.correct += 1;
+          if (chosen != null && chosen === item.answer) score.correct += 1;
         }
       }
     }
-  }
-
-  return [buckets.language, buckets.reading, buckets.listening];
+    return score;
+  });
 }
