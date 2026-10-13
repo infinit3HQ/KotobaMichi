@@ -1,0 +1,2435 @@
+{
+  "id": "n3-2025-07",
+  "level": "N3",
+  "session": "2025-07",
+  "title": "N3 mock · July 2025",
+  "note": "Reconstructed from examinee memory. The answer key is the community key updated 26 June 2026, not an official JLPT score.",
+  "audio": {
+    "file": "N3 07.2025 Choukai [New].mp3",
+    "note": "One listening track for the sitting. Start and stop times are not marked yet."
+  },
+  "sections": [
+    {
+      "id": "vocabulary",
+      "title": "文字・語彙",
+      "minutes": 30,
+      "parts": [
+        {
+          "id": "vocabulary",
+          "title": "文字・語彙",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題1 のことばの読み方として最もよいものを、1・2・3・4から一つ選（えら）びなさい。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "急に涙が出てしまいました。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "なみだ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "あせ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "せき"
+                    },
+                    {
+                      "number": 4,
+                      "text": "くしゃみ"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 1
+                },
+                {
+                  "number": 2,
+                  "prompt": "けがは完全に治りました。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "かんぜん"
+                    },
+                    {
+                      "number": 2,
+                      "text": "かんたん"
+                    },
+                    {
+                      "number": 3,
+                      "text": "けんぜん"
+                    },
+                    {
+                      "number": 4,
+                      "text": "けんたん"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 1
+                },
+                {
+                  "number": 3,
+                  "prompt": "雨で地面がぬれている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ちめい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ちめん"
+                    },
+                    {
+                      "number": 3,
+                      "text": "じめい"
+                    },
+                    {
+                      "number": 4,
+                      "text": "じめん"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 4
+                },
+                {
+                  "number": 4,
+                  "prompt": "お金はあの箱に移したほうがいいですか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "もどした"
+                    },
+                    {
+                      "number": 2,
+                      "text": "かくした"
+                    },
+                    {
+                      "number": 3,
+                      "text": "このした"
+                    },
+                    {
+                      "number": 4,
+                      "text": "うつした"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 4
+                },
+                {
+                  "number": 5,
+                  "prompt": "ゆっくり呼吸をしてください。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "こきょう"
+                    },
+                    {
+                      "number": 2,
+                      "text": "こきゅう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "こうきゅう"
+                    },
+                    {
+                      "number": 4,
+                      "text": "こうきょう"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 2
+                },
+                {
+                  "number": 6,
+                  "prompt": "ここに身長を書いてください。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "せんちょう"
+                    },
+                    {
+                      "number": 2,
+                      "text": "しんちょう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "じんちょう"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ぜんちょう"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 2
+                },
+                {
+                  "number": 7,
+                  "prompt": "前田さんは困っているようだ。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "まよって"
+                    },
+                    {
+                      "number": 2,
+                      "text": "おこって"
+                    },
+                    {
+                      "number": 3,
+                      "text": "こまって"
+                    },
+                    {
+                      "number": 4,
+                      "text": "だまって"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 3
+                },
+                {
+                  "number": 8,
+                  "prompt": "近くに薬局はありますか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "やっきょ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "やきょく"
+                    },
+                    {
+                      "number": 3,
+                      "text": "やっきょく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "やきょ"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 2,
+              "instruction": "問題2 のことばを漢字で書くとき、最もよいものを、1・2・3・4から一つ選（えら）びなさい。",
+              "items": [
+                {
+                  "number": 9,
+                  "prompt": "この町で子どもをそだてたいと思っている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "産てたい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "育てたい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "愛てたい"
+                    },
+                    {
+                      "number": 4,
+                      "text": "幸てたい"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 10,
+                  "prompt": "物が燃えるときに、けむりが出ます。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "煙"
+                    },
+                    {
+                      "number": 2,
+                      "text": "燥"
+                    },
+                    {
+                      "number": 3,
+                      "text": "焼"
+                    },
+                    {
+                      "number": 4,
+                      "text": "爆"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 11,
+                  "prompt": "ここからしんりんが見えます。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "森村"
+                    },
+                    {
+                      "number": 2,
+                      "text": "森林"
+                    },
+                    {
+                      "number": 3,
+                      "text": "山林"
+                    },
+                    {
+                      "number": 4,
+                      "text": "山村"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 12,
+                  "prompt": "朝、シャワーをあびました。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "流びました"
+                    },
+                    {
+                      "number": 2,
+                      "text": "洗びました"
+                    },
+                    {
+                      "number": 3,
+                      "text": "清びました"
+                    },
+                    {
+                      "number": 4,
+                      "text": "浴びました"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 13,
+                  "prompt": "文字の色を変えることはかのうでしょうか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "可能"
+                    },
+                    {
+                      "number": 2,
+                      "text": "可態"
+                    },
+                    {
+                      "number": 3,
+                      "text": "化能"
+                    },
+                    {
+                      "number": 4,
+                      "text": "化態"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 14,
+                  "prompt": "今からメールをそうしんします。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "返信"
+                    },
+                    {
+                      "number": 2,
+                      "text": "送真"
+                    },
+                    {
+                      "number": 3,
+                      "text": "送信"
+                    },
+                    {
+                      "number": 4,
+                      "text": "返真"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 3,
+              "instruction": "問題3( )に入れるのに最もよいものを、1・2・3・4 から一つえらびなさい。",
+              "items": [
+                {
+                  "number": 15,
+                  "prompt": "山の上から見た景色が素晴らしくて、とても( )した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "拝見"
+                    },
+                    {
+                      "number": 2,
+                      "text": "歓迎"
+                    },
+                    {
+                      "number": 3,
+                      "text": "応答"
+                    },
+                    {
+                      "number": 4,
+                      "text": "感動"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 16,
+                  "prompt": "この店では、以前誰かが使っていた( )の車を売っている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "後半"
+                    },
+                    {
+                      "number": 2,
+                      "text": "中年"
+                    },
+                    {
+                      "number": 3,
+                      "text": "中古"
+                    },
+                    {
+                      "number": 4,
+                      "text": "後期"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 17,
+                  "prompt": "来週の旅行に持っていく物の( )を作った。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "スケジュール"
+                    },
+                    {
+                      "number": 2,
+                      "text": "リスト"
+                    },
+                    {
+                      "number": 3,
+                      "text": "カタログ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "プログラム"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 2
+                },
+                {
+                  "number": 18,
+                  "prompt": "この前は試合に負けて( )が、今回は勝てたので、本当にうれしい。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "くやしかった"
+                    },
+                    {
+                      "number": 2,
+                      "text": "まずしかった"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ゆるかった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ずるかった"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 19,
+                  "prompt": "ここから市役所までの( )はどのくらいですか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "途中"
+                    },
+                    {
+                      "number": 2,
+                      "text": "徒歩"
+                    },
+                    {
+                      "number": 3,
+                      "text": "方向"
+                    },
+                    {
+                      "number": 4,
+                      "text": "距離"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 20,
+                  "prompt": "シャワーの後は、このタオルで体を( )ください。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ほして"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ふいて"
+                    },
+                    {
+                      "number": 3,
+                      "text": "張って"
+                    },
+                    {
+                      "number": 4,
+                      "text": "直して"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 2
+                },
+                {
+                  "number": 21,
+                  "prompt": "配達が遅れたせいで、お客さんから( )を言われてしまった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "失礼"
+                    },
+                    {
+                      "number": 2,
+                      "text": "命令"
+                    },
+                    {
+                      "number": 3,
+                      "text": "否定"
+                    },
+                    {
+                      "number": 4,
+                      "text": "文句"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 22,
+                  "prompt": "この問題を解決するために、何かよい方法を( )人はいませんか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "思いついた"
+                    },
+                    {
+                      "number": 2,
+                      "text": "引き受けた"
+                    },
+                    {
+                      "number": 3,
+                      "text": "知り合った"
+                    },
+                    {
+                      "number": 4,
+                      "text": "取り替えた"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 23,
+                  "prompt": "私の家から駅までは( )なので、駅まで歩くと疲れます。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "坂道"
+                    },
+                    {
+                      "number": 2,
+                      "text": "通り道"
+                    },
+                    {
+                      "number": 3,
+                      "text": "片道"
+                    },
+                    {
+                      "number": 4,
+                      "text": "近道"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 24,
+                  "prompt": "この店はとても人気があり、店の前にはいつも、開店を待つ人の長い( )ができている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "帯"
+                    },
+                    {
+                      "number": 2,
+                      "text": "線"
+                    },
+                    {
+                      "number": 3,
+                      "text": "列"
+                    },
+                    {
+                      "number": 4,
+                      "text": "壁"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 25,
+                  "prompt": "後でレポートを書くために、実験の結果をノートに( )した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "申請"
+                    },
+                    {
+                      "number": 2,
+                      "text": "記録"
+                    },
+                    {
+                      "number": 3,
+                      "text": "予報"
+                    },
+                    {
+                      "number": 4,
+                      "text": "通知"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 4,
+              "instruction": "問題4 に意味が最も近いものを、1・2・3・4から一つ選（えら）びなさい。",
+              "items": [
+                {
+                  "number": 26,
+                  "prompt": "あの仕事は本当に苦労した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "危険だった"
+                    },
+                    {
+                      "number": 2,
+                      "text": "大変だった"
+                    },
+                    {
+                      "number": 3,
+                      "text": "つまらない"
+                    },
+                    {
+                      "number": 4,
+                      "text": "やりたくなかった"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                },
+                {
+                  "number": 27,
+                  "prompt": "本田さんと佐藤さんは、部屋からそっと出ていった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "静かに"
+                    },
+                    {
+                      "number": 2,
+                      "text": "にぎやかに"
+                    },
+                    {
+                      "number": 3,
+                      "text": "急いで"
+                    },
+                    {
+                      "number": 4,
+                      "text": "二人で"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 1
+                },
+                {
+                  "number": 28,
+                  "prompt": "昨日、田中さんは早退したそうです。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "早く起きた"
+                    },
+                    {
+                      "number": 2,
+                      "text": "早く来た"
+                    },
+                    {
+                      "number": 3,
+                      "text": "早く寝た"
+                    },
+                    {
+                      "number": 4,
+                      "text": "早く帰った"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 4
+                },
+                {
+                  "number": 29,
+                  "prompt": "ここに来てから1 週間くらいたちました。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "待ちました"
+                    },
+                    {
+                      "number": 2,
+                      "text": "続けました"
+                    },
+                    {
+                      "number": 3,
+                      "text": "休みました"
+                    },
+                    {
+                      "number": 4,
+                      "text": "過ぎました"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 4
+                },
+                {
+                  "number": 30,
+                  "prompt": "この店ではさまざまな料理が食べられます。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "きれいな"
+                    },
+                    {
+                      "number": 2,
+                      "text": "有名な"
+                    },
+                    {
+                      "number": 3,
+                      "text": "いろいろな"
+                    },
+                    {
+                      "number": 4,
+                      "text": "特別な"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 5,
+              "instruction": "問題5次の言（こと）葉（ば）の使い方として最も近いものを、1・2・3・4から一つ選（えら）びなさい。",
+              "items": [
+                {
+                  "number": 31,
+                  "prompt": "減少",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "弟はサッカーの試合に負けてから、元気が減少している。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "気温が減少しているので、今夜は雪が降ると思う。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "調査によると、この国の人口は今後減少するそうだ。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "今年はりんごの値段が去年より減少したらしい。"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 3
+                },
+                {
+                  "number": 32,
+                  "prompt": "重大",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "子どもたちは重大な顔して、先生の話を聞いていた。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "これは祖母からもらった重大な指輪だ。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "外国での一人暮らしは、重大な経験になると思う。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "明日、社長から重大な発表があるそうだ。"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 4
+                },
+                {
+                  "number": 33,
+                  "prompt": "ばらばら",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "冷凍庫に入れるのを忘れて、アイスクリームがばらばらになってしまった。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "床に落としてしまい、資料がばらばらになってしまった。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ドアを開けたので、部屋の暖かい空気がばらばらになってしまった。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "コップが倒れて、中のジュースがばらばらになってしまった。"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 2
+                },
+                {
+                  "number": 34,
+                  "prompt": "皮",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "じゃがいもは皮をむかないで、そのままゆでます。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "机にぶつけて、パソコンの皮に傷がついてしまった。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "割った卵の皮はここに捨ててください。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "テキストの皮に名前が書いてあるので、誰の物か分かります。"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 1
+                },
+                {
+                  "number": 35,
+                  "prompt": "オーダー",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "健康のため、毎日運動をするように医者からオーダーされた。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "母は妹に部屋の掃除をオーダーした。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "レストランで食事の後にデザートをオーダーした。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "次の大会で必ず優勝してほしいと選手たちにオーダーした。"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grammar-reading",
+      "title": "文法・読解",
+      "minutes": 70,
+      "parts": [
+        {
+          "id": "grammar",
+          "title": "文法",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題1 つぎの文の( )に入れるのに最もよいものを、1・2・3・4から一つ選（えら）びなさい。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "先月東京で行われたサッカーの国際大会には、世界中（　）多くのサッカーファンが集まった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "に"
+                    },
+                    {
+                      "number": 2,
+                      "text": "で"
+                    },
+                    {
+                      "number": 3,
+                      "text": "から"
+                    },
+                    {
+                      "number": 4,
+                      "text": "まで"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "answer": 3
+                },
+                {
+                  "number": 2,
+                  "prompt": "食事のマナーは国（　）違うので、私は旅行に行く前に、気をつけたほうがいいことはないか調べるようにしている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "によって"
+                    },
+                    {
+                      "number": 2,
+                      "text": "に対して"
+                    },
+                    {
+                      "number": 3,
+                      "text": "にとって"
+                    },
+                    {
+                      "number": 4,
+                      "text": "において"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "answer": 1
+                },
+                {
+                  "number": 3,
+                  "prompt": "A「もうすぐ（　）この前言ってたけど、準備は進んでる?」B「うん。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "引っ越す"
+                    },
+                    {
+                      "number": 2,
+                      "text": "引っ越すか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "引っ越すって"
+                    },
+                    {
+                      "number": 4,
+                      "text": "引っ越すのを"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "answer": 3
+                },
+                {
+                  "number": 4,
+                  "prompt": "田中「山下さん、映画をよく見るそうですね。映画館で見るんですか。」山下「映画館にも行きますが、( )、家でDVD を見ることが多いですね。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "確かに"
+                    },
+                    {
+                      "number": 2,
+                      "text": "まるで"
+                    },
+                    {
+                      "number": 3,
+                      "text": "必ずしも"
+                    },
+                    {
+                      "number": 4,
+                      "text": "どちらかというと"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "answer": 4
+                },
+                {
+                  "number": 5,
+                  "prompt": "（料理番組で）「じゃがいもは、ゆでてから皮をむいたほうが、きれいに皮がむけます。ゆでた後、熱い（　）に皮をむきましょう。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "のに"
+                    },
+                    {
+                      "number": 2,
+                      "text": "うちに"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ことで"
+                    },
+                    {
+                      "number": 4,
+                      "text": "とすると"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "answer": 2
+                },
+                {
+                  "number": 6,
+                  "prompt": "少し前にご飯を食べた（　）なのに、もうおなかがすいてきた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "せい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "とき"
+                    },
+                    {
+                      "number": 3,
+                      "text": "よう"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ばかり"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "answer": 4
+                },
+                {
+                  "number": 7,
+                  "prompt": "私は小学生のころ、ゲームが大好きだった。早く家でゲームが（　）、毎日学校から走って帰っていた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "したくて"
+                    },
+                    {
+                      "number": 2,
+                      "text": "したくても"
+                    },
+                    {
+                      "number": 3,
+                      "text": "するためで"
+                    },
+                    {
+                      "number": 4,
+                      "text": "するためでも"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 1
+                },
+                {
+                  "number": 8,
+                  "prompt": "弟の誕生日プレゼントを何にするか考えている。何を（　）、喜ぶだろうか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "くれたら"
+                    },
+                    {
+                      "number": 2,
+                      "text": "あげたら"
+                    },
+                    {
+                      "number": 3,
+                      "text": "くれるから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "あげるから"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 2
+                },
+                {
+                  "number": 9,
+                  "prompt": "（電話で）A「この前借りた小説、もう1回貸してもらえない？」B「うん、いいよ。あした、学校に（　）ね。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "持っとく"
+                    },
+                    {
+                      "number": 2,
+                      "text": "持ってる"
+                    },
+                    {
+                      "number": 3,
+                      "text": "持ってく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "持っちゃう"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 3
+                },
+                {
+                  "number": 10,
+                  "prompt": "A「再来週の登山、楽しみだね。」B「うん、（　）ね。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "晴れてきた"
+                    },
+                    {
+                      "number": 2,
+                      "text": "晴れるといい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "晴れるんだ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "晴れてよかった"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 2
+                },
+                {
+                  "number": 11,
+                  "prompt": "(市のホームページで)9 月30 日に絵本作家の坂木みどりさんによる講演会が開かれます。市民の方であれば、どなたでも無料で（　）。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ご参加になれます"
+                    },
+                    {
+                      "number": 2,
+                      "text": "参加いたします"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ご参加になっています"
+                    },
+                    {
+                      "number": 4,
+                      "text": "参加できております"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 1
+                },
+                {
+                  "number": 12,
+                  "prompt": "以前は、会社の窓から海を見ることができたが、隣に高いビルができて、( )。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "見えなくてもよくなった"
+                    },
+                    {
+                      "number": 2,
+                      "text": "見られたかもしれない"
+                    },
+                    {
+                      "number": 3,
+                      "text": "見えなくなってしまった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "見られるようにならない"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 3
+                },
+                {
+                  "number": 13,
+                  "prompt": "(病院で)医者「この薬を五日間飲んでください。」患者「わかりました。熱が下がっても（　）。」医者「はい。五日間必ず飲んでください。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "飲んではいけませんか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "飲んでいないんでしょうか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "飲んでみようと思いますか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "飲んだほうがいいでしょうか"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "answer": 4
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 2,
+              "instruction": "問題2 つぎの文の入る最もよいものを、1・2・3・4 から一つえらびなさい。",
+              "items": [
+                {
+                  "number": 14,
+                  "prompt": "今年の夏も暑いが、 ★ ずっと涼しく感じる。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "異常な"
+                    },
+                    {
+                      "number": 2,
+                      "text": "比べると"
+                    },
+                    {
+                      "number": 3,
+                      "text": "暑さだった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "去年の夏に"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "answer": 4
+                },
+                {
+                  "number": 15,
+                  "prompt": "初めてアルバイトをして、お金を稼ぐ ★ わかった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ことか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "大変な"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ことが"
+                    },
+                    {
+                      "number": 4,
+                      "text": "どれだけ"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "answer": 2
+                },
+                {
+                  "number": 16,
+                  "prompt": "今日、昼食の後、図書館へ行って本を読んでいたら ★ 。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ので"
+                    },
+                    {
+                      "number": 2,
+                      "text": "外が暗くなっていた"
+                    },
+                    {
+                      "number": 3,
+                      "text": "驚いた"
+                    },
+                    {
+                      "number": 4,
+                      "text": "いつのまにか"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "answer": 1
+                },
+                {
+                  "number": 17,
+                  "prompt": "このチーズケーキの ★ 、誰でも簡単に作れると思う。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "だから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "作り方は"
+                    },
+                    {
+                      "number": 3,
+                      "text": "だけ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "材料を混ぜて冷やす"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "answer": 3
+                },
+                {
+                  "number": 18,
+                  "prompt": "A「あさってのサッカーの試合、応援に行くね。天気予報では曇りと言っていたけど、雨だったら中止になる?」B「ありがとう。もし ★ 応援には無理して来なくてもいいよ。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "雨が降ったら"
+                    },
+                    {
+                      "number": 2,
+                      "text": "試合は"
+                    },
+                    {
+                      "number": 3,
+                      "text": "雨が降ったとしても"
+                    },
+                    {
+                      "number": 4,
+                      "text": "中止にならないんだけど"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "answer": 4
+                }
+              ],
+              "kind": "star"
+            },
+            {
+              "number": 3,
+              "instruction": "問題3 つぎの文（ぶん）章（しょう）を読んで、文（ぶん）章（しょう）全体の内容を考えて、 19 から 22 の中に入る最もよいものを、1・2・3・4 から一つえらびなさい。",
+              "items": [
+                {
+                  "number": 19,
+                  "prompt": "（19）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "例えば"
+                    },
+                    {
+                      "number": 2,
+                      "text": "それでも"
+                    },
+                    {
+                      "number": 3,
+                      "text": "実は"
+                    },
+                    {
+                      "number": 4,
+                      "text": "また"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 20,
+                  "prompt": "（20）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "滑れるようになりました"
+                    },
+                    {
+                      "number": 2,
+                      "text": "滑れるようにしてあげました"
+                    },
+                    {
+                      "number": 3,
+                      "text": "滑ってくれました"
+                    },
+                    {
+                      "number": 4,
+                      "text": "滑ってもらえました"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": null,
+                  "answer": 1
+                },
+                {
+                  "number": 21,
+                  "prompt": "（21）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "あの広告の"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ああいう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ある"
+                    },
+                    {
+                      "number": 4,
+                      "text": "あの"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 22,
+                  "prompt": "（22）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "わかっていきます"
+                    },
+                    {
+                      "number": 2,
+                      "text": "わかるのでしょう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "わかりました"
+                    },
+                    {
+                      "number": 4,
+                      "text": "わかったそうです"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": null,
+                  "answer": 3
+                }
+              ],
+              "passages": [
+                {
+                  "label": null,
+                  "questionNumbers": [
+                    19,
+                    20,
+                    21,
+                    22
+                  ],
+                  "text": "スキー旅行\nチュラノン ソムチャイ\n冬になると、駅の広告や旅行会社のちらしでスキー旅行の案内をよく見ます。去年の冬、私はスキーが上手な友達からスキー旅行に誘われました。私は寒いのが苦手だし、スキーもしたことがなかったので迷いました。でも、友達と旅行には行きたかったので、スキーにチャレンジしてみることにしました。\n私たちはバスでスキー旅行に行きました。その日は晴れていましたが、バスを降りたらとても寒くて、私は暖かいところにいたいと思いました。「19」せっかく来たのだからと思って、スキーの練習を始めました。スキーの練習をしていると、すぐに寒さを感じなくなりました。スキーは難しかったですが、面白かったです。半日で、あまり転ばずに「20」 。山の上から滑って降りるときのスピードにどきどきしました。今は駅でスキーの広告を見るたびに、 「21」 スキー旅行を思い出します。一度スキーの面白さを知ってしまうと、また行きたくなります。自分でもスキーをしてみて、日本でスキーが冬の代表的なスポーツになっている理由がよく 「22」。",
+                  "lead": "以下は、留学生の作文である。",
+                  "image": "images/grammar-3-body.png"
+                }
+              ],
+              "kind": "choice"
+            }
+          ]
+        },
+        {
+          "id": "reading",
+          "title": "読解",
+          "mondai": [
+            {
+              "number": 4,
+              "instruction": "問題4 つぎの(1)から(4)の文章（ぶんしょう）を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つえらびなさい。",
+              "items": [
+                {
+                  "number": 23,
+                  "prompt": "ジョンさんがこのメールで頼まれていることはどれか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "今週中にもう一度、資料のチェックをすること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "今週中に資料のチェックをするために木村さんと会うこと"
+                    },
+                    {
+                      "number": 3,
+                      "text": "今週中に日本語の資料を英語に直すこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "今週中に新しい資料を作ること"
+                    }
+                  ],
+                  "sourcePage": 10,
+                  "passage": "（1）",
+                  "answer": 1
+                },
+                {
+                  "number": 24,
+                  "prompt": "駅ビルの特別窓口でできることは何か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "予約した本を借りることと、本を返すことと、本を読むことと、本の予約をすること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "予約した本を借りることと、本を返すこととと、本を読むこと"
+                    },
+                    {
+                      "number": 3,
+                      "text": "予約した本を借りることと、本を返すことと、本の予約をすること"
+                    },
+                    {
+                      "number": 4,
+                      "text": "予約した本を借りることと、本を返すことだけ"
+                    }
+                  ],
+                  "sourcePage": 11,
+                  "passage": "（2）",
+                  "answer": 3
+                },
+                {
+                  "number": 25,
+                  "prompt": "予想と違っていて、意外だったとあるが、何が意外だったのか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "紙コップのように、一度使ったら捨てる紙の靴下があること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "記事で紹介されていた靴下は、洗濯ができて、繰り返して使えること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "記事で紹介されていた靴下は、よく汗を吸ってすぐに乾くこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "長い時間靴をはく人のための靴下があること"
+                    }
+                  ],
+                  "sourcePage": 12,
+                  "passage": "（3）",
+                  "answer": 2
+                },
+                {
+                  "number": 26,
+                  "prompt": "この文章では、患者が「別のところが痛くなってきた。今度はそっちが悪いみたいだ。」と言うのは、なぜだと言っているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "悪いところが治ってきたときに、複数の痛みを感じるようになることがあるから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "悪いところが一つ治ると、次に悪かったところがもっと悪くなることがあるから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "痛いところがいくつかあっても、患者は一つずつしか伝えないことがあるから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "痛かったところがよくなると、別のところの痛みを感じるようになることがあるから"
+                    }
+                  ],
+                  "sourcePage": 12,
+                  "passage": "（4）",
+                  "answer": 4
+                }
+              ],
+              "passages": [
+                {
+                  "label": "（1）",
+                  "questionNumbers": [
+                    23
+                  ],
+                  "text": "これは、同じ会社の木村さんからジョンさんに届いたメールである。\nジョンさん\n先週は、製品発表会の英語資料のチェックをしてくれて、ありがとうございました。\nチェックしてもらったあと、少し文章を書き加えました。それから、直したほうがいいとアドバイスをもらったグラフも作り直しました。\n直した資料をこのメールと一緒に送りますので、もう一度見てもらえませんか。新しく書き加えた部分は、赤い字になっています。\nすみませんが、今週中にご返信をお願いいたします。\n木村"
+                },
+                {
+                  "label": "（2）",
+                  "questionNumbers": [
+                    24
+                  ],
+                  "text": "緑図書館\n1 月25 日\n図書館の休館と特別窓口のお知らせ\n緑図書館は、4月1日から9月30日まで、工事のため休館することになりました。\nこの期間は、水森駅の駅ビル「グラン」3 階に特別窓口を開きます。\n特別窓口では、予約した本を借りることと本を返すことができます。本や新聞を読む場所はありません。なお、本の予約は、インターネットでの予約が便利ですが、特別窓口でも可能です。\nご利用可能時間は、決まりましたら、ホームページでお知らせします。\nご不便をおかけしますが、よろしくお願いいたします。",
+                  "lead": "これは、ある図書館のホームページに載っているお知らせである。",
+                  "image": "images/reading-4-2.png"
+                },
+                {
+                  "label": "（3）",
+                  "questionNumbers": [
+                    25
+                  ],
+                  "text": "昨日、雑誌で「紙から作られた靴下」という記事を読んだ。そのタイトルを見たとき、私は、紙コップのように、一度使ったら捨ててしまう物なのだろうと思った。しかし、記事によると、その靴下は、特別な紙で作った丈夫な糸でできているそうだ。紙なのに水に強く、洗濯をして何度も使えると書かれていた。予想と違っていて、意外だった。よく汗を吸ってすぐ乾くので、長い時間靴をはく人にいいそうだ。今度、買ってみようと思う。"
+                },
+                {
+                  "label": "（4）",
+                  "questionNumbers": [
+                    26
+                  ],
+                  "text": "体が痛くて病院に通っている患者が、悪いところが治ってきたときに、「別のところが痛くなってきた。今度はそっちが悪いみたいだ。」と言うことがある。このような場合、実は、その人には最初から悪いところがいくつかあった可能性がある。人の体は、同じときに一つの痛みしか感じない。そのときにいちばん強い痛みだけを感じるのである。この患者は、最も悪かったところが治ってきたので、次の痛みを感じるようになってきたと考えられる。"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 5,
+              "instruction": "問題5 つぎの(1)と(2)の文章（ぶんしょう）を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つえらびなさい。",
+              "items": [
+                {
+                  "number": 27,
+                  "prompt": "①例とあるが、何についての例か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "「私」と妹は、顔だけでなく、性格も似ているということ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "「私」と妹は、嫌いな物や嫌なことに対する姿勢が逆だということ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "「私」と妹は、協力し合って夏休みの宿題をしていたということ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "「私」と妹は、毎年夏休みに必ず両親にしかられていたこと"
+                    }
+                  ],
+                  "sourcePage": 13,
+                  "passage": "（1）",
+                  "answer": 2
+                },
+                {
+                  "number": 28,
+                  "prompt": "「私」と妹は、毎年の夏休みの宿題をどう思っていたか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "「私」も妹も好きだった。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "「私」も妹も嫌だった。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "「私」は好きだったが、妹は嫌だった。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "「私」は嫌だったが、妹は好きだった。"
+                    }
+                  ],
+                  "sourcePage": 13,
+                  "passage": "（1）",
+                  "answer": 2
+                },
+                {
+                  "number": 29,
+                  "prompt": "②妹もしかられたとあるが、妹はなぜしかられたのか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "夏休みが終わる数日前になって宿題をやり始めたから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "「私」の作文と同じことを「今年の夏休みの思い出」に書いたから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "「今年の夏休みの思い出」に、実際にはしていないことを書いたから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "「今年の夏休みの思い出」を、夏休みの最後の日まで書かなかったから"
+                    }
+                  ],
+                  "sourcePage": 14,
+                  "passage": "（1）",
+                  "answer": 3
+                },
+                {
+                  "number": 30,
+                  "prompt": "①冗談だと思ったとあるが、なぜそう思ったのか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "カラスが文字を読めないと意味がない方法だから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "カラスの研究者でなくても思いつくような方法だから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "カラスの研究者でないと実行できないような方法だから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "カラスがいなくならず、逆に、集まってしまいそうな方法だから"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "passage": "（2）",
+                  "answer": 1
+                },
+                {
+                  "number": 31,
+                  "prompt": "②本当に来なくなったとあるが、なぜか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "倉庫が汚くなって、カラスが好きな場所ではなくなったから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "カラスが今までなかった紙を見て、危険な場所になったと感じたから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "研究者が観察しに来るようになったことを、カラスが嫌ったから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "カラスをよく見る人が増えて、カラスが危険を感じたから"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "passage": "（2）",
+                  "answer": 4
+                },
+                {
+                  "number": 32,
+                  "prompt": "③予想できていたとあるが、人間の行動について、研究者はどのように予想していたと考えられるか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ニュースで取り上げられて有名になった場所には、行ってみたくなる。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "カラスに入ってほしくない場所には、カラスが入らないような工夫をする。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "カラスがいる場所では、危険を感じてカラスの近くに行かないようにする。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "「カラス侵入禁止」と書かれた紙を見たら、近くにいるカラスを観察したくなる。"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "passage": "（2）",
+                  "answer": 4
+                }
+              ],
+              "passages": [
+                {
+                  "label": "（1）",
+                  "questionNumbers": [
+                    27,
+                    28,
+                    29
+                  ],
+                  "text": "私と妹は、顔はとても似ていると言われますが、嫌いな物や嫌なことに対する姿勢は逆です。例えば、食事で苦手な物があったとき、私は最後に食べますが、妹は最初に食べてしまいます。\nもう一つ①例があります。私たちが通っていた小学校では、毎年夏休みに宿題がたくさん出ました。妹はいつもすぐに終わらせましたが、私は夏休みが終わる数日前になって慌ててやり始めました。それで、毎年、私だけ両親にしかられました。\nしかし、ある年、②妹もしかられたことがありました。その年も、妹は夏休みが始まってすぐに、すべての宿題をやってしまいました。そのときは、両親は妹を褒めていました。でも、両親は、その中に「今年の夏休みの思い出」という作文の宿題があったことに、気がついていなかったのです。夏休みの最後の日、母は作文の内容がうそであることに気づいて、書き直させました。\nその日は、私も妹も、しかられながら机に向かいました。"
+                },
+                {
+                  "label": "（2）",
+                  "questionNumbers": [
+                    30,
+                    31,
+                    32
+                  ],
+                  "text": "カラスは、人間の食べ物をうばったりするので、嫌われることが多い鳥だ。そのカラスについて、ある問題を解決した人のニュースを見た。\nある大学の研究所の建物に、倉庫として使っている場所がある。そこに、カラスが入ってきて物を壊したり汚したりするので、研究所の人は困っていた。それで、カラスの研究者に相談したら、「カラス侵入禁止（注)」と書いた紙をはったらどうかと言われた。最初は①冗談だと思ったが、実際にやってみると、②本当に来なくなったそうだ。\nカラスに文字が読めるはずがないのに、なぜこの紙に効果があったのだろうか。この研究者によると、まず、そこを通って紙を見た人が不思議に思って、近くにいるカラスをよく見る。すると、カラスは危険を感じて来なくなる。カラスは人間に見られるのを嫌うのだそうだ。\nニュースを見て、私は、この研究者がカラスの行動だけでなく、人間の行動についても、しっかり③予想できていたのだろうと感心した。\n（注）侵入禁止：立ち入り禁止"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 6,
+              "instruction": "問題6 つぎの文章（ぶんしょう）を読んで、質問に答えなさい。答えは、1・2・3・4 から最もよいものを一つえらびなさい。",
+              "items": [
+                {
+                  "number": 33,
+                  "prompt": "先週、「私」が行ったレストランは、どのようなレストランか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "普通の魚を使った料理も珍しい魚を使った料理も多い。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "普通の魚を使った料理がとても多く、珍しい魚を使った料理が少ない。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "普通の魚を使った料理がとても少なく、珍しい魚を使った料理が多い。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "珍しい魚を使った料理しかない。"
+                    }
+                  ],
+                  "sourcePage": 16,
+                  "passage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 34,
+                  "prompt": "説明してくれたとあるが、説明の内容として合っているのはどれか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "日本でとれる魚の量が減ったことで、未利用魚を食べる人を増やす動きが進んだ。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "日本ではたくさんの種類の魚がとれるが、日本人の食べる魚の種類は減っている。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "未利用魚を食べる人が増えると、未利用魚以外の魚が売れなくなる。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "今までと同じ種類の魚を食べ続けることが、魚をとる仕事を応援することになる。"
+                    }
+                  ],
+                  "sourcePage": 17,
+                  "passage": null,
+                  "answer": 1
+                },
+                {
+                  "number": 35,
+                  "prompt": "両親が「私」をレストランに連れて行ったのはなぜか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "未利用魚のおいしさや食べることの意味を、「私」にも知ってほしかったから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "未利用魚を食べながら、「私」から未利用魚についての話を聞きたかったから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "未利用魚以外にもおいしい魚がたくさんあると、「私」に教えたかったから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "「私」が未利用魚に関心を持っていることを知っていたから"
+                    }
+                  ],
+                  "sourcePage": 17,
+                  "passage": null,
+                  "answer": 1
+                },
+                {
+                  "number": 36,
+                  "prompt": "「私」は、これからどうしようと思っているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "自分の家の近所にも、未利用魚の料理を扱うレストランがないか調べてみよう。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "自分の家の近所のスーパーで、未利用魚を売っていないか見てみよう。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "自分でも買うことができる未利用魚をインターネットで探してみよう。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "インターネットで買える未利用魚にどういうものがあるのか、店長に聞いてみよう。"
+                    }
+                  ],
+                  "sourcePage": 17,
+                  "passage": null,
+                  "answer": 3
+                }
+              ],
+              "passages": [
+                {
+                  "label": null,
+                  "questionNumbers": [
+                    33,
+                    34,
+                    35,
+                    36
+                  ],
+                  "text": "先週、実家に帰ったとき、両親が、近所に新しくできた魚料理のレストランに連れて行ってくれた。両親はもう何回か行ったのだそうだ。\nメニューには、よく知られた魚を使った料理はほとんどなく、聞いたことのない魚の料理が並んでいた。いろいろな料理を食べたが、どれもおいしかった。両親は、この店では日本で今まで一般的に売られていなかった種類の魚を扱っているのだと教えてくれた。最近、そのような魚は「未利用魚」と呼ばれ、関心を持つ人が増えているそうだ。\n食事のあと、店長がテーブルに来て、いろいろ説明してくれた。日本では、魚がとれる量が減り続けていて、多いときの半分以下になっている。日本人がよく食べている魚は80種類ぐらいだが、実は、日本の近くの海では3,000 種類以上の魚がとれる。そこで、未利用魚を食べる人を増やそうという動きが広がってきた。食べる人が増えれば、今まで商品としての価値がなかった魚が売れるようになるので、 漁業(注)を応援することになるそうだ。\n未利用魚のことを知らない人は多い。それで、この店では、未利用魚のおいしさや、食べることの意味を知ってもらうことが重要だと考えているそうだ。私もなるほどと思ったし、実は、両親も同じように感じて私を誘ったらしい。\nこの話を聞いたあと、私は自分でも買いたいと思って近所のスーパーを見てみたが、未利用魚は売っていなかった。レストランの店長は、最近は未利用魚を缶詰などにしたものがインターネットで買えると言っていた。せっかく興味を持ったのだから、どういうものが買えるのか調べてみようと思う。\n（注）漁業：魚をとる仕事"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 7,
+              "instruction": "問題7 右のページは、ある公園の掲（けい）示（じ）板（ばん）にはってあるポスターである。これを読んで、下の質問に答えなさい。答えは、1・2・3・4 から最もよいものを一つえらびなさい。",
+              "items": [
+                {
+                  "number": 37,
+                  "prompt": "高校生の石田さんは、小学生の妹と一緒に卓球室を利用したいと思っている。木曜日に1 時間利用する場合、石田さんたちの料金はいくらになるか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "石田さんも妹も無料"
+                    },
+                    {
+                      "number": 2,
+                      "text": "石田さんは150 円、妹は無料"
+                    },
+                    {
+                      "number": 3,
+                      "text": "石田さんは150 円、妹は100 円"
+                    },
+                    {
+                      "number": 4,
+                      "text": "石田さんは190 円、妹は130 円"
+                    }
+                  ],
+                  "sourcePage": 18,
+                  "answer": 2
+                },
+                {
+                  "number": 38,
+                  "prompt": "大学生のグエンさんは、9 月に体育館でバスケットボールの練習をしようと思っている。16 時から20 時の間で、1 時間練習したい。グエンさんが練習できるのはどの曜日か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "火曜日か木曜日か金曜日"
+                    },
+                    {
+                      "number": 2,
+                      "text": "火曜日か木曜日"
+                    },
+                    {
+                      "number": 3,
+                      "text": "木曜日か金曜日"
+                    },
+                    {
+                      "number": 4,
+                      "text": "木曜日"
+                    }
+                  ],
+                  "sourcePage": 18,
+                  "answer": 4
+                }
+              ],
+              "kind": "reading",
+              "image": "images/reading-7-guide.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listening",
+      "title": "聴解",
+      "minutes": 40,
+      "parts": [
+        {
+          "id": "listening",
+          "title": "聴解",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題（もんだい）1（1）では、まず質簡（しつかん）を聞（き）いてください。それから話（はなし）を聞（き）いて、 問題用紙（もんだいようし）の1 から4 の中（なか）から、最（もっと）もよいものを一（ひと）つえらんでください。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "しんしつのたなに入れる"
+                    },
+                    {
+                      "number": 2,
+                      "text": "花子にわたす"
+                    },
+                    {
+                      "number": 3,
+                      "text": "はこを開けてみる"
+                    },
+                    {
+                      "number": 4,
+                      "text": "げんかんにおいておく"
+                    }
+                  ],
+                  "sourcePage": 20,
+                  "answer": 1,
+                  "spoken": "家で男の人と女の人が話しています。女の人は届いた荷物をどうしますか。問い 女の人は届いた荷物をどうしますか。"
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "資料を 印刷する"
+                    },
+                    {
+                      "number": 2,
+                      "text": "資料をもう一度チェックする"
+                    },
+                    {
+                      "number": 3,
+                      "text": "パソコンを準備する"
+                    },
+                    {
+                      "number": 4,
+                      "text": "マイクのテストをする"
+                    }
+                  ],
+                  "sourcePage": 20,
+                  "answer": 2,
+                  "spoken": "ギター教室で女の人と先生が話しています。女の人は来週からどのレッスンを受けますか?問い 女の人は来週からどのレッスンを受けますか。"
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "かいぎに出る"
+                    },
+                    {
+                      "number": 2,
+                      "text": "エアコンの修理を頼む"
+                    },
+                    {
+                      "number": 3,
+                      "text": "銀行に行く"
+                    },
+                    {
+                      "number": 4,
+                      "text": "はこをそうこに運ぶ"
+                    }
+                  ],
+                  "sourcePage": 20,
+                  "answer": 4,
+                  "spoken": "高校で男の生徒と女の生徒が本の感想文を書く宿題について話しています。女の生徒は何を書くと言っていますか。問い 女の生徒は何を書くと言っていますか。"
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "言葉の間違いをなおす"
+                    },
+                    {
+                      "number": 2,
+                      "text": "クラスで習った文法を使う"
+                    },
+                    {
+                      "number": 3,
+                      "text": "文と文をむすぶことばを足す"
+                    },
+                    {
+                      "number": 4,
+                      "text": "内容を増やす"
+                    }
+                  ],
+                  "sourcePage": 20,
+                  "answer": 3,
+                  "spoken": "大学で男の学生と女の学生がアルバイトについて話しています。男の学生は何が心配だと言っています。問い 男の学生は何が心配だと言っていますか。"
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": 21,
+                  "image": "images/listening-1-5.png",
+                  "answer": 2,
+                  "spoken": "会社で男の人と女の人が話しています。女の人はどうして今の会社を辞めますか。問い 女の人はどうして今の会社を辞めますか。"
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ゴミに出す"
+                    },
+                    {
+                      "number": 2,
+                      "text": "友だちにあげる"
+                    },
+                    {
+                      "number": 3,
+                      "text": "交流センターに持っていく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "インターネットで売る"
+                    }
+                  ],
+                  "sourcePage": 21,
+                  "answer": 3,
+                  "spoken": "ラジオで女の人が話しています。女の人が古くなったぬいぐるみを直す時、最も注意していることは何で問い 女の人が古くなったぬいぐるみを直す時、最も注意していることは何ですか。"
+                }
+              ],
+              "kind": "listening"
+            },
+            {
+              "number": 2,
+              "instruction": "問題（もんだい）2 では、まず質問（しつもん）を聞（き）いてください。そのあと、問題用紙（もんだいようし）を見（み）てください。読（よ）む時間（じかん）があります。それから話（はなし）を聞（き）いて、 問題用紙（もんだいようし）の1 から4 の中（なか）から、最（もっと）もよいものを一（ひと）つえらんでください。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "海へあそびに行く"
+                    },
+                    {
+                      "number": 2,
+                      "text": "山のぼりをする"
+                    },
+                    {
+                      "number": 3,
+                      "text": "お祭りを見に行く"
+                    },
+                    {
+                      "number": 4,
+                      "text": "お寺を見に行く"
+                    }
+                  ],
+                  "sourcePage": 22,
+                  "answer": 1
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "水曜のグループレッスン"
+                    },
+                    {
+                      "number": 2,
+                      "text": "水曜の個人レッスン"
+                    },
+                    {
+                      "number": 3,
+                      "text": "金曜のグループレッスン"
+                    },
+                    {
+                      "number": 4,
+                      "text": "金曜の個人レッスン"
+                    }
+                  ],
+                  "sourcePage": 22,
+                  "answer": 3
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "作家が言いたいこと"
+                    },
+                    {
+                      "number": 2,
+                      "text": "本を選んだ理由"
+                    },
+                    {
+                      "number": 3,
+                      "text": "本に出てくる人と自分との共通点"
+                    },
+                    {
+                      "number": 4,
+                      "text": "自分の考えの変化"
+                    }
+                  ],
+                  "sourcePage": 22,
+                  "answer": 4
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "けいごが正しく使えるかどうか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "商品が覚えられるかどうか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "クラブ活動の時間がとれるかどうか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "店の人といい関係が作れるかどうか"
+                    }
+                  ],
+                  "sourcePage": 22,
+                  "answer": 1
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "いい会社にさそわれたから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "親がいる町にひっこすから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "残業が増えたから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "出張が多くて大変だから"
+                    }
+                  ],
+                  "sourcePage": 22,
+                  "answer": 2
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "よごれをきれいに落とすこと"
+                    },
+                    {
+                      "number": 2,
+                      "text": "やぶれた所を分からなくすること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "買ったときの状態に戻すこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "印象が変わらないようにすること"
+                    }
+                  ],
+                  "sourcePage": 23,
+                  "answer": 4
+                }
+              ],
+              "kind": "listening"
+            },
+            {
+              "number": 3,
+              "instruction": "問題（もんだい）3 では、問題用紙（もんだいようし）に何（なに）もいんさつされていません。この問題（もんだい）は、ぜんたいとしてどんなないようかを聞（き）く問題（もんだい）です。話（はなし）の前（まえ）に質問（しつもん）はありません。まず話（はなし）を聞（き）いてください。それから、質問（しつもん）とせんたくしを聞（き）いて、1 から4 の中（なか）から、最（もっと）もよいものを一（ひと）つえらんでください。―メモー",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": 23,
+                  "answer": 2,
+                  "spoken": "会社で男の人と女の人が話しています。問い 2 人は何について話していますか。"
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": 23,
+                  "answer": 2,
+                  "spoken": "女の人と男の人が話しています。問い 女の人は新しく買った洗濯機は前のと比べてどうだと言っていますか。"
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": 23,
+                  "answer": 3,
+                  "spoken": "ラジオで男の人が話しています。問い 男の人は何について話していますか。"
+                }
+              ],
+              "kind": "audio-only"
+            },
+            {
+              "number": 4,
+              "instruction": "問題（もんだい）4 では、えを見（み）ながら質問（しつもん）を聞（き）いてください。やじるし(➞)の人（ひと）は何（なん）と言（い）ますか。1から3 の中（なか）から、最（もっと）もよいものを一（ひと）つえらんでください。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": 24,
+                  "image": "images/listening-4-1.png",
+                  "answer": 2,
+                  "spoken": "降りる駅に着きました。電車が込んでいます。何と言いますか。"
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": 24,
+                  "image": "images/listening-4-2.png",
+                  "answer": 1,
+                  "spoken": "自分の好きな本を友達にも読んでほしいです。何と言いますか。"
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": 25,
+                  "image": "images/listening-4-3.png",
+                  "answer": 3,
+                  "spoken": "会社で後輩がコピーをしています。手伝いたいです。何と言いますか。"
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": 25,
+                  "image": "images/listening-4-4.png",
+                  "answer": 3,
+                  "spoken": "営業課に来ました。吉田課長に会いたいです。何と言いますか?"
+                }
+              ],
+              "kind": "picture"
+            },
+            {
+              "number": 5,
+              "instruction": "問題（もんだい）5 では、問題用紙（もんだいようし）に何（なに）もいんさつされていません。まず文（ぶん）を聞（き）いてください。それから、そのへんじを聞（き）いて、1 から3 の中（なか）から、最（もっと）もよいものを一（ひと）つえらんでください。―メモー",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 1,
+                  "spoken": "島田さん、リンさんに私の研究室に来るように言ってください。"
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 3,
+                  "spoken": "昨日のテニスの試合、たくさん練習したから勝てると思ったんだけど。"
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 2,
+                  "spoken": "今日、台所掃除するの、僕の番？"
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 2,
+                  "spoken": "仕事でわからないことがあったらいつでも私に聞いて。"
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 1,
+                  "spoken": "桜川の橋の工事、ようやく終わったみたいだよ。"
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 3,
+                  "spoken": "山田さん、もしできたら山田さんに頼みたい仕事があるんだけど。"
+                },
+                {
+                  "number": 7,
+                  "prompt": "7番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 1
+                },
+                {
+                  "number": 8,
+                  "prompt": "8番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 2,
+                  "spoken": "いろいろな授業があるけど、上田先生の授業ほど難しい授業はないよね。"
+                },
+                {
+                  "number": 9,
+                  "prompt": "9番",
+                  "options": [],
+                  "sourcePage": 26,
+                  "answer": 3,
+                  "spoken": "斉藤さん、来週の会議に出席してもらえないでしょうか。ご意見をお聞きしたいことがありまして。"
+                }
+              ],
+              "kind": "audio-only"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

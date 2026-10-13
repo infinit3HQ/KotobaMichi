@@ -4,10 +4,12 @@ import { v7 as uuidv7 } from 'uuid';
 import { DbService } from '@/db/drizzle.service';
 import { mockExamAttempts, type MockExamScore } from '@/db/schema';
 import n3December2025 from './keys/n3-2025-12.json';
+import n3July2025 from './keys/n3-2025-07.json';
 import { SaveMockAttemptDto } from './dto/save-mock-attempt.dto';
 
 const ANSWER_KEYS: Record<string, Record<string, number>> = {
 	'n3-2025-12': n3December2025,
+	'n3-2025-07': n3July2025,
 };
 
 type AttemptRow = typeof mockExamAttempts.$inferSelect;

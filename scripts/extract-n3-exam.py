@@ -9,6 +9,7 @@ as plain text scrambles them. The community answer key is attached by number.
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -17,11 +18,17 @@ from pathlib import Path
 import pymupdf
 
 ZEN = str.maketrans("０１２３４５６７８９", "0123456789")
+ROOT = Path("/Users/nirajdilshan/workspace/personal/KotobaMichi")
 PAPER = Path("/Users/nirajdilshan/Personal/N3/new/17. N3 12-2025/17.N3 12-2025 (260506).pdf")
 SCRIPT = Path("/Users/nirajdilshan/Personal/N3/new/17. N3 12-2025/17.N3 12-2025 (script) _260410.pdf")
 ANSWERS = Path("/Users/nirajdilshan/Personal/N3/new/ĐÁP ÁN JLPT N3 (update 26.6.2026).pdf")
 AUDIO = "MP3-N3 12.2025 Choukai.mp3"
-OUT = Path("/Users/nirajdilshan/workspace/personal/KotobaMichi/content/exams/n3-2025-12")
+OUT = ROOT / "content/exams/n3-2025-12"
+EXAM_ID = "n3-2025-12"
+EXAM_SESSION = "2025-12"
+EXAM_TITLE = "N3 mock · December 2025"
+ANSWER_LABEL = "JLPT N3 12/2025"
+SKIP_PAGES = {22}
 
 
 def han(text: str) -> str:
@@ -149,14 +156,20 @@ def format_lines(lines: list[dict]) -> str:
 def question_number(line: dict) -> int | None:
     if line["x"] > 96:
         return None
-    match = re.match(r"^([0-9]{1,2})(?:\s+|（|$)", line["text"])
+    # Some sittings print "1 急に" and others print "1急に".
+    match = re.match(r"^([0-9]{1,2})(?:\s+|[（(]|(?=[ぁ-んァ-ヴー一-龯A-Za-z])|$)", line["text"])
     if not match:
         return None
     return int(match.group(1))
 
 
 def option_chunks(text: str) -> list[tuple[int, str]] | None:
-    raw = list(re.finditer(r"(?:^|(?<=\s)|(?<=）))([1-4])(?:\s+|（)", text))
+    raw = list(
+        re.finditer(
+            r"(?:^|(?<=\s)|(?<=）))([1-4])(?:\s+|（|(?=[ぁ-んァ-ヴー一-龯A-Za-z]))",
+            text,
+        )
+    )
     matches = []
     for match in raw:
         if matches:
@@ -205,10 +218,10 @@ def new_item(number: int, prompt: str, page: int) -> dict:
 
 def parse_paper(doc: pymupdf.Document) -> dict:
     exam = {
-        "id": "n3-2025-12",
+        "id": EXAM_ID,
         "level": "N3",
-        "session": "2025-12",
-        "title": "N3 mock · December 2025",
+        "session": EXAM_SESSION,
+        "title": EXAM_TITLE,
         "note": "Reconstructed from examinee memory. The answer key is the community key updated 26 June 2026, not an official JLPT score.",
         "audio": {
             "file": AUDIO,
@@ -255,13 +268,13 @@ def parse_paper(doc: pymupdf.Document) -> dict:
 
     for page_index, page in enumerate(doc):
         page_no = page_index + 1
-        # The library-seat page is a table. Cell order from the text layer is wrong.
-        if page_no == 22:
+        # A listed page is a table whose text layer is in the wrong order.
+        if page_no in SKIP_PAGES:
             if mondai is not None and mondai.get("number") == 7:
                 mondai["image"] = "images/reading-7-guide.png"
             continue
         for line in lines_of(page):
-            if line["y"] > 720 or line["text"].startswith("JLPT・"):
+            if line["y"] > 720 or line["y"] < 55 or line["text"].startswith("JLPT・"):
                 continue
             text = line["text"]
             if text in ("文字・語彙", "文法", "読解", "聴解"):
@@ -430,6 +443,8 @@ def frame_clips(page: pymupdf.Page) -> list[pymupdf.Rect]:
 def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
     image_dir = OUT / "images"
     image_dir.mkdir(parents=True, exist_ok=True)
+    for old in image_dir.glob("*.png"):
+        old.unlink()
     listening = next(s for s in exam["sections"] if s["id"] == "listening")
     mondai = {m["number"]: m for m in listening["parts"][0]["mondai"]}
 
@@ -448,11 +463,23 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
         # Item order on the page matches top-to-bottom, same as images.
         if len(infos) == len(items):
             pairs = list(zip(items, infos))
-        elif len(items) > len(infos):
-            # Page 23 has three questions and one map, on the last of them.
-            pairs = [(items[-1], infos[0])] if len(infos) == 1 else []
         else:
+            labels = [
+                line
+                for line in lines_of(page)
+                if re.match(r"^[0-9]{1,2}\s*番", line["text"])
+            ]
             pairs = []
+            for info in infos:
+                top = info["bbox"][1]
+                above = [line for line in labels if line["y"] <= top + 8]
+                if not above:
+                    continue
+                label = max(above, key=lambda line: line["y"])
+                number = int(re.match(r"([0-9]{1,2})", label["text"]).group(1))
+                item = next((it for it in items if it["number"] == number), None)
+                if item is not None:
+                    pairs.append((item, info))
         for it, info in pairs:
             mondai_no = next(n for n, m in mondai.items() if it in m["items"])
             name = f"listening-{mondai_no}-{it['number']}.png"
@@ -462,18 +489,19 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
             pix.save(image_dir / name)
             it["image"] = f"images/{name}"
 
-    guide = doc[21]
-    boxes = []
-    for drawing in guide.get_drawings():
-        rect = pymupdf.Rect(drawing["rect"])
-        if rect.width > 250 and rect.height > 80:
-            boxes.append(rect)
-    if boxes:
-        clip = boxes[0]
-        for rect in boxes[1:]:
-            clip |= rect
-        pix = guide.get_pixmap(matrix=pymupdf.Matrix(2.2, 2.2), clip=clip, alpha=False)
-        pix.save(image_dir / "reading-7-guide.png")
+    if 22 in SKIP_PAGES and doc.page_count >= 22:
+        guide = doc[21]
+        boxes = []
+        for drawing in guide.get_drawings():
+            rect = pymupdf.Rect(drawing["rect"])
+            if rect.width > 250 and rect.height > 80:
+                boxes.append(rect)
+        if boxes:
+            clip = boxes[0]
+            for rect in boxes[1:]:
+                clip |= rect
+            pix = guide.get_pixmap(matrix=pymupdf.Matrix(2.2, 2.2), clip=clip, alpha=False)
+            pix.save(image_dir / "reading-7-guide.png")
 
     passages = []
     for section in exam["sections"]:
@@ -517,8 +545,42 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
             passage["text"] = format_lines(body)
             passage["image"] = f"images/{name}"
 
+    for section in exam["sections"]:
+        for part in section["parts"]:
+            for mondai in part["mondai"]:
+                if "右のページ" not in mondai.get("instruction", ""):
+                    continue
+                pages = [item["sourcePage"] for item in mondai["items"]]
+                if not pages:
+                    continue
+                figure_page = max(pages) + 1
+                if figure_page > doc.page_count:
+                    continue
+                page = doc[figure_page - 1]
+                clip = pymupdf.Rect(36, 52, page.rect.width - 36, 700)
+                pix = page.get_pixmap(matrix=pymupdf.Matrix(2.2, 2.2), clip=clip, alpha=False)
+                pix.save(image_dir / "reading-7-guide.png")
+                mondai["image"] = "images/reading-7-guide.png"
+                for passage in mondai.get("passages", []):
+                    kept = [line for line in passage.get("lines", []) if line["page"] != figure_page]
+                    passage["lines"] = kept
+                    passage["text"] = format_lines(kept)
+
     for _part_id, _mondai_no, passage in passages:
         passage.pop("lines", None)
+
+    for section in exam["sections"]:
+        for part in section["parts"]:
+            for mondai in part["mondai"]:
+                kept = [
+                    passage
+                    for passage in mondai.get("passages", [])
+                    if passage.get("text") or passage.get("lead") or passage.get("image")
+                ]
+                if kept:
+                    mondai["passages"] = kept
+                elif "passages" in mondai:
+                    mondai.pop("passages")
 
 
 def tokens_of(page: pymupdf.Page) -> list[dict]:
@@ -539,11 +601,11 @@ def parse_answers(path: Path) -> dict:
     doc = pymupdf.open(path)
     page = None
     for candidate in doc:
-        if "JLPT N3 12/2025" in candidate.get_text():
+        if ANSWER_LABEL in candidate.get_text():
             page = candidate
             break
     if page is None:
-        raise SystemExit("December 2025 answer page not found")
+        raise SystemExit(f"answer page not found: {ANSWER_LABEL}")
     tokens = [t for t in tokens_of(page) if re.fullmatch(r"[0-9]{1,2}", t["t"])]
     tokens.sort(key=lambda t: (t["y"], t["x"]))
     rows: list[list[dict]] = []
@@ -658,7 +720,7 @@ def parse_script(path: Path) -> dict[int, dict[int, dict]]:
 
     for page in doc:
         for line in lines_of(page):
-            if line["y"] > 720 or line["text"].startswith("JLPT・"):
+            if line["y"] > 720 or line["y"] < 55 or line["text"].startswith("JLPT・"):
                 continue
             text = line["text"]
             header = re.match(r"^問題\s*([0-9]{1,2})", text)
@@ -718,7 +780,56 @@ def summarize(exam: dict) -> None:
                     print(f"    {item['number']:>2} p{item['sourcePage']:<2} a={item.get('answer')} opt={opts}{flag} {prompt}")
 
 
+def write_key(exam: dict, path: Path) -> None:
+    key: dict[str, int] = {}
+    for section in exam["sections"]:
+        for part in section["parts"]:
+            for mondai in part["mondai"]:
+                for item in mondai["items"]:
+                    if item.get("answer") is None:
+                        continue
+                    name = f"{section['id']}:{part['id']}:{mondai['number']}:{item['number']}"
+                    key[name] = item["answer"]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(key, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
 def main() -> None:
+    global PAPER, SCRIPT, ANSWERS, AUDIO, OUT, EXAM_ID, EXAM_SESSION, EXAM_TITLE, ANSWER_LABEL, SKIP_PAGES
+    parser = argparse.ArgumentParser(description="Extract one reconstructed N3 sitting.")
+    parser.add_argument("--paper", type=Path)
+    parser.add_argument("--script", type=Path)
+    parser.add_argument("--answers", type=Path)
+    parser.add_argument("--audio", default=None)
+    parser.add_argument("--out", type=Path)
+    parser.add_argument("--id")
+    parser.add_argument("--session")
+    parser.add_argument("--title")
+    parser.add_argument("--answer-label")
+    parser.add_argument("--skip-page", type=int, action="append", default=None)
+    parser.add_argument("--key", type=Path)
+    args = parser.parse_args()
+    if args.paper:
+        PAPER = args.paper
+        SKIP_PAGES = set(args.skip_page or [])
+    elif args.skip_page is not None:
+        SKIP_PAGES = set(args.skip_page)
+    if args.script:
+        SCRIPT = args.script
+    if args.answers:
+        ANSWERS = args.answers
+    if args.audio is not None:
+        AUDIO = args.audio
+    if args.out:
+        OUT = args.out
+    if args.id:
+        EXAM_ID = args.id
+    if args.session:
+        EXAM_SESSION = args.session
+    if args.title:
+        EXAM_TITLE = args.title
+    if args.answer_label:
+        ANSWER_LABEL = args.answer_label
     paper = pymupdf.open(PAPER)
     exam = parse_paper(paper)
     crop_figures(paper, exam)
@@ -736,6 +847,9 @@ def main() -> None:
             print(" ", line)
     else:
         print("script answers match the community key where the script lists one")
+    if args.key:
+        write_key(exam, args.key)
+        print("wrote", args.key)
     print("wrote", OUT / "exam.json")
 
 
