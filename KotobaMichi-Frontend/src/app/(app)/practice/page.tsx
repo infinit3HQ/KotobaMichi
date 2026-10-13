@@ -252,13 +252,13 @@ export default function PracticeDojoPage() {
   const [speechRate, setSpeechRate] = useState<number>(0.92);
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8 space-y-8">
+    <div className="mx-auto max-w-7xl space-y-6 py-2 sm:space-y-8 sm:py-4">
       {/* Top Header & Global Controls */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b pb-6">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="text-2xl">🥋</span>
-            <h1 className="text-3xl font-extrabold tracking-tight">KotobaMichi Dojo</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">KotobaMichi Dojo</h1>
             <Badge variant="secondary" className="gap-1 bg-primary/10 text-primary border-primary/20">
               <Zap className="h-3.5 w-3.5 fill-primary" /> Multi-Pillar
             </Badge>
@@ -321,14 +321,14 @@ export default function PracticeDojoPage() {
           </div>
         </div>
 
-        <div className="inline-flex p-1 rounded-xl bg-muted/90 border shrink-0 self-start sm:self-auto">
+        <div className="inline-flex max-w-full overflow-x-auto p-1 rounded-xl bg-muted/90 border shrink-0 self-start sm:self-auto">
           {(["N5", "N4", "N3", "N2", "N1"] as JLPTLevel[]).map((lvl) => {
             const isActive = selectedLevel === lvl;
             return (
               <button
                 key={lvl}
                 onClick={() => setSelectedLevel(lvl)}
-                className={`px-3 sm:px-4 py-1.5 text-xs font-extrabold rounded-lg transition-all cursor-pointer ${
+                className={`min-h-9 shrink-0 px-3 sm:px-4 py-1.5 text-xs font-extrabold rounded-lg transition-all cursor-pointer ${
                   isActive
                     ? "bg-primary text-primary-foreground shadow-xs scale-102"
                     : "text-muted-foreground hover:text-foreground"
@@ -403,7 +403,7 @@ export default function PracticeDojoPage() {
 
                 {/* Bottom Japanese Track & Glowing Dot */}
                 <div className="mt-2.5 pt-2 border-t border-border/30 flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-muted-foreground/80">{pillar.kanjiLabel}</span>
+                  <span className="truncate text-[10px] font-mono text-muted-foreground/80">{pillar.kanjiLabel}</span>
                   <div
                     className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
                       isActive ? pillar.theme.activePill + " scale-125" : "bg-muted-foreground/30 opacity-40"

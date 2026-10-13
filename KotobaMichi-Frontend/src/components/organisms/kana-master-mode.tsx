@@ -62,23 +62,23 @@ export function KanaMasterMode({
             </CardDescription>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="inline-flex p-1 rounded-lg bg-muted border">
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+            <div className="inline-flex max-w-full p-1 rounded-lg bg-muted border">
               <button
                 onClick={() => setScriptType("hiragana")}
-                className={`px-3 py-1 text-xs font-semibold rounded-md transition-all ${
+                className={`min-h-9 px-3 py-1 text-xs font-semibold rounded-md transition-all ${
                   scriptType === "hiragana" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground"
                 }`}
               >
-                Hiragana (平仮名)
+                Hiragana <span className="hidden lg:inline">(平仮名)</span>
               </button>
               <button
                 onClick={() => setScriptType("katakana")}
-                className={`px-3 py-1 text-xs font-semibold rounded-md transition-all ${
+                className={`min-h-9 px-3 py-1 text-xs font-semibold rounded-md transition-all ${
                   scriptType === "katakana" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground"
                 }`}
               >
-                Katakana (片仮名)
+                Katakana <span className="hidden lg:inline">(片仮名)</span>
               </button>
             </div>
 
@@ -92,7 +92,7 @@ export function KanaMasterMode({
                   startKanaQuiz();
                 }
               }}
-              className="text-xs"
+              className="min-h-9 text-xs"
             >
               {quizMode ? `Exit Drill (${kanaScore})` : "⚡ Start Drill"}
             </Button>
@@ -101,7 +101,7 @@ export function KanaMasterMode({
 
         {/* Drill banner */}
         {quizMode && currentPrompt && (
-          <div className="mt-4 p-3 bg-primary/10 border border-primary/20 rounded-xl flex items-center justify-between">
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-primary/20 bg-primary/10 p-3">
             <div className="flex items-center gap-3">
               <Volume2
                 className="h-5 w-5 text-primary cursor-pointer hover:scale-110"
@@ -121,7 +121,7 @@ export function KanaMasterMode({
           {KANA_ROWS.map((row, rIdx) => (
             <div key={rIdx} className="space-y-1.5">
               <div className="text-xs font-medium text-muted-foreground">{row.name}</div>
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
                 {row.chars.map((char, cIdx) => {
                   const displayChar = char[scriptType];
                   const isTarget = quizMode && currentPrompt?.romaji === char.romaji;
@@ -130,7 +130,7 @@ export function KanaMasterMode({
                     <button
                       key={cIdx}
                       onClick={() => handleKanaClick(char)}
-                      className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all hover:scale-105 active:scale-95 group ${
+                      className={`flex min-h-14 flex-col items-center justify-center rounded-xl border p-1.5 transition-all hover:scale-105 active:scale-95 group sm:p-3 ${
                         isTarget
                           ? "border-primary bg-primary/5 ring-2 ring-primary/20"
                           : "border-border/70 hover:border-emerald-500/50 hover:bg-emerald-500/5"

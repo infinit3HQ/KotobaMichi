@@ -36,7 +36,7 @@ export default function QuizListPage() {
               問題集 · Quizzes
             </span>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
             Spaced Repetition Quizzes
           </h1>
           <p className="text-sm text-muted-foreground mt-1">

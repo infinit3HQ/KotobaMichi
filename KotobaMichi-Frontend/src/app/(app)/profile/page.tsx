@@ -48,7 +48,7 @@ function ProfileCard() {
           <p className="text-destructive">Failed to load profile.</p>
         ) : (
           <div className="space-y-1">
-            <p>
+            <p className="break-all">
               <span className="text-muted-foreground">Email:</span> {data.email}
             </p>
             <p>
@@ -177,7 +177,7 @@ function AttemptsCard() {
         ) : data && data.attempts.length > 0 ? (
           <ul className="space-y-2">
             {data.attempts.map((a) => (
-              <li key={a.id} className="flex items-center justify-between">
+              <li key={a.id} className="flex items-center justify-between gap-3">
                 <div>
                   <div className="font-medium">Score: {a.score}</div>
                   <div className="text-xs text-muted-foreground">

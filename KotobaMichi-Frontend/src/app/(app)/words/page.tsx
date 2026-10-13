@@ -246,9 +246,9 @@ export default function WordsPage() {
       <div className="flex flex-col gap-4 rounded-xl border border-border/80 bg-card/90 p-4 sm:p-5 shadow-xs backdrop-blur-sm">
         {/* JLPT Level Selector Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+          <div className="flex min-w-0 flex-wrap items-center gap-2 py-0.5">
             <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground shrink-0">Level:</span>
-            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-background/70 border border-border/70 shrink-0">
+            <div className="flex min-w-0 flex-wrap items-center gap-1.5 rounded-xl border border-border/70 bg-background/70 p-1">
               {LEVEL_TABS.map((tab) => {
                 const isActive = selectedLevel === tab.id;
                 return (
@@ -857,7 +857,7 @@ function CompactTableView({
             <span className="font-semibold text-foreground">{Math.min(currentPage * pageSize, items.length)}</span> of{" "}
             <span className="font-semibold text-foreground">{items.length.toLocaleString()}</span> entries
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <Button
               variant="outline"
               size="sm"

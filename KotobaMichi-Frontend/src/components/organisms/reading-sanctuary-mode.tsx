@@ -185,7 +185,8 @@ export function ReadingSanctuaryMode({
             className="gap-2 text-xs font-semibold rounded-xl"
           >
             <BookOpen className="h-4 w-4" />
-            Reading Passages ({passages.length})
+            <span className="sm:hidden">Passages ({passages.length})</span>
+            <span className="hidden sm:inline">Reading Passages ({passages.length})</span>
           </Button>
           <Button
             variant={viewTab === "shadowing" ? "default" : "ghost"}
@@ -194,7 +195,8 @@ export function ReadingSanctuaryMode({
             className="gap-2 text-xs font-semibold rounded-xl"
           >
             <Headphones className="h-4 w-4" />
-            Sentence Shadowing (5,193)
+            <span className="sm:hidden">Shadowing</span>
+            <span className="hidden sm:inline">Sentence Shadowing (5,193)</span>
           </Button>
         </div>
         <Badge variant="outline" className="text-xs text-muted-foreground font-mono">

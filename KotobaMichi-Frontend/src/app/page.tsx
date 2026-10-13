@@ -40,13 +40,13 @@ export default function Home() {
         
         <div className="container mx-auto px-4 text-center max-w-5xl space-y-6">
           {/* Top Kanji Pill */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/25 bg-primary/10 text-primary text-xs font-semibold shadow-2xs">
+          <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-center text-xs font-semibold text-primary shadow-2xs">
             <span className="font-jp text-sm font-black">道</span>
             <span>The Kyoto Modernist Way to Fluent Recall</span>
           </div>
 
           {/* Hero Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground text-balance">
+          <h1 className="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground text-balance">
             Master Japanese Intuition with{" "}
             <span className="text-primary underline decoration-primary/30 decoration-wavy decoration-from-font">
               High-Speed Drills
@@ -62,7 +62,7 @@ export default function Home() {
             <Button
               asChild
               size="lg"
-              className="h-12 px-7 text-base font-semibold gap-2.5 shadow-md bg-primary hover:bg-primary/90 text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="h-12 w-full px-7 text-base font-semibold gap-2.5 shadow-md bg-primary hover:bg-primary/90 text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
             >
               <Link href="/practice">
                 <Zap className="h-5 w-5 fill-current text-amber-300" />
@@ -73,7 +73,7 @@ export default function Home() {
               asChild
               variant="outline"
               size="lg"
-              className="h-12 px-7 text-base font-semibold gap-2 border-border/80 bg-card/60 backdrop-blur-sm hover:bg-secondary transition-all"
+              className="h-12 w-full px-7 text-base font-semibold gap-2 border-border/80 bg-card/60 backdrop-blur-sm hover:bg-secondary transition-all sm:w-auto"
             >
               <Link href="/words">
                 <BookOpen className="h-4 w-4" />
@@ -204,20 +204,20 @@ export default function Home() {
       {/* Stats Ribbon */}
       <section className="container mx-auto px-4 max-w-5xl">
         <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-6 sm:p-8 shadow-xs">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-border/60">
-            <div className="pt-2 sm:pt-0">
+          <div className="grid grid-cols-2 gap-6 text-center sm:grid-cols-4 sm:divide-x sm:divide-border/60">
+            <div>
               <div className="text-3xl sm:text-4xl font-black text-primary font-jp">562+</div>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">JLPT N5 Words</div>
             </div>
-            <div className="pt-2 sm:pt-0">
+            <div>
               <div className="text-3xl sm:text-4xl font-black text-foreground">100%</div>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">Audio Pronunciation</div>
             </div>
-            <div className="pt-2 sm:pt-0">
+            <div>
               <div className="text-3xl sm:text-4xl font-black text-foreground">60s</div>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">Speed Sprints</div>
             </div>
-            <div className="pt-2 sm:pt-0">
+            <div>
               <div className="text-3xl sm:text-4xl font-black text-foreground">0ms</div>
               <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">Zero-Lag Offline</div>
             </div>
@@ -240,7 +240,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Button asChild size="lg" className="h-11 px-6 font-semibold shadow-sm">
               <Link href="/auth/register">Create Free Account</Link>
             </Button>

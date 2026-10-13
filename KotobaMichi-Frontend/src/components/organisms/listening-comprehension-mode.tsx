@@ -204,8 +204,8 @@ function SituationalDialogueQuiz({
   return (
     <Card className="border-2 shadow-md overflow-hidden">
       <CardHeader className="pb-3 border-b bg-muted/20">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="gap-1 border-sky-500/30 text-sky-600 dark:text-sky-400">
               <Headphones className="h-3.5 w-3.5" />
               {currentScenario.level} 聴解
@@ -220,7 +220,7 @@ function SituationalDialogueQuiz({
           </div>
         </div>
 
-        <CardTitle className="text-lg font-bold pt-2 flex items-center justify-between">
+        <CardTitle className="text-lg font-bold pt-2 flex flex-wrap items-center justify-between gap-2">
           <span>{currentScenario.title}</span>
           <span className="text-xs font-normal text-muted-foreground font-mono">
             Scenario {sIndex + 1}/{scenarios.length}

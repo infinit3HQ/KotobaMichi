@@ -112,18 +112,19 @@ export default function QuizTakingPage() {
                       placeholder="Type your answer"
                     />
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <Button
                       variant="secondary"
+                      className="min-h-11 flex-1 sm:flex-none"
                       onClick={onPrev}
                       disabled={index === 0}
                     >
                       Previous
                     </Button>
                     {index < words.length - 1 ? (
-                      <Button onClick={onNext}>Next</Button>
+                      <Button className="min-h-11 flex-1 sm:flex-none" onClick={onNext}>Next</Button>
                     ) : (
-                      <Button onClick={onSubmit} disabled={mutation.isPending}>
+                      <Button className="min-h-11 flex-1 sm:flex-none" onClick={onSubmit} disabled={mutation.isPending}>
                         {mutation.isPending ? "Submitting…" : "Submit"}
                       </Button>
                     )}

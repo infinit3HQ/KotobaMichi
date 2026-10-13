@@ -52,7 +52,7 @@ export default function DashboardPage() {
           Manage vocabulary and public quizzes.
         </p>
         <Tabs defaultValue="words" className="w-full">
-          <TabsList>
+          <TabsList className="h-auto w-full max-w-full justify-start overflow-x-auto">
             <TabsTrigger value="words">Vocabulary</TabsTrigger>
             <TabsTrigger value="quizzes">Quizzes</TabsTrigger>
             <TabsTrigger value="import">CSV Import</TabsTrigger>

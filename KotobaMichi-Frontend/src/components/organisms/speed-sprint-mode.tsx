@@ -272,11 +272,11 @@ export function SpeedSprintMode({
               {history.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`flex items-center justify-between p-2.5 rounded-lg border text-sm ${
+                  className={`flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-lg border text-sm ${
                     item.isCorrect ? "bg-emerald-500/5 border-emerald-500/20" : "bg-destructive/5 border-destructive/20"
                   }`}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex min-w-0 items-center gap-2">
                     {item.isCorrect ? (
                       <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
                     ) : (
@@ -301,7 +301,7 @@ export function SpeedSprintMode({
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Button variant="outline" className="flex-1" onClick={() => setGameState("idle")}>
               Change Topic
             </Button>
@@ -318,7 +318,7 @@ export function SpeedSprintMode({
   return (
     <div className="space-y-6 max-w-xl mx-auto">
       {/* HUD Bar */}
-      <div className="flex items-center justify-between gap-4 p-3.5 rounded-xl border bg-card shadow-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl border bg-card shadow-xs">
         <div className="flex items-center gap-2">
           <Clock className="h-4 w-4 text-muted-foreground" />
           <span className={`font-mono font-bold text-lg ${timeLeft <= 10 ? "text-destructive animate-pulse" : ""}`}>

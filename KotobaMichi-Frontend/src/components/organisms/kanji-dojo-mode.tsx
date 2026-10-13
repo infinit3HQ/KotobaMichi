@@ -204,10 +204,10 @@ function KanjiAnatomyView({
           <Card className="lg:col-span-7 border-2 border-primary/20 shadow-sm overflow-hidden animate-in fade-in-50 duration-200">
             <CardContent className="p-6 space-y-6">
               {/* Header Box */}
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-center gap-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                   {/* Giant Character Tile */}
-                  <div className="w-24 h-24 rounded-2xl bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-5xl font-bold font-japanese text-primary shadow-inner shrink-0">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-primary/30 bg-primary/10 text-3xl font-bold font-japanese text-primary shadow-inner sm:h-24 sm:w-24 sm:text-5xl">
                     {activeKanji.character}
                   </div>
                   <div className="space-y-1">

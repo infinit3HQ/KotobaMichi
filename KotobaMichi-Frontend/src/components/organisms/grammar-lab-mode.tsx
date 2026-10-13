@@ -78,7 +78,7 @@ export function GrammarLabMode({
           </span>
         </div>
 
-        <div className="inline-flex p-1 rounded-lg bg-muted border overflow-x-auto">
+        <div className="flex w-full max-w-full gap-0 overflow-x-auto rounded-lg border bg-muted p-1 sm:inline-flex sm:w-auto">
           <button
             onClick={() => setSubMode("star")}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-1.5 whitespace-nowrap ${
@@ -237,8 +237,8 @@ function StarOrderPuzzle({
   return (
     <Card className="border-2 shadow-md overflow-hidden">
       <CardHeader className="pb-3 border-b bg-muted/20">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="gap-1 border-amber-500/30 text-amber-600 dark:text-amber-400">
               <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
               {currentQ.level} 文の組み立て
@@ -251,7 +251,7 @@ function StarOrderPuzzle({
             Score: {score}/{totalAttempts}
           </div>
         </div>
-        <CardTitle className="text-base font-bold pt-2 flex items-center justify-between">
+        <CardTitle className="text-base font-bold pt-2 flex flex-wrap items-center justify-between gap-2">
           <span>Arrange the 4 tiles. What goes on the ★ star?</span>
           <span className="text-xs font-normal text-muted-foreground font-mono">
             Puzzle {qIndex + 1}/{pool.length}
@@ -506,7 +506,7 @@ function ParticleClozeDrill({
   return (
     <Card className="border-2 shadow-md">
       <CardHeader className="pb-3 border-b bg-muted/20">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <Badge variant="outline" className="gap-1 border-primary/30 text-primary">
             <Sparkles className="h-3 w-3" />
             {currentQ.level} 助詞マスター

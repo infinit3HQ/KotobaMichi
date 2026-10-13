@@ -12,7 +12,7 @@ export function Footer() {
               JLPT N5
             </span>
           </div>
-          <p className="font-jp text-xs text-muted-foreground/90 italic">
+          <p className="max-w-md text-center font-jp text-xs italic text-muted-foreground/90 md:text-left">
             「千里の道も一歩から」— A journey of a thousand miles begins with a single step.
           </p>
         </div>

@@ -29,8 +29,8 @@ export function GlobalThemeToggle({
   }
 
   const positionClasses = {
-    'bottom-right': 'fixed bottom-6 right-6',
-    'bottom-left': 'fixed bottom-6 left-6',
+    'bottom-right': 'fixed right-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] lg:bottom-6 lg:right-6',
+    'bottom-left': 'fixed left-4 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] lg:bottom-6 lg:left-6',
     'top-right': 'fixed top-6 right-6',
     'top-left': 'fixed top-6 left-6'
   }
@@ -40,7 +40,7 @@ export function GlobalThemeToggle({
   }
 
   return (
-    <div className={`${positionClasses[position]} z-50 ${className}`}>
+    <div className={`${positionClasses[position]} z-50 hidden lg:block ${className}`}>
       <Tooltip>
         <TooltipTrigger asChild>
           <div

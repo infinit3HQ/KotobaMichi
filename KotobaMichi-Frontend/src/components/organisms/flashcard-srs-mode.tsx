@@ -85,7 +85,7 @@ export function FlashcardSrsMode({
   return (
     <div className="max-w-xl mx-auto space-y-6">
       {/* Top Settings and Progress Bar */}
-      <div className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-md border border-border/80 shadow-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-md border border-border/80 shadow-xs">
         <div className="flex items-center gap-2">
           <Button
             variant={showFurigana ? "secondary" : "outline"}
@@ -144,14 +144,14 @@ export function FlashcardSrsMode({
           {/* =============================================================
               CARD FRONT: PROMPT & KANJI
               ============================================================= */}
-          <div className="absolute inset-0 backface-hidden rounded-3xl border-2 border-primary/20 bg-card/95 backdrop-blur-md p-8 flex flex-col justify-between items-center text-center shadow-lg group-hover:border-primary/45 transition-all duration-300">
+          <div className="absolute inset-0 backface-hidden rounded-3xl border-2 border-primary/20 bg-card/95 backdrop-blur-md p-4 sm:p-8 flex flex-col justify-between items-center text-center shadow-lg group-hover:border-primary/45 transition-all duration-300">
             {/* Header badges */}
-            <div className="w-full flex justify-between items-center text-xs">
+            <div className="w-full flex flex-wrap justify-between items-center gap-2 text-xs">
               <Badge variant="outline" className="text-[11px] font-semibold">
                 {currentWord.topic}
               </Badge>
               <span className="text-muted-foreground/80 text-[11px] font-medium flex items-center gap-1 group-hover:text-primary transition-colors">
-                <RotateCw className="h-3 w-3" /> [Space] to flip
+                <RotateCw className="h-3 w-3" /> <span className="sm:hidden">Tap to flip</span><span className="hidden sm:inline">[Space] to flip</span>
               </span>
               <Badge variant="secondary" className="font-mono text-[11px] font-bold">
                 {currentWord.level}
@@ -165,7 +165,7 @@ export function FlashcardSrsMode({
                   {currentWord.hiragana}
                 </div>
               )}
-              <div className="text-5xl sm:text-6xl font-black font-japanese tracking-tight text-foreground drop-shadow-xs">
+              <div className="max-w-full px-1 text-4xl font-black font-japanese leading-none tracking-tight text-foreground drop-shadow-xs sm:text-6xl">
                 {currentWord.kanji || currentWord.hiragana}
               </div>
               {showRomaji && (
@@ -198,7 +198,7 @@ export function FlashcardSrsMode({
           {/* =============================================================
               CARD BACK: MEANING, PART OF SPEECH & REAL SENTENCE
               ============================================================= */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl border-2 border-primary/35 bg-card/95 backdrop-blur-md p-8 flex flex-col justify-between items-center text-center shadow-xl">
+          <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl border-2 border-primary/35 bg-card/95 backdrop-blur-md p-4 sm:p-8 flex flex-col justify-between items-center text-center shadow-xl overflow-y-auto">
             {/* Header tags */}
             <div className="w-full flex justify-between items-center text-xs">
               <span className="text-[11px] font-mono font-bold text-primary flex items-center gap-1">
@@ -271,7 +271,7 @@ export function FlashcardSrsMode({
       </div>
 
       {/* SRS Confidence Buttons (SuperMemo-Style Repetition) */}
-      <div className="grid grid-cols-4 gap-2.5">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
         <Button
           variant="outline"
           className="border-rose-500/30 hover:bg-rose-500/10 hover:border-rose-500/50 hover:text-rose-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
