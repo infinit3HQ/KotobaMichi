@@ -174,12 +174,23 @@ export function scoreByMondai(exam: MockExam, answers: Record<string, number>): 
     }
   }
 
-  const counts = new Map<string, number>();
-  for (const row of rows) counts.set(row.sectionId, (counts.get(row.sectionId) ?? 0) + 1);
+  const parts = new Map<string, Map<string, MondaiScore[]>>();
   for (const row of rows) {
-    const share = SECTION_POINTS / (counts.get(row.sectionId) ?? 1);
-    row.share = share;
-    row.earned = row.total > 0 ? (row.correct / row.total) * share : 0;
+    const sectionParts = parts.get(row.sectionId) ?? new Map<string, MondaiScore[]>();
+    const partRows = sectionParts.get(row.partTitle) ?? [];
+    partRows.push(row);
+    sectionParts.set(row.partTitle, partRows);
+    parts.set(row.sectionId, sectionParts);
+  }
+  for (const sectionParts of parts.values()) {
+    const partShare = SECTION_POINTS / sectionParts.size;
+    for (const partRows of sectionParts.values()) {
+      const mondaiShare = partShare / partRows.length;
+      for (const row of partRows) {
+        row.share = mondaiShare;
+        row.earned = row.total > 0 ? (row.correct / row.total) * mondaiShare : 0;
+      }
+    }
   }
   return rows;
 }

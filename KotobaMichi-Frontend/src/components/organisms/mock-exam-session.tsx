@@ -639,7 +639,10 @@ function Results({
       <div className="grid gap-3 sm:grid-cols-3">
         {scores.map((score) => {
           const points = pointsForSection(mondaiScores, score.id);
-          const mondaiCount = mondaiScores.filter((row) => row.sectionId === score.id).length;
+          const partShares = new Map<string, number>();
+          for (const row of mondaiScores.filter((item) => item.sectionId === score.id)) {
+            partShares.set(row.partTitle, (partShares.get(row.partTitle) ?? 0) + row.share);
+          }
           return (
             <div key={score.id} className="rounded-2xl border border-border bg-card p-4">
               <p className="font-jp text-sm text-muted-foreground">{score.title}</p>
@@ -648,7 +651,9 @@ function Results({
                 <span className="text-base text-muted-foreground">/{SECTION_POINTS}</span>
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                {mondaiCount} 問題 × {formatPoints(SECTION_POINTS / mondaiCount)} · {score.correct}/{score.total} marked
+                {[...partShares.entries()].map(([title, share]) => `${title} ${formatPoints(share)}`).join(" · ")}
+                {" · "}
+                {score.correct}/{score.total} marked
                 {points >= PASS_SECTION ? ` · at or above ${PASS_SECTION}` : ` · under ${PASS_SECTION}`}
               </p>
             </div>
@@ -656,11 +661,11 @@ function Results({
         })}
       </div>
       <div className="rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
-        Each 問題 takes an equal part of its group’s 60, and the items inside that 問題 split that part. 読解 has
-        four 問題, so each gets 15, and 問題7’s two items each get 7.5. 文法 is not in that 60. It shares 言語知識
-        with the five vocabulary 問題, eight in all, so each of those gets 7.5. The real report then shifts the
-        number for item difficulty, which is not published. Vocabulary and grammar letters are the report’s
-        bands: A is 67% or more, B is 34–66%, C is under 34%.
+        A group’s 60 is split evenly across its parts, so vocabulary and grammar are 30 each. Each 問題 then
+        takes an equal slice of that part, and the items inside the 問題 split that slice. 読解 is one part, so
+        its four 問題 each get 15, and 問題7’s two items each get 7.5. The real report then shifts the number
+        for item difficulty, which is not published. Vocabulary and grammar letters are the report’s bands: A
+        is 67% or more, B is 34–66%, C is under 34%.
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {areas.map((area) => (
