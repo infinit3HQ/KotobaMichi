@@ -116,6 +116,9 @@ jobs:
           SMTP_FROM_SECRET: ${{ secrets.PROD_SMTP_FROM }}
           ADMIN_EMAIL_SECRET: ${{ secrets.PROD_ADMIN_EMAIL }}
           ADMIN_PASSWORD_SECRET: ${{ secrets.PROD_ADMIN_PASSWORD }}
+          GOOGLE_CLIENT_ID_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_SECRET }}
+          GOOGLE_CALLBACK_URL_SECRET: ${{ secrets.PROD_GOOGLE_CALLBACK_URL }}
         run: |
           set -euo pipefail
           cd KotobaMichi-Backend
@@ -145,6 +148,9 @@ jobs:
             SMTP_USER="${SMTP_USER_SECRET:-}"
             SMTP_PASS="${SMTP_PASS_SECRET:-}"
             SMTP_FROM="${SMTP_FROM_SECRET:-}"
+            GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID_SECRET:-}"
+            GOOGLE_CLIENT_SECRET="${GOOGLE_CLIENT_SECRET_SECRET:-}"
+            GOOGLE_CALLBACK_URL="${GOOGLE_CALLBACK_URL_SECRET:-https://kotobamichi-api.012140.xyz/v1/auth/google/callback}"
 
             if [ -z "$DATABASE_URL" ] && [ -n "$POSTGRES_PASSWORD" ]; then
               DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
@@ -176,6 +182,9 @@ jobs:
               if [ -n "$CORS_ORIGIN" ]; then echo "CORS_ORIGIN=$CORS_ORIGIN"; fi
               if [ -n "$ADMIN_EMAIL" ]; then echo "ADMIN_EMAIL=$ADMIN_EMAIL"; fi
               if [ -n "$ADMIN_PASSWORD" ]; then echo "ADMIN_PASSWORD=$ADMIN_PASSWORD"; fi
+              if [ -n "$GOOGLE_CLIENT_ID" ]; then echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID"; fi
+              if [ -n "$GOOGLE_CLIENT_SECRET" ]; then echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET"; fi
+              if [ -n "$GOOGLE_CLIENT_ID" ]; then echo "GOOGLE_CALLBACK_URL=$GOOGLE_CALLBACK_URL"; fi
             } > .env
           elif [ ! -f .env ]; then
             echo "Secrets not set in repository; searching server workspace for existing production .env..."

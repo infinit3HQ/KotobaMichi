@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
   Card,
@@ -25,6 +26,7 @@ import { api, getApiError } from "@/lib/api";
 import { useAuth } from "@/hooks/use-auth";
 import { toast } from "sonner";
 import { useLocale } from "@/components/organisms/locale-provider";
+import { SocialAuth } from "@/components/organisms/social-auth";
 
 export default function LoginPage() {
   const { t } = useLocale();
@@ -39,6 +41,15 @@ export default function LoginPage() {
     resolver: zodResolver(schema),
     defaultValues: { email: "", password: "" },
   });
+  const toasted = useRef(false);
+  useEffect(() => {
+    if (toasted.current) return;
+    const error = new URLSearchParams(window.location.search).get("error");
+    if (error === "google") {
+      toasted.current = true;
+      toast.error(t.auth.googleFailed);
+    }
+  }, [t]);
 
   const onSubmit = async (values: FormVals) => {
     try {
@@ -67,6 +78,7 @@ export default function LoginPage() {
           <CardDescription>{t.auth.signInAccount}</CardDescription>
         </CardHeader>
         <CardContent>
+          <SocialAuth />
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField

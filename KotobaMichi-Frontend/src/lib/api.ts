@@ -9,6 +9,10 @@ declare global {
     __ENV__?: Record<string, string | undefined>;
   }
 }
+export function getApiBaseUrl() {
+  return resolveBaseURL();
+}
+
 function resolveBaseURL() {
   const runtimeApiUrl =
     typeof window !== "undefined"

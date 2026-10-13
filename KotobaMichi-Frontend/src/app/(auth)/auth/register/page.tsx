@@ -23,6 +23,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api, getApiError } from "@/lib/api";
 import { toast } from "sonner";
+import { SocialAuth } from "@/components/organisms/social-auth";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -65,6 +66,7 @@ export default function RegisterPage() {
           <CardDescription>Create a new account</CardDescription>
         </CardHeader>
         <CardContent>
+          <SocialAuth />
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField

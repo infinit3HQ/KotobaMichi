@@ -11,9 +11,18 @@ async function bootstrap() {
 			logger: ['error', 'warn', 'log', 'debug', 'verbose'],
 		});
 
-		// Enable CORS with credentials for cookie-based auth
+		// Enable CORS with credentials for cookie-based auth.
+		// APP_URL is the web app, so it stays allowed even when CORS_ORIGIN lists another origin.
+		const origins = new Set(
+			(process.env['CORS_ORIGIN'] || '')
+				.split(',')
+				.map((s) => s.trim().replace(/\/$/, ''))
+				.filter(Boolean)
+		);
+		const appUrl = process.env['APP_URL']?.trim().replace(/\/$/, '');
+		if (appUrl) origins.add(appUrl);
 		app.enableCors({
-			origin: process.env['CORS_ORIGIN']?.split(',').map((s) => s.trim()) || true,
+			origin: origins.size > 0 ? [...origins] : true,
 			credentials: true,
 		});
 		logger.log('CORS enabled with credentials');

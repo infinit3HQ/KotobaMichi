@@ -21,6 +21,7 @@ import { ResendVerificationDto } from './dto/resend-verification.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import { GoogleCallbackGuard } from './google-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -109,25 +110,45 @@ export class AuthController {
 		);
 	}
 
+	@Get('providers')
+	oauthProviders() {
+		const usable = (value?: string) =>
+			!!value &&
+			!value.includes('placeholder') &&
+			!value.includes('your-client') &&
+			!value.includes('your-');
+		return {
+			google:
+				usable(process.env['GOOGLE_CLIENT_ID']) &&
+				usable(process.env['GOOGLE_CLIENT_SECRET']),
+		};
+	}
+
 	@Get('google')
 	@UseGuards(AuthGuard('google'))
 	async googleAuth() {
-		// Initiates the Google OAuth flow
-		// This is handled automatically by the guard
+		// Passport redirects the browser to Google.
 	}
 
 	@Get('google/callback')
-	@UseGuards(AuthGuard('google'))
-	async googleAuthCallback(
-		@Req() req: Request,
-		@Res({ passthrough: true }) res: Response
-	) {
-		// After successful authentication, generate JWT tokens
-		const user = (req as any).user;
+	@UseGuards(GoogleCallbackGuard)
+	async googleAuthCallback(@Req() req: Request, @Res() res: Response) {
+		const appUrl = (process.env['APP_URL'] || 'http://localhost:3000').replace(
+			/\/$/,
+			''
+		);
+		const user = (req as { user?: { id?: string; email?: string; role?: string } })
+			.user;
+		if (!user?.id || !user.email || !user.role) {
+			return res.redirect(`${appUrl}/auth/login?error=google`);
+		}
 
-		const result = await this.authService.loginWithOAuth(user);
+		const result = await this.authService.loginWithOAuth({
+			id: user.id,
+			email: user.email,
+			role: user.role,
+		});
 		this.authService.setAuthCookies(res, result);
-
-		return result;
+		return res.redirect(`${appUrl}/`);
 	}
 }

@@ -112,6 +112,19 @@ export type Dictionary = {
     reset: string;
     resendPrompt: string;
     resend: string;
+    continueGoogle: string;
+    orEmail: string;
+    googleFailed: string;
+  };
+  path: {
+    title: string;
+    streak: (days: number) => string;
+    due: (count: number) => string;
+    studied: (count: number) => string;
+    learned: (learned: number, total: number) => string;
+    continue: string;
+    signIn: string;
+    newWords: string;
   };
   footer: {
     quote: string;
@@ -245,6 +258,19 @@ const en: Dictionary = {
     reset: "Reset it",
     resendPrompt: "Need a new verification email?",
     resend: "Resend",
+    continueGoogle: "Continue with Google",
+    orEmail: "or use email",
+    googleFailed: "Google sign-in did not finish. Try again.",
+  },
+  path: {
+    title: "Your path",
+    streak: (days) => (days === 1 ? "1-day streak" : `${days}-day streak`),
+    due: (count) => (count === 1 ? "1 word due" : `${count} words due`),
+    studied: (count) => (count === 1 ? "1 word today" : `${count} words today`),
+    learned: (learned, total) => `${learned} / ${total} learned`,
+    continue: "Continue",
+    signIn: "Sign in and the dojo remembers where you stopped.",
+    newWords: "New words come after today's reviews.",
   },
   footer: {
     quote: "「千里の道も一歩から」— A journey of a thousand miles begins with a single step.",
@@ -376,6 +402,19 @@ const si: Dictionary = {
     reset: "යළි සකසන්න",
     resendPrompt: "තහවුරු ඊමේලයක් ඕනද?",
     resend: "නැවත යවන්න",
+    continueGoogle: "Google සමඟ පිවිසෙන්න",
+    orEmail: "නැතහොත් ඊමේල් භාවිතා කරන්න",
+    googleFailed: "Google පිවිසීම සම්පූර්ණ වුණේ නැහැ. නැවත උත්සාහ කරන්න.",
+  },
+  path: {
+    title: "ඔබේ මාවත",
+    streak: (days) => `දින ${days}ක පෙළ`,
+    due: (count) => `අද නැවත ${count}`,
+    studied: (count) => `අද වචන ${count}`,
+    learned: (learned, total) => `ඉගෙනගත් ${learned} / ${total}`,
+    continue: "නැවත පටන් ගන්න",
+    signIn: "පිවිසුණාම ඔබ නැවැත්තු තැන මතක තියාගන්නවා.",
+    newWords: "අද නැවත කියවීමෙන් පස්සේ අලුත් වචන.",
   },
   footer: {
     quote: "「千里の道も一歩から」— සැතපුම් දහසක ගමන පටන් ගන්නේ එක පියවරකින්.",
