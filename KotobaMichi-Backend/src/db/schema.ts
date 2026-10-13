@@ -13,6 +13,7 @@ import {
 	real,
 	date,
 } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 
 // Enum equivalent of Prisma UserRole
 export const userRoleEnum = pgEnum('UserRole', ['USER', 'ADMIN']);
@@ -446,3 +447,45 @@ export const learnerState = pgTable('learner_state', {
 		.defaultNow()
 		.$onUpdate(() => new Date()),
 });
+
+export type MockExamScore = {
+	id: string;
+	title: string;
+	correct: number;
+	total: number;
+};
+
+export const mockExamAttempts = pgTable(
+	'mock_exam_attempts',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		userId: varchar('user_id', { length: 128 })
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		examId: varchar('exam_id', { length: 64 }).notNull(),
+		status: varchar('status', { length: 16 }).notNull().default('in_progress'),
+		sectionIndex: integer('section_index').notNull().default(0),
+		sectionStartedAt: timestamp('section_started_at', {
+			withTimezone: false,
+		}).notNull(),
+		answers: jsonb('answers')
+			.$type<Record<string, number>>()
+			.notNull()
+			.default({}),
+		scores: jsonb('scores').$type<MockExamScore[]>(),
+		finishedAt: timestamp('finished_at', { withTimezone: false }),
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [
+		index('mock_exam_attempts_user_idx').on(t.userId, t.createdAt),
+		uniqueIndex('mock_exam_attempts_open_unique')
+			.on(t.userId, t.examId)
+			.where(sql`${t.status} = 'in_progress'`),
+	]
+);

@@ -119,6 +119,12 @@ jobs:
           GOOGLE_CLIENT_ID_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_SECRET }}
           GOOGLE_CALLBACK_URL_SECRET: ${{ secrets.PROD_GOOGLE_CALLBACK_URL }}
+          S3_ENDPOINT_SECRET: ${{ secrets.PROD_S3_ENDPOINT }}
+          S3_REGION_SECRET: ${{ secrets.PROD_S3_REGION }}
+          S3_BUCKET_SECRET: ${{ secrets.PROD_S3_BUCKET }}
+          S3_PUBLIC_URL_SECRET: ${{ secrets.PROD_S3_PUBLIC_URL }}
+          S3_ACCESS_KEY_ID_SECRET: ${{ secrets.PROD_S3_ACCESS_KEY_ID }}
+          S3_SECRET_ACCESS_KEY_SECRET: ${{ secrets.PROD_S3_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
           cd KotobaMichi-Backend
@@ -258,6 +264,34 @@ jobs:
             } >> .env
           else
             echo "Google OAuth client secret is empty; sign-in will stay unavailable."
+          fi
+
+          # Public object storage for exam audio. Write credentials only when repository secrets exist.
+          upsert_env() {
+            local key="$1"
+            local value="$2"
+            if [ -z "$value" ] || [ ! -f .env ]; then
+              return 0
+            fi
+            grep -v -E "^${key}=" .env > .env.s3.tmp || true
+            mv .env.s3.tmp .env
+            printf '%s=%s\n' "$key" "$value" >> .env
+          }
+          S3_ENDPOINT="${S3_ENDPOINT_SECRET:-https://s3-kotobamichi.012140.xyz}"
+          S3_REGION="${S3_REGION_SECRET:-us-east-1}"
+          S3_BUCKET="${S3_BUCKET_SECRET:-kotobamichi}"
+          S3_PUBLIC_URL="${S3_PUBLIC_URL_SECRET:-https://s3-kotobamichi.012140.xyz/kotobamichi}"
+          upsert_env S3_ENDPOINT "$S3_ENDPOINT"
+          upsert_env S3_REGION "$S3_REGION"
+          upsert_env S3_BUCKET "$S3_BUCKET"
+          upsert_env S3_PUBLIC_URL "$S3_PUBLIC_URL"
+          upsert_env S3_FORCE_PATH_STYLE "true"
+          upsert_env S3_ACCESS_KEY_ID "$S3_ACCESS_KEY_ID_SECRET"
+          upsert_env S3_SECRET_ACCESS_KEY "$S3_SECRET_ACCESS_KEY_SECRET"
+          if [ -n "$S3_ACCESS_KEY_ID_SECRET" ]; then
+            echo "Applied S3 settings, including write credentials."
+          else
+            echo "Applied public S3 settings. Write credentials are unset."
           fi
 
       - name: Deploy Backend Stack & Migrations

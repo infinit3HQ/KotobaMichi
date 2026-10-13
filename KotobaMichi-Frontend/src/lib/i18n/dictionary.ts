@@ -9,6 +9,8 @@ export type Dictionary = {
     practiceShort: string;
     words: string;
     quizzes: string;
+    mock: string;
+    mockShort: string;
     profile: string;
     admin: string;
     signIn: string;
@@ -140,6 +142,8 @@ const en: Dictionary = {
     practiceShort: "Dojo",
     words: "Words",
     quizzes: "Quizzes",
+    mock: "Mock exam",
+    mockShort: "Mock",
     profile: "Profile",
     admin: "Admin",
     signIn: "Sign in",
@@ -286,6 +290,8 @@ const si: Dictionary = {
     practiceShort: "පුහුණුව",
     words: "වචන",
     quizzes: "ප්‍රශ්නාවලි",
+    mock: "ආදර්ශ විභාගය",
+    mockShort: "විභාග",
     profile: "පැතිකඩ",
     admin: "පරිපාලනය",
     signIn: "පිවිසෙන්න",
