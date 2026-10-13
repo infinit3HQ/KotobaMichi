@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Button } from "@/components/atoms/button";
 import { Badge } from "@/components/atoms/badge";
-import { JLPT_N5_WORDS } from "@/data/vocab-n5";
+import { JLPT_N5_WORDS, type JLPTWord } from "@/data/vocab-n5";
 import { JLPT_N4_WORDS, JLPT_N3_WORDS } from "@/data/vocab-more";
 import { getTanosWordsByLevel } from "@/data/vocab-tanos";
 import { getSentencesForWord } from "@/data/sentences";
@@ -12,6 +12,8 @@ import { speakJapanese, playSfx } from "@/lib/audio";
 import { Volume2, Eye, EyeOff, Sparkles, RotateCw, ArrowLeft, ArrowRight } from "lucide-react";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { lessonText, sinhalaWordGloss } from "@/lib/i18n/content-si";
+import { useLearning } from "@/hooks/use-learning";
+import type { LearningGrade } from "@/lib/learning";
 
 interface FlashcardSrsModeProps {
   selectedLevel: JLPTLevel;
@@ -27,7 +29,10 @@ export function FlashcardSrsMode({
   speechRate,
 }: FlashcardSrsModeProps) {
   const { locale } = useLocale();
+  const { user, summary, due, ready, record, savePlace } = useLearning(selectedLevel);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [deck, setDeck] = useState<JLPTWord[] | null>(null);
+  const builtFor = useRef<string | null>(null);
   const [flipped, setFlipped] = useState(false);
   const [showFurigana, setShowFurigana] = useState(true);
   const [showRomaji, setShowRomaji] = useState(true);
@@ -45,7 +50,29 @@ export function FlashcardSrsMode({
     return levelWords.filter((w) => w.topic === selectedTopic);
   }, [levelWords, selectedTopic]);
 
-  const currentWord = wordPool[currentIndex] || wordPool[0];
+  const sessionKey = `${selectedLevel}:${selectedTopic}:${due.join(",")}`;
+  useEffect(() => {
+    if (!ready) return;
+    if (builtFor.current === sessionKey) return;
+    builtFor.current = sessionKey;
+    const byId = new Map(wordPool.map((word) => [word.id, word]));
+    const dueWords = due.map((id) => byId.get(id)).filter((word): word is JLPTWord => !!word);
+    const dueSet = new Set(dueWords.map((word) => word.id));
+    const rest = wordPool.filter((word) => !dueSet.has(word.id));
+    const bookmark = summary?.bookmarks?.[selectedLevel];
+    let start = 0;
+    if (bookmark?.itemKey) {
+      const found = rest.findIndex((word) => word.id === bookmark.itemKey);
+      if (found >= 0) start = found;
+    }
+    const ordered = [...dueWords, ...rest.slice(start), ...rest.slice(0, start)];
+    setDeck(ordered.length > 0 ? ordered : wordPool);
+    setCurrentIndex(0);
+    setFlipped(false);
+  }, [ready, sessionKey, wordPool, due, summary, selectedLevel]);
+
+  const cards = deck ?? wordPool;
+  const currentWord = cards[currentIndex] || cards[0];
 
   const handleFlip = useCallback(() => {
     setFlipped((prev) => !prev);
@@ -54,13 +81,36 @@ export function FlashcardSrsMode({
 
   const nextCard = useCallback(() => {
     setFlipped(false);
-    setCurrentIndex((prev) => (prev + 1) % wordPool.length);
-  }, [wordPool.length]);
+    setCurrentIndex((prev) => (prev + 1) % Math.max(cards.length, 1));
+  }, [cards.length]);
 
   const prevCard = useCallback(() => {
     setFlipped(false);
-    setCurrentIndex((prev) => (prev - 1 + wordPool.length) % wordPool.length);
-  }, [wordPool.length]);
+    setCurrentIndex((prev) => (prev - 1 + cards.length) % Math.max(cards.length, 1));
+  }, [cards.length]);
+
+  const gradeCard = useCallback(
+    (grade: LearningGrade) => {
+      if (user && currentWord) {
+        void record(currentWord.id, selectedLevel, grade).catch(() => undefined);
+      }
+      nextCard();
+    },
+    [user, currentWord, record, selectedLevel, nextCard]
+  );
+
+  useEffect(() => {
+    if (!user || !deck || !currentWord) return;
+    const handle = window.setTimeout(() => {
+      void savePlace({
+        level: selectedLevel,
+        mode: "flashcard",
+        itemKey: currentWord.id,
+        cursor: currentIndex,
+      }).catch(() => undefined);
+    }, 500);
+    return () => window.clearTimeout(handle);
+  }, [user, deck, currentWord, currentIndex, selectedLevel, savePlace]);
 
   // Keyboard shortcut: Space to flip, Arrows to navigate, R to pronounce
   useEffect(() => {
@@ -120,7 +170,7 @@ export function FlashcardSrsMode({
             <ArrowLeft className="h-3.5 w-3.5" />
           </Button>
           <span className="text-xs text-muted-foreground font-mono font-bold">
-            {currentIndex + 1} <span className="opacity-40">/</span> {wordPool.length}
+            {currentIndex + 1} <span className="opacity-40">/</span> {cards.length}
           </span>
           <Button
             variant="ghost"
@@ -283,7 +333,7 @@ export function FlashcardSrsMode({
           className="border-rose-500/30 hover:bg-rose-500/10 hover:border-rose-500/50 hover:text-rose-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
           onClick={() => {
             if (soundEnabled) playSfx("wrong");
-            nextCard();
+            gradeCard("again");
           }}
         >
           <span className="font-bold text-sm text-rose-600 dark:text-rose-400">Again</span>
@@ -294,7 +344,7 @@ export function FlashcardSrsMode({
           className="border-amber-500/30 hover:bg-amber-500/10 hover:border-amber-500/50 hover:text-amber-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
           onClick={() => {
             if (soundEnabled) playSfx("correct");
-            nextCard();
+            gradeCard("hard");
           }}
         >
           <span className="font-bold text-sm text-amber-600 dark:text-amber-400">Hard</span>
@@ -305,7 +355,7 @@ export function FlashcardSrsMode({
           className="border-sky-500/30 hover:bg-sky-500/10 hover:border-sky-500/50 hover:text-sky-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
           onClick={() => {
             if (soundEnabled) playSfx("correct");
-            nextCard();
+            gradeCard("good");
           }}
         >
           <span className="font-bold text-sm text-sky-600 dark:text-sky-400">Good</span>
@@ -316,7 +366,7 @@ export function FlashcardSrsMode({
           className="border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-500/50 hover:text-emerald-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
           onClick={() => {
             if (soundEnabled) playSfx("streak");
-            nextCard();
+            gradeCard("easy");
           }}
         >
           <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400">Easy</span>

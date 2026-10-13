@@ -10,6 +10,8 @@ import {
 	vector,
 	integer,
 	jsonb,
+	real,
+	date,
 } from 'drizzle-orm/pg-core';
 
 // Enum equivalent of Prisma UserRole
@@ -382,3 +384,65 @@ export const exampleSentences = pgTable(
 		index('example_sentences_category_idx').on(t.category),
 	]
 );
+
+export type LearnerBookmark = {
+	mode: string;
+	itemKey: string | null;
+	cursor: number;
+};
+
+// Catalog study cards. Keys are frontend ids such as tanos-n5-1, not words.id.
+export const learnerCards = pgTable(
+	'learner_cards',
+	{
+		id: varchar('id', { length: 128 }).primaryKey(),
+		userId: varchar('user_id', { length: 128 })
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		itemKey: text('item_key').notNull(),
+		kind: varchar('kind', { length: 16 }).notNull().default('word'),
+		level: varchar('level', { length: 8 }).notNull(),
+		mastery: integer('mastery').notNull().default(0),
+		ease: real('ease').notNull().default(2.5),
+		intervalDays: integer('interval_days').notNull().default(0),
+		reps: integer('reps').notNull().default(0),
+		lapses: integer('lapses').notNull().default(0),
+		lastGrade: varchar('last_grade', { length: 8 }),
+		learnedAt: timestamp('learned_at', { withTimezone: false }),
+		lastSeenAt: timestamp('last_seen_at', { withTimezone: false }),
+		lastSeenDay: varchar('last_seen_day', { length: 10 }),
+		nextReviewAt: timestamp('next_review_at', { withTimezone: false }),
+		createdAt: timestamp('created_at', { withTimezone: false })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp('updated_at', { withTimezone: false })
+			.notNull()
+			.defaultNow()
+			.$onUpdate(() => new Date()),
+	},
+	t => [
+		uniqueIndex('learner_cards_user_item_unique').on(t.userId, t.itemKey),
+		index('learner_cards_user_level_idx').on(t.userId, t.level),
+		index('learner_cards_due_idx').on(t.userId, t.nextReviewAt),
+	]
+);
+
+export const learnerState = pgTable('learner_state', {
+	userId: varchar('user_id', { length: 128 })
+		.primaryKey()
+		.references(() => users.id, { onDelete: 'cascade' }),
+	level: varchar('level', { length: 8 }).notNull().default('N5'),
+	mode: varchar('mode', { length: 24 }).notNull().default('flashcard'),
+	itemKey: text('item_key'),
+	cursorIndex: integer('cursor_index').notNull().default(0),
+	bookmarks: jsonb('bookmarks')
+		.$type<Record<string, LearnerBookmark>>()
+		.notNull()
+		.default({}),
+	streakDays: integer('streak_days').notNull().default(0),
+	lastActiveOn: date('last_active_on', { mode: 'string' }),
+	updatedAt: timestamp('updated_at', { withTimezone: false })
+		.notNull()
+		.defaultNow()
+		.$onUpdate(() => new Date()),
+});

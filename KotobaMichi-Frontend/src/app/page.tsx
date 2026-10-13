@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { speakJapanese } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
+import { LearningPath } from "@/components/organisms/learning-path";
 
 export default function Home() {
   const { t } = useLocale();
@@ -58,6 +59,10 @@ export default function Home() {
           <p className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground text-pretty leading-relaxed">
             {t.home.body}
           </p>
+
+          <div className="mx-auto max-w-3xl text-left">
+            <LearningPath compact />
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">

@@ -18,11 +18,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/atoms/input";
 import { Button } from "@/components/atoms/button";
 import { toast } from "sonner";
+import { LearningPath } from "@/components/organisms/learning-path";
 
 export default function ProfilePage() {
   return (
     <ProtectedRoute>
       <div className="space-y-6">
+        <LearningPath />
         <ProfileCard />
         <AttemptsCard />
   <ChangePasswordCard />

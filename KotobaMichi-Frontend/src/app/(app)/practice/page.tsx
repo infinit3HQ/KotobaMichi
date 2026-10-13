@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/atoms/button";
 import { Card } from "@/components/atoms/card";
@@ -8,6 +8,7 @@ import { Badge } from "@/components/atoms/badge";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
+import { LearningPath } from "@/components/organisms/learning-path";
 import {
   Zap,
   Headphones,
@@ -253,6 +254,26 @@ export default function PracticeDojoPage() {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [speechRate, setSpeechRate] = useState<number>(0.92);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const level = params.get("level");
+    const nextMode = params.get("mode");
+    if (level === "N5" || level === "N4" || level === "N3" || level === "N2" || level === "N1") {
+      setSelectedLevel(level);
+    }
+    if (
+      nextMode === "sprint" ||
+      nextMode === "grammar" ||
+      nextMode === "kanji" ||
+      nextMode === "listening" ||
+      nextMode === "reading" ||
+      nextMode === "kana" ||
+      nextMode === "flashcard"
+    ) {
+      setMode(nextMode);
+    }
+  }, []);
+
   return (
     <div className="mx-auto max-w-7xl space-y-6 py-2 sm:space-y-8 sm:py-4">
       {/* Top Header & Global Controls */}
@@ -338,6 +359,23 @@ export default function PracticeDojoPage() {
           })}
         </div>
       </div>
+
+      <LearningPath
+        onContinue={(level, nextMode) => {
+          setSelectedLevel(level);
+          if (
+            nextMode === "sprint" ||
+            nextMode === "grammar" ||
+            nextMode === "kanji" ||
+            nextMode === "listening" ||
+            nextMode === "reading" ||
+            nextMode === "kana" ||
+            nextMode === "flashcard"
+          ) {
+            setMode(nextMode);
+          }
+        }}
+      />
 
       {/* Interactive Practice Pillars Deck (7 Authentic Japanese Dojos) */}
       <div className="space-y-3">

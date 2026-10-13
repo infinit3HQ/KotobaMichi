@@ -16,6 +16,7 @@ import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { lessonText } from "@/lib/i18n/content-si";
+import { useLearning } from "@/hooks/use-learning";
 import {
   Zap,
   Volume2,
@@ -45,6 +46,7 @@ export function SpeedSprintMode({
   speechRate,
 }: SpeedSprintModeProps) {
   const { locale } = useLocale();
+  const { user, due, record, savePlace } = useLearning(selectedLevel);
   const [gameState, setGameState] = useState<"idle" | "playing" | "gameover">("idle");
   const [timeLeft, setTimeLeft] = useState(60);
   const [score, setScore] = useState(0);
@@ -75,7 +77,10 @@ export function SpeedSprintMode({
   // Next Question Generator
   const generateQuestion = useCallback(() => {
     if (wordPool.length === 0) return;
-    const word = wordPool[Math.floor(Math.random() * wordPool.length)];
+    const dueWords = wordPool.filter((word) => due.includes(word.id));
+    const pickDue = dueWords.length > 0 && Math.random() < 0.5;
+    const source = pickDue ? dueWords : wordPool;
+    const word = source[Math.floor(Math.random() * source.length)];
     const distractors = getQuizDistractors(word, 3);
     const allOptions = [...distractors, word.english].sort(() => 0.5 - Math.random());
 
@@ -85,7 +90,7 @@ export function SpeedSprintMode({
 
     // Pronounce word immediately for audio-visual binding
     speakJapanese(word.kanji || word.hiragana, { rate: speechRate });
-  }, [wordPool, speechRate]);
+  }, [wordPool, speechRate, due]);
 
   // Start Game
   const startGame = () => {
@@ -95,6 +100,9 @@ export function SpeedSprintMode({
     setHistory([]);
     setTimeLeft(60);
     setGameState("playing");
+    if (user) {
+      void savePlace({ level: selectedLevel, mode: "sprint", cursor: 0 }).catch(() => undefined);
+    }
     generateQuestion();
     if (soundEnabled) playSfx("flip");
   };
@@ -143,13 +151,16 @@ export function SpeedSprintMode({
       }
 
       setHistory((prev) => [{ word: currentWord, isCorrect: correct }, ...prev]);
+      if (user) {
+        void record(currentWord.id, selectedLevel, correct ? "good" : "again").catch(() => undefined);
+      }
 
       // Quick progression to next question
       setTimeout(() => {
         generateQuestion();
       }, 550);
     },
-    [currentWord, selectedAnswer, streak, highestStreak, soundEnabled, generateQuestion]
+    [currentWord, selectedAnswer, streak, highestStreak, soundEnabled, generateQuestion, user, record, selectedLevel]
   );
 
   // Keyboard Navigation: keys 1, 2, 3, 4 and R for repeat

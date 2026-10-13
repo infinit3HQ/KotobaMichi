@@ -11,6 +11,7 @@ import { QuizzesModule } from './quizzes/quizzes.module';
 import { UsersModule } from './users/users.module';
 import { EmailModule } from './email/email.module';
 import { ProgressModule } from './progress/progress.module';
+import { LearningModule } from './learning/learning.module';
 
 @Module({
 	imports: [
@@ -31,6 +32,7 @@ import { ProgressModule } from './progress/progress.module';
 		QuizzesModule,
 		UsersModule,
 		ProgressModule,
+		LearningModule,
 	],
 	controllers: [AppController],
 	providers: [AppService, { provide: APP_GUARD, useClass: ThrottlerGuard }],
