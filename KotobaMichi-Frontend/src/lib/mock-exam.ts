@@ -121,6 +121,39 @@ export type SectionScore = {
   total: number;
 };
 
+export type MondaiScore = {
+  sectionId: string;
+  sectionTitle: string;
+  partTitle: string;
+  mondai: number;
+  correct: number;
+  total: number;
+};
+
+export function scoreByMondai(exam: MockExam, answers: Record<string, number>): MondaiScore[] {
+  const rows: MondaiScore[] = [];
+  for (const section of exam.sections) {
+    for (const part of section.parts) {
+      for (const mondai of part.mondai) {
+        let correct = 0;
+        for (const item of mondai.items) {
+          const chosen = answers[answerKey(section.id, part.id, mondai.number, item.number)];
+          if (chosen != null && chosen === item.answer) correct += 1;
+        }
+        rows.push({
+          sectionId: section.id,
+          sectionTitle: section.title,
+          partTitle: part.title,
+          mondai: mondai.number,
+          correct,
+          total: mondai.items.length,
+        });
+      }
+    }
+  }
+  return rows;
+}
+
 export function scoreExam(exam: MockExam, answers: Record<string, number>): SectionScore[] {
   const buckets: Record<string, SectionScore> = {
     language: { id: "language", title: "言語知識", correct: 0, total: 0 },

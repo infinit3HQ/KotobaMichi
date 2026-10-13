@@ -15,6 +15,7 @@ import {
   listeningAudioUrl,
   loadAttempt,
   saveAttempt,
+  scoreByMondai,
   scoreExam,
 } from "@/lib/mock-exam";
 import { fetchMockExamState, finishMockAttempt, saveMockAttempt } from "@/lib/mock-attempts";
@@ -600,6 +601,7 @@ function Results({
   onAgain: () => void;
 }) {
   const scores = scoreExam(exam, answers);
+  const mondaiScores = scoreByMondai(exam, answers);
   const correct = scores.reduce((sum, score) => sum + score.correct, 0);
   const total = scores.reduce((sum, score) => sum + score.total, 0);
   const [open, setOpen] = useState(false);
@@ -609,10 +611,9 @@ function Results({
       <div>
         <p className="font-jp text-sm text-primary">結果</p>
         <h1 className="mt-1 text-3xl font-semibold tracking-tight">{exam.title}</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
-          Raw count {correct} / {total}. The real N3 scales each block to 60, and a pass is 95 overall with at
-          least 19 in each block. This sitting does not invent that scale.
-          {signedIn ? " The paper and this score are saved on your account." : ""}
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          {correct} of {total} marked from the community key, grouped the way an N3 score report is grouped.
+          {signedIn ? " This paper is saved on your account." : ""}
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
@@ -623,8 +624,39 @@ function Results({
               {score.correct}
               <span className="text-base text-muted-foreground">/{score.total}</span>
             </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {score.total === 0 ? "0" : Math.round((score.correct / score.total) * 100)}% of this group
+            </p>
           </div>
         ))}
+      </div>
+      <div className="rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
+        On the real N3 report these three groups are scaled to 60 each, out of 180. A pass is 95 overall and at
+        least 19 in every group. That scale changes with each test and is not published, so this page does not
+        turn the raw count into a fake scaled score.
+      </div>
+      <div className="overflow-hidden rounded-2xl border border-border">
+        <table className="w-full text-sm">
+          <thead className="bg-secondary/60 text-left text-xs text-muted-foreground">
+            <tr>
+              <th className="px-4 py-2 font-medium">問題</th>
+              <th className="px-4 py-2 text-right font-medium">Marked</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mondaiScores.map((row) => (
+              <tr key={`${row.sectionId}-${row.partTitle}-${row.mondai}`} className="border-t border-border/70">
+                <td className="px-4 py-2">
+                  <span className="font-jp">{row.partTitle}</span>
+                  <span className="text-muted-foreground"> 問題{row.mondai}</span>
+                </td>
+                <td className="px-4 py-2 text-right font-mono tabular-nums">
+                  {row.correct}/{row.total}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div className="flex flex-wrap gap-2">
         <Button type="button" variant="outline" onClick={() => setOpen((value) => !value)}>
