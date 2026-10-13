@@ -361,7 +361,7 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                             passage["questionNumbers"].append(number)
                         mondai["items"].append(item)
                     continue
-                chunks = option_chunks(text) if line["x"] > 80 else None
+                chunks = option_chunks(text)
                 if chunks and item is not None:
                     have = {option["number"] for option in item["options"]}
                     for number, body in chunks:
@@ -369,10 +369,29 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                             item["options"].append({"number": number, "text": body})
                     item["options"].sort(key=lambda option: option["number"])
                     continue
+                if item is not None and item["options"] and "問題" not in text:
+                    item["options"][-1]["text"] = clean(item["options"][-1]["text"] + text)
+                    continue
                 if mondai["items"]:
                     continue
                 if text:
                     mondai["instruction"] = clean(mondai["instruction"] + text)
+                continue
+
+            pending = option_chunks(text)
+            if (
+                pending
+                and item is not None
+                and item["options"]
+                and len(item["options"]) < 4
+                and pending[0][0] == item["options"][-1]["number"] + 1
+                and (len(pending) >= 2 or len(pending[0][1]) <= 24)
+            ):
+                have = {option["number"] for option in item["options"]}
+                for number, body in pending:
+                    if number not in have:
+                        item["options"].append({"number": number, "text": body})
+                item["options"].sort(key=lambda option: option["number"])
                 continue
 
             number = question_number(line, expected)
@@ -608,8 +627,11 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
             _count, part_id, mondai_no, passage, _inside = max(ranked, key=lambda row: row[0])
             label = (passage.get("label") or "body").replace("（", "").replace("）", "")
             name = f"{part_id}-{mondai_no}-{label}.png"
-            pix = page.get_pixmap(matrix=pymupdf.Matrix(2.2, 2.2), clip=clip, alpha=False)
-            pix.save(image_dir / name)
+            passage.setdefault("_clips", []).append((page_index, pymupdf.Rect(clip)))
+            passage["image"] = f"images/{name}"
+            if clip.height + 8 < passage.get("_clip_h", 0):
+                continue
+            passage["_clip_h"] = clip.height
             above = [
                 line
                 for line in passage.get("lines", [])
@@ -625,6 +647,33 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
                 passage["lead"] = lead
             passage["text"] = format_lines(body)
             passage["image"] = f"images/{name}"
+
+    for _part_id, _mondai_no, passage in passages:
+        clips = passage.pop("_clips", [])
+        if not clips or not passage.get("image"):
+            continue
+        clips.sort(key=lambda row: (row[0], row[1].y0))
+        pieces = [
+            doc[page_index].get_pixmap(matrix=pymupdf.Matrix(2.2, 2.2), clip=clip, alpha=False)
+            for page_index, clip in clips
+        ]
+        dest = image_dir / Path(passage["image"]).name
+        if len(pieces) == 1:
+            pieces[0].save(dest)
+            continue
+        gap = 12
+        for piece in pieces:
+            piece.set_origin(0, 0)
+        width = max(piece.width for piece in pieces)
+        height = sum(piece.height for piece in pieces) + gap * (len(pieces) - 1)
+        stacked = pymupdf.Pixmap(pieces[0].colorspace, pymupdf.IRect(0, 0, width, height), 0)
+        stacked.set_origin(0, 0)
+        stacked.clear_with(255)
+        top = 0
+        for piece in pieces:
+            stacked.copy(piece, pymupdf.IRect(0, top, piece.width, top + piece.height))
+            top += piece.height + gap
+        stacked.save(dest)
 
     for section in exam["sections"]:
         for part in section["parts"]:
@@ -651,6 +700,7 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
 
     for _part_id, _mondai_no, passage in passages:
         passage.pop("lines", None)
+        passage.pop("_clip_h", None)
 
     for section in exam["sections"]:
         for part in section["parts"]:
@@ -913,6 +963,115 @@ def write_key(exam: dict, path: Path) -> None:
     path.write_text(json.dumps(key, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
+def ban_label_spans(page: pymupdf.Page) -> list[dict]:
+    labels = []
+    for span in spans_of(page):
+        text = clean(span["t"])
+        matches = list(re.finditer(r"([0-9]{1,2})\s*番", text))
+        if not matches:
+            continue
+        width = max(span["x1"] - span["x"], 1)
+        for match in matches:
+            labels.append(
+                {
+                    "number": int(match.group(1)),
+                    "x": span["x"] + (match.start() / max(len(text), 1)) * width,
+                    "y": span["y"],
+                }
+            )
+    return labels
+
+
+def crop_listening_pictures(doc: pymupdf.Document, exam: dict) -> None:
+    """問題4 pictures are often one bitmap, or two pages, and the items
+    themselves are only created once the script is read."""
+    listening = next(s for s in exam["sections"] if s["id"] == "listening")
+    picture = next((m for m in listening["parts"][0]["mondai"] if m["number"] == 4), None)
+    if picture is None or not picture["items"]:
+        return
+    if all(item.get("image") for item in picture["items"]):
+        return
+    def is_picture_page(page: pymupdf.Page) -> bool:
+        text = han(page.get_text()).replace("\n", "")
+        return "絵を見ながら" in text or "えを見ながら" in text
+
+    start = next((index for index, page in enumerate(doc) if is_picture_page(page)), None)
+    if start is None:
+        return
+    image_dir = OUT / "images"
+    image_dir.mkdir(parents=True, exist_ok=True)
+    for item in picture["items"]:
+        item.pop("image", None)
+    picture.pop("image", None)
+
+    page_indexes = [start]
+    if start + 1 < doc.page_count and ban_label_spans(doc[start + 1]):
+        page_indexes.append(start + 1)
+
+    def save_clip(page: pymupdf.Page, info: dict, name: str) -> None:
+        box = pymupdf.Rect(info["bbox"])
+        box = pymupdf.Rect(box.x0 - 2, box.y0 - 2, box.x1 + 2, box.y1 + 2)
+        pix = page.get_pixmap(matrix=pymupdf.Matrix(2.2, 2.2), clip=box, alpha=False)
+        pix.save(image_dir / name)
+
+    assigned: set[int] = set()
+    for page_index in page_indexes:
+        page = doc[page_index]
+        labels = [label for label in ban_label_spans(page) if label["number"] in {1, 2, 3, 4}]
+        infos = [
+            info
+            for info in page.get_image_info()
+            if info["bbox"][2] - info["bbox"][0] > 80 and info["bbox"][3] - info["bbox"][1] > 80
+        ]
+        if len(infos) == 1 and len(labels) < 2:
+            save_clip(page, infos[0], "listening-4-sheet.png")
+            picture["image"] = "images/listening-4-sheet.png"
+            return
+        for label in sorted(labels, key=lambda row: (row["y"], row["x"])):
+            if label["number"] in assigned:
+                continue
+            best = None
+            best_score = 10**9
+            for info in infos:
+                left, top, right, _bottom = info["bbox"]
+                center = (left + right) / 2
+                gap = top - label["y"]
+                if not -8 <= gap <= 90:
+                    continue
+                if abs(center - label["x"]) > 160:
+                    continue
+                score = gap * 2 + abs(center - label["x"])
+                if score < best_score:
+                    best_score = score
+                    best = info
+            if best is None:
+                continue
+            target = next((it for it in picture["items"] if it["number"] == label["number"]), None)
+            if target is None:
+                continue
+            name = f"listening-4-{target['number']}.png"
+            save_clip(page, best, name)
+            target["image"] = f"images/{name}"
+            assigned.add(label["number"])
+        if picture.get("image"):
+            return
+        if any(item.get("image") for item in picture["items"]):
+            continue
+        if len(infos) == 1:
+            save_clip(page, infos[0], "listening-4-sheet.png")
+            picture["image"] = "images/listening-4-sheet.png"
+            return
+        if len(infos) == 4:
+            ordered = sorted(infos, key=lambda info: (round(info["bbox"][1] / 40), info["bbox"][0]))
+            for number, info in enumerate(ordered, start=1):
+                target = next((it for it in picture["items"] if it["number"] == number), None)
+                if target is None:
+                    continue
+                name = f"listening-4-{number}.png"
+                save_clip(page, info, name)
+                target["image"] = f"images/{name}"
+
+
 def main() -> None:
     global PAPER, SCRIPT, ANSWERS, AUDIO, OUT, EXAM_ID, EXAM_SESSION, EXAM_TITLE, ANSWER_LABEL, SKIP_PAGES
     parser = argparse.ArgumentParser(description="Extract one reconstructed N3 sitting.")
@@ -955,6 +1114,7 @@ def main() -> None:
     answers = parse_answers(ANSWERS)
     script = parse_script(SCRIPT)
     apply_script(exam, script)
+    crop_listening_pictures(paper, exam)
     apply_answers(exam, answers)
     mismatches = apply_script(exam, script)
     OUT.mkdir(parents=True, exist_ok=True)
