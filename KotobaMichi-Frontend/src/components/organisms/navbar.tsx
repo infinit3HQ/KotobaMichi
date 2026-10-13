@@ -16,7 +16,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
 import { useTheme } from "next-themes";
-import { Zap, BookOpen, Layers, User, Shield, LogOut, Menu, Home, Moon, Sun, Timer } from "lucide-react";
+import { Zap, BookOpen, Languages, Layers, User, Shield, LogOut, Menu, Home, Moon, Sun, Timer } from "lucide-react";
 
 type NavItem = {
   href: string;
@@ -49,6 +49,13 @@ const PRIMARY_NAV: NavItem[] = [
     short: "Words",
     icon: BookOpen,
     match: (pathname) => pathname.startsWith("/words"),
+  },
+  {
+    href: "/kanji",
+    label: "Kanji",
+    short: "Kanji",
+    icon: Languages,
+    match: (pathname) => pathname.startsWith("/kanji"),
   },
   {
     href: "/quizzes",
@@ -102,6 +109,7 @@ export function Navbar() {
     if (href === "/") return short ? t.nav.homeShort : t.nav.home;
     if (href === "/practice") return short ? t.nav.practiceShort : t.nav.practice;
     if (href === "/words") return t.nav.words;
+    if (href === "/kanji") return short ? t.nav.kanjiShort : t.nav.kanji;
     if (href === "/mock") return short ? t.nav.mockShort : t.nav.mock;
     return t.nav.quizzes;
   };
@@ -320,7 +328,7 @@ export function Navbar() {
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         aria-label="Primary"
       >
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-6">
           {PRIMARY_NAV.map((item) => {
             const active = item.match(pathname);
             const Icon = item.icon;

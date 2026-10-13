@@ -8,6 +8,8 @@ export type Dictionary = {
     practice: string;
     practiceShort: string;
     words: string;
+    kanji: string;
+    kanjiShort: string;
     quizzes: string;
     mock: string;
     mockShort: string;
@@ -89,6 +91,17 @@ export type Dictionary = {
     level: string;
     search: string;
   };
+  kanji: {
+    vaultAll: string;
+    vaultLevel: (level: string) => string;
+    title: string;
+    allDesc: string;
+    levelDesc: (count: string, level: string) => string;
+    practice: string;
+    voice: (rate: string) => string;
+    level: string;
+    search: string;
+  };
   quizzes: {
     kicker: string;
     title: string;
@@ -141,6 +154,8 @@ const en: Dictionary = {
     practice: "Practice Dojo",
     practiceShort: "Dojo",
     words: "Words",
+    kanji: "Kanji",
+    kanjiShort: "Kanji",
     quizzes: "Quizzes",
     mock: "Mock exam",
     mockShort: "Mock",
@@ -237,6 +252,19 @@ const en: Dictionary = {
     level: "Level",
     search: "Search by English, Hiragana, Kanji, or Romaji... (Press '/' to focus)",
   },
+  kanji: {
+    vaultAll: "JLPT N5 – N2 Kanji Vault",
+    vaultLevel: (level) => `JLPT ${level} Kanji`,
+    title: "Kanji Explorer",
+    allDesc:
+      "Flip through every JLPT kanji in the vault. The front shows the character. The back shows the meaning, readings, radicals, and example words.",
+    levelDesc: (count, level) =>
+      `Study ${count} JLPT ${level} kanji with flip cards, native audio, radicals, and example words.`,
+    practice: "Kanji Dojo",
+    voice: (rate) => `Voice: ${rate}`,
+    level: "Level",
+    search: "Search by kanji, meaning, reading, or radical...",
+  },
   quizzes: {
     kicker: "問題集 · Quizzes",
     title: "Spaced Repetition Quizzes",
@@ -289,6 +317,8 @@ const si: Dictionary = {
     practice: "පුහුණු ශාලාව",
     practiceShort: "පුහුණුව",
     words: "වචන",
+    kanji: "කන්ජි",
+    kanjiShort: "කන්ජි",
     quizzes: "ප්‍රශ්නාවලි",
     mock: "ආදර්ශ විභාගය",
     mockShort: "විභාග",
@@ -382,6 +412,19 @@ const si: Dictionary = {
     voice: (rate) => `හඬ: ${rate}`,
     level: "මට්ටම",
     search: "ඉංග්‍රීසි, හිරගනා, කන්ජි, හෝ රෝමජි වලින් සොයන්න...",
+  },
+  kanji: {
+    vaultAll: "JLPT N5 – N2 කන්ජි ගබඩාව",
+    vaultLevel: (level) => `JLPT ${level} කන්ජි`,
+    title: "කන්ජි ගවේෂකය",
+    allDesc:
+      "ගබඩාවේ සියලු JLPT කන්ජි කාඩ්පත් පෙරළා ඉගෙන ගන්න. ඉදිරිපස අකුරයි. පිටුපස අර්ථය, කියවීම්, මූලාංග, සහ උදාහරණ වචනයි.",
+    levelDesc: (count, level) =>
+      `JLPT ${level} කන්ජි ${count}ක් කාඩ්පත්, උච්චාරණය, මූලාංග, සහ උදාහරණ වචන සමඟ ඉගෙන ගන්න.`,
+    practice: "කන්ජි ශාලාව",
+    voice: (rate) => `හඬ: ${rate}`,
+    level: "මට්ටම",
+    search: "කන්ජි, අර්ථය, කියවීම, හෝ මූලාංගයෙන් සොයන්න...",
   },
   quizzes: {
     kicker: "問題集 · ප්‍රශ්නාවලි",

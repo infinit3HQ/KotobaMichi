@@ -28,6 +28,9 @@ export function Footer() {
           <Link href="/words" className="hover:text-primary transition-colors">
             {t.home.vaultTitle}
           </Link>
+          <Link href="/kanji" className="hover:text-primary transition-colors">
+            {t.nav.kanji}
+          </Link>
           <Link href="/quizzes" className="hover:text-primary transition-colors">
             {t.home.quizTitle}
           </Link>

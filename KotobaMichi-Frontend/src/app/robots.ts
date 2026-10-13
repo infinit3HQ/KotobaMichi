@@ -21,7 +21,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/practice", "/words", "/quizzes"],
+        allow: ["/", "/practice", "/words", "/kanji", "/quizzes"],
         disallow: [
           "/auth/",
           "/dashboard",
