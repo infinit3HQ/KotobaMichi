@@ -11,6 +11,20 @@ async function bootstrap() {
 			logger: ['error', 'warn', 'log', 'debug', 'verbose'],
 		});
 
+		// Google's saved production redirect is /api/auth/google/callback.
+		// The API routes live under /v1, so this alias reaches the same handler.
+		app.use((req: { url?: string }, _res: unknown, next: () => void) => {
+			const url = req.url ?? '';
+			if (
+				url === '/api/auth/google' ||
+				url.startsWith('/api/auth/google/') ||
+				url.startsWith('/api/auth/google?')
+			) {
+				req.url = url.replace('/api/auth/google', '/v1/auth/google');
+			}
+			next();
+		});
+
 		// Enable CORS with credentials for cookie-based auth.
 		// APP_URL is the web app, so it stays allowed even when CORS_ORIGIN lists another origin.
 		const origins = new Set(
