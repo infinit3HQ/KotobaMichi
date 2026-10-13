@@ -17,12 +17,12 @@ import {
   loadAttempt,
   PASS_SECTION,
   PASS_TOTAL,
+  pointsForSection,
   responseBand,
   saveAttempt,
   scoreByMondai,
   scoreExam,
   SECTION_POINTS,
-  sectionPoints,
 } from "@/lib/mock-exam";
 import { fetchMockExamState, finishMockAttempt, saveMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
@@ -608,8 +608,7 @@ function Results({
 }) {
   const scores = scoreExam(exam, answers);
   const mondaiScores = scoreByMondai(exam, answers);
-  const sectionTotals = new Map(scores.map((score) => [score.id, score.total]));
-  const estimated = scores.map((score) => sectionPoints(score.correct, score.total));
+  const estimated = scores.map((score) => pointsForSection(mondaiScores, score.id));
   const estimatedTotal = estimated.reduce((sum, value) => sum + value, 0);
   const clearsSections = estimated.every((value) => value >= PASS_SECTION);
   const clearsTotal = estimatedTotal >= PASS_TOTAL;
@@ -639,7 +638,8 @@ function Results({
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
         {scores.map((score) => {
-          const points = sectionPoints(score.correct, score.total);
+          const points = pointsForSection(mondaiScores, score.id);
+          const mondaiCount = mondaiScores.filter((row) => row.sectionId === score.id).length;
           return (
             <div key={score.id} className="rounded-2xl border border-border bg-card p-4">
               <p className="font-jp text-sm text-muted-foreground">{score.title}</p>
@@ -648,7 +648,7 @@ function Results({
                 <span className="text-base text-muted-foreground">/{SECTION_POINTS}</span>
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                {score.correct}/{score.total} marked
+                {mondaiCount} 問題 × {formatPoints(SECTION_POINTS / mondaiCount)} · {score.correct}/{score.total} marked
                 {points >= PASS_SECTION ? ` · at or above ${PASS_SECTION}` : ` · under ${PASS_SECTION}`}
               </p>
             </div>
@@ -656,11 +656,11 @@ function Results({
         })}
       </div>
       <div className="rounded-2xl border border-border bg-card p-4 text-sm leading-relaxed text-muted-foreground">
-        The three groups are an equal third of the 180. Inside a group, every question takes the same slice of
-        that 60, so a reading question is worth more of the total than a vocabulary question. The real report
-        then shifts the number for how hard each item was. That shift is not published, so this is the
-        equal-share estimate, not an official scaled score. Vocabulary and grammar share one 60. Their letters
-        are the report’s correct-answer bands: A is 67% or more, B is 34–66%, C is under 34%.
+        Each 問題 takes an equal part of its group’s 60, and the items inside that 問題 split that part. 読解 has
+        four 問題, so each gets 15, and 問題7’s two items each get 7.5. 文法 is not in that 60. It shares 言語知識
+        with the five vocabulary 問題, eight in all, so each of those gets 7.5. The real report then shifts the
+        number for item difficulty, which is not published. Vocabulary and grammar letters are the report’s
+        bands: A is 67% or more, B is 34–66%, C is under 34%.
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {areas.map((area) => (
@@ -685,24 +685,23 @@ function Results({
             </tr>
           </thead>
           <tbody>
-            {mondaiScores.map((row) => {
-              const sectionTotal = sectionTotals.get(row.sectionId) ?? row.total;
-              const slice = sectionTotal > 0 ? SECTION_POINTS / sectionTotal : 0;
-              return (
-                <tr key={`${row.sectionId}-${row.partTitle}-${row.mondai}`} className="border-t border-border/70">
-                  <td className="px-4 py-2">
-                    <span className="font-jp">{row.partTitle}</span>
-                    <span className="text-muted-foreground"> 問題{row.mondai}</span>
-                  </td>
-                  <td className="px-4 py-2 text-right font-mono tabular-nums">
-                    {row.correct}/{row.total}
-                  </td>
-                  <td className="px-4 py-2 text-right font-mono tabular-nums">
-                    {formatPoints(row.correct * slice)}/{formatPoints(row.total * slice)}
-                  </td>
-                </tr>
-              );
-            })}
+            {mondaiScores.map((row) => (
+              <tr key={`${row.sectionId}-${row.partTitle}-${row.mondai}`} className="border-t border-border/70">
+                <td className="px-4 py-2">
+                  <span className="font-jp">{row.partTitle}</span>
+                  <span className="text-muted-foreground"> 問題{row.mondai}</span>
+                </td>
+                <td className="px-4 py-2 text-right font-mono tabular-nums">
+                  {row.correct}/{row.total}
+                </td>
+                <td className="px-4 py-2 text-right font-mono tabular-nums">
+                  {formatPoints(row.earned)}/{formatPoints(row.share)}
+                  <span className="ml-2 text-xs text-muted-foreground">
+                    {formatPoints(row.total > 0 ? row.share / row.total : 0)} each
+                  </span>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

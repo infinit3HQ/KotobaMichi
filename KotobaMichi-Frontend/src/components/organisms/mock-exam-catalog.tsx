@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { formatPoints, MOCK_EXAMS, sectionPoints, type MockExam } from "@/lib/mock-exam";
+import { formatPoints, MOCK_EXAMS, pointsForSection, scoreByMondai, scoreExam, type MockExam } from "@/lib/mock-exam";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
 
@@ -46,8 +46,10 @@ export function MockExamCatalog() {
         const mine = attempts.filter((attempt) => attempt.examId === exam.id && attempt.status === "finished");
         const open = attempts.find((attempt) => attempt.examId === exam.id && attempt.status === "in_progress");
         const latest = mine[0];
-        const latestEstimate =
-          latest?.scores?.reduce((sum, score) => sum + sectionPoints(score.correct, score.total), 0) ?? 0;
+        const latestRows = latest ? scoreByMondai(exam, latest.answers ?? {}) : [];
+        const latestEstimate = latest
+          ? scoreExam(exam, latest.answers ?? {}).reduce((sum, score) => sum + pointsForSection(latestRows, score.id), 0)
+          : 0;
         return (
           <li key={exam.id}>
             <Link

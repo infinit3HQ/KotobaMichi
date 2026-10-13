@@ -125,12 +125,6 @@ export type SectionScore = {
   total: number;
 };
 
-/** Equal share of a section's 60. The real JLPT then shifts this for item difficulty, which is not published. */
-export function sectionPoints(correct: number, total: number) {
-  if (total <= 0) return 0;
-  return (correct / total) * SECTION_POINTS;
-}
-
 export function formatPoints(value: number) {
   return (Math.round(value * 10) / 10).toFixed(1);
 }
@@ -151,6 +145,8 @@ export type MondaiScore = {
   mondai: number;
   correct: number;
   total: number;
+  share: number;
+  earned: number;
 };
 
 export function scoreByMondai(exam: MockExam, answers: Record<string, number>): MondaiScore[] {
@@ -171,11 +167,25 @@ export function scoreByMondai(exam: MockExam, answers: Record<string, number>): 
           mondai: mondai.number,
           correct,
           total: mondai.items.length,
+          share: 0,
+          earned: 0,
         });
       }
     }
   }
+
+  const counts = new Map<string, number>();
+  for (const row of rows) counts.set(row.sectionId, (counts.get(row.sectionId) ?? 0) + 1);
+  for (const row of rows) {
+    const share = SECTION_POINTS / (counts.get(row.sectionId) ?? 1);
+    row.share = share;
+    row.earned = row.total > 0 ? (row.correct / row.total) * share : 0;
+  }
   return rows;
+}
+
+export function pointsForSection(rows: MondaiScore[], sectionId: string) {
+  return rows.filter((row) => row.sectionId === sectionId).reduce((sum, row) => sum + row.earned, 0);
 }
 
 export function scoreExam(exam: MockExam, answers: Record<string, number>): SectionScore[] {
