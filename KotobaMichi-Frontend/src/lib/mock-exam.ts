@@ -1,5 +1,6 @@
 import december2025 from "@/data/exams/n3-2025-12.json";
 import july2025 from "@/data/exams/n3-2025-07.json";
+import december2024 from "@/data/exams/n3-2024-12.json";
 
 export type MockOption = { number: number; text: string };
 
@@ -56,8 +57,9 @@ export type MockExam = {
 
 export const N3_DECEMBER_2025 = december2025 as MockExam;
 export const N3_JULY_2025 = july2025 as MockExam;
+export const N3_DECEMBER_2024 = december2024 as MockExam;
 
-export const MOCK_EXAMS = [N3_DECEMBER_2025, N3_JULY_2025];
+export const MOCK_EXAMS = [N3_DECEMBER_2025, N3_JULY_2025, N3_DECEMBER_2024];
 
 export function examAsset(examId: string, path?: string | null) {
   if (!path) return null;

@@ -157,7 +157,7 @@ def question_number(line: dict) -> int | None:
     if line["x"] > 96:
         return None
     # Some sittings print "1 急に" and others print "1急に".
-    match = re.match(r"^([0-9]{1,2})(?:\s+|[（(]|(?=[ぁ-んァ-ヴー一-龯A-Za-z])|$)", line["text"])
+    match = re.match(r"^([0-9]{1,2})(?:\s+|(?=[^\d])|$)", line["text"])
     if not match:
         return None
     return int(match.group(1))
@@ -320,7 +320,7 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                             passage["questionNumbers"].append(number)
                         mondai["items"].append(item)
                     continue
-                chunks = option_chunks(text) if line["x"] > 90 else None
+                chunks = option_chunks(text) if line["x"] > 80 else None
                 if chunks and item is not None:
                     have = {option["number"] for option in item["options"]}
                     for number, body in chunks:
@@ -565,6 +565,8 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
                     kept = [line for line in passage.get("lines", []) if line["page"] != figure_page]
                     passage["lines"] = kept
                     passage["text"] = format_lines(kept)
+                    passage.pop("image", None)
+                    passage.pop("lead", None)
 
     for _part_id, _mondai_no, passage in passages:
         passage.pop("lines", None)
@@ -581,6 +583,22 @@ def crop_figures(doc: pymupdf.Document, exam: dict) -> None:
                     mondai["passages"] = kept
                 elif "passages" in mondai:
                     mondai.pop("passages")
+
+    referenced = set()
+    for section in exam["sections"]:
+        for part in section["parts"]:
+            for mondai in part["mondai"]:
+                if mondai.get("image"):
+                    referenced.add(Path(mondai["image"]).name)
+                for item in mondai["items"]:
+                    if item.get("image"):
+                        referenced.add(Path(item["image"]).name)
+                for passage in mondai.get("passages", []):
+                    if passage.get("image"):
+                        referenced.add(Path(passage["image"]).name)
+    for image in image_dir.glob("*.png"):
+        if image.name not in referenced:
+            image.unlink()
 
 
 def tokens_of(page: pymupdf.Page) -> list[dict]:
@@ -746,6 +764,10 @@ def apply_script(exam: dict, script: dict[int, dict[int, dict]]) -> list[str]:
     mismatches = []
     listening = next(s for s in exam["sections"] if s["id"] == "listening")
     for mondai in listening["parts"][0]["mondai"]:
+        spoken_map = script.get(mondai["number"], {})
+        if not mondai["items"] and spoken_map:
+            for number in sorted(spoken_map):
+                mondai["items"].append(new_item(number, f"{number}番", 0))
         for item in mondai["items"]:
             spoken = script.get(mondai["number"], {}).get(item["number"])
             if not spoken:
@@ -834,8 +856,9 @@ def main() -> None:
     exam = parse_paper(paper)
     crop_figures(paper, exam)
     answers = parse_answers(ANSWERS)
-    apply_answers(exam, answers)
     script = parse_script(SCRIPT)
+    apply_script(exam, script)
+    apply_answers(exam, answers)
     mismatches = apply_script(exam, script)
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "exam.json").write_text(json.dumps(exam, ensure_ascii=False, indent=2), encoding="utf-8")
