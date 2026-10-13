@@ -431,6 +431,35 @@ def frame_clips(page: pymupdf.Page) -> list[pymupdf.Rect]:
         top = min(rect.y0 for rect in horizontal)
         bottom = max(rect.y1 for rect in horizontal)
         return [pymupdf.Rect(left - 3, top - 3, right + 3, bottom + 3)]
+    wide = [rect for rect in horizontal if rect.width > 400]
+    wide.sort(key=lambda rect: rect.y0)
+    clips = []
+    used = set()
+    for index, top in enumerate(wide):
+        if index in used:
+            continue
+        for other in range(index + 1, len(wide)):
+            if other in used:
+                continue
+            bottom = wide[other]
+            if abs(top.x0 - bottom.x0) > 20 or abs(top.width - bottom.width) > 40:
+                continue
+            gap = bottom.y0 - top.y1
+            if gap < 70:
+                continue
+            used.add(index)
+            used.add(other)
+            clips.append(
+                pymupdf.Rect(
+                    min(top.x0, bottom.x0) - 4,
+                    top.y0 - 4,
+                    max(top.x1, bottom.x1) + 4,
+                    bottom.y1 + 6,
+                )
+            )
+            break
+    if clips:
+        return clips
     if len(horizontal) >= 3:
         left = min(rect.x0 for rect in horizontal)
         right = max(rect.x1 for rect in horizontal)
