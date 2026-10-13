@@ -12,10 +12,13 @@ import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { useResultsStore } from "@/stores/results";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { lessonText, sinhalaWordGloss } from "@/lib/i18n/content-si";
 
 export default function QuizResultsPage() {
   const params = useParams();
   const attemptId = params?.attemptId as string;
+  const { locale } = useLocale();
   const result = useResultsStore((s) => s.get(attemptId));
 
   if (!result) {
@@ -69,7 +72,9 @@ export default function QuizResultsPage() {
                       {item.word.hiragana || item.word.kanji || item.word.romaji}
                     </div>
                     <div className="text-sm text-muted-foreground">
-                      English: {item.word.english}
+                      {locale === "si"
+                        ? (sinhalaWordGloss(item.word) ?? lessonText(locale, item.word.english))
+                        : item.word.english}
                     </div>
                     <div className="text-sm mt-1">
                       Your answer:{" "}

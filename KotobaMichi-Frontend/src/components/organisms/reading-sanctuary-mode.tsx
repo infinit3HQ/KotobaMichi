@@ -14,6 +14,8 @@ import {
   type SentenceCategory,
 } from "@/data/sentences";
 import { speakJapanese, stopSpeaking, playSfx } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { lessonText } from "@/lib/i18n/content-si";
 import {
   BookOpen,
   Volume2,
@@ -44,6 +46,7 @@ export function ReadingSanctuaryMode({
   soundEnabled,
   speechRate,
 }: ReadingSanctuaryModeProps) {
+  const { locale } = useLocale();
   const [pIndex, setPIndex] = useState(0);
   const [showTranslation, setShowTranslation] = useState(false);
   const [activeSentence, setActiveSentence] = useState<number | null>(null);
@@ -287,7 +290,7 @@ export function ReadingSanctuaryMode({
                     <div className="font-semibold text-foreground text-xs mb-1">
                       English Translation:
                     </div>
-                    {currentPassage.contentEnglish}
+                    {lessonText(locale, currentPassage.contentEnglish)}
                   </div>
                 )}
               </div>
@@ -339,7 +342,7 @@ export function ReadingSanctuaryMode({
                             {q.questionJapanese}
                           </div>
                           <div className="text-xs text-muted-foreground italic">
-                            &ldquo;{q.questionEnglish}&rdquo;
+                            &ldquo;{lessonText(locale, q.questionEnglish)}&rdquo;
                           </div>
                         </div>
 
@@ -368,7 +371,7 @@ export function ReadingSanctuaryMode({
                                 onClick={() => handleAnswerQuestion(q.id, optIdx, q.correctAnswerIndex)}
                                 className={`w-full p-3 rounded-xl border-2 text-left text-sm font-medium transition-all flex items-center justify-between ${btnStyle}`}
                               >
-                                <span>{opt}</span>
+                                <span>{lessonText(locale, opt)}</span>
                                 <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-muted text-muted-foreground ml-2 shrink-0">
                                   {optIdx + 1}
                                 </span>
@@ -390,7 +393,7 @@ export function ReadingSanctuaryMode({
                                 {chosenOpt === q.correctAnswerIndex ? "Correct Answer!" : "Incorrect"}
                               </span>
                             </div>
-                            <p className="text-muted-foreground pt-0.5">{q.explanation}</p>
+                            <p className="text-muted-foreground pt-0.5">{lessonText(locale, q.explanation)}</p>
                           </div>
                         )}
                       </div>
@@ -573,7 +576,7 @@ export function ReadingSanctuaryMode({
                       onClick={() => setShowDrillEnglish(!showDrillEnglish)}
                       className="h-8 text-xs rounded-xl"
                     >
-                      {showDrillEnglish ? drillSentence.en : "Reveal Translation"}
+                      {showDrillEnglish ? lessonText(locale, drillSentence.en) : "Reveal Translation"}
                     </Button>
                   </div>
                 </div>
@@ -658,7 +661,7 @@ export function ReadingSanctuaryMode({
                         {/* English translation */}
                         {(showEnglishSentences || showEnglishMap[s.id]) ? (
                           <div className="text-xs text-muted-foreground font-medium italic pt-0.5">
-                            {s.en}
+                            {lessonText(locale, s.en)}
                           </div>
                         ) : (
                           <button

@@ -11,6 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/atoms/sheet";
+import { LocaleSwitch, useLocale } from "@/components/organisms/locale-provider";
 import { useAuth } from "@/hooks/use-auth";
 import { api } from "@/lib/api";
 import { toast } from "sonner";
@@ -89,6 +90,13 @@ export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuth();
+  const { t } = useLocale();
+  const labelFor = (href: string, short = false) => {
+    if (href === "/") return short ? t.nav.homeShort : t.nav.home;
+    if (href === "/practice") return short ? t.nav.practiceShort : t.nav.practice;
+    if (href === "/words") return t.nav.words;
+    return t.nav.quizzes;
+  };
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -122,7 +130,7 @@ export function Navbar() {
                 </span>
               </span>
               <span className="hidden truncate text-[10px] font-medium uppercase tracking-wide text-muted-foreground min-[380px]:block">
-                Japanese Lexicon Dojo
+                {t.nav.tagline}
               </span>
             </div>
           </Link>
@@ -152,7 +160,7 @@ export function Navbar() {
                       }`}
                     />
                   )}
-                  <span>{item.label}</span>
+                  <span>{labelFor(item.href)}</span>
                 </Link>
               );
             })}
@@ -167,7 +175,7 @@ export function Navbar() {
                 }`}
               >
                 <User className="h-3.5 w-3.5 opacity-70" />
-                Profile
+                {t.nav.profile}
               </Link>
             )}
 
@@ -181,7 +189,7 @@ export function Navbar() {
                 }`}
               >
                 <Shield className="h-3.5 w-3.5 text-primary" />
-                Admin
+                {t.nav.admin}
               </Link>
             )}
 
@@ -197,23 +205,26 @@ export function Navbar() {
                   onClick={signOut}
                 >
                   <LogOut className="mr-1 h-3.5 w-3.5" />
-                  Logout
+                  {t.nav.logout}
                 </Button>
               </div>
             ) : (
-              <div className="ml-2">
+              <div className="ml-2 flex items-center gap-2">
+                <LocaleSwitch />
                 <Button asChild size="sm" className="h-8 rounded-full px-3.5 text-xs font-semibold shadow-xs">
-                  <Link href="/auth/login">Sign in</Link>
+                  <Link href="/auth/login">{t.nav.signIn}</Link>
                 </Button>
               </div>
             )}
+            {user && <LocaleSwitch className="ml-2" />}
           </nav>
 
           <div className="flex shrink-0 items-center gap-1 lg:hidden">
+            <LocaleSwitch />
             <HeaderThemeButton />
             {!user && (
-              <Button asChild size="sm" className="h-9 rounded-full px-3 text-xs font-semibold">
-                <Link href="/auth/login">Sign in</Link>
+              <Button asChild size="sm" className="hidden h-9 rounded-full px-3 text-xs font-semibold min-[420px]:inline-flex">
+                <Link href="/auth/login">{t.nav.signIn}</Link>
               </Button>
             )}
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -229,7 +240,7 @@ export function Navbar() {
                     KotobaMichi
                   </SheetTitle>
                   <SheetDescription>
-                    {user ? user.email : "Practice Japanese from your phone."}
+                    {user ? user.email : t.nav.menuHint}
                   </SheetDescription>
                 </SheetHeader>
                 <nav className="flex flex-col gap-1 p-3">
@@ -247,7 +258,7 @@ export function Navbar() {
                         }`}
                       >
                         <Icon className={`h-5 w-5 ${item.iconClassName ?? ""}`} />
-                        {item.label}
+                        {labelFor(item.href)}
                       </Link>
                     );
                   })}
@@ -261,7 +272,7 @@ export function Navbar() {
                       }`}
                     >
                       <User className="h-5 w-5" />
-                      Profile
+                      {t.nav.profile}
                     </Link>
                   )}
                   {user?.role === "ADMIN" && (
@@ -274,7 +285,7 @@ export function Navbar() {
                       }`}
                     >
                       <Shield className="h-5 w-5 text-primary" />
-                      Admin
+                      {t.nav.admin}
                     </Link>
                   )}
                 </nav>
@@ -282,11 +293,11 @@ export function Navbar() {
                   {user ? (
                     <Button variant="outline" className="h-11 w-full" onClick={signOut}>
                       <LogOut className="mr-2 h-4 w-4" />
-                      Sign out
+                      {t.nav.signOut}
                     </Button>
                   ) : (
                     <Button asChild className="h-11 w-full">
-                      <Link href="/auth/register">Create free account</Link>
+                      <Link href="/auth/register">{t.nav.createAccount}</Link>
                     </Button>
                   )}
                 </div>
@@ -314,7 +325,7 @@ export function Navbar() {
                 }`}
               >
                 <Icon className={`h-5 w-5 ${item.iconClassName ?? ""}`} />
-                {item.short}
+                {labelFor(item.href, true)}
               </Link>
             );
           })}

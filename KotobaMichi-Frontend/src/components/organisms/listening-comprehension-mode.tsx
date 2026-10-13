@@ -16,6 +16,8 @@ import {
 } from "@/data/vocab-n5";
 import { JLPT_N4_WORDS, JLPT_N3_WORDS } from "@/data/vocab-more";
 import { speakJapanese, speakDialogue, stopSpeaking, playSfx } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { lessonText } from "@/lib/i18n/content-si";
 import {
   Headphones,
   Volume2,
@@ -126,6 +128,7 @@ function SituationalDialogueQuiz({
   soundEnabled: boolean;
   speechRate: number;
 }) {
+  const { locale } = useLocale();
   const [sIndex, setSIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeLine, setActiveLine] = useState<number | null>(null);
@@ -241,7 +244,7 @@ function SituationalDialogueQuiz({
             {currentScenario.situationJapanese}
           </div>
           <div className="text-xs text-muted-foreground italic">
-            &ldquo;{currentScenario.situationEnglish}&rdquo;
+            &ldquo;{lessonText(locale, currentScenario.situationEnglish)}&rdquo;
           </div>
         </div>
 
@@ -298,7 +301,7 @@ function SituationalDialogueQuiz({
               {currentScenario.questionJapanese}
             </div>
             <div className="text-xs text-muted-foreground italic">
-              &ldquo;{currentScenario.questionEnglish}&rdquo;
+              &ldquo;{lessonText(locale, currentScenario.questionEnglish)}&rdquo;
             </div>
           </div>
 
@@ -325,7 +328,7 @@ function SituationalDialogueQuiz({
                   onClick={() => handleSelectAnswer(idx)}
                   className={`p-3.5 rounded-xl border-2 text-left font-medium text-sm transition-all flex items-center justify-between ${btnStyle}`}
                 >
-                  <span>{opt}</span>
+                  <span>{lessonText(locale, opt)}</span>
                   <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-muted text-muted-foreground ml-2 shrink-0">
                     {idx + 1}
                   </span>
@@ -359,7 +362,7 @@ function SituationalDialogueQuiz({
 
             <div className="p-3.5 rounded-xl bg-muted/60 border text-xs leading-relaxed space-y-1">
               <span className="font-bold text-foreground">Listening Clue: </span>
-              <span className="text-muted-foreground">{currentScenario.explanation}</span>
+              <span className="text-muted-foreground">{lessonText(locale, currentScenario.explanation)}</span>
             </div>
 
             <div className="space-y-3">
@@ -411,7 +414,7 @@ function SituationalDialogueQuiz({
                           </div>
                           <div className="font-semibold text-foreground">{line.japanese}</div>
                           <div className="text-xs text-muted-foreground font-mono mt-0.5">{line.romaji}</div>
-                          <div className="text-xs text-muted-foreground italic mt-0.5">&ldquo;{line.english}&rdquo;</div>
+                          <div className="text-xs text-muted-foreground italic mt-0.5">&ldquo;{lessonText(locale, line.english)}&rdquo;</div>
                         </div>
                       ))}
                     </div>
@@ -432,7 +435,7 @@ function SituationalDialogueQuiz({
                               <span className="font-bold">{vocab.word}</span>{" "}
                               <span className="text-muted-foreground">({vocab.reading})</span>
                             </div>
-                            <span className="text-muted-foreground italic">{vocab.meaning}</span>
+                            <span className="text-muted-foreground italic">{lessonText(locale, vocab.meaning)}</span>
                           </div>
                         ))}
                       </div>
@@ -469,6 +472,7 @@ function BlindWordListeningQuiz({
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const { locale } = useLocale();
 
   const nextQuestion = useCallback(() => {
     if (wordPool.length === 0) return;
@@ -577,7 +581,7 @@ function BlindWordListeningQuiz({
                 onClick={() => handleSelect(option)}
                 className={`p-3.5 rounded-xl border text-sm font-medium transition-all ${btnClass}`}
               >
-                {option}
+                {lessonText(locale, option)}
               </button>
             );
           })}

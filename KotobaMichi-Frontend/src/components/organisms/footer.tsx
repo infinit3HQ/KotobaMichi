@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale } from "@/components/organisms/locale-provider";
 
 export function Footer() {
+  const { t } = useLocale();
   return (
     <footer className="border-t border-border/70 bg-card/40 backdrop-blur-sm py-10 text-xs text-muted-foreground transition-colors">
       <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -12,24 +16,24 @@ export function Footer() {
               JLPT N5
             </span>
           </div>
-          <p className="max-w-md text-center font-jp text-xs italic text-muted-foreground/90 md:text-left">
-            「千里の道も一歩から」— A journey of a thousand miles begins with a single step.
+          <p className="max-w-md text-center text-xs italic text-muted-foreground/90 md:text-left">
+            {t.footer.quote}
           </p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-5 font-medium">
           <Link href="/practice" className="hover:text-primary transition-colors">
-            Practice Dojo
+            {t.nav.practice}
           </Link>
           <Link href="/words" className="hover:text-primary transition-colors">
-            Vocabulary Vault
+            {t.home.vaultTitle}
           </Link>
           <Link href="/quizzes" className="hover:text-primary transition-colors">
-            Spaced Quizzes
+            {t.home.quizTitle}
           </Link>
           <span className="text-border">|</span>
           <span className="text-muted-foreground/70">
-            © {new Date().getFullYear()} KotobaMichi. Crafted with precision.
+            © {new Date().getFullYear()} KotobaMichi. {t.footer.crafted}
           </span>
         </div>
       </div>

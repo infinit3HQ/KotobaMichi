@@ -15,8 +15,10 @@ import {
   BookOpen,
 } from "lucide-react";
 import { speakJapanese } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
 
 export default function Home() {
+  const { t } = useLocale();
   const [teaserFlipped, setTeaserFlipped] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
@@ -42,19 +44,19 @@ export default function Home() {
           {/* Top Kanji Pill */}
           <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-center text-xs font-semibold text-primary shadow-2xs">
             <span className="font-jp text-sm font-black">道</span>
-            <span>The Kyoto Modernist Way to Fluent Recall</span>
+            <span>{t.home.pill}</span>
           </div>
 
           {/* Hero Headline */}
           <h1 className="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground text-balance">
-            Master Japanese Intuition with{" "}
+            {t.home.headline}{" "}
             <span className="text-primary underline decoration-primary/30 decoration-wavy decoration-from-font">
-              High-Speed Drills
+              {t.home.headlineAccent}
             </span>
           </h1>
 
           <p className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground text-pretty leading-relaxed">
-            KotobaMichi (<span className="font-jp text-foreground font-medium">言葉道</span>) fuses spaced repetition flashcards, rapid-fire Speed Sprints, and native speech synthesis to lock JLPT vocabulary into natural reflexive instinct.
+            {t.home.body}
           </p>
 
           {/* CTA Buttons */}
@@ -66,7 +68,7 @@ export default function Home() {
             >
               <Link href="/practice">
                 <Zap className="h-5 w-5 fill-current text-amber-300" />
-                Enter Practice Dojo
+                {t.home.enterDojo}
               </Link>
             </Button>
             <Button
@@ -77,7 +79,7 @@ export default function Home() {
             >
               <Link href="/words">
                 <BookOpen className="h-4 w-4" />
-                Explore 560+ Words
+                {t.home.exploreWords}
               </Link>
             </Button>
           </div>
@@ -85,7 +87,7 @@ export default function Home() {
           {/* Interactive Teaser Flashcard */}
           <div className="pt-8 flex flex-col items-center">
             <p className="text-xs text-muted-foreground/80 mb-3 flex items-center gap-1.5 font-mono">
-              <span>Interactive preview — click card to flip:</span>
+              <span>{t.home.preview}</span>
             </p>
             <div
               className="group perspective cursor-pointer w-full max-w-sm h-48 select-none"
@@ -100,14 +102,14 @@ export default function Home() {
                 <div className="absolute inset-0 backface-hidden rounded-2xl border border-border/80 bg-card p-6 flex flex-col justify-between shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
                   <div className="flex items-center justify-between text-xs">
                     <span className="px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground font-semibold text-[10px]">
-                      CORE CONCEPT
+                      {t.home.coreConcept}
                     </span>
                     <button
                       type="button"
                       onClick={handlePlayTeaser}
                       disabled={isAudioPlaying}
                       className="p-1.5 rounded-full hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
-                      title="Pronounce"
+                      title={t.home.pronounce}
                     >
                       <Volume2 className={`h-4 w-4 ${isAudioPlaying ? "text-primary animate-pulse" : ""}`} />
                     </button>
@@ -120,7 +122,7 @@ export default function Home() {
                   <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-2 border-t border-border/40">
                     <span>JLPT N5 Core</span>
                     <span className="flex items-center gap-1">
-                      Tap to reveal meaning
+                      {t.home.tapReveal}
                       <RotateCcw className="h-2.5 w-2.5" />
                     </span>
                   </div>
@@ -130,7 +132,7 @@ export default function Home() {
                 <div className="absolute inset-0 rotate-y-180 backface-hidden rounded-2xl border border-primary/30 bg-card p-6 flex flex-col justify-between shadow-sm bg-gradient-to-b from-primary/5 to-card">
                   <div className="flex items-center justify-between text-xs">
                     <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[10px]">
-                      MEANING
+                      {t.home.meaning}
                     </span>
                     <button
                       type="button"
@@ -141,13 +143,13 @@ export default function Home() {
                     </button>
                   </div>
                   <div className="text-center my-auto space-y-1">
-                    <h3 className="text-2xl font-extrabold text-foreground">The Path of Words</h3>
-                    <p className="text-xs text-muted-foreground">Language mastery through consistent intuition</p>
+                    <h3 className="text-2xl font-extrabold text-foreground">{t.home.pathTitle}</h3>
+                    <p className="text-xs text-muted-foreground">{t.home.pathDesc}</p>
                   </div>
                   <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-2 border-t border-border/40">
                     <span className="text-primary font-mono font-medium">言葉 (words) + 道 (path)</span>
                     <span className="flex items-center gap-1 text-primary/80">
-                      Flip back
+                      {t.home.flipBack}
                       <RotateCcw className="h-2.5 w-2.5" />
                     </span>
                   </div>
@@ -162,41 +164,41 @@ export default function Home() {
       <section className="container mx-auto px-4 max-w-6xl">
         <div className="text-center space-y-2 mb-10">
           <Badge variant="outline" className="text-xs uppercase tracking-wider font-semibold">
-            Comprehensive Method
+            {t.home.methodBadge}
           </Badge>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-            Engineered for Reflexive Comprehension
+            {t.home.methodTitle}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           <FeatureCard
             icon={<Zap className="h-5 w-5 text-amber-500" />}
-            badge="Fast Track"
-            title="Speed Sprint Dojo"
-            desc="60-second adrenaline drills with streak multipliers and instant keyboard feedback."
-            cta={{ label: "Enter dojo", to: "/practice" }}
+            badge={t.home.fastTrack}
+            title={t.home.sprintTitle}
+            desc={t.home.sprintDesc}
+            cta={{ label: t.home.enterDojoShort, to: "/practice" }}
           />
           <FeatureCard
             icon={<Headphones className="h-5 w-5 text-sky-500" />}
-            badge="Audio Native"
-            title="Listening Ear-Trainer"
-            desc="Authentic Japanese speech synthesis tuned for pitch and natural phrase cadence."
-            cta={{ label: "Train ears", to: "/practice" }}
+            badge={t.home.audioNative}
+            title={t.home.listenTitle}
+            desc={t.home.listenDesc}
+            cta={{ label: t.home.trainEars, to: "/practice" }}
           />
           <FeatureCard
             icon={<BookOpen className="h-5 w-5 text-emerald-500" />}
-            badge="Full Lexicon"
-            title="Vocabulary Vault"
-            desc="Browse 560+ JLPT words with audio pronunciation, kanji furigana, and topics."
-            cta={{ label: "Explore words", to: "/words" }}
+            badge={t.home.lexicon}
+            title={t.home.vaultTitle}
+            desc={t.home.vaultDesc}
+            cta={{ label: t.home.explore, to: "/words" }}
           />
           <FeatureCard
             icon={<Trophy className="h-5 w-5 text-rose-500" />}
-            badge="Retention"
-            title="Spaced Quizzes"
-            desc="Targeted active-recall evaluations that commit words into long-term mental memory."
-            cta={{ label: "Take a quiz", to: "/quizzes" }}
+            badge={t.home.retention}
+            title={t.home.quizTitle}
+            desc={t.home.quizDesc}
+            cta={{ label: t.home.takeQuiz, to: "/quizzes" }}
           />
         </div>
       </section>
@@ -207,19 +209,19 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-6 text-center sm:grid-cols-4 sm:divide-x sm:divide-border/60">
             <div>
               <div className="text-3xl sm:text-4xl font-black text-primary font-jp">562+</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">JLPT N5 Words</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.n5Words}</div>
             </div>
             <div>
               <div className="text-3xl sm:text-4xl font-black text-foreground">100%</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">Audio Pronunciation</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.audio}</div>
             </div>
             <div>
               <div className="text-3xl sm:text-4xl font-black text-foreground">60s</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">Speed Sprints</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.sprints}</div>
             </div>
             <div>
               <div className="text-3xl sm:text-4xl font-black text-foreground">0ms</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">Zero-Lag Offline</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.offline}</div>
             </div>
           </div>
         </div>
@@ -230,22 +232,22 @@ export default function Home() {
         <div className="relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/10 via-card to-card p-8 sm:p-12 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-2 max-w-xl">
             <span className="font-jp text-primary font-bold text-sm tracking-wide">
-              今日から始めよう · Start Today
+              今日から始めよう · {t.home.startToday}
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-              Ready to begin your KotobaMichi?
+              {t.home.ready}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Create an account to track your mastery streaks, build custom quizzes, and sync your vocabulary journey across devices.
+              {t.home.readyBody}
             </p>
           </div>
 
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Button asChild size="lg" className="h-11 px-6 font-semibold shadow-sm">
-              <Link href="/auth/register">Create Free Account</Link>
+              <Link href="/auth/register">{t.home.createAccount}</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="h-11 px-6 font-semibold">
-              <Link href="/auth/login">Sign In</Link>
+              <Link href="/auth/login">{t.home.signIn}</Link>
             </Button>
           </div>
         </div>

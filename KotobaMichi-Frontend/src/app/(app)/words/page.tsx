@@ -13,6 +13,8 @@ import {
   SelectTrigger,
 } from "@/components/atoms/select";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { sinhalaWordGloss } from "@/lib/i18n/content-si";
 import {
   Volume2,
   Search,
@@ -55,6 +57,7 @@ const LEVEL_TABS: { id: WordFilterLevel; label: string; kanji: string; count: nu
 ];
 
 export default function WordsPage() {
+  const { t } = useLocale();
   const [selectedLevel, setSelectedLevel] = useState<WordFilterLevel>("ALL");
   const [search, setSearch] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("All");
@@ -203,19 +206,19 @@ export default function WordsPage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2.5">
               <span className="inline-flex items-center justify-center px-2.5 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary border border-primary/25">
-                {selectedLevel === "ALL" ? "JLPT N5 – N1 Master Vault" : `JLPT ${selectedLevel} Track`}
+                {selectedLevel === "ALL" ? t.words.vaultAll : t.words.vaultLevel(selectedLevel)}
               </span>
               <span className="font-jp text-xs text-muted-foreground font-medium">
                 言葉道 · 語彙大辞典
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground flex items-center gap-3">
-              Vocabulary Explorer
+              {t.words.title}
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
               {selectedLevel === "ALL"
-                ? "Explore the full catalog of 8,447+ authentic Japanese words across all JLPT levels (N5 to N1) with tactile 3D cards, native speech synthesis, and topic immersion."
-                : `Master ${words.length.toLocaleString()}+ verified JLPT ${selectedLevel} Japanese words through tactile 3D flashcards, native audio pronunciation, and topic-based immersion.`}
+                ? t.words.allDesc
+                : t.words.levelDesc(words.length.toLocaleString(), selectedLevel)}
             </p>
           </div>
 
@@ -226,7 +229,7 @@ export default function WordsPage() {
             >
               <Link href="/practice">
                 <Zap className="h-4 w-4 fill-current text-amber-300" />
-                Practice Dojo
+                {t.words.practice}
               </Link>
             </Button>
             <Button
@@ -236,7 +239,7 @@ export default function WordsPage() {
               className="text-xs h-9 gap-1.5 border-border/80 bg-background/50 hover:bg-secondary"
             >
               <Volume2 className="h-3.5 w-3.5 text-primary" />
-              <span>Voice: {speechRate === 0.92 ? "1.0x" : "0.75x"}</span>
+              <span>{t.words.voice(speechRate === 0.92 ? "1.0x" : "0.75x")}</span>
             </Button>
           </div>
         </div>
@@ -247,7 +250,7 @@ export default function WordsPage() {
         {/* JLPT Level Selector Tabs */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-border/60">
           <div className="flex min-w-0 flex-wrap items-center gap-2 py-0.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground shrink-0">Level:</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground shrink-0">{t.words.level}:</span>
             <div className="flex min-w-0 flex-wrap items-center gap-1.5 rounded-xl border border-border/70 bg-background/70 p-1">
               {LEVEL_TABS.map((tab) => {
                 const isActive = selectedLevel === tab.id;
@@ -291,7 +294,7 @@ export default function WordsPage() {
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70" />
             <Input
               ref={searchInputRef}
-              placeholder="Search by English, Hiragana, Kanji, or Romaji... (Press '/' to focus)"
+              placeholder={t.words.search}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-10 pr-9 h-11 text-sm bg-background/60 border-border/80 rounded-lg focus-visible:ring-primary/40 transition-all placeholder:text-muted-foreground/60"
@@ -538,6 +541,8 @@ function ModernFlashcard({
   onToggle: () => void;
   speechRate: number;
 }) {
+  const { locale } = useLocale();
+  const sinhala = locale === "si" ? sinhalaWordGloss(word) : null;
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playAudio = useCallback(
@@ -657,8 +662,11 @@ function ModernFlashcard({
           {/* English Meaning Center */}
           <div className="text-center my-auto px-2 py-1 space-y-1.5">
             <h4 className="text-xl font-extrabold text-foreground tracking-tight leading-snug">
-              {word.english}
+              {sinhala ?? word.english}
             </h4>
+            {sinhala && (
+              <p className="text-xs font-medium text-muted-foreground">{word.english}</p>
+            )}
             <div className="font-jp text-xs text-muted-foreground flex items-center justify-center gap-1.5">
               <span className="font-semibold text-primary">{word.hiragana}</span>
               {word.kanji && word.kanji !== word.hiragana && (
@@ -905,6 +913,8 @@ function CompactTableView({
 }
 
 function TableRowItem({ word, speechRate }: { word: EnrichedWord; speechRate: number }) {
+  const { locale } = useLocale();
+  const sinhala = locale === "si" ? sinhalaWordGloss(word) : null;
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playAudio = async () => {
@@ -942,7 +952,14 @@ function TableRowItem({ word, speechRate }: { word: EnrichedWord; speechRate: nu
         {word.romaji}
       </td>
       <td className="py-3 px-4 font-medium text-foreground">
-        {word.english}
+        {sinhala ? (
+          <span className="block">
+            <span className="block">{sinhala}</span>
+            <span className="block text-xs font-normal text-muted-foreground">{word.english}</span>
+          </span>
+        ) : (
+          word.english
+        )}
       </td>
       <td className="py-3 px-4 hidden sm:table-cell">
         <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-secondary text-secondary-foreground">

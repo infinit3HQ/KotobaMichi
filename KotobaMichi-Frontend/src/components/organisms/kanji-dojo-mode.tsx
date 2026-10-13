@@ -11,6 +11,8 @@ import {
 } from "@/data/kanji-master";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { lessonText } from "@/lib/i18n/content-si";
 import {
   Search,
   Volume2,
@@ -166,6 +168,7 @@ function KanjiAnatomyView({
   speechRate,
   selectedLevel,
 }: KanjiAnatomyViewProps) {
+  const { locale } = useLocale();
   const playWordAudio = (text: string) => {
     if (!soundEnabled) return;
     speakJapanese(text, { rate: speechRate });
@@ -222,7 +225,7 @@ function KanjiAnatomyView({
                       )}
                     </div>
                     <h2 className="text-xl font-bold text-foreground">
-                      {activeKanji.meaning}
+                      {lessonText(locale, activeKanji.meaning)}
                     </h2>
                     <p className="text-xs text-muted-foreground">
                       Radical count: {activeKanji.radicals.length}
@@ -259,7 +262,7 @@ function KanjiAnatomyView({
                           {rad.character}
                         </span>
                         <span className="text-xs text-muted-foreground font-medium">
-                          {rad.meaning}
+                          {lessonText(locale, rad.meaning)}
                         </span>
                       </div>
                     ))}
@@ -275,7 +278,7 @@ function KanjiAnatomyView({
                     Memory Mnemonic:
                   </span>
                   <p className="text-xs text-foreground/90 leading-relaxed italic">
-                    &ldquo;{activeKanji.mnemonic}&rdquo;
+                    &ldquo;{lessonText(locale, activeKanji.mnemonic)}&rdquo;
                   </p>
                 </div>
               )}
@@ -303,7 +306,7 @@ function KanjiAnatomyView({
                             </span>
                           </div>
                           <div className="text-xs text-foreground/80 truncate">
-                            {vocab.meaning}
+                            {lessonText(locale, vocab.meaning)}
                           </div>
                         </div>
                         <Button
@@ -345,7 +348,7 @@ function KanjiAnatomyView({
                     {k.character}
                   </span>
                   <span className="text-[10px] text-muted-foreground truncate max-w-[90%] font-medium">
-                    {k.meaning.split(",")[0]}
+                    {lessonText(locale, k.meaning).split(",")[0]}
                   </span>
                 </button>
               );
@@ -384,6 +387,7 @@ function RadicalForgePuzzle({
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
 
+  const { locale } = useLocale();
   const currentKanji = puzzlePool[currentIndex % (puzzlePool.length || 1)];
 
   // Create option bank (correct radicals + distractor radicals)
@@ -466,7 +470,7 @@ function RadicalForgePuzzle({
             {currentKanji.character}
           </div>
           <p className="text-sm font-semibold text-muted-foreground">
-            &ldquo;{currentKanji.meaning}&rdquo;
+            &ldquo;{lessonText(locale, currentKanji.meaning)}&rdquo;
           </p>
           <p className="text-xs text-primary font-medium">
             Select the {currentKanji.radicals.length} radicals that combine to form this Kanji:
@@ -554,12 +558,12 @@ function RadicalForgePuzzle({
                 <p className="text-foreground/90 font-medium">
                   Radicals for <strong className="font-japanese text-sm">{currentKanji.character}</strong>:{" "}
                   {currentKanji.radicals
-                    .map((r) => `${r.character} (${r.meaning})`)
+                    .map((r) => `${r.character} (${lessonText(locale, r.meaning)})`)
                     .join(" + ")}
                 </p>
                 {currentKanji.mnemonic && (
                   <p className="text-[11px] text-muted-foreground italic pt-0.5">
-                    💡 Mnemonic: &ldquo;{currentKanji.mnemonic}&rdquo;
+                    💡 Mnemonic: &ldquo;{lessonText(locale, currentKanji.mnemonic)}&rdquo;
                   </p>
                 )}
               </div>

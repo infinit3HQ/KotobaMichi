@@ -8,8 +8,10 @@ import { Skeleton } from "@/components/atoms/skeleton";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/atoms/button";
 import { Plus, Sparkles, Layers, ArrowRight, Trophy } from "lucide-react";
+import { useLocale } from "@/components/organisms/locale-provider";
 
 export default function QuizListPage() {
+  const { t } = useLocale();
   const { user } = useAuth();
   const {
     data: publicQuizzes,
@@ -33,14 +35,14 @@ export default function QuizListPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="font-jp text-primary text-xs font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-              問題集 · Quizzes
+              {t.quizzes.kicker}
             </span>
           </div>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-            Spaced Repetition Quizzes
+            {t.quizzes.title}
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Test your vocabulary mastery with active recall evaluations and score breakdown.
+            {t.quizzes.desc}
           </p>
         </div>
 
@@ -49,12 +51,12 @@ export default function QuizListPage() {
             <Button asChild className="gap-2 shadow-xs bg-primary hover:bg-primary/90">
               <Link href="/quizzes/create">
                 <Plus className="h-4 w-4" />
-                Create Quiz
+                {t.quizzes.create}
               </Link>
             </Button>
           ) : (
             <Button asChild variant="outline" className="text-xs">
-              <Link href="/auth/login">Login to create quiz</Link>
+              <Link href="/auth/login">{t.quizzes.loginToCreate}</Link>
             </Button>
           )}
         </div>
@@ -66,11 +68,11 @@ export default function QuizListPage() {
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-primary" />
             <h2 className="text-lg font-bold tracking-tight text-foreground">
-              Curated Community Quizzes
+              {t.quizzes.community}
             </h2>
           </div>
           <span className="text-xs text-muted-foreground font-mono">
-            {publicQuizzes?.length || 0} available
+            {t.quizzes.available(publicQuizzes?.length || 0)}
           </span>
         </div>
 
@@ -103,7 +105,7 @@ export default function QuizListPage() {
           <div className="flex items-center gap-2">
             <Layers className="h-4 w-4 text-amber-500" />
             <h2 className="text-lg font-bold tracking-tight text-foreground">
-              My Custom Quizzes
+              {t.quizzes.mine}
             </h2>
           </div>
           {user && (
@@ -116,10 +118,10 @@ export default function QuizListPage() {
         {!user ? (
           <div className="rounded-2xl border border-border/80 bg-card/50 p-8 text-center space-y-3">
             <p className="text-sm text-muted-foreground">
-              Sign in to author personal quizzes, save custom word lists, and track scores.
+              {t.quizzes.signInBody}
             </p>
             <Button asChild size="sm" variant="outline" className="text-xs">
-              <Link href="/auth/login">Sign in</Link>
+              <Link href="/auth/login">{t.quizzes.signIn}</Link>
             </Button>
           </div>
         ) : loadingMine ? (

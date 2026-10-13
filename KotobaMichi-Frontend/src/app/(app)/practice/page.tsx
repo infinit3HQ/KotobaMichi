@@ -7,6 +7,7 @@ import { Card } from "@/components/atoms/card";
 import { Badge } from "@/components/atoms/badge";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
 import {
   Zap,
   Headphones,
@@ -245,6 +246,7 @@ const PRACTICE_PILLARS: PracticePillarConfig[] = [
 ];
 
 export default function PracticeDojoPage() {
+  const { t } = useLocale();
   const [mode, setMode] = useState<PracticeMode>("sprint");
   const [selectedLevel, setSelectedLevel] = useState<JLPTLevel>("N5");
   const [selectedTopic, setSelectedTopic] = useState<string>("All");
@@ -258,13 +260,13 @@ export default function PracticeDojoPage() {
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-2xl">🥋</span>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">KotobaMichi Dojo</h1>
+            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{t.practice.title}</h1>
             <Badge variant="secondary" className="gap-1 bg-primary/10 text-primary border-primary/20">
-              <Zap className="h-3.5 w-3.5 fill-primary" /> Multi-Pillar
+              <Zap className="h-3.5 w-3.5 fill-primary" /> {t.practice.badge}
             </Badge>
           </div>
           <p className="text-sm text-muted-foreground mt-1">
-            Master the complete JLPT spectrum: Grammar (文法), Kanji (漢字), Listening (聴解), Reading (読解), Vocabulary, and Kana.
+            {t.practice.subtitle}
           </p>
         </div>
 
@@ -284,7 +286,7 @@ export default function PracticeDojoPage() {
             className="text-xs gap-1.5"
           >
             <Volume2 className="h-3.5 w-3.5" />
-            Speed: {speechRate === 0.92 ? "1.0x" : "0.75x"}
+            {t.practice.speed}: {speechRate === 0.92 ? "1.0x" : "0.75x"}
           </Button>
 
           <Button
@@ -306,17 +308,13 @@ export default function PracticeDojoPage() {
           </div>
           <div>
             <div className="font-bold text-sm flex items-center gap-2">
-              <span>Target JLPT Level</span>
+              <span>{t.practice.target}</span>
               <Badge variant="default" className="text-xs font-mono font-bold">
-                {selectedLevel} Active
+                {selectedLevel} {t.practice.active}
               </Badge>
             </div>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {selectedLevel === "N5" && "N5: Beginner foundations (Hiragana, Katakana, basic vocabulary & essential particles)"}
-              {selectedLevel === "N4" && "N4: Elementary Japanese (Compound sentences, daily expressions & polite/casual forms)"}
-              {selectedLevel === "N3" && "N3: Intermediate Japanese (Everyday conversational fluency & bridging to advanced)"}
-              {selectedLevel === "N2" && "N2: Pre-Advanced Japanese (Business, media, complex kanji & nuances)"}
-              {selectedLevel === "N1" && "N1: Advanced Mastery (Abstract discourse, complex idiomatic structures & native-level nuances)"}
+              {t.practice.levels[selectedLevel]}
             </p>
           </div>
         </div>
@@ -346,12 +344,12 @@ export default function PracticeDojoPage() {
         <div className="flex items-center justify-between px-1">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-primary" />
-            <span>Interactive Practice Pillars (7 道場)</span>
+            <span>{t.practice.pillarsLabel}</span>
           </div>
           <span className="text-xs text-muted-foreground font-medium hidden sm:inline">
-            Active Dojo:{" "}
+            {t.practice.activeDojo}:{" "}
             <span className="font-bold text-foreground">
-              {PRACTICE_PILLARS.find((p) => p.id === mode)?.title}
+              {t.practice.pillars[mode].title}
             </span>{" "}
             <span className="font-jp text-primary font-bold">
               ({PRACTICE_PILLARS.find((p) => p.id === mode)?.kanjiLabel})
@@ -394,10 +392,10 @@ export default function PracticeDojoPage() {
                 {/* Middle Labels */}
                 <div className="space-y-0.5 my-1">
                   <div className="font-bold text-sm text-foreground tracking-tight group-hover:text-primary transition-colors">
-                    {pillar.title}
+                    {t.practice.pillars[pillar.id].title}
                   </div>
                   <div className="text-[11px] text-muted-foreground font-medium leading-tight">
-                    {pillar.subtitle}
+                    {t.practice.pillars[pillar.id].subtitle}
                   </div>
                 </div>
 

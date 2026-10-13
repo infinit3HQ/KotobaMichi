@@ -17,6 +17,8 @@ import {
 } from "@/data/grammar-master";
 import { Input } from "@/components/atoms/input";
 import { speakJapanese, playSfx } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { DRILL_SI, GRAMMAR_SI, lessonText } from "@/lib/i18n/content-si";
 import {
   Star,
   Sparkles,
@@ -156,9 +158,10 @@ function StarOrderPuzzle({
   const [isChecked, setIsChecked] = useState(false);
   const [score, setScore] = useState(0);
   const [totalAttempts, setTotalAttempts] = useState(0);
+  const { locale } = useLocale();
 
   const currentQ = pool[qIndex] || pool[0];
-
+  const drillSi = currentQ && locale === "si" ? DRILL_SI[currentQ.id] : undefined;
 
   // Click available tile -> drop into first available slot
   const handleSelectTile = (fragIdx: number) => {
@@ -430,10 +433,13 @@ function StarOrderPuzzle({
                 {currentQ.fullSentence}
               </div>
               <div className="text-xs text-muted-foreground italic">
-                &ldquo;{currentQ.english}&rdquo;
+                &ldquo;{drillSi?.english ?? lessonText(locale, currentQ.english)}&rdquo;
               </div>
+              {locale === "si" && (
+                <div className="text-[11px] text-muted-foreground/80 italic">{currentQ.english}</div>
+              )}
               <p className="text-xs text-muted-foreground leading-relaxed pt-1 border-t">
-                {currentQ.explanation}
+                {drillSi?.explanation ?? lessonText(locale, currentQ.explanation)}
               </p>
             </div>
 
@@ -466,8 +472,10 @@ function ParticleClozeDrill({
   const [selectedParticle, setSelectedParticle] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [totalAttempts, setTotalAttempts] = useState(0);
+  const { locale } = useLocale();
 
   const currentQ = pool[qIndex] || pool[0];
+  const drillSi = currentQ && locale === "si" ? DRILL_SI[currentQ.id] : undefined;
 
   const handleSelect = (choice: string) => {
     if (selectedParticle !== null || !currentQ) return;
@@ -540,7 +548,7 @@ function ParticleClozeDrill({
           </div>
 
           <div className="text-xs text-muted-foreground italic">
-            &ldquo;{currentQ.english}&rdquo;
+            &ldquo;{drillSi?.english ?? lessonText(locale, currentQ.english)}&rdquo;
           </div>
         </div>
 
@@ -593,7 +601,7 @@ function ParticleClozeDrill({
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                {currentQ.explanation}
+                {drillSi?.explanation ?? lessonText(locale, currentQ.explanation)}
               </p>
             </div>
 
@@ -626,6 +634,7 @@ function GrammarHandbookView({
 }: GrammarHandbookViewProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [playingId, setPlayingId] = useState<string | null>(null);
+  const { locale } = useLocale();
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return pool;
@@ -637,7 +646,9 @@ function GrammarHandbookView({
         item.formation?.toLowerCase().includes(q) ||
         item.exampleJapanese.toLowerCase().includes(q) ||
         item.exampleRomaji?.toLowerCase().includes(q) ||
-        item.exampleEnglish.toLowerCase().includes(q)
+        item.exampleEnglish.toLowerCase().includes(q) ||
+        (GRAMMAR_SI[item.id]?.meaning ?? "").includes(searchQuery.trim()) ||
+        (GRAMMAR_SI[item.id]?.example ?? "").includes(searchQuery.trim())
     );
   }, [pool, searchQuery]);
 
@@ -701,6 +712,9 @@ function GrammarHandbookView({
         <div className="space-y-4">
           {filteredItems.map((item) => {
             const isPlaying = playingId === item.id;
+            const copy = locale === "si" ? GRAMMAR_SI[item.id] : undefined;
+            const meaning = copy?.meaning ?? lessonText(locale, item.meaning);
+            const example = copy?.example ?? lessonText(locale, item.exampleEnglish);
             return (
               <Card
                 key={item.id}
@@ -719,8 +733,11 @@ function GrammarHandbookView({
                         </h3>
                       </div>
                       <p className="text-sm text-foreground/80 mt-1 leading-snug">
-                        {item.meaning}
+                        {meaning}
                       </p>
+                      {locale === "si" && meaning !== item.meaning && (
+                        <p className="text-xs text-muted-foreground mt-1 leading-snug">{item.meaning}</p>
+                      )}
                     </div>
 
                     <Button
@@ -762,8 +779,11 @@ function GrammarHandbookView({
                       </div>
                     )}
                     <div className="text-xs text-foreground/80 italic pt-0.5">
-                      &ldquo;{item.exampleEnglish}&rdquo;
+                      &ldquo;{example}&rdquo;
                     </div>
+                    {locale === "si" && example !== item.exampleEnglish && (
+                      <div className="text-[11px] text-muted-foreground italic">{item.exampleEnglish}</div>
+                    )}
                   </div>
                 </div>
               </Card>

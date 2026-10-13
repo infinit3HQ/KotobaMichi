@@ -14,6 +14,8 @@ import { JLPT_N4_WORDS, JLPT_N3_WORDS } from "@/data/vocab-more";
 import { getTanosWordsByLevel } from "@/data/vocab-tanos";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { lessonText } from "@/lib/i18n/content-si";
 import {
   Zap,
   Volume2,
@@ -42,6 +44,7 @@ export function SpeedSprintMode({
   soundEnabled,
   speechRate,
 }: SpeedSprintModeProps) {
+  const { locale } = useLocale();
   const [gameState, setGameState] = useState<"idle" | "playing" | "gameover">("idle");
   const [timeLeft, setTimeLeft] = useState(60);
   const [score, setScore] = useState(0);
@@ -286,7 +289,7 @@ export function SpeedSprintMode({
                     <span className="text-xs text-muted-foreground">({item.word.hiragana})</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground truncate max-w-[120px]">{item.word.english}</span>
+                    <span className="text-xs text-muted-foreground truncate max-w-[120px]">{lessonText(locale, item.word.english)}</span>
                     <Button
                       variant="ghost"
                       size="icon"
@@ -419,7 +422,7 @@ export function SpeedSprintMode({
                     onClick={() => handleAnswer(option)}
                     className={`flex items-center justify-between p-4 rounded-xl border text-left transition-all ${variantClass}`}
                   >
-                    <span className="font-medium text-sm leading-snug">{option}</span>
+                    <span className="font-medium text-sm leading-snug">{lessonText(locale, option)}</span>
                     <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-muted text-muted-foreground shrink-0 ml-2">
                       {idx + 1}
                     </span>

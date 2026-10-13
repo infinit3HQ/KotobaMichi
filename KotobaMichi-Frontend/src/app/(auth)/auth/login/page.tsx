@@ -24,8 +24,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api, getApiError } from "@/lib/api";
 import { useAuth } from "@/hooks/use-auth";
 import { toast } from "sonner";
+import { useLocale } from "@/components/organisms/locale-provider";
 
 export default function LoginPage() {
+  const { t } = useLocale();
   const router = useRouter();
   const { setUser } = useAuth();
   const schema = z.object({
@@ -61,8 +63,8 @@ export default function LoginPage() {
     <div className="flex justify-center">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Sign in to your account</CardDescription>
+          <CardTitle>{t.auth.login}</CardTitle>
+          <CardDescription>{t.auth.signInAccount}</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -72,7 +74,7 @@ export default function LoginPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t.auth.email}</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
@@ -90,7 +92,7 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>{t.auth.password}</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -108,27 +110,27 @@ export default function LoginPage() {
                 className="w-full"
                 disabled={form.formState.isSubmitting}
               >
-                {form.formState.isSubmitting ? "Signing in…" : "Sign in"}
+                {form.formState.isSubmitting ? t.auth.signingIn : t.auth.signIn}
               </Button>
             </form>
           </Form>
           <div className="mt-3 flex flex-col gap-1 text-sm text-muted-foreground">
             <p>
-              No account?{" "}
+              {t.auth.noAccount}{" "}
               <Link href="/auth/register" className="underline">
-                Register
+                {t.auth.register}
               </Link>
             </p>
             <p>
-              Forgot your password? {""}
+              {t.auth.forgot} {""}
               <Link href="/auth/forgot-password" className="underline">
-                Reset it
+                {t.auth.reset}
               </Link>
             </p>
             <p>
-              Need a new verification email? {""}
+              {t.auth.resendPrompt} {""}
               <Link href="/auth/resend-verification" className="underline">
-                Resend
+                {t.auth.resend}
               </Link>
             </p>
           </div>

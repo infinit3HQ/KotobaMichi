@@ -10,6 +10,8 @@ import { getSentencesForWord } from "@/data/sentences";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
 import { Volume2, Eye, EyeOff, Sparkles, RotateCw, ArrowLeft, ArrowRight } from "lucide-react";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { lessonText, sinhalaWordGloss } from "@/lib/i18n/content-si";
 
 interface FlashcardSrsModeProps {
   selectedLevel: JLPTLevel;
@@ -24,6 +26,7 @@ export function FlashcardSrsMode({
   soundEnabled,
   speechRate,
 }: FlashcardSrsModeProps) {
+  const { locale } = useLocale();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [showFurigana, setShowFurigana] = useState(true);
@@ -212,8 +215,11 @@ export function FlashcardSrsMode({
             {/* Center: Definition & Example */}
             <div className="my-auto space-y-3 py-2 w-full max-w-md">
               <div className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
-                {currentWord.english}
+                {(locale === "si" ? sinhalaWordGloss(currentWord) : null) ?? currentWord.english}
               </div>
+              {locale === "si" && sinhalaWordGloss(currentWord) && (
+                <div className="text-sm text-muted-foreground">{currentWord.english}</div>
+              )}
               <div className="text-sm font-medium text-foreground/80 font-japanese">
                 {currentWord.kanji ? `${currentWord.kanji} (${currentWord.hiragana})` : currentWord.hiragana}
               </div>
@@ -242,7 +248,7 @@ export function FlashcardSrsMode({
                     {topExample.ja}
                   </div>
                   <div className="text-[11px] text-muted-foreground italic leading-tight">
-                    {topExample.en}
+                    {lessonText(locale, topExample.en)}
                   </div>
                 </div>
               )}
