@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MOCK_EXAMS, type MockExam } from "@/lib/mock-exam";
+import { formatPoints, MOCK_EXAMS, sectionPoints, type MockExam } from "@/lib/mock-exam";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
 
@@ -46,8 +46,8 @@ export function MockExamCatalog() {
         const mine = attempts.filter((attempt) => attempt.examId === exam.id && attempt.status === "finished");
         const open = attempts.find((attempt) => attempt.examId === exam.id && attempt.status === "in_progress");
         const latest = mine[0];
-        const latestTotal = latest?.scores?.reduce((sum, score) => sum + score.total, 0) ?? 0;
-        const latestCorrect = latest?.scores?.reduce((sum, score) => sum + score.correct, 0) ?? 0;
+        const latestEstimate =
+          latest?.scores?.reduce((sum, score) => sum + sectionPoints(score.correct, score.total), 0) ?? 0;
         return (
           <li key={exam.id}>
             <Link
@@ -67,7 +67,7 @@ export function MockExamCatalog() {
               {user && (open || latest) && (
                 <p className="mt-3 text-sm">
                   {open ? "A sitting is still open. " : ""}
-                  {latest ? `Last score ${latestCorrect}/${latestTotal}. ${mine.length} saved.` : ""}
+                  {latest ? `Last estimate ${formatPoints(latestEstimate)}/180. ${mine.length} saved.` : ""}
                 </p>
               )}
             </Link>

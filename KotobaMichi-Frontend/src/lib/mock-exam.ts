@@ -114,12 +114,35 @@ export function formatClock(ms: number) {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
+export const SECTION_POINTS = 60;
+export const PASS_SECTION = 19;
+export const PASS_TOTAL = 95;
+
 export type SectionScore = {
   id: string;
   title: string;
   correct: number;
   total: number;
 };
+
+/** Equal share of a section's 60. The real JLPT then shifts this for item difficulty, which is not published. */
+export function sectionPoints(correct: number, total: number) {
+  if (total <= 0) return 0;
+  return (correct / total) * SECTION_POINTS;
+}
+
+export function formatPoints(value: number) {
+  return (Math.round(value * 10) / 10).toFixed(1);
+}
+
+/** Same bands the score report prints for vocabulary and grammar. */
+export function responseBand(correct: number, total: number) {
+  if (total <= 0) return "C";
+  const ratio = correct / total;
+  if (ratio >= 0.67) return "A";
+  if (ratio >= 0.34) return "B";
+  return "C";
+}
 
 export type MondaiScore = {
   sectionId: string;
@@ -140,8 +163,9 @@ export function scoreByMondai(exam: MockExam, answers: Record<string, number>): 
           const chosen = answers[answerKey(section.id, part.id, mondai.number, item.number)];
           if (chosen != null && chosen === item.answer) correct += 1;
         }
+        const scoredId = part.id === "reading" ? "reading" : part.id === "listening" ? "listening" : "language";
         rows.push({
-          sectionId: section.id,
+          sectionId: scoredId,
           sectionTitle: section.title,
           partTitle: part.title,
           mondai: mondai.number,
