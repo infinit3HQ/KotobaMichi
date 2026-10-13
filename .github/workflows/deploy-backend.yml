@@ -242,6 +242,24 @@ jobs:
           echo "Verified .env status:"
           ls -la .env
 
+          # This runner often keeps an older server .env because PROD_JWT_SECRET is unset.
+          # Still write the Google client onto that file so sign-in does not fall back to a placeholder.
+          GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID_SECRET:-}"
+          GOOGLE_CLIENT_SECRET="${GOOGLE_CLIENT_SECRET_SECRET:-}"
+          GOOGLE_CALLBACK_URL="${GOOGLE_CALLBACK_URL_SECRET:-https://kotobamichi-api.012140.xyz/api/auth/google/callback}"
+          if [ -n "$GOOGLE_CLIENT_ID" ] && [ -f .env ]; then
+            echo "Applying Google OAuth settings to .env"
+            grep -v -E '^(GOOGLE_CLIENT_ID|GOOGLE_CLIENT_SECRET|GOOGLE_CALLBACK_URL)=' .env > .env.google.tmp || true
+            mv .env.google.tmp .env
+            {
+              echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID"
+              echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET"
+              echo "GOOGLE_CALLBACK_URL=$GOOGLE_CALLBACK_URL"
+            } >> .env
+          else
+            echo "Google OAuth client secret is empty; sign-in will stay unavailable."
+          fi
+
       - name: Deploy Backend Stack & Migrations
         shell: bash
         run: |
