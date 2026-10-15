@@ -4,14 +4,8 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/atoms/card";
 import { Badge } from "@/components/atoms/badge";
-import {
-  JLPT_N5_WORDS,
-  JLPT_TOPICS,
-  getQuizDistractors,
-  type JLPTWord,
-} from "@/data/vocab-n5";
-import { JLPT_N4_WORDS, JLPT_N3_WORDS } from "@/data/vocab-more";
-import { getTanosWordsByLevel } from "@/data/vocab-tanos";
+import type { JLPTWord } from "@/data/vocab-n5";
+import { englishChoices, topicCountsForLevel, wordsForLevel, wordsForTopic } from "@/data/level-words";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
@@ -60,19 +54,9 @@ export function SpeedSprintMode({
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFurigana, setShowFurigana] = useState(false);
 
-  // Filter pool by level and topic
-  const levelWords = useMemo(() => {
-    const tanos = getTanosWordsByLevel(selectedLevel);
-    if (tanos && tanos.length > 0) return tanos;
-    if (selectedLevel === "N4") return JLPT_N4_WORDS;
-    if (selectedLevel === "N3") return JLPT_N3_WORDS;
-    return JLPT_N5_WORDS;
-  }, [selectedLevel]);
-
-  const wordPool = useMemo(() => {
-    if (selectedTopic === "All") return levelWords;
-    return levelWords.filter((w) => w.topic === selectedTopic);
-  }, [levelWords, selectedTopic]);
+  const levelWords = useMemo(() => wordsForLevel(selectedLevel), [selectedLevel]);
+  const topics = useMemo(() => topicCountsForLevel(selectedLevel), [selectedLevel]);
+  const wordPool = useMemo(() => wordsForTopic(selectedLevel, selectedTopic), [selectedLevel, selectedTopic]);
 
   // Next Question Generator
   const generateQuestion = useCallback(() => {
@@ -81,8 +65,7 @@ export function SpeedSprintMode({
     const pickDue = dueWords.length > 0 && Math.random() < 0.5;
     const source = pickDue ? dueWords : wordPool;
     const word = source[Math.floor(Math.random() * source.length)];
-    const distractors = getQuizDistractors(word, 3);
-    const allOptions = [...distractors, word.english].sort(() => 0.5 - Math.random());
+    const allOptions = englishChoices(word, levelWords, 4);
 
     setCurrentWord(word);
     setOptions(allOptions);
@@ -90,7 +73,7 @@ export function SpeedSprintMode({
 
     // Pronounce word immediately for audio-visual binding
     speakJapanese(word.kanji || word.hiragana, { rate: speechRate });
-  }, [wordPool, speechRate, due]);
+  }, [wordPool, levelWords, speechRate, due]);
 
   // Start Game
   const startGame = () => {
@@ -109,7 +92,7 @@ export function SpeedSprintMode({
 
   // Timer Countdown
   useEffect(() => {
-    if (gameState !== "playing") return;
+    if (gameState !== "playing" || selectedAnswer !== null) return;
     if (timeLeft <= 0) {
       setGameState("gameover");
       if (soundEnabled) playSfx("streak");
@@ -121,7 +104,7 @@ export function SpeedSprintMode({
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [gameState, timeLeft, soundEnabled]);
+  }, [gameState, timeLeft, soundEnabled, selectedAnswer]);
 
   // Answer handler
   const handleAnswer = useCallback(
@@ -154,13 +137,8 @@ export function SpeedSprintMode({
       if (user) {
         void record(currentWord.id, selectedLevel, correct ? "good" : "again").catch(() => undefined);
       }
-
-      // Quick progression to next question
-      setTimeout(() => {
-        generateQuestion();
-      }, 550);
     },
-    [currentWord, selectedAnswer, streak, highestStreak, soundEnabled, generateQuestion, user, record, selectedLevel]
+    [currentWord, selectedAnswer, streak, highestStreak, soundEnabled, user, record, selectedLevel]
   );
 
   // Keyboard Navigation: keys 1, 2, 3, 4 and R for repeat
@@ -168,6 +146,12 @@ export function SpeedSprintMode({
     if (gameState !== "playing") return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedAnswer !== null && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        generateQuestion();
+        return;
+      }
+      if (selectedAnswer !== null) return;
       if (["1", "2", "3", "4"].includes(e.key)) {
         const idx = parseInt(e.key, 10) - 1;
         if (options[idx]) {
@@ -180,7 +164,7 @@ export function SpeedSprintMode({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [gameState, options, handleAnswer, currentWord, speechRate]);
+  }, [gameState, options, handleAnswer, currentWord, speechRate, selectedAnswer, generateQuestion]);
 
   if (gameState === "idle") {
     return (
@@ -206,9 +190,9 @@ export function SpeedSprintMode({
                 className="text-xs rounded-full h-7"
                 onClick={() => onSelectTopic("All")}
               >
-                All Topics ({JLPT_N5_WORDS.length})
+                All Topics ({levelWords.length})
               </Button>
-              {JLPT_TOPICS.slice(0, 11).map((topic) => (
+              {topics.map(({ topic, count }) => (
                 <Button
                   key={topic}
                   variant={selectedTopic === topic ? "default" : "outline"}
@@ -216,7 +200,7 @@ export function SpeedSprintMode({
                   className="text-xs rounded-full h-7"
                   onClick={() => onSelectTopic(topic)}
                 >
-                  {topic}
+                  {topic} ({count})
                 </Button>
               ))}
             </div>
@@ -441,6 +425,22 @@ export function SpeedSprintMode({
                 );
               })}
             </div>
+
+            {selectedAnswer !== null && (
+              <div className="space-y-3 pt-2">
+                <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-left">
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
+                    Correct answer
+                  </div>
+                  <div className="mt-1 text-base font-semibold leading-snug">
+                    {lessonText(locale, currentWord.english)}
+                  </div>
+                </div>
+                <Button type="button" size="lg" className="w-full" onClick={() => generateQuestion()}>
+                  Next
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
       )}

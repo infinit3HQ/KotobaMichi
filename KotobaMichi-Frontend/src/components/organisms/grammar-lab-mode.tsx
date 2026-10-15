@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/atoms/card";
 import { Badge } from "@/components/atoms/badge";
@@ -60,6 +60,12 @@ export function GrammarLabMode({
   const handbookPool = useMemo(() => {
     return ALL_JLPT_GRAMMAR_MASTER.filter((item) => item.level === selectedLevel);
   }, [selectedLevel]);
+
+  useEffect(() => {
+    if (starPool.length === 0 && particlePool.length === 0 && handbookPool.length > 0) {
+      setSubMode("handbook");
+    }
+  }, [starPool.length, particlePool.length, handbookPool.length]);
 
   const subModeSubtitle = {
     star: `${starPool.length} Star Puzzles`,

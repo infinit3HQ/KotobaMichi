@@ -231,7 +231,7 @@ const en: Dictionary = {
     },
     pillars: {
       sprint: { title: "Speed Sprint", subtitle: "Vocab Blitz" },
-      walk: { title: "Word Walk", subtitle: "No time limit" },
+      walk: { title: "Word Walk", subtitle: "Meaning choices" },
       grammar: { title: "Grammar Lab", subtitle: "Star & Cloze" },
       kanji: { title: "Kanji Dojo", subtitle: "Radicals & Forge" },
       listening: { title: "Listening Ear", subtitle: "Task Dialogues" },
@@ -393,7 +393,7 @@ const si: Dictionary = {
     },
     pillars: {
       sprint: { title: "වේග පුහුණුව", subtitle: "වචන වේගය" },
-      walk: { title: "වචන ගමන", subtitle: "කාල සීමාවක් නැත" },
+      walk: { title: "වචන ගමන", subtitle: "තේරුම තෝරන්න" },
       grammar: { title: "ව්‍යාකරණ", subtitle: "තරු සහ හිඩැස්" },
       kanji: { title: "කන්ජි ශාලාව", subtitle: "මූලාංග" },
       listening: { title: "සවන්දීම", subtitle: "සංවාද" },

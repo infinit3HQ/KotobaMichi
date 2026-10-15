@@ -9,12 +9,8 @@ import {
   type ListeningScenario,
 } from "@/data/listening";
 import type { JLPTLevel } from "@/data/grammar";
-import {
-  JLPT_N5_WORDS,
-  getQuizDistractors,
-  type JLPTWord,
-} from "@/data/vocab-n5";
-import { JLPT_N4_WORDS, JLPT_N3_WORDS } from "@/data/vocab-more";
+import type { JLPTWord } from "@/data/vocab-n5";
+import { englishChoices, wordsForLevel } from "@/data/level-words";
 import { speakJapanese, speakDialogue, stopSpeaking, playSfx } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { lessonText } from "@/lib/i18n/content-si";
@@ -53,11 +49,11 @@ export function ListeningComprehensionMode({
   }, [selectedLevel]);
 
   // Filter words by level
-  const levelWords = useMemo(() => {
-    if (selectedLevel === "N4") return JLPT_N4_WORDS;
-    if (selectedLevel === "N3") return JLPT_N3_WORDS;
-    return JLPT_N5_WORDS;
-  }, [selectedLevel]);
+  const levelWords = useMemo(() => wordsForLevel(selectedLevel), [selectedLevel]);
+
+  useEffect(() => {
+    if (scenarios.length === 0) setSubMode("words");
+  }, [scenarios.length]);
 
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
@@ -477,8 +473,7 @@ function BlindWordListeningQuiz({
   const nextQuestion = useCallback(() => {
     if (wordPool.length === 0) return;
     const word = wordPool[Math.floor(Math.random() * wordPool.length)];
-    const distractors = getQuizDistractors(word, 3);
-    const allOptions = [...distractors, word.english].sort(() => 0.5 - Math.random());
+    const allOptions = englishChoices(word, wordPool, 4);
 
     setCurrentWord(word);
     setOptions(allOptions);

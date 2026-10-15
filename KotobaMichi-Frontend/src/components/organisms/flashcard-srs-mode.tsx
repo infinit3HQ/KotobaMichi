@@ -3,9 +3,8 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Button } from "@/components/atoms/button";
 import { Badge } from "@/components/atoms/badge";
-import { JLPT_N5_WORDS, type JLPTWord } from "@/data/vocab-n5";
-import { JLPT_N4_WORDS, JLPT_N3_WORDS } from "@/data/vocab-more";
-import { getTanosWordsByLevel } from "@/data/vocab-tanos";
+import type { JLPTWord } from "@/data/vocab-n5";
+import { wordsForTopic } from "@/data/level-words";
 import { getSentencesForWord } from "@/data/sentences";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
@@ -37,18 +36,10 @@ export function FlashcardSrsMode({
   const [showFurigana, setShowFurigana] = useState(true);
   const [showRomaji, setShowRomaji] = useState(true);
 
-  const levelWords = useMemo(() => {
-    const tanos = getTanosWordsByLevel(selectedLevel);
-    if (tanos && tanos.length > 0) return tanos;
-    if (selectedLevel === "N4") return JLPT_N4_WORDS;
-    if (selectedLevel === "N3") return JLPT_N3_WORDS;
-    return JLPT_N5_WORDS;
-  }, [selectedLevel]);
-
-  const wordPool = useMemo(() => {
-    if (selectedTopic === "All") return levelWords;
-    return levelWords.filter((w) => w.topic === selectedTopic);
-  }, [levelWords, selectedTopic]);
+  const wordPool = useMemo(
+    () => wordsForTopic(selectedLevel, selectedTopic),
+    [selectedLevel, selectedTopic],
+  );
 
   const sessionKey = `${selectedLevel}:${selectedTopic}:${due.join(",")}`;
   useEffect(() => {

@@ -150,7 +150,7 @@ const PRACTICE_PILLARS: PracticePillarConfig[] = [
     kanji: "語",
     kanjiLabel: "語彙巡回",
     title: "Word Walk",
-    subtitle: "No time limit",
+    subtitle: "Meaning choices",
     icon: <Repeat className="h-5 w-5 text-orange-500" />,
     theme: {
       activeBorder: "border-orange-500/60 dark:border-orange-400/60",
@@ -374,7 +374,10 @@ export default function PracticeDojoPage() {
             return (
               <button
                 key={lvl}
-                onClick={() => setSelectedLevel(lvl)}
+                onClick={() => {
+                  setSelectedLevel(lvl);
+                  setSelectedTopic("All");
+                }}
                 className={`min-h-9 shrink-0 px-3 sm:px-4 py-1.5 text-xs font-extrabold rounded-lg transition-all cursor-pointer ${
                   isActive
                     ? "bg-primary text-primary-foreground shadow-xs scale-102"
@@ -391,6 +394,7 @@ export default function PracticeDojoPage() {
       <LearningPath
         onContinue={(level, nextMode) => {
           setSelectedLevel(level);
+          setSelectedTopic("All");
           if (
             nextMode === "sprint" ||
             nextMode === "walk" ||
