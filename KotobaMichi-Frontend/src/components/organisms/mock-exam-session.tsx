@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Maximize2, Minimize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/atoms/button";
+import { ExamText } from "@/components/atoms/exam-text";
 import {
   type MockExam,
   type MockMondai,
@@ -486,6 +487,100 @@ function Brief({ exam, signedIn, onBegin }: { exam: MockExam; signedIn: boolean;
   );
 }
 
+function passageText(text: string) {
+  return text.replace(/(?:\n\d{1,2})+\s*$/g, "").trim();
+}
+
+/** Printed choices are absent for listening 問題3 and 問題5, and sit inside the picture for 問題4. */
+function listeningChoiceCount(mondai: MockMondai) {
+  const plain = mondai.instruction.replace(/<[^>]+>/g, "");
+  const match = plain.match(/1\s*から\s*([1-4])/);
+  if (match) return Number(match[1]);
+  if (mondai.kind === "picture") return 3;
+  return 4;
+}
+
+function QuestionBlock({
+  examId,
+  item,
+  partId,
+  sectionId,
+  mondaiNumber,
+  chosen,
+  reveal,
+  showSpoken,
+  blankChoices,
+  onChoose,
+}: {
+  examId: string;
+  item: MockMondai["items"][number];
+  partId: string;
+  sectionId: string;
+  mondaiNumber: number;
+  chosen: number | undefined;
+  reveal: boolean;
+  showSpoken: boolean;
+  blankChoices: number;
+  onChoose: (partId: string, mondai: number, item: number, option: number) => void;
+}) {
+  const choices =
+    item.options.length > 0
+      ? item.options
+      : Array.from({ length: blankChoices }, (_, index) => ({ number: index + 1, text: "" }));
+  const numbersOnly = item.options.length === 0;
+  return (
+    <li className="space-y-3">
+      <p className="font-jp text-[15px] leading-10">
+        <span className="mr-2 font-semibold">{item.number}.</span>
+        <ExamText text={item.prompt} />
+      </p>
+      {sectionId === "listening" && showSpoken && item.spoken && (
+        <p className="font-jp text-sm leading-9 text-muted-foreground">
+          <ExamText text={item.spoken} />
+        </p>
+      )}
+      {item.image && (
+        <img
+          src={examAsset(examId, item.image) ?? ""}
+          alt=""
+          className="max-w-md rounded-xl border border-border bg-white"
+        />
+      )}
+      {choices.length > 0 && (
+        <div className={numbersOnly ? "flex flex-wrap gap-2" : "flex flex-col gap-2"}>
+          {choices.map((option) => {
+            const selected = chosen === option.number;
+            const correct = reveal && option.number === item.answer;
+            const wrong = reveal && selected && option.number !== item.answer;
+            return (
+              <button
+                key={option.number}
+                type="button"
+                disabled={reveal}
+                onClick={() => onChoose(partId, mondaiNumber, item.number, option.number)}
+                className={`font-jp rounded-xl border text-sm leading-8 transition-colors ${
+                  numbersOnly ? "min-w-14 px-4 py-2 text-center" : "px-3 py-2.5 text-left"
+                } ${
+                  correct
+                    ? "border-emerald-600/40 bg-emerald-500/10"
+                    : wrong
+                      ? "border-primary/40 bg-primary/10"
+                      : selected
+                        ? "border-primary bg-primary/10"
+                        : "border-border hover:bg-secondary"
+                }`}
+              >
+                <span className={numbersOnly ? "font-semibold" : "mr-2 font-semibold"}>{option.number}</span>
+                {option.text ? <ExamText text={option.text} /> : null}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </li>
+  );
+}
+
 function MondaiSheet({
   examId,
   mondai,
@@ -509,7 +604,9 @@ function MondaiSheet({
     <article className="space-y-8">
       <header className="space-y-2">
         <h2 className="font-jp text-xl font-semibold">問題{mondai.number}</h2>
-        <p className="font-jp text-sm leading-relaxed text-muted-foreground">{mondai.instruction}</p>
+        <p className="font-jp text-sm leading-9 text-muted-foreground">
+          <ExamText text={mondai.instruction} />
+        </p>
       </header>
 
       {mondai.image && (
@@ -520,77 +617,70 @@ function MondaiSheet({
         />
       )}
 
-      {mondai.passages?.map((passage, index) => (
-        <div key={`${passage.label ?? "p"}-${index}`} className="space-y-3">
-          {passage.lead && (
-            <p className="font-jp text-sm leading-relaxed text-muted-foreground">{passage.lead}</p>
-          )}
-          {passage.label && <p className="font-jp text-sm font-semibold">{passage.label}</p>}
-          {passage.image && (
-            <img
-              src={examAsset(examId, passage.image) ?? ""}
-              alt=""
-              className="w-full rounded-xl border border-border bg-white"
-            />
-          )}
-          {passage.text && (
-            <div className="font-jp whitespace-pre-wrap text-[15px] leading-8">{passage.text}</div>
-          )}
-        </div>
-      ))}
-
-      <ol className="space-y-8">
-        {mondai.items.map((item) => {
-          const chosen = answers[answerKey(sectionId, partId, mondai.number, item.number)];
-          return (
-            <li key={item.number} className="space-y-3">
-              <p className="font-jp text-[15px] leading-8">
-                <span className="mr-2 font-semibold">{item.number}.</span>
-                {item.prompt}
-              </p>
-              {sectionId === "listening" && showSpoken && item.spoken && (
-                <p className="font-jp text-sm leading-7 text-muted-foreground">{item.spoken}</p>
-              )}
-              {item.image && (
-                <img
-                  src={examAsset(examId, item.image) ?? ""}
-                  alt=""
-                  className="max-w-md rounded-xl border border-border bg-white"
-                />
-              )}
-              {item.options.length > 0 && (
-                <div className="grid gap-2 sm:grid-cols-2">
-                  {item.options.map((option) => {
-                    const selected = chosen === option.number;
-                    const correct = reveal && option.number === item.answer;
-                    const wrong = reveal && selected && option.number !== item.answer;
-                    return (
-                      <button
-                        key={option.number}
-                        type="button"
-                        disabled={reveal}
-                        onClick={() => onChoose(partId, mondai.number, item.number, option.number)}
-                        className={`font-jp rounded-xl border px-3 py-2.5 text-left text-sm leading-6 transition-colors ${
-                          correct
-                            ? "border-emerald-600/40 bg-emerald-500/10"
-                            : wrong
-                              ? "border-primary/40 bg-primary/10"
-                              : selected
-                                ? "border-primary bg-primary/10"
-                                : "border-border hover:bg-secondary"
-                        }`}
-                      >
-                        <span className="mr-2 font-semibold">{option.number}</span>
-                        {option.text}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ol>
+      {(() => {
+        const used = new Set<number>();
+        const groups = (mondai.passages ?? []).map((passage, index) => {
+          const numbers = new Set(passage.questionNumbers ?? []);
+          const items = mondai.items.filter((item) => {
+            if (used.has(item.number)) return false;
+            const claimed =
+              numbers.has(item.number) ||
+              (passage.label != null && passage.label !== "" && item.passage === passage.label);
+            if (!claimed) return false;
+            used.add(item.number);
+            return true;
+          });
+          return { passage, items, index };
+        });
+        const rest = mondai.items.filter((item) => !used.has(item.number));
+        const blankChoices = sectionId === "listening" ? listeningChoiceCount(mondai) : 0;
+        const renderItem = (item: (typeof mondai.items)[number]) => (
+          <QuestionBlock
+            key={item.number}
+            examId={examId}
+            item={item}
+            partId={partId}
+            sectionId={sectionId}
+            mondaiNumber={mondai.number}
+            chosen={answers[answerKey(sectionId, partId, mondai.number, item.number)]}
+            reveal={reveal}
+            showSpoken={showSpoken}
+            blankChoices={blankChoices}
+            onChoose={onChoose}
+          />
+        );
+        return (
+          <>
+            {groups.map(({ passage, items, index }) => {
+              const body = passage.text ? passageText(passage.text) : "";
+              return (
+                <section key={`${passage.label ?? "p"}-${index}`} className="space-y-4">
+                  {passage.lead && (
+                    <p className="font-jp text-sm leading-9 text-muted-foreground">
+                      <ExamText text={passage.lead} />
+                    </p>
+                  )}
+                  {passage.label && <p className="font-jp text-sm font-semibold">{passage.label}</p>}
+                  {passage.image && (
+                    <img
+                      src={examAsset(examId, passage.image) ?? ""}
+                      alt=""
+                      className="w-full rounded-xl border border-border bg-white"
+                    />
+                  )}
+                  {!passage.image && body && (
+                    <div className="font-jp whitespace-pre-wrap text-[15px] leading-10">
+                      <ExamText text={body} />
+                    </div>
+                  )}
+                  {items.length > 0 && <ol className="space-y-8">{items.map(renderItem)}</ol>}
+                </section>
+              );
+            })}
+            {rest.length > 0 && <ol className="space-y-8">{rest.map(renderItem)}</ol>}
+          </>
+        );
+      })()}
     </article>
   );
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Turn one reconstructed N3 paper into an exam file plus cropped figures.
 
-The question PDF is the source. Furigana is joined back onto the word.
+The question PDF is the source. Furigana is stored as ruby and word underlines as <u>.
 Raster drawings (maps, listening pictures) are cropped onto the item they
 belong to. A full-page table is stored as an image because reading its cells
 as plain text scrambles them. The community answer key is attached by number.
@@ -62,59 +62,292 @@ def spans_of(page: pymupdf.Page) -> list[dict]:
     return found
 
 
-def lines_of(page: pymupdf.Page) -> list[dict]:
-    spans = spans_of(page)
-    bases = [s for s in spans if s["sz"] >= 9]
-    rubies = [s for s in spans if s["sz"] < 9]
-    bases.sort(key=lambda s: (s["y"], s["x"]))
-    assigned: dict[int, list[dict]] = {id(b): [] for b in bases}
-    for ruby in rubies:
-        width = max(ruby["x1"] - ruby["x"], 0.1)
-        best = None
-        best_score = 0.0
-        for base in bases:
-            if ruby["y1"] > base["y"] + 2.5:
+def underline_rules(page: pymupdf.Page) -> list[pymupdf.Rect]:
+    horizontals = []
+    for drawing in page.get_drawings():
+        rect = pymupdf.Rect(drawing["rect"])
+        if 6 < rect.width < 180 and rect.height < 2.4:
+            horizontals.append(rect)
+    rules = []
+    for rect in horizontals:
+        boxed = False
+        for other in horizontals:
+            if other == rect:
                 continue
-            if ruby["y"] < base["y"] - 16:
-                continue
-            overlap = min(ruby["x1"], base["x1"]) - max(ruby["x"], base["x"])
-            if overlap <= 0:
-                continue
-            score = overlap / width
-            if score > best_score:
-                best_score = score
-                best = base
-        if best is not None and best_score >= 0.45:
-            assigned[id(best)].append(ruby)
+            same_column = abs(rect.x0 - other.x0) < 4 and abs(rect.width - other.width) < 6
+            gap = abs(rect.y0 - other.y0)
+            if same_column and 8 < gap < 30:
+                boxed = True
+                break
+        if not boxed:
+            rules.append(rect)
+    return rules
 
-    grouped: list[list[dict]] = []
-    for base in bases:
-        if grouped and abs(base["y"] - grouped[-1][0]["y"]) < 5:
-            grouped[-1].append(base)
+
+def render_marked(group: list[dict]) -> str:
+    parts: list[str] = []
+    index = 0
+    while index < len(group):
+        char = group[index]
+        if char.get("slot") == "star":
+            parts.append("<star/>")
+            index += 1
+            continue
+        if char.get("slot") == "blank":
+            parts.append("<slot/>")
+            index += 1
+            continue
+        if char["c"].isspace():
+            if char.get("under"):
+                end = index + 1
+                while (
+                    end < len(group)
+                    and group[end]["c"].isspace()
+                    and group[end].get("under")
+                ):
+                    end += 1
+                parts.append("<blank/>")
+                index = end
+                continue
+            parts.append(" ")
+            index += 1
+            continue
+        end = index + 1
+        if char["ruby"]:
+            while (
+                end < len(group)
+                and not group[end]["c"].isspace()
+                and group[end]["ruby"]
+                and group[end]["under"] == char["under"]
+            ):
+                end += 1
+            base = "".join(group[cursor]["c"] for cursor in range(index, end))
+            reading = "".join(group[cursor]["ruby"] for cursor in range(index, end))
+            piece = f"<ruby>{base}<rt>{reading}</rt></ruby>"
+            if char["under"]:
+                piece = f"<u>{piece}</u>"
+            parts.append(piece)
+        elif char["under"]:
+            while (
+                end < len(group)
+                and not group[end]["c"].isspace()
+                and group[end]["under"]
+                and not group[end]["ruby"]
+            ):
+                end += 1
+            base = "".join(group[cursor]["c"] for cursor in range(index, end))
+            parts.append(f"<u>{base}</u>")
         else:
-            grouped.append([base])
+            while (
+                end < len(group)
+                and not group[end]["c"].isspace()
+                and not group[end]["under"]
+                and not group[end]["ruby"]
+            ):
+                end += 1
+            parts.append("".join(group[cursor]["c"] for cursor in range(index, end)))
+        index = end
+    text = "".join(parts)
+    text = re.sub(r" {2,}", " ", text)
+    text = text.replace("（ ）", "（　）").replace("( )", "（　）")
+    return text.strip()
 
+
+def star_marks(page: pymupdf.Page) -> list[tuple[float, float]]:
+    """Small drawn stars, used when the star is not a text character."""
+    marks = []
+    for drawing in page.get_drawings():
+        rect = pymupdf.Rect(drawing["rect"])
+        if 6 <= rect.width <= 16 and 6 <= rect.height <= 16:
+            marks.append(((rect.x0 + rect.x1) / 2, (rect.y0 + rect.y1) / 2))
+    return marks
+
+
+def apply_star_slots(group: list[dict], rules: list[pymupdf.Rect], marks: list[tuple[float, float]]) -> None:
+    """Grammar ordering items use four short slots, one of them a star.
+
+    The paper draws those as underscore runs or as underline rules. Counting
+    every underlined space makes extra bars, so each run becomes one slot.
+    """
+    top = group[0]["y"]
+    bottom = max(char["y1"] for char in group)
+    # A drawn star does not start this on its own; random dots were matching.
+    if not any(char["c"] in "★＿_" for char in group):
+        return
+    slots: list[list[float | bool]] = []
+    index = 0
+    while index < len(group):
+        if group[index]["c"] in "＿_":
+            end = index + 1
+            while end < len(group) and group[end]["c"] in "＿_":
+                end += 1
+            if end - index >= 2:
+                slots.append([group[index]["x"], group[end - 1]["x1"], False])
+            index = end
+            continue
+        index += 1
+    for rule in rules:
+        if not (bottom - 2 <= rule.y0 <= bottom + 5) or rule.width < 20:
+            continue
+        covers_word = any(
+            char["c"] not in "★＿_"
+            and not char["c"].isspace()
+            and min(rule.x1, char["x1"]) - max(rule.x0, char["x"]) > 2
+            for char in group
+        )
+        if covers_word:
+            continue
+        slots.append([rule.x0, rule.x1, False])
+    if not slots and not any(char["c"] == "★" for char in group):
+        return
+    slots.sort(key=lambda slot: slot[0])
+    merged: list[list[float | bool]] = []
+    for slot in slots:
+        if merged and float(slot[0]) < float(merged[-1][1]) - 4:
+            merged[-1][0] = min(float(merged[-1][0]), float(slot[0]))
+            merged[-1][1] = max(float(merged[-1][1]), float(slot[1]))
+        else:
+            merged.append(slot)
+    for char in group:
+        if char["c"] != "★":
+            continue
+        center = (char["x"] + char["x1"]) / 2
+        if any(float(slot[0]) - 4 <= center <= float(slot[1]) + 4 for slot in merged):
+            continue
+        merged.append([char["x"], char["x1"], True])
+    merged.sort(key=lambda slot: float(slot[0]))
+    for slot in merged:
+        for char in group:
+            if char["c"] == "★":
+                center = (char["x"] + char["x1"]) / 2
+                if float(slot[0]) - 4 <= center <= float(slot[1]) + 4:
+                    slot[2] = True
+        for mark_x, mark_y in marks:
+            if top - 4 <= mark_y <= bottom + 8 and float(slot[0]) - 4 <= mark_x <= float(slot[1]) + 4:
+                slot[2] = True
+
+    def inside(char: dict) -> bool:
+        return any(
+            min(float(slot[1]), char["x1"]) - max(float(slot[0]), char["x"]) > 1 for slot in merged
+        )
+
+    kept = [char for char in group if not inside(char)]
+    for char in kept:
+        if char["c"].isspace():
+            char["under"] = False
+    group[:] = kept
+    for slot in merged:
+        group.append(
+            {
+                "c": "★" if slot[2] else "\u3000",
+                "x": float(slot[0]),
+                "y": top,
+                "x1": float(slot[1]),
+                "y1": bottom,
+                "sz": 12,
+                "ruby": "",
+                "under": False,
+                "slot": "star" if slot[2] else "blank",
+            }
+        )
+    group.sort(key=lambda char: char["x"])
+
+
+def lines_of(page: pymupdf.Page) -> list[dict]:
+    chars = []
+    for block in page.get_text("rawdict")["blocks"]:
+        if block.get("type") != 0:
+            continue
+        for line in block["lines"]:
+            for span in line["spans"]:
+                for char in span.get("chars") or []:
+                    glyph = han(char["c"])
+                    if glyph == "":
+                        continue
+                    x0, y0, x1, y1 = char["bbox"]
+                    chars.append(
+                        {"c": glyph, "x": x0, "y": y0, "x1": x1, "y1": y1, "sz": span["size"]}
+                    )
+    bases = [char for char in chars if char["sz"] >= 9]
+    rubies = [char for char in chars if char["sz"] < 9 and char["c"].strip()]
+    bases.sort(key=lambda char: (char["y"], char["x"]))
+    grouped: list[list[dict]] = []
+    for char in bases:
+        if grouped and abs(char["y"] - grouped[-1][0]["y"]) < 4:
+            grouped[-1].append(char)
+        else:
+            grouped.append([char])
+
+    rules = underline_rules(page)
+    marks = star_marks(page)
     lines = []
     for group in grouped:
-        group.sort(key=lambda s: s["x"])
-        parts = []
-        for base in group:
-            reading = "".join(r["t"] for r in sorted(assigned[id(base)], key=lambda r: r["x"]))
-            piece = base["t"] + (f"（{reading}）" if reading else "")
-            gap = base["x"] - parts[-1][1] if parts else 0
-            parts.append((piece, base["x1"], gap))
-        text = ""
-        for piece, _x1, gap in parts:
-            if text and (gap > 8 or re.match(r"^[1-4](?:\s|（)", piece)):
-                text += " "
-            text += piece
+        group.sort(key=lambda char: char["x"])
+        top = group[0]["y"]
+        bottom = max(char["y1"] for char in group)
+        line_rubies = [ruby for ruby in rubies if top - 16 <= ruby["y"] <= top + 2]
+        for char in group:
+            char["ruby_parts"] = []
+            overlap_need = (
+                2.5
+                if char["c"].isspace()
+                else min(3.5, max(char["x1"] - char["x"], 0.1) * 0.35)
+            )
+            char["under"] = any(
+                bottom - 2 <= rule.y0 <= bottom + 5
+                and min(rule.x1, char["x1"]) - max(rule.x0, char["x"]) > overlap_need
+                for rule in rules
+            )
+        for ruby in line_rubies:
+            best = None
+            best_overlap = 0.0
+            for char in group:
+                if char["c"].isspace():
+                    continue
+                overlap = min(ruby["x1"], char["x1"]) - max(ruby["x"], char["x"])
+                if overlap > best_overlap:
+                    best_overlap = overlap
+                    best = char
+            if best is not None and best_overlap > 0:
+                best["ruby_parts"].append(ruby)
+        for char in group:
+            char["ruby"] = "".join(
+                part["c"] for part in sorted(char["ruby_parts"], key=lambda part: part["x"])
+            )
+        apply_star_slots(group, rules, marks)
+        covered = [
+            rule
+            for rule in rules
+            if bottom - 2 <= rule.y0 <= bottom + 5
+            and any(
+                min(rule.x1, char["x1"]) - max(rule.x0, char["x"]) > 2
+                for char in group
+            )
+        ]
+        for rule in rules:
+            if rule in covered or not (bottom - 2 <= rule.y0 <= bottom + 5):
+                continue
+            if rule.x0 < group[0]["x"] - 8 or rule.x1 > group[-1]["x1"] + 40:
+                continue
+            width = max(2, round(rule.width / 12))
+            group.append(
+                {
+                    "c": "\u3000" * width,
+                    "x": rule.x0,
+                    "y": top,
+                    "x1": rule.x1,
+                    "y1": bottom,
+                    "sz": 12,
+                    "ruby": "",
+                    "under": True,
+                }
+            )
+        group.sort(key=lambda char: char["x"])
+        text = render_marked(group)
+        if not text:
+            continue
         lines.append(
-            {
-                "y": group[0]["y"],
-                "x": group[0]["x"],
-                "x1": group[-1]["x1"],
-                "text": clean(text),
-            }
+            {"y": top, "x": group[0]["x"], "x1": group[-1]["x1"], "text": text}
         )
     return lines
 
@@ -210,11 +443,18 @@ def option_chunks(text: str) -> list[tuple[int, str]] | None:
 
 
 def ban_numbers(text: str) -> list[int]:
-    return [int(n) for n in re.findall(r"([0-9]{1,2})\s*番", text)]
+    return [int(n) for n in re.findall(r"([0-9]{1,2})\s*番", plain(text))]
+
+
+def plain(text: str) -> str:
+    """Drop ruby and underline tags so headers can still be recognized."""
+    text = re.sub(r"<rt>.*?</rt>", "", text)
+    text = re.sub(r"</?ruby>|</?u>|<blank/>", "", text)
+    return text
 
 
 def mondai_number(text: str) -> int | None:
-    text = text.replace("間題", "問題").replace("問题", "問題")
+    text = plain(text).replace("間題", "問題").replace("問题", "問題")
     text = re.sub(r"^(問(?:（[^）]*）)?題(?:（[^）]*）)?\s*)[Il|Ｉ]", r"\g<1>1", text)
     match = re.match(r"^問(?:（[^）]*）)?題(?:（[^）]*）)?\s*([0-9]{1,2})", text)
     return int(match.group(1)) if match else None
@@ -292,8 +532,11 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                 continue
             if line["y"] < 48 and re.match(r"^N[1-5]\b", line["text"]):
                 continue
+            # Centered footer digits are the printed page number.
+            if line["x"] > 200 and re.fullmatch(r"[0-9]{1,3}", plain(line["text"]).strip()):
+                continue
             text = line["text"]
-            if text in ("文字・語彙", "文法", "読解", "聴解"):
+            if plain(text) in ("文字・語彙", "文法", "読解", "聴解"):
                 item = None
                 passage = None
                 mondai = None
@@ -471,12 +714,63 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                 kept = []
                 for pas in sec_mondai.get("passages", []):
                     pas["text"] = format_lines(pas.get("lines", []))
+                    pas["text"] = re.sub(r"(?:\n\d{1,2})+\s*$", "", pas["text"]).strip()
+                    if re.fullmatch(r"[0-9]+(?:\s+[0-9]+)*", pas["text"].strip() or ""):
+                        pas["text"] = ""
                     if pas["label"] is None and not pas["text"] and "image" not in pas:
                         continue
                     kept.append(pas)
                 if "passages" in sec_mondai:
                     sec_mondai["passages"] = kept
     return exam
+
+
+def join_split_boxes(page: pymupdf.Page, clips: list[pymupdf.Rect]) -> list[pymupdf.Rect]:
+    """Join slices of one notice that an internal rule split apart.
+
+    Two real boxes stay apart when a question, or empty space, sits between
+    them. An email with a rule before the room details does not.
+    """
+    if len(clips) < 2:
+        return clips
+    ordered = sorted(clips, key=lambda rect: rect.y0)
+    joined = [ordered[0]]
+    for clip in ordered[1:]:
+        previous = joined[-1]
+        same_column = abs(previous.x0 - clip.x0) < 24 and abs(previous.width - clip.width) < 48
+        gap = clip.y0 - previous.y1
+        if same_column and gap > 36 and gap_continues_box(page, previous.y1, clip.y0):
+            joined[-1] = pymupdf.Rect(
+                min(previous.x0, clip.x0),
+                previous.y0,
+                max(previous.x1, clip.x1),
+                clip.y1,
+            )
+            continue
+        joined.append(clip)
+    return joined
+
+
+def gap_continues_box(page: pymupdf.Page, y0: float, y1: float) -> bool:
+    """True when the gap is more of the same notice, not the next question."""
+    rows: list[tuple[float, str]] = []
+    for block in page.get_text("dict")["blocks"]:
+        if block.get("type") != 0:
+            continue
+        for line in block["lines"]:
+            top = line["bbox"][1]
+            if not (y0 - 2 < top < y1 + 2):
+                continue
+            text = han("".join(span["text"] for span in line["spans"])).strip()
+            if not text or re.fullmatch(r"\d{1,3}", text) or len(text) <= 2:
+                continue
+            rows.append((top, text))
+    if not rows:
+        return False
+    first = min(rows)[1]
+    if re.match(r"^(?:[0-9]{1,2}(?:\s|$)|（[0-9]+）|問題)", first):
+        return False
+    return True
 
 
 def frame_clips(page: pymupdf.Page) -> list[pymupdf.Rect]:
@@ -529,6 +823,7 @@ def frame_clips(page: pymupdf.Page) -> list[pymupdf.Rect]:
                 )
             )
             break
+    clips = join_split_boxes(page, clips)
     if clips:
         return clips
     if len(horizontal) >= 3:
