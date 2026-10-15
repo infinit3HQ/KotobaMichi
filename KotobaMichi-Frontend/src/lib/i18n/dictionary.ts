@@ -76,7 +76,7 @@ export type Dictionary = {
     activeDojo: string;
     levels: Record<"N5" | "N4" | "N3" | "N2" | "N1", string>;
     pillars: Record<
-      "sprint" | "grammar" | "kanji" | "listening" | "reading" | "flashcard" | "kana",
+      "sprint" | "walk" | "grammar" | "kanji" | "listening" | "reading" | "flashcard" | "kana",
       { title: string; subtitle: string }
     >;
   };
@@ -220,7 +220,7 @@ const en: Dictionary = {
     speed: "Speed",
     target: "Target JLPT Level",
     active: "Active",
-    pillarsLabel: "Interactive Practice Pillars (7 道場)",
+    pillarsLabel: "Interactive Practice Pillars (8 道場)",
     activeDojo: "Active Dojo",
     levels: {
       N5: "N5: Beginner foundations (Hiragana, Katakana, basic vocabulary & essential particles)",
@@ -231,6 +231,7 @@ const en: Dictionary = {
     },
     pillars: {
       sprint: { title: "Speed Sprint", subtitle: "Vocab Blitz" },
+      walk: { title: "Word Walk", subtitle: "No time limit" },
       grammar: { title: "Grammar Lab", subtitle: "Star & Cloze" },
       kanji: { title: "Kanji Dojo", subtitle: "Radicals & Forge" },
       listening: { title: "Listening Ear", subtitle: "Task Dialogues" },
@@ -381,7 +382,7 @@ const si: Dictionary = {
     speed: "වේගය",
     target: "ඉලක්ක JLPT මට්ටම",
     active: "සක්‍රියයි",
-    pillarsLabel: "පුහුණු අංශ (道場 7)",
+    pillarsLabel: "පුහුණු අංශ (道場 8)",
     activeDojo: "සක්‍රිය ශාලාව",
     levels: {
       N5: "N5: ආරම්භය (හිරගනා, කතකනා, මූලික වචන සහ අත්‍යවශ්‍ය කෘදන්ත)",
@@ -392,6 +393,7 @@ const si: Dictionary = {
     },
     pillars: {
       sprint: { title: "වේග පුහුණුව", subtitle: "වචන වේගය" },
+      walk: { title: "වචන ගමන", subtitle: "කාල සීමාවක් නැත" },
       grammar: { title: "ව්‍යාකරණ", subtitle: "තරු සහ හිඩැස්" },
       kanji: { title: "කන්ජි ශාලාව", subtitle: "මූලාංග" },
       listening: { title: "සවන්දීම", subtitle: "සංවාද" },

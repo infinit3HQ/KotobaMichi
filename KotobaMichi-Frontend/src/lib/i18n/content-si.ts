@@ -2,12 +2,17 @@
  * Sinhala glosses for lesson content.
  * Japanese stays Japanese. English remains the fallback when a gloss is missing.
  * Words are keyed as hiragana|kanji so homophones stay distinct.
- * gloss-si.json covers the rest of the catalog: every JLPT level, kanji,
- * grammar lines, listening, reading, and example sentences.
+ * Word and kanji meanings come from word-meanings-si.json and
+ * kanji-meanings-si.json, keyed by the Japanese entry itself.
+ * gloss-si.json still covers grammar lines, listening, reading, and sentences.
  */
 import glossSi from "./gloss-si.json";
+import kanjiMeaningsSi from "./kanji-meanings-si.json";
+import wordMeaningsSi from "./word-meanings-si.json";
 
 const phraseMap = glossSi as Record<string, string>;
+const wordMeaningMap = wordMeaningsSi as Record<string, string>;
+const kanjiMeaningMap = kanjiMeaningsSi as Record<string, string>;
 
 export function sinhalaPhrase(text: string): string | null {
   const hit = phraseMap[text];
@@ -608,19 +613,33 @@ for (const [key, si] of Object.entries(WORD_GLOSS_SI)) {
 export function sinhalaWordGloss(word: GlossWord): string | null {
   const hiragana = word.hiragana.trim();
   const kanji = (word.kanji ?? "").trim();
+  const direct = wordMeaningMap[`${hiragana}|${kanji}`];
+  if (direct) return direct;
+  if (kanji && kanji === hiragana) {
+    const bare = wordMeaningMap[`${hiragana}|`];
+    if (bare) return bare;
+  }
   const list = byHiragana.get(hiragana);
-  if (!list) return word.english ? sinhalaPhrase(word.english) : null;
+  if (!list) return null;
   if (kanji) {
     const exact = list.find((item) => item.kanji === kanji);
     if (exact) return exact.si;
-    const partial = list.find(
-      (item) => item.kanji && (item.kanji.includes(kanji) || kanji.includes(item.kanji)),
-    );
-    if (partial) return partial.si;
   }
   if (list.length === 1) return list[0].si;
-  if (word.english) return sinhalaPhrase(word.english);
   return null;
+}
+
+export function kanjiMeaningText(locale: string, item: { id: string; meaning: string }): string {
+  if (locale !== "si") return item.meaning;
+  return kanjiMeaningMap[item.id] || item.meaning;
+}
+
+export function radicalMeaningText(
+  locale: string,
+  radical: { character: string; meaning: string },
+): string {
+  if (locale !== "si") return radical.meaning;
+  return kanjiMeaningMap[`rad|${radical.character}|${radical.meaning}`] || radical.meaning;
 }
 
 export type SinhalaGrammar = { meaning: string; example: string };

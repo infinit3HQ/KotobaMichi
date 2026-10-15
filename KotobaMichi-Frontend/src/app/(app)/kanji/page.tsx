@@ -10,7 +10,7 @@ import { Input } from "@/components/atoms/input";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { ALL_JLPT_KANJI_MASTER, type KanjiMasterItem } from "@/data/kanji-master";
 import type { JLPTLevel } from "@/data/grammar";
-import { lessonText } from "@/lib/i18n/content-si";
+import { kanjiMeaningText } from "@/lib/i18n/content-si";
 import { speakJapanese } from "@/lib/audio";
 
 type KanjiFilterLevel = "ALL" | JLPTLevel;
@@ -324,7 +324,7 @@ function KanjiFlashcard({
   const { locale } = useLocale();
   const [isPlaying, setIsPlaying] = useState(false);
   const { on, kun, dominant } = readingsOf(item);
-  const meaning = lessonText(locale, item.meaning);
+  const meaning = kanjiMeaningText(locale, item);
   const examples = item.vocabulary.slice(0, 2);
 
   const playAudio = useCallback(
@@ -596,7 +596,7 @@ function KanjiTableRow({
         </span>
       </td>
       <td className="font-jp px-4 py-3 text-2xl font-bold text-foreground">{item.character}</td>
-      <td className="px-4 py-3 font-medium text-foreground">{lessonText(locale, item.meaning)}</td>
+      <td className="px-4 py-3 font-medium text-foreground">{kanjiMeaningText(locale, item)}</td>
       <td className="font-jp hidden px-4 py-3 text-xs text-muted-foreground sm:table-cell">{reading || "—"}</td>
       <td className="font-jp hidden px-4 py-3 text-xs text-muted-foreground md:table-cell">
         {example ? `${example.word} · ${example.meaning}` : "—"}

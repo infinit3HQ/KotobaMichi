@@ -21,6 +21,7 @@ import {
   BookOpen,
   GraduationCap,
   Puzzle,
+  Repeat,
 } from "lucide-react";
 
 // Sleek loading skeleton for lazy-loaded dojos
@@ -45,6 +46,14 @@ const SpeedSprintMode = dynamic(
   {
     ssr: false,
     loading: () => <DojoSkeleton title="Speed Sprint (Vocab Blitz)" icon={<Zap className="h-6 w-6 text-amber-500" />} />,
+  }
+);
+
+const WordWalkMode = dynamic(
+  () => import("@/components/organisms/word-walk-mode").then((m) => m.WordWalkMode),
+  {
+    ssr: false,
+    loading: () => <DojoSkeleton title="Word Walk" icon={<Repeat className="h-6 w-6 text-orange-500" />} />,
   }
 );
 
@@ -96,7 +105,7 @@ const KanaMasterMode = dynamic(
   }
 );
 
-type PracticeMode = "sprint" | "grammar" | "kanji" | "listening" | "reading" | "kana" | "flashcard";
+type PracticeMode = "sprint" | "walk" | "grammar" | "kanji" | "listening" | "reading" | "kana" | "flashcard";
 
 interface PracticePillarConfig {
   id: PracticeMode;
@@ -134,6 +143,24 @@ const PRACTICE_PILLARS: PracticePillarConfig[] = [
       iconBg: "bg-amber-500/10 text-amber-500",
       iconActiveBg: "bg-amber-500/20 text-amber-500",
       kanjiBadge: "bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30",
+    },
+  },
+  {
+    id: "walk",
+    kanji: "語",
+    kanjiLabel: "語彙巡回",
+    title: "Word Walk",
+    subtitle: "No time limit",
+    icon: <Repeat className="h-5 w-5 text-orange-500" />,
+    theme: {
+      activeBorder: "border-orange-500/60 dark:border-orange-400/60",
+      activeBg: "bg-gradient-to-b from-orange-500/15 via-orange-500/5 to-transparent",
+      activeGlow: "shadow-[0_4px_20px_-4px_rgba(249,115,22,0.25)]",
+      activeRing: "ring-1 ring-orange-500/40",
+      activePill: "bg-orange-500",
+      iconBg: "bg-orange-500/10 text-orange-500",
+      iconActiveBg: "bg-orange-500/20 text-orange-500",
+      kanjiBadge: "bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/30",
     },
   },
   {
@@ -263,6 +290,7 @@ export default function PracticeDojoPage() {
     }
     if (
       nextMode === "sprint" ||
+      nextMode === "walk" ||
       nextMode === "grammar" ||
       nextMode === "kanji" ||
       nextMode === "listening" ||
@@ -365,6 +393,7 @@ export default function PracticeDojoPage() {
           setSelectedLevel(level);
           if (
             nextMode === "sprint" ||
+            nextMode === "walk" ||
             nextMode === "grammar" ||
             nextMode === "kanji" ||
             nextMode === "listening" ||
@@ -395,7 +424,7 @@ export default function PracticeDojoPage() {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-7 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-3">
           {PRACTICE_PILLARS.map((pillar) => {
             const isActive = mode === pillar.id;
             return (
@@ -456,6 +485,15 @@ export default function PracticeDojoPage() {
       <div className="mt-4">
         {mode === "sprint" && (
           <SpeedSprintMode
+            selectedLevel={selectedLevel}
+            selectedTopic={selectedTopic}
+            onSelectTopic={setSelectedTopic}
+            soundEnabled={soundEnabled}
+            speechRate={speechRate}
+          />
+        )}
+        {mode === "walk" && (
+          <WordWalkMode
             selectedLevel={selectedLevel}
             selectedTopic={selectedTopic}
             onSelectTopic={setSelectedTopic}

@@ -12,7 +12,7 @@ import {
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
-import { lessonText } from "@/lib/i18n/content-si";
+import { kanjiMeaningText, lessonText, radicalMeaningText, sinhalaWordGloss } from "@/lib/i18n/content-si";
 import {
   Search,
   Volume2,
@@ -225,7 +225,7 @@ function KanjiAnatomyView({
                       )}
                     </div>
                     <h2 className="text-xl font-bold text-foreground">
-                      {lessonText(locale, activeKanji.meaning)}
+                      {kanjiMeaningText(locale, activeKanji)}
                     </h2>
                     <p className="text-xs text-muted-foreground">
                       Radical count: {activeKanji.radicals.length}
@@ -262,7 +262,7 @@ function KanjiAnatomyView({
                           {rad.character}
                         </span>
                         <span className="text-xs text-muted-foreground font-medium">
-                          {lessonText(locale, rad.meaning)}
+                          {radicalMeaningText(locale, rad)}
                         </span>
                       </div>
                     ))}
@@ -306,7 +306,13 @@ function KanjiAnatomyView({
                             </span>
                           </div>
                           <div className="text-xs text-foreground/80 truncate">
-                            {lessonText(locale, vocab.meaning)}
+                            {locale === "si"
+                              ? (sinhalaWordGloss({
+                                  hiragana: vocab.reading,
+                                  kanji: vocab.word,
+                                  english: vocab.meaning,
+                                }) ?? vocab.meaning)
+                              : vocab.meaning}
                           </div>
                         </div>
                         <Button
@@ -348,7 +354,7 @@ function KanjiAnatomyView({
                     {k.character}
                   </span>
                   <span className="text-[10px] text-muted-foreground truncate max-w-[90%] font-medium">
-                    {lessonText(locale, k.meaning).split(",")[0]}
+                    {kanjiMeaningText(locale, k).split(",")[0]}
                   </span>
                 </button>
               );
@@ -470,7 +476,7 @@ function RadicalForgePuzzle({
             {currentKanji.character}
           </div>
           <p className="text-sm font-semibold text-muted-foreground">
-            &ldquo;{lessonText(locale, currentKanji.meaning)}&rdquo;
+            &ldquo;{kanjiMeaningText(locale, currentKanji)}&rdquo;
           </p>
           <p className="text-xs text-primary font-medium">
             Select the {currentKanji.radicals.length} radicals that combine to form this Kanji:
@@ -558,7 +564,7 @@ function RadicalForgePuzzle({
                 <p className="text-foreground/90 font-medium">
                   Radicals for <strong className="font-japanese text-sm">{currentKanji.character}</strong>:{" "}
                   {currentKanji.radicals
-                    .map((r) => `${r.character} (${lessonText(locale, r.meaning)})`)
+                    .map((r) => `${r.character} (${radicalMeaningText(locale, r)})`)
                     .join(" + ")}
                 </p>
                 {currentKanji.mnemonic && (
