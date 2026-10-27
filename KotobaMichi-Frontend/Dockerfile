@@ -1,19 +1,22 @@
 ## Multi-stage build for Next.js (standalone)
-FROM node:20-alpine AS deps
-RUN corepack enable && corepack prepare pnpm@9 --activate
+FROM node:26.12.1-alpine AS deps
+RUN apk add --no-cache libc6-compat \
+  && npm install -g pnpm@12.15.0
 WORKDIR /app
-COPY package.json pnpm-lock.yaml .npmrc ./
-RUN pnpm install --frozen-lockfile
+COPY package.json pnpm-lock.yaml pnpm-workspace.docker.yaml ./
+RUN mv pnpm-workspace.docker.yaml pnpm-workspace.yaml \
+  && pnpm install --frozen-lockfile
 
-FROM node:20-alpine AS builder
-RUN corepack enable && corepack prepare pnpm@9 --activate
+FROM node:26.12.1-alpine AS builder
+RUN npm install -g pnpm@12.15.0
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY . .
 # Build Next.js (standalone)
 RUN pnpm build
 
-FROM node:20-alpine AS runner
+FROM node:26.12.1-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000

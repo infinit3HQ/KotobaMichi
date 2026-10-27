@@ -1,21 +1,19 @@
 # Build stage
-FROM node:24.6.0-alpine AS builder
+FROM node:26.12.1-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
+# Install pnpm and build tools for native modules (bcrypt)
+RUN apk add --no-cache python3 make g++ libc6-compat \
+  && npm install -g pnpm@12.15.0
+
 # Copy package files
-COPY package*.json ./
-COPY pnpm-lock.yaml ./
-
-# Install pnpm (pinned to v9 to prevent v11+ ignored build scripts failure)
-RUN npm install -g pnpm@9.15.4
-
-# Install build dependencies for native modules (e.g., bcrypt)
-RUN apk add --no-cache python3 make g++ libc6-compat
+COPY package.json pnpm-lock.yaml pnpm-workspace.docker.yaml ./
+RUN mv pnpm-workspace.docker.yaml pnpm-workspace.yaml
 
 # Install dependencies
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
 # Copy source code
 COPY . .
@@ -27,7 +25,7 @@ RUN pnpm run build
 RUN pnpm prune --prod
 
 # Production stage
-FROM node:24.6.0-alpine AS production
+FROM node:26.12.1-alpine AS production
 
 # Set working directory
 WORKDIR /app
