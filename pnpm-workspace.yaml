@@ -2,6 +2,8 @@ packages:
   - KotobaMichi-Frontend
   - KotobaMichi-Backend
 
+minimumReleaseAge: 1440
+
 nodeLinker: hoisted
 hoistPattern:
   - '*'
@@ -18,7 +20,7 @@ allowBuilds:
 
 overrides:
   sharp: 0.35.5
-  postcss: 8.5.32
+  postcss: ">=8.5.23"
   multer: 2.5.0
   proxy-addr: 2.0.8
   handlebars: 4.7.10
