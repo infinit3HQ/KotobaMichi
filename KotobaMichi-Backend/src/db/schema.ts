@@ -11,6 +11,7 @@ import {
 	integer,
 	jsonb,
 	real,
+	smallint,
 	date,
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
@@ -404,10 +405,18 @@ export const learnerCards = pgTable(
 		kind: varchar('kind', { length: 16 }).notNull().default('word'),
 		level: varchar('level', { length: 8 }).notNull(),
 		mastery: integer('mastery').notNull().default(0),
+		// SM-2 ease from before FSRS. Read once to convert old cards, no longer written.
 		ease: real('ease').notNull().default(2.5),
+		// FSRS scheduled_days.
 		intervalDays: integer('interval_days').notNull().default(0),
 		reps: integer('reps').notNull().default(0),
 		lapses: integer('lapses').notNull().default(0),
+		// FSRS memory state. Null stability or difficulty means a card from the SM-2 era.
+		stability: real('stability'),
+		difficulty: real('difficulty'),
+		// FSRS State: 0 new, 1 learning, 2 review, 3 relearning.
+		fsrsState: smallint('fsrs_state').notNull().default(0),
+		learningSteps: integer('learning_steps').notNull().default(0),
 		lastGrade: varchar('last_grade', { length: 8 }),
 		learnedAt: timestamp('learned_at', { withTimezone: false }),
 		lastSeenAt: timestamp('last_seen_at', { withTimezone: false }),

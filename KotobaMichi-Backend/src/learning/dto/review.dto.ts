@@ -1,7 +1,21 @@
-import { IsIn, IsInt, IsOptional, IsString, Matches, Max, MaxLength, Min } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+	ArrayMaxSize,
+	IsArray,
+	IsIn,
+	IsInt,
+	IsOptional,
+	IsString,
+	Matches,
+	Max,
+	MaxLength,
+	Min,
+	ValidateNested,
+} from 'class-validator';
 
 const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'] as const;
 const GRADES = ['again', 'hard', 'good', 'easy'] as const;
+export const MAX_BATCH_REVIEWS = 500;
 
 export class ReviewDto {
 	@IsString()
@@ -26,7 +40,15 @@ export class SavePlaceDto {
 	@IsIn(LEVELS)
 	level: (typeof LEVELS)[number];
 
-	@IsIn(['sprint', 'grammar', 'kanji', 'listening', 'reading', 'kana', 'flashcard'])
+	@IsIn([
+		'sprint',
+		'grammar',
+		'kanji',
+		'listening',
+		'reading',
+		'kana',
+		'flashcard',
+	])
 	mode: string;
 
 	@IsOptional()
@@ -43,4 +65,20 @@ export class SavePlaceDto {
 export class QueueQueryDto {
 	@IsIn(LEVELS)
 	level: (typeof LEVELS)[number];
+}
+
+/** A review made while signed out, replayed on the server after sign-in. */
+export class GuestReviewDto extends ReviewDto {
+	/** When the review happened, in epoch milliseconds. */
+	@IsInt()
+	@Min(0)
+	reviewedAt: number;
+}
+
+export class ReviewBatchDto {
+	@IsArray()
+	@ArrayMaxSize(MAX_BATCH_REVIEWS)
+	@ValidateNested({ each: true })
+	@Type(() => GuestReviewDto)
+	reviews: GuestReviewDto[];
 }

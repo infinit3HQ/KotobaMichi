@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Get,
+	Param,
+	Post,
+	Put,
+	Req,
+	UseGuards,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '@/auth/jwt-auth/jwt-auth.guard';
 import { SaveMockAttemptDto } from './dto/save-mock-attempt.dto';
 import { MockExamsService } from './mock-exams.service';

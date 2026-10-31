@@ -1,20 +1,27 @@
-import { IsString, IsNotEmpty, IsOptional, IsBoolean, IsArray, ArrayNotEmpty } from 'class-validator';
+import {
+	IsString,
+	IsNotEmpty,
+	IsOptional,
+	IsBoolean,
+	IsArray,
+	ArrayNotEmpty,
+} from 'class-validator';
 
 export class CreateQuizDto {
-  @IsString()
-  @IsNotEmpty()
-  title: string;
+	@IsString()
+	@IsNotEmpty()
+	title: string;
 
-  @IsString()
-  @IsOptional()
-  description?: string;
+	@IsString()
+	@IsOptional()
+	description?: string;
 
-  @IsBoolean()
-  @IsOptional()
-  isPublic?: boolean;
+	@IsBoolean()
+	@IsOptional()
+	isPublic?: boolean;
 
-  @IsArray()
-  @ArrayNotEmpty()
-  @IsString({ each: true })
-  wordIds: string[];
+	@IsArray()
+	@ArrayNotEmpty()
+	@IsString({ each: true })
+	wordIds: string[];
 }

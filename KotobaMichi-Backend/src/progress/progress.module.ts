@@ -4,9 +4,9 @@ import { ProgressController } from './progress.controller';
 import { DrizzleModule } from 'src/db/drizzle.module';
 
 @Module({
-  imports: [DrizzleModule],
-  controllers: [ProgressController],
-  providers: [ProgressService],
-  exports: [ProgressService],
+	imports: [DrizzleModule],
+	controllers: [ProgressController],
+	providers: [ProgressService],
+	exports: [ProgressService],
 })
 export class ProgressModule {}

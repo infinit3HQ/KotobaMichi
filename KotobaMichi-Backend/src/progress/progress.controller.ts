@@ -5,11 +5,11 @@ import { AuthenticatedRequest } from 'src/auth/types';
 
 @Controller('progress')
 export class ProgressController {
-  constructor(private readonly progressService: ProgressService) {}
+	constructor(private readonly progressService: ProgressService) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  getUserProgress(@Req() req: AuthenticatedRequest) {
-    return this.progressService.getUserProgress(req.user.sub);
-  }
+	@UseGuards(JwtAuthGuard)
+	@Get()
+	getUserProgress(@Req() req: AuthenticatedRequest) {
+		return this.progressService.getUserProgress(req.user.sub);
+	}
 }

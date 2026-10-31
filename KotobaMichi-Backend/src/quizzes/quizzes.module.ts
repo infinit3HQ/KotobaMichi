@@ -5,8 +5,8 @@ import { DrizzleModule } from '@/db/drizzle.module';
 import { ProgressModule } from '@/progress/progress.module';
 
 @Module({
-  imports: [DrizzleModule, ProgressModule],
-  controllers: [QuizzesController],
-  providers: [QuizzesService],
+	imports: [DrizzleModule, ProgressModule],
+	controllers: [QuizzesController],
+	providers: [QuizzesService],
 })
 export class QuizzesModule {}

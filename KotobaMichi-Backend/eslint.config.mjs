@@ -51,14 +51,8 @@ export default tseslint.config(
       
       // NestJS specific rules
       '@typescript-eslint/no-empty-interface': 'off',
-      '@typescript-eslint/ban-types': [
-        'error',
-        {
-          types: {
-            '{}': false,
-          },
-        },
-      ],
+      // typescript-eslint v8 replaced ban-types. This keeps `{}` allowed as before.
+      '@typescript-eslint/no-empty-object-type': 'off',
       
       // Configure prettier
       'prettier/prettier': [

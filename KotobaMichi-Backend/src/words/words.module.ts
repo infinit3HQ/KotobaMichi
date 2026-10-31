@@ -5,9 +5,9 @@ import { CsvImportService } from './csv-import.service';
 import { DrizzleModule } from '@/db/drizzle.module';
 
 @Module({
-  imports: [DrizzleModule],
-  controllers: [WordsController],
-  providers: [WordsService, CsvImportService],
-  exports: [WordsService, CsvImportService],
+	imports: [DrizzleModule],
+	controllers: [WordsController],
+	providers: [WordsService, CsvImportService],
+	exports: [WordsService, CsvImportService],
 })
 export class WordsModule {}

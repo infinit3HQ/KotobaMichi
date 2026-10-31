@@ -137,8 +137,9 @@ export class AuthController {
 			/\/$/,
 			''
 		);
-		const user = (req as { user?: { id?: string; email?: string; role?: string } })
-			.user;
+		const user = (
+			req as { user?: { id?: string; email?: string; role?: string } }
+		).user;
 		if (!user?.id || !user.email || !user.role) {
 			return res.redirect(`${appUrl}/auth/login?error=google`);
 		}

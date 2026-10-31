@@ -226,7 +226,10 @@ export class MockExamsService {
 		return answers;
 	}
 
-	private score(examId: string, answers: Record<string, number>): MockExamScore[] {
+	private score(
+		examId: string,
+		answers: Record<string, number>
+	): MockExamScore[] {
 		const key = ANSWER_KEYS[examId] ?? {};
 		const buckets: Record<string, MockExamScore> = {
 			language: { id: 'language', title: '言語知識', correct: 0, total: 0 },
@@ -235,15 +238,18 @@ export class MockExamsService {
 		};
 		for (const [name, answer] of Object.entries(key)) {
 			const part = name.split(':')[1] ?? '';
-			const bucketId = part === 'reading' || part === 'listening' ? part : 'language';
+			const bucketId =
+				part === 'reading' || part === 'listening' ? part : 'language';
 			const bucket = buckets[bucketId];
 			if (!bucket) continue;
 			bucket.total += 1;
 			if (answers[name] === answer) bucket.correct += 1;
 		}
-		return [buckets['language'], buckets['reading'], buckets['listening']].filter(
-			(bucket): bucket is MockExamScore => bucket != null
-		);
+		return [
+			buckets['language'],
+			buckets['reading'],
+			buckets['listening'],
+		].filter((bucket): bucket is MockExamScore => bucket != null);
 	}
 
 	private present(row: AttemptRow) {

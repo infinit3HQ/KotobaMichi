@@ -1,8 +1,22 @@
-import { Body, Controller, Get, Put, Post, Query, Req, UseGuards } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Get,
+	Put,
+	Post,
+	Query,
+	Req,
+	UseGuards,
+} from '@nestjs/common';
 import { Throttle, seconds } from '@nestjs/throttler';
 import { JwtAuthGuard } from 'src/auth/jwt-auth/jwt-auth.guard';
 import { AuthenticatedRequest } from 'src/auth/types';
-import { QueueQueryDto, ReviewDto, SavePlaceDto } from './dto/review.dto';
+import {
+	QueueQueryDto,
+	ReviewBatchDto,
+	ReviewDto,
+	SavePlaceDto,
+} from './dto/review.dto';
 import { LearningService } from './learning.service';
 
 @Controller('learning')
@@ -24,6 +38,12 @@ export class LearningController {
 	@Throttle({ default: { ttl: seconds(60), limit: 240 } })
 	review(@Req() req: AuthenticatedRequest, @Body() dto: ReviewDto) {
 		return this.learningService.review(req.user.sub, dto);
+	}
+
+	@Post('reviews/batch')
+	@Throttle({ default: { ttl: seconds(60), limit: 10 } })
+	reviewBatch(@Req() req: AuthenticatedRequest, @Body() dto: ReviewBatchDto) {
+		return this.learningService.reviewBatch(req.user.sub, dto);
 	}
 
 	@Put('place')

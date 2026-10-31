@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
 import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
+import { resolveCorsOrigins } from './config/cors';
 
 async function bootstrap() {
 	const logger = new Logger('Bootstrap');
@@ -26,20 +27,19 @@ async function bootstrap() {
 		});
 
 		// Enable CORS with credentials for cookie-based auth.
-		// APP_URL is the web app, so it stays allowed even when CORS_ORIGIN lists another origin.
-		const origins = new Set(
-			(process.env['CORS_ORIGIN'] || '')
-				.split(',')
-				.map((s) => s.trim().replace(/\/$/, ''))
-				.filter(Boolean)
-		);
-		const appUrl = process.env['APP_URL']?.trim().replace(/\/$/, '');
-		if (appUrl) origins.add(appUrl);
+		// Only listed origins may send cookies. An empty list blocks cross-origin calls.
+		const origins = resolveCorsOrigins(process.env);
 		app.enableCors({
-			origin: origins.size > 0 ? [...origins] : true,
+			origin: origins.length > 0 ? origins : false,
 			credentials: true,
 		});
-		logger.log('CORS enabled with credentials');
+		if (origins.length > 0) {
+			logger.log(`CORS enabled with credentials for: ${origins.join(', ')}`);
+		} else {
+			logger.error(
+				'No CORS_ORIGIN or APP_URL set. Cross-origin requests from the web app will be rejected.'
+			);
+		}
 
 		// Cookie parser for reading HttpOnly cookies
 		app.use(cookieParser(process.env['COOKIE_SECRET'] || undefined));

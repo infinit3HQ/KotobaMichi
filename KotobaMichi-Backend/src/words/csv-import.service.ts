@@ -69,11 +69,11 @@ export class CsvImportService {
 	private parseCsvFile(filePath: string): CsvWord[] {
 		try {
 			const fileContent = fs.readFileSync(filePath, 'utf-8');
-			const records = parse(fileContent, {
+			const records = parse<CsvWord>(fileContent, {
 				columns: (header: string[]) => header.map(h => this.normalizeHeader(h)),
 				skip_empty_lines: true,
 				trim: true,
-			}) as CsvWord[];
+			});
 			return records;
 		} catch (error) {
 			const errorMessage =
@@ -88,11 +88,11 @@ export class CsvImportService {
 	 */
 	private parseCsvContent(content: string | Buffer): CsvWord[] {
 		try {
-			const records = parse(content, {
+			const records = parse<CsvWord>(content, {
 				columns: (header: string[]) => header.map(h => this.normalizeHeader(h)),
 				skip_empty_lines: true,
 				trim: true,
-			}) as CsvWord[];
+			});
 			return records;
 		} catch (error) {
 			const errorMessage =

@@ -239,7 +239,9 @@ export class AuthService {
 			role: user.role,
 			type: 'access',
 		} as const;
-		return this.jwtService.sign(payload, { expiresIn: this.accessTokenTTL() as any });
+		return this.jwtService.sign(payload, {
+			expiresIn: this.accessTokenTTL() as any,
+		});
 	}
 
 	private signRefreshToken(user: { id: string }) {
@@ -682,11 +684,13 @@ export class AuthService {
 		} catch {
 			// Possible reuse; if we can parse jti, revoke the family
 			try {
-				const decoded = this.jwtService.decode(token) as any;
+				const decoded = this.jwtService.decode<{ jti?: string } | null>(token);
 				if (decoded?.jti) {
 					await this.revokeRefreshTokenFamily(decoded.jti);
 				}
-			} catch {}
+			} catch {
+				// Unreadable token: nothing to revoke.
+			}
 			this.clearAuthCookies(res!);
 			this.logger.warn('Refresh token verification failed; tokens cleared');
 			throw new UnauthorizedException('Invalid refresh token');
@@ -715,7 +719,9 @@ export class AuthService {
 			if (a.length === b.length) {
 				try {
 					matchHash = timingSafeEqual(a, b);
-				} catch {}
+				} catch {
+					// Leave matchHash false.
+				}
 			}
 		}
 		const isExpired = rt ? rt.expiresAt.getTime() < Date.now() : true;
@@ -828,7 +834,9 @@ export class AuthService {
 				if (payload?.sub) {
 					await this.revokeAllUserRefreshTokens(payload.sub);
 				}
-			} catch {}
+			} catch {
+				// Logout still clears cookies when revocation fails.
+			}
 		}
 		this.clearAuthCookies(res);
 		this.logger.log(
