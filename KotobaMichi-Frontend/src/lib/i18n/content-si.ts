@@ -5,14 +5,41 @@
  * Word and kanji meanings come from word-meanings-si.json and
  * kanji-meanings-si.json, keyed by the Japanese entry itself.
  * gloss-si.json still covers grammar lines, listening, reading, and sentences.
+ *
+ * The three JSON files are about 3.5 MB, so they load on demand through
+ * loadSinhalaContent() instead of shipping to every visitor. Until they load,
+ * lookups fall back to English. LocaleProvider loads them when Sinhala is chosen.
  */
-import glossSi from "./gloss-si.json";
-import kanjiMeaningsSi from "./kanji-meanings-si.json";
-import wordMeaningsSi from "./word-meanings-si.json";
+let phraseMap: Record<string, string> = {};
+let wordMeaningMap: Record<string, string> = {};
+let kanjiMeaningMap: Record<string, string> = {};
+let loading: Promise<void> | null = null;
+let loaded = false;
 
-const phraseMap = glossSi as Record<string, string>;
-const wordMeaningMap = wordMeaningsSi as Record<string, string>;
-const kanjiMeaningMap = kanjiMeaningsSi as Record<string, string>;
+export function sinhalaContentLoaded() {
+  return loaded;
+}
+
+export function loadSinhalaContent(): Promise<void> {
+  if (!loading) {
+    loading = Promise.all([
+      import("./gloss-si.json"),
+      import("./word-meanings-si.json"),
+      import("./kanji-meanings-si.json"),
+    ])
+      .then(([gloss, words, kanji]) => {
+        phraseMap = gloss.default as Record<string, string>;
+        wordMeaningMap = words.default as Record<string, string>;
+        kanjiMeaningMap = kanji.default as Record<string, string>;
+        loaded = true;
+      })
+      .catch((error: unknown) => {
+        loading = null;
+        throw error;
+      });
+  }
+  return loading;
+}
 
 export function sinhalaPhrase(text: string): string | null {
   const hit = phraseMap[text];

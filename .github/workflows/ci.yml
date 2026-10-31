@@ -22,11 +22,15 @@ jobs:
             frontend:
               - 'KotobaMichi-Frontend/**'
               - 'pnpm-workspace.yaml'
+              - 'pnpm-lock.yaml'
               - 'package.json'
+              - '.github/workflows/ci.yml'
             backend:
               - 'KotobaMichi-Backend/**'
               - 'pnpm-workspace.yaml'
+              - 'pnpm-lock.yaml'
               - 'package.json'
+              - '.github/workflows/ci.yml'
 
   test-frontend:
     name: Build & Test Frontend
@@ -43,7 +47,13 @@ jobs:
           node-version: 26
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+      - name: Lint frontend
+        run: pnpm --filter kotobamichi-frontend lint
+      - name: Typecheck frontend
+        run: pnpm --filter kotobamichi-frontend typecheck
+      - name: Test frontend
+        run: pnpm --filter kotobamichi-frontend test
       - name: Build frontend
         run: pnpm --filter kotobamichi-frontend build
 
@@ -62,6 +72,10 @@ jobs:
           node-version: 26
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+      - name: Lint backend
+        run: pnpm --filter kotobamichi-backend lint
+      - name: Test backend
+        run: pnpm --filter kotobamichi-backend test
       - name: Build backend
         run: pnpm --filter kotobamichi-backend build

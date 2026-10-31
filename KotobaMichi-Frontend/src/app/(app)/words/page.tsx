@@ -28,16 +28,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { speakJapanese } from "@/lib/audio";
-import { JLPT_N5_WORDS, type JLPTWord } from "@/data/vocab-n5";
-import {
-  TANOS_N5_WORDS,
-  TANOS_N4_WORDS,
-  TANOS_N3_WORDS,
-  TANOS_N2_WORDS,
-  TANOS_N1_WORDS,
-  ALL_TANOS_WORDS,
-  getTanosWordsByLevel,
-} from "@/data/vocab-tanos";
+import type { JLPTWord } from "@/data/vocab-n5";
+import { useVocabCatalog } from "@/hooks/use-vocab-catalog";
 import type { JLPTLevel } from "@/data/grammar";
 
 interface EnrichedWord extends Word {
@@ -47,13 +39,13 @@ interface EnrichedWord extends Word {
 
 export type WordFilterLevel = "ALL" | JLPTLevel;
 
-const LEVEL_TABS: { id: WordFilterLevel; label: string; kanji: string; count: number; desc: string }[] = [
-  { id: "ALL", label: "All Levels", kanji: "全", count: ALL_TANOS_WORDS.length, desc: "N5 to N1 Complete Vault" },
-  { id: "N5", label: "N5", kanji: "五", count: TANOS_N5_WORDS.length, desc: "Beginner Foundations" },
-  { id: "N4", label: "N4", kanji: "四", count: TANOS_N4_WORDS.length, desc: "Elementary Japanese" },
-  { id: "N3", label: "N3", kanji: "三", count: TANOS_N3_WORDS.length, desc: "Intermediate Bridge" },
-  { id: "N2", label: "N2", kanji: "二", count: TANOS_N2_WORDS.length, desc: "Pre-Advanced Fluency" },
-  { id: "N1", label: "N1", kanji: "一", count: TANOS_N1_WORDS.length, desc: "Advanced Native Nuance" },
+const LEVEL_TABS: { id: WordFilterLevel; label: string; kanji: string; desc: string }[] = [
+  { id: "ALL", label: "All Levels", kanji: "全", desc: "N5 to N1 Complete Vault" },
+  { id: "N5", label: "N5", kanji: "五", desc: "Beginner Foundations" },
+  { id: "N4", label: "N4", kanji: "四", desc: "Elementary Japanese" },
+  { id: "N3", label: "N3", kanji: "三", desc: "Intermediate Bridge" },
+  { id: "N2", label: "N2", kanji: "二", desc: "Pre-Advanced Fluency" },
+  { id: "N1", label: "N1", kanji: "一", desc: "Advanced Native Nuance" },
 ];
 
 export default function WordsPage() {
@@ -67,6 +59,8 @@ export default function WordsPage() {
   const [speechRate, setSpeechRate] = useState<number>(0.92);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const limit = 1000;
+  // The word lists are about 2 MB, so they load as their own chunk after the page shell.
+  const vocab = useVocabCatalog();
 
   const {
     isLoading,
@@ -92,16 +86,17 @@ export default function WordsPage() {
   // Map enriched word metadata (topic, partOfSpeech) from N5 master set
   const vocabMetaMap = useMemo(() => {
     const map = new Map<string, JLPTWord>();
-    JLPT_N5_WORDS.forEach((w) => {
+    vocab?.n5.forEach((w) => {
       map.set(w.id, w);
       if (w.hiragana) map.set(w.hiragana, w);
     });
     return map;
-  }, []);
+  }, [vocab]);
 
   // Multi-tier word list based on selectedLevel (All 8,447 Tanos words or level specific)
   const words: EnrichedWord[] = useMemo(() => {
-    const rawList: JLPTWord[] = selectedLevel === "ALL" ? ALL_TANOS_WORDS : getTanosWordsByLevel(selectedLevel);
+    if (!vocab) return [];
+    const rawList: JLPTWord[] = selectedLevel === "ALL" ? vocab.all : vocab.byLevel(selectedLevel);
     return rawList.map((w) => {
       const meta = vocabMetaMap.get(w.id) || vocabMetaMap.get(w.hiragana);
       return {
@@ -117,7 +112,7 @@ export default function WordsPage() {
         createdAt: new Date().toISOString(),
       };
     });
-  }, [selectedLevel, vocabMetaMap]);
+  }, [selectedLevel, vocabMetaMap, vocab]);
 
   // Topic counts for filter chips
   const topicCounts = useMemo(() => {
@@ -194,7 +189,7 @@ export default function WordsPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  if (isLoading && words.length === 0) {
+  if (!vocab || (isLoading && words.length === 0)) {
     return <LoadingState />;
   }
 
@@ -275,7 +270,7 @@ export default function WordsPage() {
                         isActive ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"
                       }`}
                     >
-                      {tab.count.toLocaleString()}
+                      {(tab.id === "ALL" ? vocab.all.length : vocab.byLevel(tab.id).length).toLocaleString()}
                     </span>
                   </button>
                 );

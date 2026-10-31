@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MockExamCatalog } from "@/components/organisms/mock-exam-catalog";
+import { mockExamSummaries } from "@/lib/mock-exam-data";
 
 export const metadata: Metadata = {
   title: "Mock exam",
@@ -17,7 +18,7 @@ export default function MockExamIndexPage() {
           gets 40. The clock locks each block.
         </p>
       </header>
-      <MockExamCatalog />
+      <MockExamCatalog exams={mockExamSummaries()} />
     </div>
   );
 }

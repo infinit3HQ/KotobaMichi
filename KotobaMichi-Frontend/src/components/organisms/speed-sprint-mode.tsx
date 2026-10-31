@@ -134,11 +134,10 @@ export function SpeedSprintMode({
       }
 
       setHistory((prev) => [{ word: currentWord, isCorrect: correct }, ...prev]);
-      if (user) {
-        void record(currentWord.id, selectedLevel, correct ? "good" : "again").catch(() => undefined);
-      }
+      // Guests are recorded too; their reviews sync after sign-in.
+      void record(currentWord.id, selectedLevel, correct ? "good" : "again").catch(() => undefined);
     },
-    [currentWord, selectedAnswer, streak, highestStreak, soundEnabled, user, record, selectedLevel]
+    [currentWord, selectedAnswer, streak, highestStreak, soundEnabled, record, selectedLevel]
   );
 
   // Keyboard Navigation: keys 1, 2, 3, 4 and R for repeat

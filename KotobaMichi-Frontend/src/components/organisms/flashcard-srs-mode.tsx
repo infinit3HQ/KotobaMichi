@@ -82,12 +82,13 @@ export function FlashcardSrsMode({
 
   const gradeCard = useCallback(
     (grade: LearningGrade) => {
-      if (user && currentWord) {
+      // Guests are recorded too; their reviews sync after sign-in.
+      if (currentWord) {
         void record(currentWord.id, selectedLevel, grade).catch(() => undefined);
       }
       nextCard();
     },
-    [user, currentWord, record, selectedLevel, nextCard]
+    [currentWord, record, selectedLevel, nextCard]
   );
 
   useEffect(() => {

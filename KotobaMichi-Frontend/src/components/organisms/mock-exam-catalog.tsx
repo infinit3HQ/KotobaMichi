@@ -2,23 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { formatPoints, MOCK_EXAMS, pointsForSection, scoreByMondai, scoreExam, type MockExam } from "@/lib/mock-exam";
+import { formatPoints, pointsForSection, scoreByMondai, scoreExam, type MockExamSummary } from "@/lib/mock-exam";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
 
-function questionCount(exam: MockExam) {
-  return exam.sections.reduce(
-    (sum, section) =>
-      sum +
-      section.parts.reduce(
-        (partSum, part) => partSum + part.mondai.reduce((count, mondai) => count + mondai.items.length, 0),
-        0
-      ),
-    0
-  );
-}
-
-export function MockExamCatalog() {
+export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
   const user = useAuthStore((state) => state.user);
   const [attempts, setAttempts] = useState<RemoteMockAttempt[]>([]);
 
@@ -42,13 +30,13 @@ export function MockExamCatalog() {
 
   return (
     <ul className="space-y-3">
-      {MOCK_EXAMS.map((exam) => {
+      {exams.map((exam) => {
         const mine = attempts.filter((attempt) => attempt.examId === exam.id && attempt.status === "finished");
         const open = attempts.find((attempt) => attempt.examId === exam.id && attempt.status === "in_progress");
         const latest = mine[0];
-        const latestRows = latest ? scoreByMondai(exam, latest.answers ?? {}) : [];
+        const latestRows = latest ? scoreByMondai(exam.scoring, latest.answers ?? {}) : [];
         const latestEstimate = latest
-          ? scoreExam(exam, latest.answers ?? {}).reduce((sum, score) => sum + pointsForSection(latestRows, score.id), 0)
+          ? scoreExam(exam.scoring, latest.answers ?? {}).reduce((sum, score) => sum + pointsForSection(latestRows, score.id), 0)
           : 0;
         return (
           <li key={exam.id}>
@@ -61,10 +49,10 @@ export function MockExamCatalog() {
                 <span className="font-jp text-sm text-muted-foreground">{exam.level}</span>
               </div>
               <p className="mt-2 text-sm text-muted-foreground">
-                {questionCount(exam)} questions · reconstructed mock
+                {exam.questionCount} questions · reconstructed mock
               </p>
               <p className="mt-3 font-mono text-xs text-muted-foreground">
-                {exam.sections.map((section) => `${section.minutes}m`).join(" · ")}
+                {exam.minutes.map((minutes) => `${minutes}m`).join(" · ")}
               </p>
               {user && (open || latest) && (
                 <p className="mt-3 text-sm">

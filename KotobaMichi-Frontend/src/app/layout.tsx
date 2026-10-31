@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import Script from "next/script";
 import "./globals.css";
 import Providers from "./providers";
 import { SITE_CONFIG, SITE_URL } from "@/lib/seo-config";
 import { JsonLd } from "@/components/atoms/json-ld";
+import { LOCALE_COOKIE, parseLocale } from "@/lib/i18n/locale-cookie";
 
 const geistSans = { variable: "--font-geist-sans" } as const;
 const geistMono = { variable: "--font-geist-mono" } as const;
@@ -85,6 +87,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/favicon.ico",
+    apple: "/icons/apple-touch-icon.png",
   },
 };
 
@@ -137,13 +140,14 @@ const websiteJsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = parseLocale((await cookies()).get(LOCALE_COOKIE)?.value) ?? "en";
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} className={locale === "si" ? "locale-si" : undefined} suppressHydrationWarning>
       <head>
         <JsonLd data={websiteJsonLd} />
       </head>
@@ -155,7 +159,7 @@ export default function RootLayout({
           <Script src="/env.js" strategy="beforeInteractive" />
         </div>
         {/* App providers and shared layout */}
-        <Providers>{children}</Providers>
+        <Providers initialLocale={locale}>{children}</Providers>
       </body>
     </html>
   );
