@@ -45,11 +45,21 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata
+      - name: Extract metadata (API)
         id: meta
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/infinit3hq/kotobamichi-api
+          tags: |
+            type=raw,value=latest
+            type=ref,event=branch
+            type=sha
+
+      - name: Extract metadata (migration)
+        id: meta-migration
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/infinit3hq/kotobamichi-migration
           tags: |
             type=raw,value=latest
             type=ref,event=branch
@@ -63,6 +73,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=api
           cache-to: type=gha,mode=max,scope=api
 
@@ -73,9 +84,8 @@ jobs:
           file: ./apps/api/Dockerfile.migration
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: |
-            ghcr.io/infinit3hq/kotobamichi-migration:latest
-            ghcr.io/infinit3hq/kotobamichi-migration:${{ github.ref_name }}
+          tags: ${{ steps.meta-migration.outputs.tags }}
+          labels: ${{ steps.meta-migration.outputs.labels }}
           cache-from: type=gha,scope=migration
           cache-to: type=gha,mode=max,scope=migration
 
@@ -105,12 +115,22 @@ jobs:
 
       # Every API setting lives in the production GitHub environment: API_<NAME> secrets for
       # credentials, API_<NAME> variables for the rest. Each one becomes NAME in deploy/api/.env.
-      # To add or change a setting, set it in the environment and re-run this workflow.
+      # Variables are picked up automatically. Secrets are listed by name below so this step
+      # only ever sees the secrets it needs; a new secret must be added to that list.
       - name: Write .env for Backend
         shell: bash
         env:
-          ENV_SECRETS: ${{ toJSON(secrets) }}
           ENV_VARS: ${{ toJSON(vars) }}
+          API_ADMIN_EMAIL: ${{ secrets.API_ADMIN_EMAIL }}
+          API_ADMIN_PASSWORD: ${{ secrets.API_ADMIN_PASSWORD }}
+          API_COOKIE_SECRET: ${{ secrets.API_COOKIE_SECRET }}
+          API_DATABASE_URL: ${{ secrets.API_DATABASE_URL }}
+          API_GOOGLE_CLIENT_SECRET: ${{ secrets.API_GOOGLE_CLIENT_SECRET }}
+          API_JWT_SECRET: ${{ secrets.API_JWT_SECRET }}
+          API_POSTGRES_PASSWORD: ${{ secrets.API_POSTGRES_PASSWORD }}
+          API_S3_SECRET_ACCESS_KEY: ${{ secrets.API_S3_SECRET_ACCESS_KEY }}
+          API_SMTP_PASS: ${{ secrets.API_SMTP_PASS }}
+          API_SMTP_USER: ${{ secrets.API_SMTP_USER }}
         run: |
           set -euo pipefail
           umask 077
@@ -119,11 +139,14 @@ jobs:
           import json, os, re, sys
 
           settings = {}
-          # Secrets win over variables with the same name.
-          for source in ("ENV_VARS", "ENV_SECRETS"):
-              for name, value in json.loads(os.environ.get(source) or "{}").items():
-                  if name.startswith("API_") and value is not None:
-                      settings[name[len("API_"):]] = str(value)
+          for name, value in json.loads(os.environ.get("ENV_VARS") or "{}").items():
+              if name.startswith("API_") and value is not None:
+                  settings[name[len("API_"):]] = str(value)
+          # Secrets come in as API_* step variables and win over variables with the same name.
+          # An unset secret arrives as an empty string and is skipped.
+          for name, value in os.environ.items():
+              if name.startswith("API_") and value:
+                  settings[name[len("API_"):]] = value
 
           problems = []
           for key, value in settings.items():
