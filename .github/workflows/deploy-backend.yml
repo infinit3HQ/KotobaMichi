@@ -5,7 +5,14 @@ on:
     branches:
       - main
     paths:
-      - 'KotobaMichi-Backend/**'
+      - 'apps/api/**'
+      - 'packages/**'
+      - 'deploy/api/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
+      - '.npmrc'
+      - '.dockerignore'
       - '.github/workflows/deploy-backend.yml'
   workflow_dispatch:
 
@@ -51,8 +58,8 @@ jobs:
       - name: Build and push Backend
         uses: docker/build-push-action@v6
         with:
-          context: ./KotobaMichi-Backend
-          file: ./KotobaMichi-Backend/Dockerfile
+          context: .
+          file: ./apps/api/Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
@@ -62,8 +69,8 @@ jobs:
       - name: Build and push Migration Image
         uses: docker/build-push-action@v6
         with:
-          context: ./KotobaMichi-Backend
-          file: ./KotobaMichi-Backend/Dockerfile.migration
+          context: .
+          file: ./apps/api/Dockerfile.migration
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
@@ -74,6 +81,10 @@ jobs:
 
   deploy:
     name: Deploy to Server
+    # Secrets live in the production environment, which only main can deploy to.
+    environment:
+      name: production
+      url: https://kotobamichi-api.012140.xyz
     needs: build-and-push
     runs-on:
       - serverone
@@ -92,213 +103,70 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create or restore .env for Backend
+      # The server keeps the API's secrets in a root-only file outside the checkout
+      # (default /etc/kotobamichi/api.env, override with the API_ENV_FILE repository variable).
+      # GitHub secrets only overlay the Google OAuth and S3 settings. There are no fallback values:
+      # if the file is missing the deploy stops instead of starting with guessed or stale secrets.
+      - name: Write .env for Backend
         shell: bash
         env:
-          POSTGRES_DB_SECRET: ${{ secrets.PROD_POSTGRES_DB }}
-          POSTGRES_USER_SECRET: ${{ secrets.PROD_POSTGRES_USER }}
-          POSTGRES_PASSWORD_SECRET: ${{ secrets.PROD_POSTGRES_PASSWORD }}
-          DATABASE_URL_SECRET: ${{ secrets.PROD_DATABASE_URL }}
-          JWT_SECRET_SECRET: ${{ secrets.PROD_JWT_SECRET }}
-          JWT_EXPIRES_IN_SECRET: ${{ secrets.PROD_JWT_EXPIRES_IN }}
-          ACCESS_TOKEN_EXPIRES_IN_SECRET: ${{ secrets.PROD_ACCESS_TOKEN_EXPIRES_IN }}
-          REFRESH_TOKEN_EXPIRES_IN_SECRET: ${{ secrets.PROD_REFRESH_TOKEN_EXPIRES_IN }}
-          COOKIE_SECURE_SECRET: ${{ secrets.PROD_COOKIE_SECURE }}
-          COOKIE_SAMESITE_SECRET: ${{ secrets.PROD_COOKIE_SAMESITE }}
-          COOKIE_SECRET_SECRET: ${{ secrets.PROD_COOKIE_SECRET }}
-          CORS_ORIGIN_SECRET: ${{ secrets.PROD_CORS_ORIGIN }}
-          APP_URL_SECRET: ${{ secrets.PROD_APP_URL }}
-          SMTP_HOST_SECRET: ${{ secrets.PROD_SMTP_HOST }}
-          SMTP_PORT_SECRET: ${{ secrets.PROD_SMTP_PORT }}
-          SMTP_SECURE_SECRET: ${{ secrets.PROD_SMTP_SECURE }}
-          SMTP_USER_SECRET: ${{ secrets.PROD_SMTP_USER }}
-          SMTP_PASS_SECRET: ${{ secrets.PROD_SMTP_PASS }}
-          SMTP_FROM_SECRET: ${{ secrets.PROD_SMTP_FROM }}
-          ADMIN_EMAIL_SECRET: ${{ secrets.PROD_ADMIN_EMAIL }}
-          ADMIN_PASSWORD_SECRET: ${{ secrets.PROD_ADMIN_PASSWORD }}
+          API_ENV_FILE: ${{ vars.API_ENV_FILE || '/etc/kotobamichi/api.env' }}
           GOOGLE_CLIENT_ID_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_SECRET }}
           GOOGLE_CALLBACK_URL_SECRET: ${{ secrets.PROD_GOOGLE_CALLBACK_URL }}
-          S3_ENDPOINT_SECRET: ${{ secrets.PROD_S3_ENDPOINT }}
-          S3_REGION_SECRET: ${{ secrets.PROD_S3_REGION }}
-          S3_BUCKET_SECRET: ${{ secrets.PROD_S3_BUCKET }}
-          S3_PUBLIC_URL_SECRET: ${{ secrets.PROD_S3_PUBLIC_URL }}
+          S3_ENDPOINT_SECRET: ${{ vars.PROD_S3_ENDPOINT }}
+          S3_REGION_SECRET: ${{ vars.PROD_S3_REGION }}
+          S3_BUCKET_SECRET: ${{ vars.PROD_S3_BUCKET }}
+          S3_PUBLIC_URL_SECRET: ${{ vars.PROD_S3_PUBLIC_URL }}
           S3_ACCESS_KEY_ID_SECRET: ${{ secrets.PROD_S3_ACCESS_KEY_ID }}
           S3_SECRET_ACCESS_KEY_SECRET: ${{ secrets.PROD_S3_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
-          cd KotobaMichi-Backend
+          umask 077
+          cd deploy/api
 
-          if [ -n "$JWT_SECRET_SECRET" ]; then
-            echo "Generating .env from repository secrets..."
-            PORT="3000"
-            DB_PORT="5432"
-            POSTGRES_DB="${POSTGRES_DB_SECRET:-kotobamichi}"
-            POSTGRES_USER="${POSTGRES_USER_SECRET:-postgres}"
-            POSTGRES_PASSWORD="${POSTGRES_PASSWORD_SECRET:-}"
-            JWT_SECRET="$JWT_SECRET_SECRET"
-            JWT_EXPIRES_IN="${JWT_EXPIRES_IN_SECRET:-7d}"
-            ACCESS_TOKEN_EXPIRES_IN="${ACCESS_TOKEN_EXPIRES_IN_SECRET:-15m}"
-            REFRESH_TOKEN_EXPIRES_IN="${REFRESH_TOKEN_EXPIRES_IN_SECRET:-7d}"
-            COOKIE_SECURE="${COOKIE_SECURE_SECRET:-true}"
-            COOKIE_SAMESITE="${COOKIE_SAMESITE_SECRET:-none}"
-            CORS_ORIGIN="${CORS_ORIGIN_SECRET:-}"
-            ADMIN_EMAIL="${ADMIN_EMAIL_SECRET:-}"
-            ADMIN_PASSWORD="${ADMIN_PASSWORD_SECRET:-}"
-            DATABASE_URL="${DATABASE_URL_SECRET:-}"
-            COOKIE_SECRET="${COOKIE_SECRET_SECRET:-}"
-            APP_URL="${APP_URL_SECRET:-https://kotobamichi.012140.xyz}"
-            SMTP_HOST="${SMTP_HOST_SECRET:-}"
-            SMTP_PORT="${SMTP_PORT_SECRET:-}"
-            SMTP_SECURE="${SMTP_SECURE_SECRET:-}"
-            SMTP_USER="${SMTP_USER_SECRET:-}"
-            SMTP_PASS="${SMTP_PASS_SECRET:-}"
-            SMTP_FROM="${SMTP_FROM_SECRET:-}"
-            GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID_SECRET:-}"
-            GOOGLE_CLIENT_SECRET="${GOOGLE_CLIENT_SECRET_SECRET:-}"
-            GOOGLE_CALLBACK_URL="${GOOGLE_CALLBACK_URL_SECRET:-https://kotobamichi-api.012140.xyz/api/auth/google/callback}"
-
-            if [ -z "$DATABASE_URL" ] && [ -n "$POSTGRES_PASSWORD" ]; then
-              DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
-            fi
-
-            {
-              echo "# Auto-generated by CI on $(date -u)"
-              echo "NODE_ENV=production"
-              echo "PORT=$PORT"
-              echo "DB_PORT=$DB_PORT"
-              echo "POSTGRES_DB=$POSTGRES_DB"
-              echo "POSTGRES_USER=$POSTGRES_USER"
-              if [ -n "$POSTGRES_PASSWORD" ]; then echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"; fi
-              if [ -n "$DATABASE_URL" ]; then echo "DATABASE_URL=$DATABASE_URL"; fi
-              echo "JWT_SECRET=$JWT_SECRET"
-              echo "JWT_EXPIRES_IN=$JWT_EXPIRES_IN"
-              echo "ACCESS_TOKEN_EXPIRES_IN=$ACCESS_TOKEN_EXPIRES_IN"
-              echo "REFRESH_TOKEN_EXPIRES_IN=$REFRESH_TOKEN_EXPIRES_IN"
-              echo "COOKIE_SECURE=$COOKIE_SECURE"
-              echo "COOKIE_SAMESITE=$COOKIE_SAMESITE"
-              if [ -n "$COOKIE_SECRET" ]; then echo "COOKIE_SECRET=$COOKIE_SECRET"; fi
-              echo "APP_URL=$APP_URL"
-              if [ -n "$SMTP_HOST" ]; then echo "SMTP_HOST=$SMTP_HOST"; fi
-              if [ -n "$SMTP_PORT" ]; then echo "SMTP_PORT=$SMTP_PORT"; fi
-              if [ -n "$SMTP_SECURE" ]; then echo "SMTP_SECURE=$SMTP_SECURE"; fi
-              if [ -n "$SMTP_USER" ]; then echo "SMTP_USER=$SMTP_USER"; fi
-              if [ -n "$SMTP_PASS" ]; then echo "SMTP_PASS=$SMTP_PASS"; fi
-              if [ -n "$SMTP_FROM" ]; then echo "SMTP_FROM=$SMTP_FROM"; fi
-              if [ -n "$CORS_ORIGIN" ]; then echo "CORS_ORIGIN=$CORS_ORIGIN"; fi
-              if [ -n "$ADMIN_EMAIL" ]; then echo "ADMIN_EMAIL=$ADMIN_EMAIL"; fi
-              if [ -n "$ADMIN_PASSWORD" ]; then echo "ADMIN_PASSWORD=$ADMIN_PASSWORD"; fi
-              if [ -n "$GOOGLE_CLIENT_ID" ]; then echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID"; fi
-              if [ -n "$GOOGLE_CLIENT_SECRET" ]; then echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET"; fi
-              if [ -n "$GOOGLE_CLIENT_ID" ]; then echo "GOOGLE_CALLBACK_URL=$GOOGLE_CALLBACK_URL"; fi
-            } > .env
-          elif [ ! -f .env ]; then
-            echo "Secrets not set in repository; searching server workspace for existing production .env..."
-            FOUND_ENV=""
-            for p in \
-              "/home/kotobamichi/actions-runner/_work/KotobaMichi-Backend/KotobaMichi-Backend/.env" \
-              "/home/kotobamichi/actions-runner/_work/KotobaMichi-Backend/.env" \
-              "../../KotobaMichi-Backend/KotobaMichi-Backend/.env" \
-              "../../KotobaMichi-Backend/.env"; do
-              if [ -f "$p" ]; then
-                FOUND_ENV="$p"
-                break
-              fi
-            done
-
-            if [ -z "$FOUND_ENV" ]; then
-              FOUND_ENV=$(find /home/kotobamichi/actions-runner/_work -name ".env" 2>/dev/null | grep -i "KotobaMichi-Backend" | head -n 1 || true)
-            fi
-
-            if [ -n "$FOUND_ENV" ] && [ -f "$FOUND_ENV" ]; then
-              echo "Restored production .env from: $FOUND_ENV"
-              cp "$FOUND_ENV" .env
-            else
-              echo "Attempting recovery from running or stopped containers..."
-              CONTAINER_ID=$(docker ps -a --filter "name=kotobamichi.*app" --format "{{.ID}}" | head -n 1 || true)
-              if [ -n "$CONTAINER_ID" ]; then
-                docker inspect "$CONTAINER_ID" --format '{{range .Config.Env}}{{println .}}{{end}}' | grep -v '^PATH=' > .env || true
-                echo "Extracted .env from container $CONTAINER_ID."
-              fi
-            fi
-
-            if [ ! -f .env ] || [ ! -s .env ]; then
-              echo "Creating fallback .env..."
-              {
-                echo "NODE_ENV=production"
-                echo "PORT=3000"
-                echo "DB_PORT=5432"
-                echo "POSTGRES_DB=kotobamichi"
-                echo "POSTGRES_USER=kotobamichi"
-                echo "POSTGRES_PASSWORD=dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d"
-                echo "DATABASE_URL=postgresql://kotobamichi:dbd10222b2fda93d5922b7393e3775a8b6bf87de7ae3b09524af24112414159d@db:5432/kotobamichi?schema=public"
-                echo "JWT_SECRET=your_super_secret_jwt_key_that_is_very_long"
-                echo "JWT_EXPIRES_IN=7d"
-                echo "ACCESS_TOKEN_EXPIRES_IN=15m"
-                echo "REFRESH_TOKEN_EXPIRES_IN=7d"
-                echo "COOKIE_SECURE=true"
-                echo "COOKIE_SAMESITE=none"
-                echo "COOKIE_SECRET=your_super_secret_cookie_key_that_is_very_long"
-                echo "APP_URL=https://kotobamichi.012140.xyz"
-                echo "CORS_ORIGIN=https://kotobamichi.012140.xyz"
-              } > .env
-            fi
+          if [ ! -s "$API_ENV_FILE" ]; then
+            echo "::error::$API_ENV_FILE is missing or empty on this runner. Create it (mode 600) from apps/api/.env.example before deploying."
+            exit 1
           fi
+          cp "$API_ENV_FILE" .env
 
-          echo "Verified .env status:"
-          ls -la .env
-
-          # This runner often keeps an older server .env because PROD_JWT_SECRET is unset.
-          # Still write the Google client onto that file so sign-in does not fall back to a placeholder.
-          GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID_SECRET:-}"
-          GOOGLE_CLIENT_SECRET="${GOOGLE_CLIENT_SECRET_SECRET:-}"
-          GOOGLE_CALLBACK_URL="${GOOGLE_CALLBACK_URL_SECRET:-https://kotobamichi-api.012140.xyz/api/auth/google/callback}"
-          if [ -n "$GOOGLE_CLIENT_ID" ] && [ -f .env ]; then
-            echo "Applying Google OAuth settings to .env"
-            grep -v -E '^(GOOGLE_CLIENT_ID|GOOGLE_CLIENT_SECRET|GOOGLE_CALLBACK_URL)=' .env > .env.google.tmp || true
-            mv .env.google.tmp .env
-            {
-              echo "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID"
-              echo "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET"
-              echo "GOOGLE_CALLBACK_URL=$GOOGLE_CALLBACK_URL"
-            } >> .env
-          else
-            echo "Google OAuth client secret is empty; sign-in will stay unavailable."
-          fi
-
-          # Public object storage for exam audio. Write credentials only when repository secrets exist.
+          # Compose expands $NAME inside .env values, so a literal $ must be written as $$.
           upsert_env() {
-            local key="$1"
-            local value="$2"
-            if [ -z "$value" ] || [ ! -f .env ]; then
-              return 0
-            fi
-            grep -v -E "^${key}=" .env > .env.s3.tmp || true
-            mv .env.s3.tmp .env
-            printf '%s=%s\n' "$key" "$value" >> .env
+            local key="$1" value="$2"
+            [ -n "$value" ] || return 0
+            grep -v -E "^${key}=" .env > .env.tmp || true
+            mv .env.tmp .env
+            printf '%s=%s\n' "$key" "${value//\$/\$\$}" >> .env
           }
-          S3_ENDPOINT="${S3_ENDPOINT_SECRET:-https://s3-kotobamichi.012140.xyz}"
-          S3_REGION="${S3_REGION_SECRET:-us-east-1}"
-          S3_BUCKET="${S3_BUCKET_SECRET:-kotobamichi}"
-          S3_PUBLIC_URL="${S3_PUBLIC_URL_SECRET:-https://s3-kotobamichi.012140.xyz/kotobamichi}"
-          upsert_env S3_ENDPOINT "$S3_ENDPOINT"
-          upsert_env S3_REGION "$S3_REGION"
-          upsert_env S3_BUCKET "$S3_BUCKET"
-          upsert_env S3_PUBLIC_URL "$S3_PUBLIC_URL"
-          upsert_env S3_FORCE_PATH_STYLE "true"
+
+          if [ -n "$GOOGLE_CLIENT_ID_SECRET" ]; then
+            upsert_env GOOGLE_CLIENT_ID "$GOOGLE_CLIENT_ID_SECRET"
+            upsert_env GOOGLE_CLIENT_SECRET "$GOOGLE_CLIENT_SECRET_SECRET"
+            upsert_env GOOGLE_CALLBACK_URL "$GOOGLE_CALLBACK_URL_SECRET"
+          fi
+          upsert_env S3_ENDPOINT "$S3_ENDPOINT_SECRET"
+          upsert_env S3_REGION "$S3_REGION_SECRET"
+          upsert_env S3_BUCKET "$S3_BUCKET_SECRET"
+          upsert_env S3_PUBLIC_URL "$S3_PUBLIC_URL_SECRET"
           upsert_env S3_ACCESS_KEY_ID "$S3_ACCESS_KEY_ID_SECRET"
           upsert_env S3_SECRET_ACCESS_KEY "$S3_SECRET_ACCESS_KEY_SECRET"
-          if [ -n "$S3_ACCESS_KEY_ID_SECRET" ]; then
-            echo "Applied S3 settings, including write credentials."
-          else
-            echo "Applied public S3 settings. Write credentials are unset."
+
+          missing=""
+          for key in DATABASE_URL JWT_SECRET COOKIE_SECRET APP_URL CORS_ORIGIN; do
+            grep -q -E "^${key}=.+" .env || missing="$missing $key"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Required settings missing from .env:$missing"
+            exit 1
           fi
+          echo "Wrote deploy/api/.env from $API_ENV_FILE ($(grep -c '=' .env) settings)."
 
       - name: Deploy Backend Stack & Migrations
         shell: bash
         run: |
           set -euo pipefail
-          cd KotobaMichi-Backend
+          cd deploy/api
           docker network inspect kotobamichi-network >/dev/null 2>&1 || docker network create kotobamichi-network
           docker network inspect proxy >/dev/null 2>&1 || docker network create proxy
           docker compose -f docker-compose.prod.yml pull

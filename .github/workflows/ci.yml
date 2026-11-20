@@ -11,31 +11,38 @@ jobs:
     name: Detect Changed Packages
     runs-on: ubuntu-latest
     outputs:
-      frontend: ${{ steps.changes.outputs.frontend }}
-      backend: ${{ steps.changes.outputs.backend }}
+      web: ${{ steps.changes.outputs.web }}
+      api: ${{ steps.changes.outputs.api }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
         id: changes
         with:
           filters: |
-            frontend:
-              - 'KotobaMichi-Frontend/**'
+            web:
+              - 'apps/web/**'
+              - 'content/**'
+              - 'packages/**'
               - 'pnpm-workspace.yaml'
               - 'pnpm-lock.yaml'
               - 'package.json'
+              - '.npmrc'
+              - 'turbo.json'
               - '.github/workflows/ci.yml'
-            backend:
-              - 'KotobaMichi-Backend/**'
+            api:
+              - 'apps/api/**'
+              - 'packages/**'
               - 'pnpm-workspace.yaml'
               - 'pnpm-lock.yaml'
               - 'package.json'
+              - '.npmrc'
+              - 'turbo.json'
               - '.github/workflows/ci.yml'
 
-  test-frontend:
-    name: Build & Test Frontend
+  web:
+    name: Web (lint, typecheck, test, build)
     needs: filter
-    if: ${{ needs.filter.outputs.frontend == 'true' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ needs.filter.outputs.web == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -48,19 +55,13 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Lint frontend
-        run: pnpm --filter kotobamichi-frontend lint
-      - name: Typecheck frontend
-        run: pnpm --filter kotobamichi-frontend typecheck
-      - name: Test frontend
-        run: pnpm --filter kotobamichi-frontend test
-      - name: Build frontend
-        run: pnpm --filter kotobamichi-frontend build
+      - name: Lint, typecheck, test and build
+        run: pnpm turbo run lint typecheck test build --filter=@kotobamichi/web...
 
-  test-backend:
-    name: Build & Test Backend
+  api:
+    name: API (lint, typecheck, test, build)
     needs: filter
-    if: ${{ needs.filter.outputs.backend == 'true' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ needs.filter.outputs.api == 'true' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -73,9 +74,5 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Lint backend
-        run: pnpm --filter kotobamichi-backend lint
-      - name: Test backend
-        run: pnpm --filter kotobamichi-backend test
-      - name: Build backend
-        run: pnpm --filter kotobamichi-backend build
+      - name: Lint, typecheck, test and build
+        run: pnpm turbo run lint typecheck test build --filter=@kotobamichi/api...

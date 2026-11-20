@@ -1,0 +1,20 @@
+# Images build from the repo root (docker build -f apps/<app>/Dockerfile .)
+.git
+.github
+.venv
+.turbo
+deploy
+**/node_modules
+**/.next
+**/dist
+**/.turbo
+**/coverage
+**/*.tsbuildinfo
+**/*.log
+**/.DS_Store
+**/*.git.bak
+**/.env
+**/.env.*
+!**/.env.example
+apps/web/public/exams
+apps/web/scripts/gloss-work

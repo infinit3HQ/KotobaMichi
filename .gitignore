@@ -1,18 +1,25 @@
-# Node & Package Managers
+# Dependencies
 node_modules/
 .pnpm-store/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+.pnp
+.pnp.*
 
-# Next.js Build Output
+# Build output
 .next/
 out/
 build/
 dist/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
 
-# Environment Variables
+# Generated: copied from content/exams by apps/web/scripts/sync-exam-assets.mjs
+apps/web/public/exams/
+
+# Generated gloss batches
+apps/web/scripts/gloss-work/*.tsv
+
+# Environment
 .env
 .env*.local
 !.env.example
@@ -22,19 +29,23 @@ dist/
 logs/
 *.log
 
-# OS & Editor
+# Testing
+coverage/
+.nyc_output/
+
+# OS & editors
 .DS_Store
 *.pem
 .vscode/
 .idea/
 *.swp
 *.swo
+.venv/
+.vercel/
 
-# TypeScript / Testing Coverage
-coverage/
-*.tsbuildinfo
-
-# Scratch & Temporary files
+# Scratch
 scratch/
 tmp/
+.temp/
+.tmp/
 *.git.bak

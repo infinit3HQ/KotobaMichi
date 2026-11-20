@@ -1,0 +1,84 @@
+import { GRADES, type Grade } from '@kotobamichi/srs';
+import { Type } from 'class-transformer';
+import {
+	ArrayMaxSize,
+	IsArray,
+	IsIn,
+	IsInt,
+	IsOptional,
+	IsString,
+	Matches,
+	Max,
+	MaxLength,
+	Min,
+	ValidateNested,
+} from 'class-validator';
+
+const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'] as const;
+export const MAX_BATCH_REVIEWS = 500;
+
+export class ReviewDto {
+	@IsString()
+	@MaxLength(128)
+	itemKey: string;
+
+	@IsIn(LEVELS)
+	level: (typeof LEVELS)[number];
+
+	@IsIn(GRADES)
+	grade: Grade;
+
+	@IsOptional()
+	@IsIn(['word'])
+	kind?: 'word';
+
+	@Matches(/^\d{4}-\d{2}-\d{2}$/)
+	day: string;
+}
+
+export class SavePlaceDto {
+	@IsIn(LEVELS)
+	level: (typeof LEVELS)[number];
+
+	@IsIn([
+		'sprint',
+		'grammar',
+		'kanji',
+		'listening',
+		'reading',
+		'kana',
+		'flashcard',
+	])
+	mode: string;
+
+	@IsOptional()
+	@IsString()
+	@MaxLength(128)
+	itemKey?: string;
+
+	@IsInt()
+	@Min(0)
+	@Max(20000)
+	cursor: number;
+}
+
+export class QueueQueryDto {
+	@IsIn(LEVELS)
+	level: (typeof LEVELS)[number];
+}
+
+/** A review made while signed out, replayed on the server after sign-in. */
+export class GuestReviewDto extends ReviewDto {
+	/** When the review happened, in epoch milliseconds. */
+	@IsInt()
+	@Min(0)
+	reviewedAt: number;
+}
+
+export class ReviewBatchDto {
+	@IsArray()
+	@ArrayMaxSize(MAX_BATCH_REVIEWS)
+	@ValidateNested({ each: true })
+	@Type(() => GuestReviewDto)
+	reviews: GuestReviewDto[];
+}

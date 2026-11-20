@@ -1,0 +1,70 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "stream",
+  "envMode": "loose",
+  "tasks": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "env": [
+        "NEXT_PUBLIC_*"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!.env*",
+        "$TURBO_ROOT$/content/exams/**"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "typecheck": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "lint": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "dev": {
+      "dependsOn": [
+        "^build"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "@kotobamichi/web#build": {
+      "dependsOn": [
+        "^build",
+        "typecheck"
+      ],
+      "env": [
+        "NEXT_PUBLIC_*"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "!.env*",
+        "$TURBO_ROOT$/content/exams/**"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "public/exams/**",
+        "!.next/cache/**"
+      ]
+    }
+  }
+}

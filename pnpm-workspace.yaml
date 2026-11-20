@@ -1,6 +1,6 @@
 packages:
-  - KotobaMichi-Frontend
-  - KotobaMichi-Backend
+  - apps/*
+  - packages/*
 
 minimumReleaseAge: 1440
 
