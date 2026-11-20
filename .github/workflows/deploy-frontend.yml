@@ -5,7 +5,15 @@ on:
     branches:
       - main
     paths:
-      - 'KotobaMichi-Frontend/**'
+      - 'apps/web/**'
+      - 'packages/**'
+      - 'content/**'
+      - 'deploy/web/**'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'package.json'
+      - '.npmrc'
+      - '.dockerignore'
       - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
     inputs:
@@ -63,8 +71,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: ./KotobaMichi-Frontend
-          file: ./KotobaMichi-Frontend/Dockerfile
+          context: .
+          file: ./apps/web/Dockerfile
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: ghcr.io/infinit3hq/kotobamichi-web
@@ -126,6 +134,10 @@ jobs:
 
   deploy:
     name: Deploy to Server
+    # Secrets live in the production environment, which only main can deploy to.
+    environment:
+      name: production
+      url: https://kotobamichi.012140.xyz
     needs: merge
     runs-on:
       - serverone
@@ -150,10 +162,10 @@ jobs:
           NEXT_PUBLIC_API_URL_INPUT: ${{ inputs.next_public_api_url }}
           NEXT_PUBLIC_API_URL_SECRET: ${{ secrets.PROD_NEXT_PUBLIC_API_URL }}
           NEXT_PUBLIC_API_URL_VAR: ${{ vars.NEXT_PUBLIC_API_URL }}
-          S3_PUBLIC_URL_SECRET: ${{ secrets.PROD_S3_PUBLIC_URL }}
+          S3_PUBLIC_URL_SECRET: ${{ vars.PROD_S3_PUBLIC_URL }}
         run: |
           set -euo pipefail
-          cd KotobaMichi-Frontend
+          cd deploy/web
 
           NEXT_PUBLIC_API_URL="${NEXT_PUBLIC_API_URL_INPUT:-}"; [ -n "$NEXT_PUBLIC_API_URL" ] || NEXT_PUBLIC_API_URL="${NEXT_PUBLIC_API_URL_SECRET:-}"; [ -n "$NEXT_PUBLIC_API_URL" ] || NEXT_PUBLIC_API_URL="${NEXT_PUBLIC_API_URL_VAR:-https://kotobamichi-api.012140.xyz/v1}"
           NEXT_PUBLIC_S3_PUBLIC_URL="${S3_PUBLIC_URL_SECRET:-https://s3-kotobamichi.012140.xyz/kotobamichi}"
@@ -169,7 +181,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cd KotobaMichi-Frontend
+          cd deploy/web
           docker network inspect kotobamichi-network >/dev/null 2>&1 || docker network create kotobamichi-network
           docker network inspect proxy >/dev/null 2>&1 || docker network create proxy
           docker compose -f docker-compose.prod.yml pull

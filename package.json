@@ -1,21 +1,24 @@
 {
-  "name": "kotobamichi-monorepo",
+  "name": "kotobamichi",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "description": "KotobaMichi (言葉道) - Full-Stack Japanese Learning Platform",
   "engines": {
     "node": ">=24.0.0"
   },
   "packageManager": "pnpm@12.15.0",
-  "description": "KotobaMichi (言葉道) - Full-Stack Japanese Learning Platform",
   "scripts": {
-    "dev": "pnpm --filter kotobamichi-frontend dev",
-    "dev:frontend": "pnpm --filter kotobamichi-frontend dev",
-    "dev:backend": "pnpm --filter kotobamichi-backend start:dev",
-    "build": "pnpm --parallel --filter kotobamichi-backend --filter kotobamichi-frontend build",
-    "build:frontend": "pnpm --filter kotobamichi-frontend build",
-    "build:backend": "pnpm --filter kotobamichi-backend build",
-    "lint": "pnpm --parallel --filter kotobamichi-backend --filter kotobamichi-frontend lint",
-    "test": "pnpm --parallel --filter kotobamichi-backend --filter kotobamichi-frontend test"
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@kotobamichi/web",
+    "dev:api": "turbo run dev --filter=@kotobamichi/api",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "check": "turbo run lint typecheck test build"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0"
   }
 }

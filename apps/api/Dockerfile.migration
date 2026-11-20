@@ -1,0 +1,25 @@
+# Runs Drizzle migrations. Build from the repository root:
+#   docker build -f apps/api/Dockerfile.migration .
+FROM node:26.12.1-alpine
+RUN apk add --no-cache curl libc6-compat \
+  && npm install -g pnpm@12.15.0 \
+  && addgroup -g 1001 -S nodejs \
+  && adduser -S nestjs -u 1001
+WORKDIR /repo
+
+# Every workspace manifest, so the root lockfile matches and --frozen-lockfile passes
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY apps/api/package.json apps/api/
+COPY apps/web/package.json apps/web/
+COPY packages/srs/package.json packages/srs/
+# drizzle-kit plus the pg driver
+RUN pnpm install --frozen-lockfile --filter @kotobamichi/api
+
+COPY apps/api/tsconfig.json apps/api/tsconfig.build.json apps/api/drizzle.config.ts apps/api/
+COPY apps/api/drizzle apps/api/drizzle
+COPY apps/api/src/db apps/api/src/db
+RUN chown -R nestjs:nodejs /repo
+
+USER nestjs
+WORKDIR /repo/apps/api
+CMD ["pnpm", "db:drizzle:migrate"]
