@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { formatPoints, pointsForSection, scoreByMondai, scoreExam, type MockExamSummary } from "@/lib/mock-exam";
+import { formatPoints, SECTION_POINTS, type MockExamSummary } from "@/lib/mock-exam";
+import { completedFromSave, summarizeSitting } from "@/lib/mock-sitting";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
 
@@ -34,10 +35,7 @@ export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
         const mine = attempts.filter((attempt) => attempt.examId === exam.id && attempt.status === "finished");
         const open = attempts.find((attempt) => attempt.examId === exam.id && attempt.status === "in_progress");
         const latest = mine[0];
-        const latestRows = latest ? scoreByMondai(exam.scoring, latest.answers ?? {}) : [];
-        const latestEstimate = latest
-          ? scoreExam(exam.scoring, latest.answers ?? {}).reduce((sum, score) => sum + pointsForSection(latestRows, score.id), 0)
-          : 0;
+        const latestLine = latest ? lastSittingLine(exam, latest) : "";
         return (
           <li key={exam.id}>
             <Link
@@ -57,7 +55,7 @@ export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
               {user && (open || latest) && (
                 <p className="mt-3 text-sm">
                   {open ? "A sitting is still open. " : ""}
-                  {latest ? `Last estimate ${formatPoints(latestEstimate)}/180. ${mine.length} saved.` : ""}
+                  {latest ? `${latestLine} ${mine.length} saved.` : ""}
                 </p>
               )}
             </Link>
@@ -66,4 +64,15 @@ export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
       })}
     </ul>
   );
+}
+
+/** "Last estimate 112.4/180." for a full sitting, or "Last sitting: 聴解 41.2/60." for a partial one. */
+function lastSittingLine(exam: MockExamSummary, attempt: RemoteMockAttempt) {
+  const completed = completedFromSave(exam.scoring, { ...attempt, finished: true });
+  const summary = summarizeSitting(exam.scoring, attempt.answers ?? {}, completed);
+  if (summary.total != null) return `Last estimate ${formatPoints(summary.total)}/180.`;
+  const taken = summary.sections
+    .filter((section) => section.points != null)
+    .map((section) => `${section.title} ${formatPoints(section.points ?? 0)}/${SECTION_POINTS}`);
+  return `Last sitting: ${taken.join(", ") || "no section"}.`;
 }

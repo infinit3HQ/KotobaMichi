@@ -34,6 +34,7 @@ import n3December2011 from './keys/n3-2011-12.json';
 import n3July2011 from './keys/n3-2011-07.json';
 import n3July2010 from './keys/n3-2010-07.json';
 import { SaveMockAttemptDto } from './dto/save-mock-attempt.dto';
+import { completedSectionsFor } from './sections';
 
 const ANSWER_KEYS: Record<string, Record<string, number>> = {
 	'n3-2025-12': n3December2025,
@@ -107,6 +108,11 @@ export class MockExamsService {
 	async save(userId: string, examId: string, dto: SaveMockAttemptDto) {
 		const answers = this.cleanAnswers(examId, dto.answers);
 		const started = this.startedAt(dto.sectionStartedAt);
+		const completedSections = completedSectionsFor(
+			dto.completedSections,
+			dto.sectionIndex,
+			false
+		);
 		const existing = await this.openAttempt(userId, examId);
 		if (existing) {
 			const [row] = await this.drizzle.db
@@ -114,6 +120,7 @@ export class MockExamsService {
 				.set({
 					sectionIndex: dto.sectionIndex,
 					sectionStartedAt: started,
+					completedSections,
 					answers,
 					updatedAt: new Date(),
 				})
@@ -131,6 +138,7 @@ export class MockExamsService {
 				status: 'in_progress',
 				sectionIndex: dto.sectionIndex,
 				sectionStartedAt: started,
+				completedSections,
 				answers,
 			})
 			.returning();
@@ -142,6 +150,11 @@ export class MockExamsService {
 		const answers = this.cleanAnswers(examId, dto.answers);
 		const scores = this.score(examId, answers);
 		const started = this.startedAt(dto.sectionStartedAt);
+		const completedSections = completedSectionsFor(
+			dto.completedSections,
+			dto.sectionIndex,
+			true
+		);
 		const existing = await this.openAttempt(userId, examId);
 		const finishedAt = new Date();
 		if (existing) {
@@ -151,6 +164,7 @@ export class MockExamsService {
 					status: 'finished',
 					sectionIndex: dto.sectionIndex,
 					sectionStartedAt: started,
+					completedSections,
 					answers,
 					scores,
 					finishedAt,
@@ -170,6 +184,7 @@ export class MockExamsService {
 				status: 'finished',
 				sectionIndex: dto.sectionIndex,
 				sectionStartedAt: started,
+				completedSections,
 				answers,
 				scores,
 				finishedAt,
@@ -260,6 +275,7 @@ export class MockExamsService {
 			sectionIndex: row.sectionIndex,
 			sectionStartedAt: row.sectionStartedAt.getTime(),
 			answers: row.answers ?? {},
+			completedSections: row.completedSections ?? [],
 			scores: row.scores ?? null,
 			finishedAt: row.finishedAt ? row.finishedAt.getTime() : null,
 		};

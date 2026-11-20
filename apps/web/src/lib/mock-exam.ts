@@ -129,9 +129,12 @@ export function answerKey(sectionId: string, partId: string, mondai: number, ite
 }
 
 export type SavedAttempt = {
+  /** The open section, or -1 while on the section menu. */
   sectionIndex: number;
   sectionStartedAt: number;
   answers: Record<string, number>;
+  /** Sections already closed. Saves from before sections could be taken in any order have none. */
+  completedSections?: string[];
   finished: boolean;
 };
 
