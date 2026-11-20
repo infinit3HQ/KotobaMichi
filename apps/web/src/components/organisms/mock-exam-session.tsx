@@ -18,17 +18,24 @@ import {
   loadAttempt,
   PASS_SECTION,
   PASS_TOTAL,
-  pointsForSection,
   responseBand,
   saveAttempt,
   scoreByMondai,
-  scoreExam,
   SECTION_POINTS,
 } from "@/lib/mock-exam";
 import { fetchMockExamState, finishMockAttempt, saveMockAttempt } from "@/lib/mock-attempts";
+import {
+  AT_MENU,
+  canOpenSection,
+  completeSection,
+  completedFromSave,
+  isSittingComplete,
+  summarizeSitting,
+} from "@/lib/mock-sitting";
+import { MockExamBrief, MockSectionMenu } from "@/components/organisms/mock-exam-menu";
 import { useAuthStore } from "@/stores/auth";
 
-type Phase = "brief" | "running" | "done";
+type Phase = "brief" | "menu" | "running" | "done";
 
 function mondaiOf(section: MockSection) {
   return section.parts.flatMap((part) =>
@@ -39,7 +46,8 @@ function mondaiOf(section: MockSection) {
 export function MockExamSession({ exam }: { exam: MockExam }) {
   const [phase, setPhase] = useState<Phase>("brief");
   const [focus, setFocus] = useState(true);
-  const [sectionIndex, setSectionIndex] = useState(0);
+  const [sectionIndex, setSectionIndex] = useState(AT_MENU);
+  const [completed, setCompleted] = useState<string[]>([]);
   const [mondaiIndex, setMondaiIndex] = useState(0);
   const [startedAt, setStartedAt] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -52,23 +60,29 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   const finishedSent = useRef(false);
   const user = useAuthStore((state) => state.user);
   const authChecked = useAuthStore((state) => state.authChecked);
-  const snapshot = useRef({ phase, sectionIndex, startedAt, answers });
-  snapshot.current = { phase, sectionIndex, startedAt, answers };
+  const snapshot = useRef({ phase, sectionIndex, startedAt, answers, completed });
+  snapshot.current = { phase, sectionIndex, startedAt, answers, completed };
 
   useEffect(() => {
     const saved = loadAttempt(exam.id);
-    if (saved?.finished) {
+    if (saved) {
+      const done = completedFromSave(exam, saved);
       setAnswers(saved.answers);
-      setPhase("done");
-      setFocus(false);
-    } else if (saved) {
-      setAnswers(saved.answers);
-      setSectionIndex(saved.sectionIndex);
-      setStartedAt(saved.sectionStartedAt);
-      setPhase("running");
+      setCompleted(done);
+      if (saved.finished) {
+        setPhase("done");
+        setFocus(false);
+      } else if (canOpenSection(exam, done, saved.sectionIndex)) {
+        setSectionIndex(saved.sectionIndex);
+        setStartedAt(saved.sectionStartedAt);
+        setPhase("running");
+      } else {
+        setSectionIndex(AT_MENU);
+        setPhase("menu");
+      }
     }
     setReady(true);
-  }, [exam.id]);
+  }, [exam]);
 
   useEffect(() => {
     if (!ready || !authChecked) return;
@@ -82,11 +96,18 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       .then(async (remote) => {
         if (cancel) return;
         if (remote.current) {
+          const done = completedFromSave(exam, remote.current);
           setAnswers(remote.current.answers ?? {});
-          setSectionIndex(remote.current.sectionIndex);
-          setStartedAt(remote.current.sectionStartedAt);
-          setPhase("running");
-          setFocus(true);
+          setCompleted(done);
+          if (canOpenSection(exam, done, remote.current.sectionIndex)) {
+            setSectionIndex(remote.current.sectionIndex);
+            setStartedAt(remote.current.sectionStartedAt);
+            setPhase("running");
+            setFocus(true);
+          } else {
+            setSectionIndex(AT_MENU);
+            setPhase("menu");
+          }
           return;
         }
         if (local.phase === "brief") return;
@@ -94,6 +115,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
           sectionIndex: local.sectionIndex,
           sectionStartedAt: local.startedAt || Date.now(),
           answers: local.answers,
+          completedSections: local.completed,
         };
         if (local.phase === "done") {
           finishedSent.current = true;
@@ -109,7 +131,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     return () => {
       cancel = true;
     };
-  }, [ready, authChecked, user, exam.id]);
+  }, [ready, authChecked, user, exam]);
 
   useEffect(() => {
     if (!accountSynced || !user || phase === "brief") return;
@@ -117,6 +139,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       sectionIndex,
       sectionStartedAt: startedAt || Date.now(),
       answers,
+      completedSections: completed,
     };
     const handle = window.setTimeout(() => {
       if (phase === "done") {
@@ -130,7 +153,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       void saveMockAttempt(exam.id, payload).catch(() => undefined);
     }, 700);
     return () => window.clearTimeout(handle);
-  }, [accountSynced, user, phase, sectionIndex, startedAt, answers, exam.id]);
+  }, [accountSynced, user, phase, sectionIndex, startedAt, answers, completed, exam.id]);
 
   useEffect(() => {
     if (phase !== "running") return;
@@ -144,9 +167,10 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       sectionIndex,
       sectionStartedAt: startedAt,
       answers,
+      completedSections: completed,
       finished: phase === "done",
     });
-  }, [ready, phase, sectionIndex, startedAt, answers, exam.id]);
+  }, [ready, phase, sectionIndex, startedAt, answers, completed, exam.id]);
 
   useEffect(() => {
     if (phase !== "running") return;
@@ -157,25 +181,22 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     return () => window.removeEventListener("beforeunload", onLeave);
   }, [phase]);
 
-  const section = exam.sections[sectionIndex];
+  const section = phase === "running" ? exam.sections[sectionIndex] : undefined;
   const sheets = useMemo(() => (section ? mondaiOf(section) : []), [section]);
   const current = sheets[mondaiIndex];
   const remaining = section ? section.minutes * 60_000 - (now - startedAt) : 0;
 
   const finishSection = useCallback(() => {
-    if (locked.current) return;
+    if (locked.current || !section) return;
     locked.current = true;
     setConfirmEnd(false);
-    if (sectionIndex >= exam.sections.length - 1) {
-      setPhase("done");
-      setFocus(false);
-      return;
-    }
-    setSectionIndex((index) => index + 1);
+    const done = completeSection(exam, completed, section.id);
+    setCompleted(done);
+    setSectionIndex(AT_MENU);
     setMondaiIndex(0);
-    setStartedAt(Date.now());
-    setNow(Date.now());
-  }, [exam.sections.length, sectionIndex]);
+    setFocus(false);
+    setPhase(isSittingComplete(exam, done) ? "done" : "menu");
+  }, [exam, completed, section]);
 
   useEffect(() => {
     locked.current = false;
@@ -196,23 +217,44 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     };
   }, [focus, phase]);
 
-  const begin = () => {
+  const openSection = (index: number) => {
+    if (!canOpenSection(exam, completed, index)) return;
     const stamp = Date.now();
-    setAnswers({});
-    setSectionIndex(0);
+    setSectionIndex(index);
     setMondaiIndex(0);
     setStartedAt(stamp);
     setNow(stamp);
     setPhase("running");
     setFocus(true);
     setAudioFailed(false);
-    finishedSent.current = false;
     locked.current = false;
+  };
+
+  const begin = (index: number) => {
+    if (!exam.sections[index]) return;
+    const stamp = Date.now();
     clearAttempt(exam.id);
+    finishedSent.current = false;
+    setAnswers({});
+    setCompleted([]);
+    setSectionIndex(index);
+    setMondaiIndex(0);
+    setStartedAt(stamp);
+    setNow(stamp);
+    setPhase("running");
+    setFocus(true);
+    setAudioFailed(false);
+    locked.current = false;
+  };
+
+  const endSitting = () => {
+    setSectionIndex(AT_MENU);
+    setFocus(false);
+    setPhase("done");
   };
 
   const choose = (partId: string, mondai: number, item: number, option: number) => {
-    if (phase !== "running") return;
+    if (phase !== "running" || !section) return;
     setAnswers((prev) => ({
       ...prev,
       [answerKey(section.id, partId, mondai, item)]: option,
@@ -224,7 +266,11 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   }
 
   if (phase === "brief") {
-    return <Brief exam={exam} signedIn={Boolean(user)} onBegin={begin} />;
+    return <MockExamBrief exam={exam} signedIn={Boolean(user)} onBegin={begin} />;
+  }
+
+  if (phase === "menu") {
+    return <MockSectionMenu exam={exam} completed={completed} onOpen={openSection} onEnd={endSitting} />;
   }
 
   if (phase === "done") {
@@ -232,16 +278,20 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       <Results
         exam={exam}
         answers={answers}
+        completed={completed}
         signedIn={Boolean(user)}
         onAgain={() => {
           clearAttempt(exam.id);
           finishedSent.current = false;
           setPhase("brief");
           setAnswers({});
+          setCompleted([]);
         }}
       />
     );
   }
+
+  if (!section) return null;
 
   const low = remaining < 5 * 60_000;
   const urgent = remaining < 60_000;
@@ -257,7 +307,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
         <div className="min-w-0">
           <p className="truncate font-jp text-sm font-semibold">{section.title}</p>
           <p className="text-[11px] text-muted-foreground">
-            Block {sectionIndex + 1} of {exam.sections.length}
+            Section {sectionIndex + 1} of {exam.sections.length}
             {current ? ` · 問題${current.mondai.number}` : ""}
           </p>
         </div>
@@ -365,7 +415,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
                 </Button>
               ) : (
                 <Button type="button" onClick={() => setConfirmEnd(true)}>
-                  Finish block
+                  Finish section
                 </Button>
               )}
             </div>
@@ -384,7 +434,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
                 Keep working
               </Button>
               <Button type="button" onClick={finishSection}>
-                Close block
+                Close section
               </Button>
             </div>
           </div>
@@ -447,42 +497,6 @@ function ListeningTrack({ examId, onFailed }: { examId: string; onFailed: () => 
           Play the recording
         </Button>
       )}
-    </div>
-  );
-}
-
-function Brief({ exam, signedIn, onBegin }: { exam: MockExam; signedIn: boolean; onBegin: () => void }) {
-  return (
-    <div className="mx-auto max-w-2xl space-y-8 py-6">
-      <div>
-        <p className="font-jp text-sm text-primary">模擬試験</p>
-        <h1 className="mt-1 text-3xl font-semibold tracking-tight">{exam.title}</h1>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{exam.note}</p>
-      </div>
-      <ol className="grid gap-3 sm:grid-cols-3">
-        {exam.sections.map((section, index) => (
-          <li key={section.id} className="rounded-2xl border border-border bg-card p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-              Block {index + 1}
-            </p>
-            <p className="mt-1 font-jp text-lg font-semibold">{section.title}</p>
-            <p className="mt-2 font-mono text-2xl font-semibold tabular-nums">{section.minutes}:00</p>
-          </li>
-        ))}
-      </ol>
-      <ul className="space-y-2 text-sm text-muted-foreground">
-        <li>Each block locks when its clock ends. Leftover time does not move forward.</li>
-        <li>Answers stay hidden until the sitting is over.</li>
-        <li>Focus mode hides the rest of the site. You can leave it without stopping the clock.</li>
-        <li>
-          {signedIn
-            ? "This sitting, including every answer, is saved on your account."
-            : "Sign in before you start if you want the score and the paper kept."}
-        </li>
-      </ul>
-      <Button type="button" size="lg" className="rounded-full px-6" onClick={onBegin}>
-        Start vocabulary · 30:00
-      </Button>
     </div>
   );
 }
@@ -688,26 +702,29 @@ function MondaiSheet({
 function Results({
   exam,
   answers,
+  completed,
   signedIn,
   onAgain,
 }: {
   exam: MockExam;
   answers: Record<string, number>;
+  completed: readonly string[];
   signedIn: boolean;
   onAgain: () => void;
 }) {
-  const scores = scoreExam(exam, answers);
-  const mondaiScores = scoreByMondai(exam, answers);
-  const estimated = scores.map((score) => pointsForSection(mondaiScores, score.id));
-  const estimatedTotal = estimated.reduce((sum, value) => sum + value, 0);
-  const clearsSections = estimated.every((value) => value >= PASS_SECTION);
-  const clearsTotal = estimatedTotal >= PASS_TOTAL;
-  const areas = ["文字・語彙", "文法"].map((title) => {
-    const rows = mondaiScores.filter((row) => row.partTitle === title);
-    const correct = rows.reduce((sum, row) => sum + row.correct, 0);
-    const total = rows.reduce((sum, row) => sum + row.total, 0);
-    return { title, correct, total, band: responseBand(correct, total) };
-  });
+  const summary = summarizeSitting(exam, answers, completed);
+  const taken = summary.sections.filter((section) => section.taken);
+  // Untaken sections stay unscored and unrevealed, so they can still be practised later.
+  const mondaiScores = scoreByMondai(exam, answers).filter((row) => completed.includes(row.sectionId));
+  const areas = ["文字・語彙", "文法"]
+    .map((title) => {
+      const rows = mondaiScores.filter((row) => row.partTitle === title);
+      const correct = rows.reduce((sum, row) => sum + row.correct, 0);
+      const total = rows.reduce((sum, row) => sum + row.total, 0);
+      return { title, correct, total, band: responseBand(correct, total) };
+    })
+    .filter((area) => area.total > 0);
+  const takenSections = exam.sections.filter((section) => completed.includes(section.id));
   const [open, setOpen] = useState(false);
 
   return (
@@ -715,20 +732,36 @@ function Results({
       <div>
         <p className="font-jp text-sm text-primary">結果</p>
         <h1 className="mt-1 text-3xl font-semibold tracking-tight">{exam.title}</h1>
-        <p className="mt-3 font-mono text-4xl font-semibold tabular-nums">
-          {formatPoints(estimatedTotal)}
-          <span className="text-xl text-muted-foreground">/180</span>
-        </p>
+        {summary.total != null ? (
+          <p className="mt-3 font-mono text-4xl font-semibold tabular-nums">
+            {formatPoints(summary.total)}
+            <span className="text-xl text-muted-foreground">/180</span>
+          </p>
+        ) : (
+          <p className="mt-3 text-lg font-semibold">
+            <span className="font-jp">{taken.map((section) => section.title).join("、") || "No section"}</span> only
+          </p>
+        )}
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {clearsSections && clearsTotal
-            ? `Above the practice line: ${PASS_TOTAL} overall and ${PASS_SECTION} in every group.`
-            : `Under the practice line. A pass needs ${PASS_TOTAL} overall and ${PASS_SECTION} in every group.`}
+          {summary.passes == null
+            ? `Section scores only. The total out of 180 and the pass line need all ${exam.sections.length} sections.`
+            : summary.passes
+              ? `Above the practice line: ${PASS_TOTAL} overall and ${PASS_SECTION} in every group.`
+              : `Under the practice line. A pass needs ${PASS_TOTAL} overall and ${PASS_SECTION} in every group.`}
           {signedIn ? " This paper is saved on your account." : ""}
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
-        {scores.map((score) => {
-          const points = pointsForSection(mondaiScores, score.id);
+        {summary.sections.map((score) => {
+          if (score.points == null) {
+            return (
+              <div key={score.id} className="rounded-2xl border border-dashed border-border p-4">
+                <p className="font-jp text-sm text-muted-foreground">{score.title}</p>
+                <p className="mt-2 text-sm text-muted-foreground">Not taken</p>
+              </div>
+            );
+          }
+          const points = score.points;
           const partShares = new Map<string, number>();
           for (const row of mondaiScores.filter((item) => item.sectionId === score.id)) {
             partShares.set(row.partTitle, (partShares.get(row.partTitle) ?? 0) + row.share);
@@ -813,7 +846,7 @@ function Results({
       </div>
       {open && (
         <div className="space-y-12">
-          {exam.sections.map((section) =>
+          {takenSections.map((section) =>
             section.parts.map((part) =>
               part.mondai.map((mondai) => (
                 <MondaiSheet

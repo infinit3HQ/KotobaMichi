@@ -482,6 +482,11 @@ export const mockExamAttempts = pgTable(
 			.notNull()
 			.default({}),
 		scores: jsonb('scores').$type<MockExamScore[]>(),
+		// Sections the student has closed. They can be taken in any order.
+		completedSections: jsonb('completed_sections')
+			.$type<string[]>()
+			.notNull()
+			.default([]),
 		finishedAt: timestamp('finished_at', { withTimezone: false }),
 		createdAt: timestamp('created_at', { withTimezone: false })
 			.notNull()

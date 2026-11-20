@@ -8,6 +8,8 @@ export type RemoteMockAttempt = {
   sectionIndex: number;
   sectionStartedAt: number;
   answers: Record<string, number>;
+  /** Missing on responses from an API that predates section picking. */
+  completedSections?: string[];
   scores: SectionScore[] | null;
   finishedAt: number | null;
 };
@@ -21,6 +23,7 @@ export type AttemptPayload = {
   sectionIndex: number;
   sectionStartedAt: number;
   answers: Record<string, number>;
+  completedSections: string[];
 };
 
 export async function fetchMockExamState(examId: string) {
