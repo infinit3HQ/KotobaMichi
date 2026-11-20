@@ -4,6 +4,7 @@ import { ReactNode, useState } from "react";
 import { ThemeProvider } from "@/components/atoms/theme-provider";
 import { Layout } from "@/components/organisms/layout";
 import { LocaleProvider } from "@/components/organisms/locale-provider";
+import { AccountCacheReset } from "@/components/organisms/account-cache-reset";
 import { Toaster } from "@/components/atoms/sonner";
 import { ServiceWorkerRegistration } from "@/components/atoms/service-worker-registration";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -38,6 +39,7 @@ export default function Providers({
       disableTransitionOnChange
     >
       <QueryClientProvider client={queryClient}>
+        <AccountCacheReset />
         <LocaleProvider initialLocale={initialLocale}>
           <Layout>{children}</Layout>
           <Toaster />

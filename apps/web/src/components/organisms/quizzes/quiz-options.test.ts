@@ -43,6 +43,13 @@ describe("buildQuizOptions", () => {
     expect(buildQuizOptions([quizWord("a", "dog")], "a")).toEqual(["dog"]);
   });
 
+  it("submits the stored meaning exactly, whitespace included", () => {
+    const words = [quizWord("a", " dog "), quizWord("b", "cat"), quizWord("c", "cat ")];
+    const options = buildQuizOptions(words, "a");
+    expect(options).toContain(" dog ");
+    expect(options).toHaveLength(2);
+  });
+
   it("returns nothing for an unknown word", () => {
     expect(buildQuizOptions(WORDS, "missing")).toEqual([]);
   });

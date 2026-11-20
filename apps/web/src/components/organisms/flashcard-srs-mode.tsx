@@ -135,6 +135,8 @@ export function FlashcardSrsMode({
         return;
       }
       if (e.code === "Space") {
+        // Space on a focused button or link should press that control, not flip the card.
+        if (tag === "BUTTON" || tag === "A") return;
         e.preventDefault();
         handleFlip();
       } else if (e.code === "ArrowRight") {
@@ -195,6 +197,8 @@ export function FlashcardSrsMode({
         aria-label={flipped ? "Show the word" : "Show the meaning"}
         onClick={handleFlip}
         onKeyDown={(e) => {
+          // Keys pressed on the Listen buttons inside the card bubble up here; only the card itself flips.
+          if (e.target !== e.currentTarget) return;
           if (e.key === "Enter") handleFlip();
         }}
         className="perspective group w-full cursor-pointer select-none rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
