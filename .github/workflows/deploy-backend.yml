@@ -103,64 +103,47 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # The server keeps the API's secrets in a root-only file outside the checkout
-      # (default /etc/kotobamichi/api.env, override with the API_ENV_FILE repository variable).
-      # GitHub secrets only overlay the Google OAuth and S3 settings. There are no fallback values:
-      # if the file is missing the deploy stops instead of starting with guessed or stale secrets.
+      # Every API setting lives in the production GitHub environment: API_<NAME> secrets for
+      # credentials, API_<NAME> variables for the rest. Each one becomes NAME in deploy/api/.env.
+      # To add or change a setting, set it in the environment and re-run this workflow.
       - name: Write .env for Backend
         shell: bash
         env:
-          API_ENV_FILE: ${{ vars.API_ENV_FILE || '/etc/kotobamichi/api.env' }}
-          GOOGLE_CLIENT_ID_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET_SECRET: ${{ secrets.PROD_GOOGLE_CLIENT_SECRET }}
-          GOOGLE_CALLBACK_URL_SECRET: ${{ secrets.PROD_GOOGLE_CALLBACK_URL }}
-          S3_ENDPOINT_SECRET: ${{ vars.PROD_S3_ENDPOINT }}
-          S3_REGION_SECRET: ${{ vars.PROD_S3_REGION }}
-          S3_BUCKET_SECRET: ${{ vars.PROD_S3_BUCKET }}
-          S3_PUBLIC_URL_SECRET: ${{ vars.PROD_S3_PUBLIC_URL }}
-          S3_ACCESS_KEY_ID_SECRET: ${{ secrets.PROD_S3_ACCESS_KEY_ID }}
-          S3_SECRET_ACCESS_KEY_SECRET: ${{ secrets.PROD_S3_SECRET_ACCESS_KEY }}
+          ENV_SECRETS: ${{ toJSON(secrets) }}
+          ENV_VARS: ${{ toJSON(vars) }}
         run: |
           set -euo pipefail
           umask 077
           cd deploy/api
+          python3 - <<'PY'
+          import json, os, re, sys
 
-          if [ ! -s "$API_ENV_FILE" ]; then
-            echo "::error::$API_ENV_FILE is missing or empty on this runner. Create it (mode 600) from apps/api/.env.example before deploying."
-            exit 1
-          fi
-          cp "$API_ENV_FILE" .env
+          settings = {}
+          # Secrets win over variables with the same name.
+          for source in ("ENV_VARS", "ENV_SECRETS"):
+              for name, value in json.loads(os.environ.get(source) or "{}").items():
+                  if name.startswith("API_") and value is not None:
+                      settings[name[len("API_"):]] = str(value)
 
-          # Compose expands $NAME inside .env values, so a literal $ must be written as $$.
-          upsert_env() {
-            local key="$1" value="$2"
-            [ -n "$value" ] || return 0
-            grep -v -E "^${key}=" .env > .env.tmp || true
-            mv .env.tmp .env
-            printf '%s=%s\n' "$key" "${value//\$/\$\$}" >> .env
-          }
+          problems = []
+          for key, value in settings.items():
+              if not re.fullmatch(r"[A-Z_][A-Z0-9_]*", key):
+                  problems.append(f"{key}: not a valid variable name")
+              if "\n" in value or "\r" in value:
+                  problems.append(f"{key}: value spans several lines")
+          required = ["DATABASE_URL", "JWT_SECRET", "COOKIE_SECRET", "APP_URL", "CORS_ORIGIN"]
+          problems += [f"{key}: missing" for key in required if not settings.get(key)]
+          if problems:
+              for problem in problems:
+                  print(f"::error::API_{problem}")
+              sys.exit(1)
 
-          if [ -n "$GOOGLE_CLIENT_ID_SECRET" ]; then
-            upsert_env GOOGLE_CLIENT_ID "$GOOGLE_CLIENT_ID_SECRET"
-            upsert_env GOOGLE_CLIENT_SECRET "$GOOGLE_CLIENT_SECRET_SECRET"
-            upsert_env GOOGLE_CALLBACK_URL "$GOOGLE_CALLBACK_URL_SECRET"
-          fi
-          upsert_env S3_ENDPOINT "$S3_ENDPOINT_SECRET"
-          upsert_env S3_REGION "$S3_REGION_SECRET"
-          upsert_env S3_BUCKET "$S3_BUCKET_SECRET"
-          upsert_env S3_PUBLIC_URL "$S3_PUBLIC_URL_SECRET"
-          upsert_env S3_ACCESS_KEY_ID "$S3_ACCESS_KEY_ID_SECRET"
-          upsert_env S3_SECRET_ACCESS_KEY "$S3_SECRET_ACCESS_KEY_SECRET"
-
-          missing=""
-          for key in DATABASE_URL JWT_SECRET COOKIE_SECRET APP_URL CORS_ORIGIN; do
-            grep -q -E "^${key}=.+" .env || missing="$missing $key"
-          done
-          if [ -n "$missing" ]; then
-            echo "::error::Required settings missing from .env:$missing"
-            exit 1
-          fi
-          echo "Wrote deploy/api/.env from $API_ENV_FILE ($(grep -c '=' .env) settings)."
+          # Compose expands $NAME inside .env values, so a literal $ is written as $$.
+          with open(".env", "w") as env_file:
+              for key in sorted(settings):
+                  env_file.write(f"{key}={settings[key].replace('$', '$$')}\n")
+          print(f"Wrote deploy/api/.env with {len(settings)} settings from the production environment.")
+          PY
 
       - name: Deploy Backend Stack & Migrations
         shell: bash

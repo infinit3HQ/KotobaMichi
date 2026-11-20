@@ -56,13 +56,16 @@ Workflows live in [`.github/workflows/`](./.github/workflows/):
 - **`deploy-frontend.yml`**: builds `apps/web/Dockerfile`, publishes `ghcr.io/infinit3hq/kotobamichi-web`, and runs `deploy/web` on the server.
 - **`deploy-backend.yml`**: builds `apps/api/Dockerfile` and `Dockerfile.migration`, publishes `ghcr.io/infinit3hq/kotobamichi-api` and `kotobamichi-migration`, and runs `deploy/api` on the server.
 
-### Production secrets
+### Production settings
 
-The API's settings live on the server in `/etc/kotobamichi/api.env` (root-only, mode 600), outside the
-checkout. `deploy-backend.yml` copies that file into `deploy/api/.env` and overlays the Google OAuth and
-S3 values from the `production` GitHub environment (secrets for keys, variables for URLs, bucket and region).
-Only `main` can deploy to that environment, and the repository itself holds no secrets. There are no fallback values: if the file or a required key is missing,
-the deploy stops. To change a secret, edit that file on the server and re-run the workflow.
+All API settings live in the `production` GitHub environment, which only `main` can deploy to:
+`API_<NAME>` secrets for credentials and `API_<NAME>` variables for everything else.
+`deploy-backend.yml` writes each one to `deploy/api/.env` as `<NAME>`, and stops if a required key is missing.
+To add or change a setting, set it in the environment and re-run the workflow, for example:
+
+```bash
+gh secret set API_SMTP_PASS --env production -R infinit3HQ/KotobaMichi
+```
 
 In production the API refuses to start if `JWT_SECRET` is missing, shorter than 32 characters,
 or one of the example values published in this repository.
