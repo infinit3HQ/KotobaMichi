@@ -1,195 +1,155 @@
 "use client";
+
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import { Layers, LogIn, Plus } from "lucide-react";
 import { api } from "@/lib/api";
 import type { QuizSummary } from "@/types/api";
-import { Card, CardContent } from "@/components/atoms/card";
-import { Skeleton } from "@/components/atoms/skeleton";
-import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/atoms/button";
-import { Plus, Sparkles, Layers, ArrowRight, Trophy } from "lucide-react";
+import { EmptyState } from "@/components/molecules/empty-state";
+import { PageHeader, SectionHeading } from "@/components/molecules/page-header";
 import { useLocale } from "@/components/organisms/locale-provider";
+import { QuizCardGrid, QuizCardGridSkeleton } from "@/components/organisms/quizzes/quiz-card";
+import { QueryError } from "@/components/organisms/quizzes/query-error";
+import { useAuth } from "@/hooks/use-auth";
+import { useAuthStore } from "@/stores/auth";
 
 export default function QuizListPage() {
   const { t } = useLocale();
   const { user } = useAuth();
-  const {
-    data: publicQuizzes,
-    isLoading: loadingPublic,
-    isError: errorPublic,
-  } = useQuery({
+  const authChecked = useAuthStore((state) => state.authChecked);
+
+  const publicQuery = useQuery({
     queryKey: ["quizzes", "public"],
     queryFn: async () => (await api.get<QuizSummary[]>("/quizzes")).data,
   });
-  const { data: myQuizzes, isLoading: loadingMine } = useQuery({
+  const mineQuery = useQuery({
     queryKey: ["quizzes", "mine"],
-    queryFn: async () =>
-      (await api.get<QuizSummary[]>("/quizzes/my-quizzes")).data,
+    queryFn: async () => (await api.get<QuizSummary[]>("/quizzes/my-quizzes")).data,
     enabled: !!user,
   });
 
+  const headerAction = !authChecked ? null : user ? (
+    <Button asChild>
+      <Link href="/quizzes/create">
+        <Plus />
+        {t.quizzes.create}
+      </Link>
+    </Button>
+  ) : (
+    <Button asChild variant="outline">
+      <Link href="/auth/login">{t.quizzes.loginToCreate}</Link>
+    </Button>
+  );
+
   return (
-    <div className="space-y-8 max-w-5xl mx-auto pb-12">
-      {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border/80 pb-6">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="font-jp text-primary text-xs font-bold px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-              {t.quizzes.kicker}
-            </span>
-          </div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-            {t.quizzes.title}
-          </h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            {t.quizzes.desc}
-          </p>
-        </div>
+    <div className="space-y-6 sm:space-y-8">
+      <PageHeader
+        eyebrow={t.quizzes.kicker}
+        title={t.quizzes.title}
+        description={t.quizzes.desc}
+        actions={headerAction}
+      />
 
-        <div>
-          {user ? (
-            <Button asChild className="gap-2 shadow-xs bg-primary hover:bg-primary/90">
-              <Link href="/quizzes/create">
-                <Plus className="h-4 w-4" />
-                {t.quizzes.create}
-              </Link>
-            </Button>
-          ) : (
-            <Button asChild variant="outline" className="text-xs">
-              <Link href="/auth/login">{t.quizzes.loginToCreate}</Link>
-            </Button>
-          )}
-        </div>
-      </div>
-
-      {/* Public Quizzes Section */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <h2 className="text-lg font-bold tracking-tight text-foreground">
-              {t.quizzes.community}
-            </h2>
-          </div>
-          <span className="text-xs text-muted-foreground font-mono">
-            {t.quizzes.available(publicQuizzes?.length || 0)}
-          </span>
-        </div>
-
-        {loadingPublic ? (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton key={i} className="h-28 w-full rounded-xl" />
-            ))}
-          </div>
-        ) : errorPublic ? (
-          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-6 text-center text-sm text-destructive">
-            Failed to load public quizzes. Please try again later.
-          </div>
-        ) : publicQuizzes && publicQuizzes.length > 0 ? (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {publicQuizzes.map((q) => (
-              <QuizCard key={q.id} quiz={q} />
-            ))}
-          </div>
+      <section className="space-y-4">
+        <SectionHeading
+          title={t.quizzes.community}
+          meta={publicQuery.data ? t.quizzes.available(publicQuery.data.length) : null}
+        />
+        {publicQuery.isLoading ? (
+          <QuizCardGridSkeleton count={3} />
+        ) : publicQuery.isError ? (
+          <QueryError
+            title={t.quizzes.loadError}
+            description={t.quizzes.loadErrorBody}
+            onRetry={() => publicQuery.refetch()}
+            retryLabel={t.quizzes.retry}
+          />
+        ) : publicQuery.data && publicQuery.data.length > 0 ? (
+          <QuizCardGrid quizzes={publicQuery.data} />
         ) : (
-          <div className="rounded-xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
-            No public quizzes available yet.
-          </div>
+          <EmptyState icon={Layers} title={t.quizzes.emptyPublicTitle} description={t.quizzes.emptyPublicBody} />
         )}
-      </div>
+      </section>
 
-      {/* My Quizzes Section */}
-      <div className="space-y-4 pt-4 border-t border-border/60">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Layers className="h-4 w-4 text-amber-500" />
-            <h2 className="text-lg font-bold tracking-tight text-foreground">
-              {t.quizzes.mine}
-            </h2>
-          </div>
-          {user && (
-            <span className="text-xs text-muted-foreground font-mono">
-              {myQuizzes?.length || 0} created
-            </span>
-          )}
-        </div>
-
-        {!user ? (
-          <div className="rounded-2xl border border-border/80 bg-card/50 p-8 text-center space-y-3">
-            <p className="text-sm text-muted-foreground">
-              {t.quizzes.signInBody}
-            </p>
-            <Button asChild size="sm" variant="outline" className="text-xs">
-              <Link href="/auth/login">{t.quizzes.signIn}</Link>
-            </Button>
-          </div>
-        ) : loadingMine ? (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {Array.from({ length: 2 }).map((_, i) => (
-              <Skeleton key={i} className="h-28 w-full rounded-xl" />
-            ))}
-          </div>
-        ) : myQuizzes && myQuizzes.length > 0 ? (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {myQuizzes.map((q) => (
-              <QuizCard key={q.id} quiz={q} />
-            ))}
-          </div>
-        ) : (
-          <div className="rounded-xl border border-dashed border-border/80 bg-card/30 p-8 text-center space-y-3">
-            <p className="text-sm text-muted-foreground">
-              You haven&apos;t created any custom quizzes yet.
-            </p>
-            <Button asChild size="sm" className="text-xs gap-1.5">
-              <Link href="/quizzes/create">
-                <Plus className="h-3.5 w-3.5" />
-                Build your first quiz
-              </Link>
-            </Button>
-          </div>
-        )}
-      </div>
+      <section className="space-y-4">
+        <SectionHeading
+          title={t.quizzes.mine}
+          meta={user && mineQuery.data ? t.quizzes.mineCount(mineQuery.data.length) : null}
+        />
+        <MyQuizzes
+          authChecked={authChecked}
+          signedIn={!!user}
+          isLoading={mineQuery.isLoading}
+          isError={mineQuery.isError}
+          quizzes={mineQuery.data}
+          onRetry={() => mineQuery.refetch()}
+        />
+      </section>
     </div>
   );
 }
 
-function QuizCard({ quiz }: { quiz: QuizSummary }) {
-  return (
-    <Card className="border border-border/80 bg-card hover:border-primary/40 hover:shadow-md transition-all group overflow-hidden">
-      <CardContent className="p-5 flex flex-col justify-between h-full gap-4">
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
-              {quiz._count.quizWords ?? 0} Words
-            </span>
-            <span className="text-[11px] text-muted-foreground flex items-center gap-1">
-              <Trophy className="h-3 w-3 text-amber-500 opacity-80" />
-              {quiz._count.attempts ?? 0} attempts
-            </span>
-          </div>
+function MyQuizzes({
+  authChecked,
+  signedIn,
+  isLoading,
+  isError,
+  quizzes,
+  onRetry,
+}: {
+  authChecked: boolean;
+  signedIn: boolean;
+  isLoading: boolean;
+  isError: boolean;
+  quizzes?: QuizSummary[];
+  onRetry: () => void;
+}) {
+  const { t } = useLocale();
 
-          <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-            {quiz.title}
-          </h3>
+  if (!authChecked || (signedIn && isLoading)) return <QuizCardGridSkeleton count={2} />;
 
-          {quiz.description && (
-            <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-              {quiz.description}
-            </p>
-          )}
-        </div>
-
-        <div className="pt-2 border-t border-border/40 flex items-center justify-between">
-          <span className="text-[11px] text-muted-foreground">Multiple Choice</span>
-          <Button asChild size="sm" variant="ghost" className="h-7 px-2.5 text-xs text-primary font-semibold gap-1 group-hover:bg-primary/10">
-            <Link href={`/quizzes/${quiz.id}`}>
-              <span>Start Quiz</span>
-              <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-            </Link>
+  if (!signedIn) {
+    return (
+      <EmptyState
+        icon={LogIn}
+        title={t.quizzes.signInTitle}
+        description={t.quizzes.signInBody}
+        action={
+          <Button asChild variant="outline">
+            <Link href="/auth/login">{t.quizzes.signIn}</Link>
           </Button>
-        </div>
-      </CardContent>
-    </Card>
+        }
+      />
+    );
+  }
+
+  if (isError) {
+    return (
+      <QueryError
+        title={t.quizzes.loadError}
+        description={t.quizzes.loadErrorBody}
+        onRetry={onRetry}
+        retryLabel={t.quizzes.retry}
+      />
+    );
+  }
+
+  if (quizzes && quizzes.length > 0) return <QuizCardGrid quizzes={quizzes} />;
+
+  return (
+    <EmptyState
+      icon={Plus}
+      title={t.quizzes.emptyMineTitle}
+      description={t.quizzes.emptyMineBody}
+      action={
+        <Button asChild>
+          <Link href="/quizzes/create">
+            <Plus />
+            {t.quizzes.buildFirst}
+          </Link>
+        </Button>
+      }
+    />
   );
 }

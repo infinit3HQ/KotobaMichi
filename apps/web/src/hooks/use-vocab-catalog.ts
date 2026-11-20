@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { JLPTLevel } from "@/data/grammar";
 import type { JLPTWord } from "@/data/vocab-n5";
 
@@ -30,9 +30,18 @@ function loadVocabCatalog(): Promise<VocabCatalog> {
   return pending;
 }
 
-/** Returns the full word catalog once its chunk has loaded, and null before that. */
-export function useVocabCatalog() {
+export type VocabCatalogState = {
+  catalog: VocabCatalog | null;
+  failed: boolean;
+  retry: () => void;
+};
+
+/** Loads the word catalog and reports whether the chunk failed, so pages can offer a retry. */
+export function useVocabCatalogState(): VocabCatalogState {
   const [catalog, setCatalog] = useState<VocabCatalog | null>(cached);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+
   useEffect(() => {
     if (catalog) return;
     let cancelled = false;
@@ -41,11 +50,22 @@ export function useVocabCatalog() {
         if (!cancelled) setCatalog(loaded);
       })
       .catch(() => {
-        // Leave the loading state up; a reload retries the import.
+        if (!cancelled) setFailed(true);
       });
     return () => {
       cancelled = true;
     };
-  }, [catalog]);
-  return catalog;
+  }, [catalog, attempt]);
+
+  const retry = useCallback(() => {
+    setFailed(false);
+    setAttempt((value) => value + 1);
+  }, []);
+
+  return { catalog, failed, retry };
+}
+
+/** Returns the full word catalog once its chunk has loaded, and null before that. */
+export function useVocabCatalog() {
+  return useVocabCatalogState().catalog;
 }

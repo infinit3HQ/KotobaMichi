@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Create Quiz",
-  description: "Create a custom quiz from your selected words.",
+  title: "Create a quiz",
+  description: "Build a vocabulary quiz from the words you pick.",
   robots: { index: false, follow: false },
 };
 

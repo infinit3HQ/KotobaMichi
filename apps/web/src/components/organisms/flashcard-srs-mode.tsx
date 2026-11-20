@@ -8,11 +8,29 @@ import { wordsForTopic } from "@/data/level-words";
 import { getSentencesForWord } from "@/data/sentences";
 import type { JLPTLevel } from "@/data/grammar";
 import { speakJapanese, playSfx } from "@/lib/audio";
-import { Volume2, Eye, EyeOff, Sparkles, RotateCw, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Eye, EyeOff, RotateCw, Volume2 } from "lucide-react";
+import { KeyHint } from "@/components/organisms/practice/drill-parts";
+import { cn } from "@/lib/utils";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { lessonText, sinhalaWordGloss } from "@/lib/i18n/content-si";
 import { useLearning } from "@/hooks/use-learning";
 import type { LearningGrade } from "@/lib/learning";
+
+const GRADES: {
+  grade: LearningGrade;
+  label: string;
+  interval: string;
+  sfx: "wrong" | "correct" | "streak";
+  tone?: string;
+}[] = [
+  { grade: "again", label: "Again", interval: "<1m", sfx: "wrong", tone: "text-destructive" },
+  { grade: "hard", label: "Hard", interval: "1d", sfx: "correct" },
+  { grade: "good", label: "Good", interval: "3d", sfx: "correct" },
+  { grade: "easy", label: "Easy", interval: "7d", sfx: "streak", tone: "text-chart-3" },
+];
+
+const FACE =
+  "absolute inset-0 backface-hidden flex flex-col items-center justify-between gap-4 rounded-xl border bg-card p-4 text-center shadow-sm sm:p-6";
 
 interface FlashcardSrsModeProps {
   selectedLevel: JLPTLevel;
@@ -104,10 +122,21 @@ export function FlashcardSrsMode({
     return () => window.clearTimeout(handle);
   }, [user, deck, currentWord, currentIndex, selectedLevel, savePlace]);
 
-  // Keyboard shortcut: Space to flip, Arrows to navigate, R to pronounce
+  // Keyboard shortcuts: Space flips, arrows move, R pronounces, 1-4 grade the card
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const tag = document.activeElement?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      const gradeIndex = ["1", "2", "3", "4"].indexOf(e.key);
+      if (gradeIndex >= 0) {
+        const { grade, sfx } = GRADES[gradeIndex];
+        if (soundEnabled) playSfx(sfx);
+        gradeCard(grade);
+        return;
+      }
       if (e.code === "Space") {
+        // Space on a focused button or link should press that control, not flip the card.
+        if (tag === "BUTTON" || tag === "A") return;
         e.preventDefault();
         handleFlip();
       } else if (e.code === "ArrowRight") {
@@ -120,250 +149,190 @@ export function FlashcardSrsMode({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleFlip, nextCard, prevCard, currentWord, speechRate]);
+  }, [handleFlip, nextCard, prevCard, currentWord, speechRate, gradeCard, soundEnabled]);
 
   if (!currentWord) return null;
 
   const exampleSentences = getSentencesForWord(currentWord.kanji || currentWord.hiragana);
   const topExample = exampleSentences[0];
 
+  const word = currentWord.kanji || currentWord.hiragana;
+  const sinhalaGloss = locale === "si" ? sinhalaWordGloss(currentWord) : null;
+  const pronounce = () => speakJapanese(word, { rate: speechRate });
+
   return (
-    <div className="max-w-xl mx-auto space-y-6">
-      {/* Top Settings and Progress Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-md border border-border/80 shadow-xs">
-        <div className="flex items-center gap-2">
+    <div className="mx-auto w-full max-w-xl space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex gap-2">
           <Button
-            variant={showFurigana ? "secondary" : "outline"}
-            size="sm"
-            onClick={() => setShowFurigana(!showFurigana)}
-            className="text-xs h-7 px-2.5 rounded-lg gap-1.5 font-medium"
+            variant="outline"
+            aria-pressed={showFurigana}
+            onClick={() => setShowFurigana((open) => !open)}
           >
-            {showFurigana ? <Eye className="h-3.5 w-3.5 text-primary" /> : <EyeOff className="h-3.5 w-3.5" />}
+            {showFurigana ? <Eye /> : <EyeOff />}
             Furigana
           </Button>
-          <Button
-            variant={showRomaji ? "secondary" : "outline"}
-            size="sm"
-            onClick={() => setShowRomaji(!showRomaji)}
-            className="text-xs h-7 px-2.5 rounded-lg font-mono font-medium"
-          >
+          <Button variant="outline" aria-pressed={showRomaji} onClick={() => setShowRomaji((open) => !open)}>
+            {showRomaji ? <Eye /> : <EyeOff />}
             Romaji
           </Button>
         </div>
-
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={prevCard}
-            className="h-7 w-7 rounded-lg text-muted-foreground hover:text-foreground"
-            title="Previous Card (Left Arrow)"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
+          <Button variant="outline" size="icon" onClick={prevCard} aria-label="Previous card">
+            <ArrowLeft />
           </Button>
-          <span className="text-xs text-muted-foreground font-mono font-bold">
-            {currentIndex + 1} <span className="opacity-40">/</span> {cards.length}
+          <span className="min-w-14 text-center font-mono text-sm tabular-nums text-muted-foreground">
+            {currentIndex + 1} / {cards.length}
           </span>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={nextCard}
-            className="h-7 w-7 rounded-lg text-muted-foreground hover:text-foreground"
-            title="Next Card (Right Arrow)"
-          >
-            <ArrowRight className="h-3.5 w-3.5" />
+          <Button variant="outline" size="icon" onClick={nextCard} aria-label="Next card">
+            <ArrowRight />
           </Button>
         </div>
       </div>
 
-      {/* True 3D Flip Card Container */}
       <div
+        role="button"
+        tabIndex={0}
+        aria-pressed={flipped}
+        aria-label={flipped ? "Show the word" : "Show the meaning"}
         onClick={handleFlip}
-        className="perspective w-full min-h-[350px] cursor-pointer select-none group"
+        onKeyDown={(e) => {
+          // Keys pressed on the Listen buttons inside the card bubble up here; only the card itself flips.
+          if (e.target !== e.currentTarget) return;
+          if (e.key === "Enter") handleFlip();
+        }}
+        className="perspective group w-full cursor-pointer select-none rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
       >
         <div
-          className={`relative w-full min-h-[350px] transition-transform duration-500 preserve-3d ${
-            flipped ? "rotate-y-180" : ""
-          }`}
+          className={cn(
+            "preserve-3d relative min-h-[320px] w-full transition-transform duration-500",
+            flipped && "rotate-y-180"
+          )}
         >
-          {/* =============================================================
-              CARD FRONT: PROMPT & KANJI
-              ============================================================= */}
-          <div className="absolute inset-0 backface-hidden rounded-3xl border-2 border-primary/20 bg-card/95 backdrop-blur-md p-4 sm:p-8 flex flex-col justify-between items-center text-center shadow-lg group-hover:border-primary/45 transition-all duration-300">
-            {/* Header badges */}
-            <div className="w-full flex flex-wrap justify-between items-center gap-2 text-xs">
-              <Badge variant="outline" className="text-[11px] font-semibold">
-                {currentWord.topic}
-              </Badge>
-              <span className="text-muted-foreground/80 text-[11px] font-medium flex items-center gap-1 group-hover:text-primary transition-colors">
-                <RotateCw className="h-3 w-3" /> <span className="sm:hidden">Tap to flip</span><span className="hidden sm:inline">[Space] to flip</span>
-              </span>
-              <Badge variant="secondary" className="font-mono text-[11px] font-bold">
+          {/* Front: the word */}
+          <div className={cn(FACE, "transition-colors group-hover:border-primary/40")} aria-hidden={flipped}>
+            <div className="flex w-full items-center justify-between gap-2">
+              <Badge variant="outline">{currentWord.topic}</Badge>
+              <Badge variant="secondary" className="font-mono">
                 {currentWord.level}
               </Badge>
             </div>
 
-            {/* Center: Character display */}
-            <div className="my-auto space-y-3 py-4">
-              {showFurigana && currentWord.kanji && (
-                <div className="text-lg font-japanese font-medium text-primary tracking-widest animate-in fade-in duration-150">
+            <div className="w-full space-y-2">
+              {showFurigana && currentWord.kanji ? (
+                <p lang="ja" className="font-jp text-base text-primary">
                   {currentWord.hiragana}
-                </div>
-              )}
-              <div className="max-w-full px-1 text-4xl font-black font-japanese leading-none tracking-tight text-foreground drop-shadow-xs sm:text-6xl">
-                {currentWord.kanji || currentWord.hiragana}
-              </div>
-              {showRomaji && (
-                <div className="text-xs sm:text-sm text-muted-foreground font-mono tracking-wider">
-                  {currentWord.romaji}
-                </div>
-              )}
+                </p>
+              ) : null}
+              <p lang="ja" className="font-jp text-5xl font-bold leading-tight tracking-tight break-words sm:text-6xl">
+                {word}
+              </p>
+              {showRomaji ? <p className="font-mono text-sm text-muted-foreground">{currentWord.romaji}</p> : null}
             </div>
 
-            {/* Front footer controls */}
-            <div className="w-full flex justify-between items-center pt-4 border-t border-border/40">
+            <div className="flex w-full items-center justify-between gap-2">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={(e) => {
                   e.stopPropagation();
-                  speakJapanese(currentWord.kanji || currentWord.hiragana, { rate: speechRate });
+                  pronounce();
                 }}
-                className="gap-1.5 text-xs text-primary hover:bg-primary/10 rounded-xl"
               >
-                <Volume2 className="h-4 w-4" /> Listen (R)
+                <Volume2 />
+                Listen
+                <KeyHint>R</KeyHint>
               </Button>
-
-              <span className="text-[11px] text-muted-foreground font-medium">
-                Tap card to reveal definition
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <RotateCw className="size-3.5" />
+                <span className="sm:hidden">Tap to flip</span>
+                <span className="hidden sm:inline">Click or press Space to flip</span>
               </span>
             </div>
           </div>
 
-          {/* =============================================================
-              CARD BACK: MEANING, PART OF SPEECH & REAL SENTENCE
-              ============================================================= */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl border-2 border-primary/35 bg-card/95 backdrop-blur-md p-4 sm:p-8 flex flex-col justify-between items-center text-center shadow-xl overflow-y-auto">
-            {/* Header tags */}
-            <div className="w-full flex justify-between items-center text-xs">
-              <span className="text-[11px] font-mono font-bold text-primary flex items-center gap-1">
-                <Sparkles className="h-3 w-3" /> Answer & Context
-              </span>
-              <Badge variant="outline" className="text-[10px]">
-                {currentWord.partOfSpeech}
-              </Badge>
+          {/* Back: meaning and an example sentence */}
+          <div className={cn(FACE, "rotate-y-180 overflow-y-auto")} aria-hidden={!flipped}>
+            <div className="flex w-full items-center justify-between gap-2">
+              <span className="text-xs font-medium text-muted-foreground">Meaning</span>
+              <Badge variant="outline">{currentWord.partOfSpeech}</Badge>
             </div>
 
-            {/* Center: Definition & Example */}
-            <div className="my-auto space-y-3 py-2 w-full max-w-md">
-              <div className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
-                {(locale === "si" ? sinhalaWordGloss(currentWord) : null) ?? currentWord.english}
-              </div>
-              {locale === "si" && sinhalaWordGloss(currentWord) && (
-                <div className="text-sm text-muted-foreground">{currentWord.english}</div>
-              )}
-              <div className="text-sm font-medium text-foreground/80 font-japanese">
-                {currentWord.kanji ? `${currentWord.kanji} (${currentWord.hiragana})` : currentWord.hiragana}
+            <div className="w-full space-y-3">
+              <div className="space-y-1">
+                <p className="text-2xl font-semibold tracking-tight break-words sm:text-3xl">
+                  {sinhalaGloss ?? currentWord.english}
+                </p>
+                {sinhalaGloss ? <p className="text-sm text-muted-foreground">{currentWord.english}</p> : null}
+                <p lang="ja" className="font-jp text-sm text-muted-foreground">
+                  {currentWord.kanji ? `${currentWord.kanji} (${currentWord.hiragana})` : currentWord.hiragana}
+                </p>
               </div>
 
-              {/* Contextual Example from 5,193 sentences database */}
-              {topExample && (
+              {topExample ? (
                 <div
                   onClick={(e) => e.stopPropagation()}
-                  className="mt-2 p-3 rounded-2xl bg-muted/50 border border-border/60 text-left space-y-1 shadow-2xs"
+                  className="space-y-1 rounded-lg bg-muted/60 p-3 text-left"
                 >
-                  <div className="flex items-center justify-between gap-1">
-                    <span className="text-[10px] uppercase font-bold text-primary font-mono tracking-wider">
-                      Authentic Example • 例文
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-medium text-muted-foreground">
+                      Example <span className="font-jp">例文</span>
                     </span>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-6 w-6 text-muted-foreground hover:text-foreground rounded-md"
+                      className="size-8"
+                      aria-label="Listen to the example sentence"
                       onClick={() => speakJapanese(topExample.ja, { rate: speechRate })}
-                      title="Listen to example sentence"
                     >
-                      <Volume2 className="h-3.5 w-3.5" />
+                      <Volume2 />
                     </Button>
                   </div>
-                  <div className="text-xs sm:text-sm font-japanese font-semibold text-foreground leading-snug">
+                  <p lang="ja" className="font-jp text-sm font-medium leading-relaxed break-words">
                     {topExample.ja}
-                  </div>
-                  <div className="text-[11px] text-muted-foreground italic leading-tight">
-                    {lessonText(locale, topExample.en)}
-                  </div>
+                  </p>
+                  <p className="text-xs leading-snug text-muted-foreground">{lessonText(locale, topExample.en)}</p>
                 </div>
-              )}
+              ) : null}
             </div>
 
-            {/* Back footer controls */}
-            <div className="w-full flex justify-between items-center pt-3 border-t border-border/40">
+            <div className="flex w-full items-center justify-between gap-2">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={(e) => {
                   e.stopPropagation();
-                  speakJapanese(currentWord.kanji || currentWord.hiragana, { rate: speechRate });
+                  pronounce();
                 }}
-                className="gap-1.5 text-xs text-primary hover:bg-primary/10 rounded-xl"
               >
-                <Volume2 className="h-4 w-4" /> Pronounce
+                <Volume2 />
+                Listen
               </Button>
-
-              <span className="text-[11px] text-muted-foreground">
-                Grade your recall below:
-              </span>
+              <span className="text-xs text-muted-foreground">How well did you remember it?</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* SRS Confidence Buttons (SuperMemo-Style Repetition) */}
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-        <Button
-          variant="outline"
-          className="border-rose-500/30 hover:bg-rose-500/10 hover:border-rose-500/50 hover:text-rose-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
-          onClick={() => {
-            if (soundEnabled) playSfx("wrong");
-            gradeCard("again");
-          }}
-        >
-          <span className="font-bold text-sm text-rose-600 dark:text-rose-400">Again</span>
-          <span className="text-[10px] text-muted-foreground mt-0.5 group-hover:text-rose-500/80">&lt; 1m</span>
-        </Button>
-        <Button
-          variant="outline"
-          className="border-amber-500/30 hover:bg-amber-500/10 hover:border-amber-500/50 hover:text-amber-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
-          onClick={() => {
-            if (soundEnabled) playSfx("correct");
-            gradeCard("hard");
-          }}
-        >
-          <span className="font-bold text-sm text-amber-600 dark:text-amber-400">Hard</span>
-          <span className="text-[10px] text-muted-foreground mt-0.5 group-hover:text-amber-500/80">1d</span>
-        </Button>
-        <Button
-          variant="outline"
-          className="border-sky-500/30 hover:bg-sky-500/10 hover:border-sky-500/50 hover:text-sky-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
-          onClick={() => {
-            if (soundEnabled) playSfx("correct");
-            gradeCard("good");
-          }}
-        >
-          <span className="font-bold text-sm text-sky-600 dark:text-sky-400">Good</span>
-          <span className="text-[10px] text-muted-foreground mt-0.5 group-hover:text-sky-500/80">3d</span>
-        </Button>
-        <Button
-          variant="outline"
-          className="border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-500/50 hover:text-emerald-600 text-xs flex flex-col py-3.5 h-auto rounded-2xl transition-all shadow-2xs group"
-          onClick={() => {
-            if (soundEnabled) playSfx("streak");
-            gradeCard("easy");
-          }}
-        >
-          <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400">Easy</span>
-          <span className="text-[10px] text-muted-foreground mt-0.5 group-hover:text-emerald-500/80">7d</span>
-        </Button>
+      {/* Spaced-repetition grades */}
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="group" aria-label="Grade this card">
+        {GRADES.map(({ grade, label, interval, sfx, tone }, idx) => (
+          <Button
+            key={grade}
+            variant="outline"
+            className="justify-between"
+            onClick={() => {
+              if (soundEnabled) playSfx(sfx);
+              gradeCard(grade);
+            }}
+          >
+            <span className={cn("font-semibold", tone)}>{label}</span>
+            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              {interval}
+              <KeyHint>{idx + 1}</KeyHint>
+            </span>
+          </Button>
+        ))}
       </div>
     </div>
   );

@@ -1,65 +1,36 @@
 "use client";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "../atoms/card";
-import { Button } from "../atoms/button";
-import { Separator } from "../atoms/separator";
-import { Badge } from "../atoms/badge";
-import { Home, ArrowLeft, HelpCircle } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
+import { Button } from "@/components/atoms/button";
 
+/** Shown for any route that does not exist. */
 export function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md shadow-xl">
-        <CardHeader className="text-center pb-6">
-          <div className="mb-4">
-            <h1 className="text-8xl font-bold text-primary mb-2">404</h1>
-            <Badge variant="secondary" className="text-sm">
-              Page Not Found
-            </Badge>
-          </div>
-          <CardTitle className="text-2xl font-semibold text-foreground mb-4">
-            Oops! Page Not Found
-          </CardTitle>
-          <CardDescription className="text-muted-foreground leading-relaxed">
-            The page you&apos;re looking for doesn&apos;t exist. It might have been moved,
-            deleted, or you entered the wrong URL.
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          <Button asChild className="w-full" size="lg">
+    <div className="flex justify-center py-8 sm:py-16">
+      <div className="flex w-full max-w-md flex-col items-center gap-4 rounded-xl border border-dashed border-border px-6 py-10 text-center">
+        <span aria-hidden className="font-jp text-4xl font-bold text-primary">
+          迷子
+        </span>
+        <div className="space-y-1">
+          <p className="font-mono text-xs tabular-nums text-muted-foreground">404</p>
+          <h1 className="text-lg font-semibold tracking-tight">Page not found</h1>
+          <p className="text-sm text-muted-foreground">
+            This page does not exist. The link may be old, or the address may have a typo.
+          </p>
+        </div>
+        <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+          <Button asChild>
             <Link href="/">
-              <Home className="mr-2 h-4 w-4" />
-              Go Home
+              <Home />
+              Go home
             </Link>
           </Button>
-
-          <Button
-            variant="outline"
-            size="lg"
-            className="w-full"
-            onClick={() => window.history.back()}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Go Back
+          <Button type="button" variant="outline" onClick={() => window.history.back()}>
+            <ArrowLeft />
+            Go back
           </Button>
-
-          <Separator className="my-6" />
-
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
-              <HelpCircle className="h-4 w-4" />
-              Need help? Contact our support team.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

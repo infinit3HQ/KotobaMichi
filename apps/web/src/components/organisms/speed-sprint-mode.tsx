@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Button } from "@/components/atoms/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/atoms/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/atoms/card";
 import { Badge } from "@/components/atoms/badge";
+import { Progress } from "@/components/atoms/progress";
 import type { JLPTWord } from "@/data/vocab-n5";
 import { englishChoices, topicCountsForLevel, wordsForLevel, wordsForTopic } from "@/data/level-words";
 import type { JLPTLevel } from "@/data/grammar";
@@ -11,18 +12,16 @@ import { speakJapanese, playSfx } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { lessonText } from "@/lib/i18n/content-si";
 import { useLearning } from "@/hooks/use-learning";
+import { CheckCircle2, Clock, Flame, RotateCcw, Volume2, XCircle, Zap } from "lucide-react";
 import {
-  Zap,
-  Volume2,
-  RotateCcw,
-  Flame,
-  CheckCircle2,
-  XCircle,
-  Clock,
-  Trophy,
-  Eye,
-  EyeOff,
-} from "lucide-react";
+  AnswerFeedback,
+  AnswerOption,
+  StatRow,
+  TopicSelect,
+  WordPrompt,
+  answerState,
+} from "@/components/organisms/practice/drill-parts";
+import { cn } from "@/lib/utils";
 
 interface SpeedSprintModeProps {
   selectedLevel: JLPTLevel;
@@ -167,62 +166,31 @@ export function SpeedSprintMode({
 
   if (gameState === "idle") {
     return (
-      <Card className="border-2 border-primary/20 shadow-md">
-        <CardHeader className="text-center pb-2">
-          <div className="mx-auto p-3.5 bg-amber-500/10 text-amber-600 rounded-full w-fit mb-2">
-            <Zap className="h-8 w-8" />
-          </div>
-          <CardTitle className="text-2xl font-bold">60-Second Vocab Blitz</CardTitle>
-          <CardDescription className="max-w-md mx-auto">
-            Test your active vocabulary recall at lightning speed. Pair Japanese sound with meaning before the clock runs out!
+      <Card className="mx-auto w-full max-w-xl gap-5 py-5 sm:py-6">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-lg tracking-tight">60-second word sprint</CardTitle>
+          <CardDescription>
+            Hear a word and pick its meaning before the clock runs out. Each correct answer in a row adds a bonus.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6 pt-4 max-w-lg mx-auto">
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              Choose Topic Focus
-            </label>
-            <div className="flex flex-wrap gap-1.5">
-              <Button
-                variant={selectedTopic === "All" ? "default" : "outline"}
-                size="sm"
-                className="text-xs rounded-full h-7"
-                onClick={() => onSelectTopic("All")}
-              >
-                All Topics ({levelWords.length})
-              </Button>
-              {topics.map(({ topic, count }) => (
-                <Button
-                  key={topic}
-                  variant={selectedTopic === topic ? "default" : "outline"}
-                  size="sm"
-                  className="text-xs rounded-full h-7"
-                  onClick={() => onSelectTopic(topic)}
-                >
-                  {topic} ({count})
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-muted/50 border text-center">
-            <div>
-              <div className="text-xs text-muted-foreground">Time</div>
-              <div className="text-lg font-bold">60s</div>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground">Controls</div>
-              <div className="text-lg font-bold">Keys 1–4</div>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground">Audio</div>
-              <div className="text-lg font-bold">Native Voice</div>
-            </div>
-          </div>
-
-          <Button size="lg" className="w-full text-base font-semibold gap-2 shadow-sm" onClick={startGame}>
-            <Zap className="h-5 w-5 fill-current" />
-            Start Sprint Challenge
+        <CardContent className="space-y-5 px-4 sm:px-6">
+          <TopicSelect
+            value={selectedTopic}
+            onValueChange={onSelectTopic}
+            allLabel="All topics"
+            allCount={levelWords.length}
+            topics={topics}
+          />
+          <StatRow
+            items={[
+              { label: "Time", value: "60s" },
+              { label: "Words", value: wordPool.length },
+              { label: "Choices", value: 4 },
+            ]}
+          />
+          <Button size="lg" className="w-full" onClick={startGame} disabled={wordPool.length === 0}>
+            <Zap />
+            Start sprint
           </Button>
         </CardContent>
       </Card>
@@ -233,77 +201,67 @@ export function SpeedSprintMode({
     const accuracy = history.length > 0 ? Math.round((history.filter((h) => h.isCorrect).length / history.length) * 100) : 0;
 
     return (
-      <Card className="border-2 border-primary/20 max-w-lg mx-auto text-center shadow-lg">
-        <CardHeader className="pb-2">
-          <div className="mx-auto p-4 bg-amber-500/10 text-amber-500 rounded-full w-fit mb-2">
-            <Trophy className="h-10 w-10" />
-          </div>
-          <CardTitle className="text-2xl font-bold">Sprint Complete!</CardTitle>
-          <CardDescription>Incredible effort! Here is your speed summary.</CardDescription>
+      <Card className="mx-auto w-full max-w-xl gap-5 py-5 sm:py-6">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-lg tracking-tight">Sprint finished</CardTitle>
+          <CardDescription>
+            You answered {history.length} {history.length === 1 ? "word" : "words"}.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6 pt-2">
-          <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-muted/60 border">
-            <div>
-              <div className="text-xs text-muted-foreground">Final Score</div>
-              <div className="text-2xl font-extrabold text-primary">{score}</div>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground">Highest Streak</div>
-              <div className="text-2xl font-extrabold text-amber-500 flex items-center justify-center gap-1">
-                <Flame className="h-5 w-5 fill-amber-500" />
-                {highestStreak}
-              </div>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground">Accuracy</div>
-              <div className="text-2xl font-extrabold text-emerald-500">{accuracy}%</div>
-            </div>
-          </div>
+        <CardContent className="space-y-5 px-4 sm:px-6">
+          <StatRow
+            items={[
+              { label: "Score", value: score },
+              { label: "Best streak", value: highestStreak },
+              { label: "Accuracy", value: `${accuracy}%` },
+            ]}
+          />
 
-          {/* Quick Review of words */}
-          <div className="text-left space-y-2">
-            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              Words Practiced ({history.length})
-            </div>
-            <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1">
-              {history.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`flex flex-wrap items-center justify-between gap-2 p-2.5 rounded-lg border text-sm ${
-                    item.isCorrect ? "bg-emerald-500/5 border-emerald-500/20" : "bg-destructive/5 border-destructive/20"
-                  }`}
-                >
-                  <div className="flex min-w-0 items-center gap-2">
-                    {item.isCorrect ? (
-                      <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
-                    ) : (
-                      <XCircle className="h-4 w-4 text-destructive shrink-0" />
+          {history.length > 0 ? (
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Words practised</p>
+              <ul className="max-h-60 space-y-1.5 overflow-y-auto pr-1">
+                {history.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className={cn(
+                      "flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm",
+                      item.isCorrect ? "bg-chart-3/10" : "bg-destructive/10"
                     )}
-                    <span className="font-semibold">{item.word.kanji || item.word.hiragana}</span>
-                    <span className="text-xs text-muted-foreground">({item.word.hiragana})</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-muted-foreground truncate max-w-[120px]">{lessonText(locale, item.word.english)}</span>
+                  >
+                    <div className="flex min-w-0 items-center gap-2">
+                      {item.isCorrect ? (
+                        <CheckCircle2 className="size-4 shrink-0 text-chart-3" aria-label="Correct" />
+                      ) : (
+                        <XCircle className="size-4 shrink-0 text-destructive" aria-label="Wrong" />
+                      )}
+                      <span lang="ja" className="font-jp font-medium">{item.word.kanji || item.word.hiragana}</span>
+                      <span className="truncate text-xs text-muted-foreground">
+                        {lessonText(locale, item.word.english)}
+                      </span>
+                    </div>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-6 w-6"
+                      className="size-8 shrink-0"
+                      aria-label="Listen"
                       onClick={() => speakJapanese(item.word.kanji || item.word.hiragana, { rate: speechRate })}
                     >
-                      <Volume2 className="h-3 w-3" />
+                      <Volume2 />
                     </Button>
-                  </div>
-                </div>
-              ))}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ) : null}
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button variant="outline" className="flex-1" onClick={() => setGameState("idle")}>
-              Change Topic
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Button variant="outline" className="sm:flex-1" onClick={() => setGameState("idle")}>
+              Change topic
             </Button>
-            <Button className="flex-1 gap-2" onClick={startGame}>
-              <RotateCcw className="h-4 w-4" /> Play Again
+            <Button className="sm:flex-1" onClick={startGame}>
+              <RotateCcw />
+              Play again
             </Button>
           </div>
         </CardContent>
@@ -311,134 +269,71 @@ export function SpeedSprintMode({
     );
   }
 
+  const answered = selectedAnswer !== null;
+
   // ACTIVE GAME PLAYING
   return (
-    <div className="space-y-6 max-w-xl mx-auto">
-      {/* HUD Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl border bg-card shadow-xs">
-        <div className="flex items-center gap-2">
-          <Clock className="h-4 w-4 text-muted-foreground" />
-          <span className={`font-mono font-bold text-lg ${timeLeft <= 10 ? "text-destructive animate-pulse" : ""}`}>
+    <div className="mx-auto w-full max-w-xl space-y-3">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-3 text-sm">
+          <span className={cn("flex items-center gap-1.5 font-mono font-semibold tabular-nums", timeLeft <= 10 && "text-destructive")}>
+            <Clock className="size-4 text-muted-foreground" />
             {timeLeft}s
           </span>
+          <span className="flex items-center gap-1.5 text-muted-foreground">
+            <Flame className={cn("size-4", streak > 0 && "text-primary")} />
+            <span className="tabular-nums">{streak}</span> in a row
+          </span>
+          <span className="text-muted-foreground">
+            Score <span className="font-mono font-semibold tabular-nums text-foreground">{score}</span>
+          </span>
         </div>
-
-        <div className="flex items-center gap-1.5 font-bold text-amber-500">
-          <Flame className={`h-5 w-5 ${streak > 0 ? "fill-amber-500" : "text-muted-foreground"}`} />
-          <span>{streak} Streak</span>
-        </div>
-
-        <div className="text-right">
-          <div className="text-xs text-muted-foreground">Score</div>
-          <div className="font-mono font-extrabold text-lg text-primary">{score}</div>
-        </div>
-      </div>
-
-      {/* Timer progress bar */}
-      <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden">
-        <div
-          className={`h-full transition-all duration-1000 ${
-            timeLeft <= 10 ? "bg-destructive" : timeLeft <= 25 ? "bg-amber-500" : "bg-primary"
-          }`}
-          style={{ width: `${(timeLeft / 60) * 100}%` }}
+        <Progress
+          value={(timeLeft / 60) * 100}
+          aria-label={`${timeLeft} seconds left`}
+          className={cn("h-1.5", timeLeft <= 10 && "bg-destructive/20 [&>[data-slot=progress-indicator]]:bg-destructive")}
         />
       </div>
 
-      {/* Main Flash Question Card */}
       {currentWord && (
-        <Card className="border-2 shadow-md relative overflow-hidden">
-          <CardContent className="pt-8 pb-6 text-center space-y-4">
-            <div className="flex justify-center items-center gap-2">
-              <Badge variant="outline" className="text-xs">
-                {currentWord.topic}
-              </Badge>
-              <Badge variant="secondary" className="text-xs">
-                {currentWord.partOfSpeech}
-              </Badge>
-            </div>
+        <Card className="gap-5 py-5 sm:py-6">
+          <CardContent className="space-y-5 px-4 sm:px-6">
+            <WordPrompt
+              text={currentWord.kanji || currentWord.hiragana}
+              reading={currentWord.kanji ? currentWord.hiragana : null}
+              romaji={currentWord.romaji}
+              showReading={showFurigana}
+              onToggleReading={() => setShowFurigana((open) => !open)}
+              onListen={() => speakJapanese(currentWord.kanji || currentWord.hiragana, { rate: speechRate })}
+              meta={
+                <>
+                  <Badge variant="outline">{currentWord.topic}</Badge>
+                  <Badge variant="secondary">{currentWord.partOfSpeech}</Badge>
+                </>
+              }
+            />
 
-            {/* Kanji / Hiragana with Furigana toggle */}
-            <div className="space-y-1">
-              {showFurigana && currentWord.kanji && (
-                <div className="text-sm font-medium text-primary tracking-wide">{currentWord.hiragana}</div>
-              )}
-              <div className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
-                {currentWord.kanji || currentWord.hiragana}
-              </div>
-              <div className="text-xs text-muted-foreground font-mono">{currentWord.romaji}</div>
-            </div>
-
-            {/* Interactive Audio & Furigana Button */}
-            <div className="flex justify-center items-center gap-2 pt-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => speakJapanese(currentWord.kanji || currentWord.hiragana, { rate: speechRate })}
-                className="gap-1.5 text-xs rounded-full"
-              >
-                <Volume2 className="h-3.5 w-3.5 text-primary" />
-                Listen <span className="opacity-50 text-[10px]">(R)</span>
-              </Button>
-              {currentWord.kanji && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowFurigana(!showFurigana)}
-                  className="gap-1.5 text-xs text-muted-foreground rounded-full"
+            <div className="grid gap-2 sm:grid-cols-2">
+              {options.map((option, idx) => (
+                <AnswerOption
+                  key={idx}
+                  index={idx}
+                  disabled={answered}
+                  state={answerState(answered, option === currentWord.english, selectedAnswer === option)}
+                  onSelect={() => handleAnswer(option)}
                 >
-                  {showFurigana ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
-                  {showFurigana ? "Hide Furigana" : "Furigana"}
-                </Button>
-              )}
+                  {lessonText(locale, option)}
+                </AnswerOption>
+              ))}
             </div>
 
-            {/* 4 Interactive Option Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4">
-              {options.map((option, idx) => {
-                const isSelected = selectedAnswer === option;
-                const isCorrect = option === currentWord.english;
-
-                let variantClass = "border-border/80 hover:border-primary/50 hover:bg-muted/30";
-                if (selectedAnswer !== null) {
-                  if (isCorrect) {
-                    variantClass = "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-semibold";
-                  } else if (isSelected && !isCorrect) {
-                    variantClass = "border-destructive bg-destructive/10 text-destructive";
-                  } else {
-                    variantClass = "opacity-40";
-                  }
-                }
-
-                return (
-                  <button
-                    key={idx}
-                    disabled={selectedAnswer !== null}
-                    onClick={() => handleAnswer(option)}
-                    className={`flex items-center justify-between p-4 rounded-xl border text-left transition-all ${variantClass}`}
-                  >
-                    <span className="font-medium text-sm leading-snug">{lessonText(locale, option)}</span>
-                    <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-muted text-muted-foreground shrink-0 ml-2">
-                      {idx + 1}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {selectedAnswer !== null && (
-              <div className="space-y-3 pt-2">
-                <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-left">
-                  <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
-                    Correct answer
-                  </div>
-                  <div className="mt-1 text-base font-semibold leading-snug">
-                    {lessonText(locale, currentWord.english)}
-                  </div>
-                </div>
-                <Button type="button" size="lg" className="w-full" onClick={() => generateQuestion()}>
-                  Next
-                </Button>
-              </div>
+            {answered && (
+              <AnswerFeedback
+                correct={selectedAnswer === currentWord.english}
+                answer={lessonText(locale, currentWord.english)}
+                nextLabel="Next"
+                onNext={() => generateQuestion()}
+              />
             )}
           </CardContent>
         </Card>

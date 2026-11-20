@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${SITE_CONFIG.name} - Master JLPT Vocabulary with Interactive Speed Drills`,
+        alt: `${SITE_CONFIG.name} – JLPT N5 to N1 vocabulary, kanji, grammar and mock exams`,
       },
     ],
   },

@@ -3,14 +3,22 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/atoms/card";
-import { Badge } from "@/components/atoms/badge";
+import { Progress } from "@/components/atoms/progress";
 import type { JLPTWord } from "@/data/vocab-n5";
 import { topicCountsForLevel, wordsForLevel, wordsForTopic } from "@/data/level-words";
 import type { JLPTLevel } from "@/data/grammar";
 import { playSfx, speakJapanese } from "@/lib/audio";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { sinhalaWordGloss } from "@/lib/i18n/content-si";
-import { CheckCircle2, Eye, EyeOff, Repeat, RotateCcw, Volume2, XCircle } from "lucide-react";
+import { Repeat, RotateCcw } from "lucide-react";
+import {
+  AnswerFeedback,
+  AnswerOption,
+  StatRow,
+  TopicSelect,
+  WordPrompt,
+  answerState,
+} from "@/components/organisms/practice/drill-parts";
 
 interface WordWalkModeProps {
   selectedLevel: JLPTLevel;
@@ -154,67 +162,31 @@ export function WordWalkMode({
 
   if (!started) {
     return (
-      <Card className="border-2 border-primary/20 shadow-md">
-        <CardHeader className="text-center pb-2">
-          <div className="mx-auto p-3.5 bg-orange-500/10 text-orange-600 rounded-full w-fit mb-2">
-            <Repeat className="h-8 w-8" />
-          </div>
-          <CardTitle className="text-2xl font-bold">Word Walk</CardTitle>
-          <CardDescription className="max-w-md mx-auto">
-            Pick a topic. Each word gives you meaning cards to choose from, and the set runs through with no timer.
+      <Card className="mx-auto w-full max-w-xl gap-5 py-5 sm:py-6">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-lg tracking-tight">Walk through a topic</CardTitle>
+          <CardDescription>
+            Go through every word in a topic and pick its meaning from four choices. There is no timer.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6 pt-4 max-w-lg mx-auto">
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              Choose Topic Focus
-            </label>
-            <div className="flex flex-wrap gap-1.5">
-              <Button
-                variant={selectedTopic === "All" ? "default" : "outline"}
-                size="sm"
-                className="text-xs rounded-full h-7"
-                onClick={() => onSelectTopic("All")}
-              >
-                All Topics ({levelWords.length})
-              </Button>
-              {topics.map(({ topic, count }) => (
-                <Button
-                  key={topic}
-                  variant={selectedTopic === topic ? "default" : "outline"}
-                  size="sm"
-                  className="text-xs rounded-full h-7"
-                  onClick={() => onSelectTopic(topic)}
-                >
-                  {topic} ({count})
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-muted/50 border text-center">
-            <div>
-              <div className="text-xs text-muted-foreground">Time</div>
-              <div className="text-lg font-bold">None</div>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground">Words</div>
-              <div className="text-lg font-bold">{wordPool.length}</div>
-            </div>
-            <div>
-              <div className="text-xs text-muted-foreground">Choices</div>
-              <div className="text-lg font-bold">Keys 1–4</div>
-            </div>
-          </div>
-
-          <Button
-            size="lg"
-            className="w-full text-base font-semibold gap-2 shadow-sm"
-            onClick={startWalk}
-            disabled={wordPool.length === 0}
-          >
-            <Repeat className="h-5 w-5" />
-            Start Word Walk
+        <CardContent className="space-y-5 px-4 sm:px-6">
+          <TopicSelect
+            value={selectedTopic}
+            onValueChange={onSelectTopic}
+            allLabel="All topics"
+            allCount={levelWords.length}
+            topics={topics}
+          />
+          <StatRow
+            items={[
+              { label: "Time", value: "None" },
+              { label: "Words", value: wordPool.length },
+              { label: "Choices", value: 4 },
+            ]}
+          />
+          <Button size="lg" className="w-full" onClick={startWalk} disabled={wordPool.length === 0}>
+            <Repeat />
+            Start walk
           </Button>
         </CardContent>
       </Card>
@@ -224,21 +196,30 @@ export function WordWalkMode({
   if (finished) {
     const accuracy = order.length > 0 ? Math.round((correctCount / order.length) * 100) : 0;
     return (
-      <Card className="border-2 border-primary/20 max-w-lg mx-auto text-center shadow-lg">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-2xl font-bold">Walk complete</CardTitle>
+      <Card className="mx-auto w-full max-w-xl gap-5 py-5 sm:py-6">
+        <CardHeader className="px-4 sm:px-6">
+          <CardTitle className="text-lg tracking-tight">Walk complete</CardTitle>
           <CardDescription>
-            {correctCount} of {order.length} correct ({accuracy}%).
+            {correctCount} of {order.length} correct.
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-3 sm:flex-row">
-          <Button variant="outline" className="flex-1" onClick={() => setStarted(false)}>
-            Change selection
-          </Button>
-          <Button className="flex-1 gap-2" onClick={startWalk}>
-            <RotateCcw className="h-4 w-4" />
-            Walk again
-          </Button>
+        <CardContent className="space-y-5 px-4 sm:px-6">
+          <StatRow
+            items={[
+              { label: "Correct", value: correctCount },
+              { label: "Words", value: order.length },
+              { label: "Accuracy", value: `${accuracy}%` },
+            ]}
+          />
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Button variant="outline" className="sm:flex-1" onClick={() => setStarted(false)}>
+              Change topic
+            </Button>
+            <Button className="sm:flex-1" onClick={startWalk}>
+              <RotateCcw />
+              Walk again
+            </Button>
+          </div>
         </CardContent>
       </Card>
     );
@@ -246,108 +227,60 @@ export function WordWalkMode({
 
   if (!current) return null;
 
+  const answered = pickedId !== null;
+  const hasReading = Boolean(current.kanji && current.kanji !== current.hiragana);
+
   return (
-    <div className="space-y-4 max-w-xl mx-auto">
-      <div className="flex items-center justify-between gap-3 p-3.5 rounded-xl border bg-card shadow-xs">
-        <Badge variant="outline" className="font-mono text-xs font-bold text-primary border-primary/40">
-          {selectedLevel}
-          {selectedTopic !== "All" ? ` · ${selectedTopic}` : ""}
-        </Badge>
-        <span className="text-sm font-mono font-bold">
-          {index + 1} / {order.length}
-        </span>
-        <button
-          type="button"
-          onClick={() => setStarted(false)}
-          className="text-xs font-medium text-muted-foreground hover:text-foreground"
-        >
-          Change selection
-        </button>
+    <div className="mx-auto w-full max-w-xl space-y-3">
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-3">
+          <span className="min-w-0 truncate text-sm text-muted-foreground">
+            {selectedLevel}
+            {selectedTopic !== "All" ? ` · ${selectedTopic}` : ""}
+            <span className="mx-1.5" aria-hidden>·</span>
+            <span className="font-mono tabular-nums text-foreground">
+              {index + 1} / {order.length}
+            </span>
+          </span>
+          <Button variant="ghost" size="sm" onClick={() => setStarted(false)}>
+            Change topic
+          </Button>
+        </div>
+        <Progress value={(index / Math.max(order.length, 1)) * 100} aria-label={`Word ${index + 1} of ${order.length}`} className="h-1.5" />
       </div>
 
-      <Card className="border-2 shadow-md relative overflow-hidden">
-        <CardContent className="pt-8 pb-6 text-center space-y-4">
-          <div className="space-y-1">
-            {showFurigana && current.kanji && current.kanji !== current.hiragana && (
-              <div className="text-sm font-medium text-primary tracking-wide">{current.hiragana}</div>
-            )}
-            <div className="font-jp text-4xl sm:text-5xl font-black tracking-tight text-foreground">
-              {current.kanji || current.hiragana}
-            </div>
-            <div className="text-xs text-muted-foreground font-mono">{current.romaji}</div>
-          </div>
+      <Card className="gap-5 py-5 sm:py-6">
+        <CardContent className="space-y-5 px-4 sm:px-6">
+          <WordPrompt
+            text={current.kanji || current.hiragana}
+            reading={hasReading ? current.hiragana : null}
+            romaji={current.romaji}
+            showReading={showFurigana}
+            onToggleReading={() => setShowFurigana((open) => !open)}
+            onListen={() => speak(current.kanji || current.hiragana)}
+          />
 
-          <div className="flex justify-center items-center gap-2 pt-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => speak(current.kanji || current.hiragana)}
-              className="gap-1.5 text-xs rounded-full"
-            >
-              <Volume2 className="h-3.5 w-3.5 text-primary" />
-              Listen <span className="opacity-50 text-[10px]">(R)</span>
-            </Button>
-            {current.kanji && current.kanji !== current.hiragana && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowFurigana((open) => !open)}
-                className="gap-1.5 text-xs text-muted-foreground rounded-full"
+          <div className="grid gap-2 sm:grid-cols-2">
+            {choices.map((choice, idx) => (
+              <AnswerOption
+                key={choice.id}
+                index={idx}
+                disabled={answered}
+                state={answerState(answered, choice.id === current.id, pickedId === choice.id)}
+                onSelect={() => choose(choice)}
               >
-                {showFurigana ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
-                {showFurigana ? "Hide Furigana" : "Furigana"}
-              </Button>
-            )}
+                {gloss(choice)}
+              </AnswerOption>
+            ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4">
-            {choices.map((choice, idx) => {
-              const isSelected = pickedId === choice.id;
-              const isCorrect = choice.id === current.id;
-              let variantClass = "border-border/80 hover:border-primary/50 hover:bg-muted/30";
-              if (pickedId !== null) {
-                if (isCorrect) {
-                  variantClass = "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-semibold";
-                } else if (isSelected) {
-                  variantClass = "border-destructive bg-destructive/10 text-destructive";
-                } else {
-                  variantClass = "opacity-40";
-                }
-              }
-
-              return (
-                <button
-                  key={choice.id}
-                  type="button"
-                  disabled={pickedId !== null}
-                  onClick={() => choose(choice)}
-                  className={`flex items-center justify-between p-4 rounded-xl border text-left transition-all ${variantClass}`}
-                >
-                  <span className="font-medium text-sm leading-snug flex items-center gap-2">
-                    {pickedId !== null && isCorrect && <CheckCircle2 className="h-4 w-4 shrink-0" />}
-                    {pickedId !== null && isSelected && !isCorrect && <XCircle className="h-4 w-4 shrink-0" />}
-                    {gloss(choice)}
-                  </span>
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-muted text-muted-foreground shrink-0 ml-2">
-                    {idx + 1}
-                  </span>
-              </button>
-            );
-            })}
-          </div>
-
-          {pickedId !== null && (
-            <div className="space-y-3 pt-2">
-              <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-left">
-                <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
-                  Correct answer
-                </div>
-                <div className="mt-1 text-base font-semibold leading-snug">{gloss(current)}</div>
-              </div>
-              <Button type="button" size="lg" className="w-full" onClick={continueWalk}>
-                {index + 1 >= order.length ? "See results" : "Next"}
-              </Button>
-            </div>
+          {answered && (
+            <AnswerFeedback
+              correct={pickedId === current.id}
+              answer={gloss(current)}
+              nextLabel={index + 1 >= order.length ? "See results" : "Next"}
+              onNext={continueWalk}
+            />
           )}
         </CardContent>
       </Card>
