@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) throw new Error("not ok");
     const data = (await res.json()) as { title?: string; description?: string | null };
     const title = data.title ? `${data.title}` : `Quiz ${id}`;
-    const description = data.description || "Take this quiz to practice Japanese vocabulary.";
+    const description = data.description || "A short quiz on Japanese vocabulary meanings.";
     return {
       title,
       description,
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   } catch {
     const title = `Quiz ${id}`;
-    const description = "Practice Japanese vocabulary with smart quizzes.";
+    const description = "A short quiz on Japanese vocabulary meanings.";
     return {
       title,
       description,

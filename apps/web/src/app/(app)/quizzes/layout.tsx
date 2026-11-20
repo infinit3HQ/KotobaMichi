@@ -3,16 +3,16 @@ import { SITE_CONFIG, SITE_URL } from "@/lib/seo-config";
 import { JsonLd } from "@/components/atoms/json-ld";
 
 export const metadata: Metadata = {
-  title: "Interactive Japanese Quizzes & Flashcard Reviews",
+  title: "Japanese Vocabulary Quizzes",
   description:
-    "Test and reinforce your Japanese knowledge with adaptive quizzes, instant answer validation, and spaced repetition tracking.",
+    "Take short Japanese vocabulary quizzes shared by other learners, or build your own from the words you are studying.",
   alternates: {
     canonical: "/quizzes",
   },
   openGraph: {
-    title: "Japanese Quizzes & Flashcard Reviews | KotobaMichi",
+    title: "Japanese Vocabulary Quizzes | KotobaMichi",
     description:
-      "Test and reinforce your Japanese knowledge with adaptive quizzes and spaced repetition tracking.",
+      "Short Japanese vocabulary quizzes from other learners, or your own word lists.",
     url: `${SITE_URL}/quizzes`,
     type: "website",
     siteName: SITE_CONFIG.name,
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Japanese Quizzes & Flashcard Reviews | KotobaMichi",
+    title: "Japanese Vocabulary Quizzes | KotobaMichi",
     description:
-      "Test and reinforce your Japanese knowledge with adaptive quizzes and spaced repetition tracking.",
+      "Short Japanese vocabulary quizzes from other learners, or your own word lists.",
   },
 };
 
@@ -55,9 +55,9 @@ const quizzesJsonLd = {
     },
     {
       "@type": "Quiz",
-      name: "KotobaMichi Japanese Mastery Quizzes",
+      name: "KotobaMichi Japanese Vocabulary Quizzes",
       description:
-        "Adaptive quizzes for testing Japanese vocabulary, readings, and meanings across JLPT tiers.",
+        "Short quizzes on Japanese vocabulary meanings across JLPT levels.",
       educationalLevel: "JLPT N5 to N1",
       typicalAgeRange: "10-99",
       learningResourceType: "Quiz",

@@ -1,153 +1,105 @@
 "use client";
-import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/atoms/card";
-import { Button } from "@/components/atoms/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/atoms/form";
-import { Input } from "@/components/atoms/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { Button } from "@/components/atoms/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/atoms/form";
+import { Input } from "@/components/atoms/input";
 import { api, getApiError } from "@/lib/api";
 import { useAuth } from "@/hooks/use-auth";
-import { toast } from "sonner";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { SocialAuth } from "@/components/organisms/social-auth";
+import { AuthAlert, AuthCard, AuthFooterLink } from "@/components/organisms/auth/auth-card";
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+type FormVals = z.infer<typeof schema>;
 
 export default function LoginPage() {
   const { t } = useLocale();
   const router = useRouter();
   const { setUser } = useAuth();
-  const schema = z.object({
-    email: z.string().email(),
-    password: z.string().min(6),
-  });
-  type FormVals = z.infer<typeof schema>;
+  const [error, setError] = useState<string | null>(null);
   const form = useForm<FormVals>({
     resolver: zodResolver(schema),
     defaultValues: { email: "", password: "" },
   });
-  const toasted = useRef(false);
+
   useEffect(() => {
-    if (toasted.current) return;
-    const error = new URLSearchParams(window.location.search).get("error");
-    if (error === "google") {
-      toasted.current = true;
-      toast.error(t.auth.googleFailed);
-    }
+    const reason = new URLSearchParams(window.location.search).get("error");
+    if (reason === "google") setError(t.auth.googleFailed);
   }, [t]);
 
   const onSubmit = async (values: FormVals) => {
+    setError(null);
     try {
       const res = await api.post("/auth/login", values);
       const { user } = res.data as {
         user: { id: string; email: string; role: "USER" | "ADMIN" };
       };
       setUser(user);
-      toast.success("Logged in");
+      toast.success(t.auth.loggedIn);
       router.push("/");
     } catch (e) {
       const { message } = getApiError(e);
-      if (message?.toLowerCase().includes("verify")) {
-        toast.error(message);
-      } else {
-        toast.error(message ?? "Login failed");
-      }
+      setError(message ?? t.auth.loginFailed);
     }
   };
 
+  const submitting = form.formState.isSubmitting;
+
   return (
-    <div className="flex justify-center">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>{t.auth.login}</CardTitle>
-          <CardDescription>{t.auth.signInAccount}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <SocialAuth />
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t.auth.email}</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        autoComplete="email"
-                        placeholder="you@example.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t.auth.password}</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        autoComplete="current-password"
-                        placeholder="••••••••"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={form.formState.isSubmitting}
-              >
-                {form.formState.isSubmitting ? t.auth.signingIn : t.auth.signIn}
-              </Button>
-            </form>
-          </Form>
-          <div className="mt-3 flex flex-col gap-1 text-sm text-muted-foreground">
-            <p>
-              {t.auth.noAccount}{" "}
-              <Link href="/auth/register" className="underline">
-                {t.auth.register}
-              </Link>
-            </p>
-            <p>
-              {t.auth.forgot} {""}
-              <Link href="/auth/forgot-password" className="underline">
-                {t.auth.reset}
-              </Link>
-            </p>
-            <p>
-              {t.auth.resendPrompt} {""}
-              <Link href="/auth/resend-verification" className="underline">
-                {t.auth.resend}
-              </Link>
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <AuthCard
+      title={t.auth.login}
+      description={t.auth.signInAccount}
+      footer={
+        <>
+          <AuthFooterLink prompt={t.auth.noAccount} href="/auth/register" label={t.auth.register} />
+          <AuthFooterLink prompt={t.auth.forgot} href="/auth/forgot-password" label={t.auth.reset} />
+          <AuthFooterLink prompt={t.auth.resendPrompt} href="/auth/resend-verification" label={t.auth.resend} />
+        </>
+      }
+    >
+      <SocialAuth />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
+          {error ? <AuthAlert tone="error">{error}</AuthAlert> : null}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t.auth.email}</FormLabel>
+                <FormControl>
+                  <Input type="email" autoComplete="email" placeholder="you@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t.auth.password}</FormLabel>
+                <FormControl>
+                  <Input type="password" autoComplete="current-password" placeholder="••••••••" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full" disabled={submitting}>
+            {submitting ? t.auth.signingIn : t.auth.signIn}
+          </Button>
+        </form>
+      </Form>
+    </AuthCard>
   );
 }

@@ -3,20 +3,29 @@
 import { useState, useCallback } from "react";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/atoms/card";
+import { SegmentedControl } from "@/components/molecules/segmented-control";
+import { cn } from "@/lib/utils";
 import { KANA_ROWS, ALL_KANA_CHARS, type KanaCharacter } from "@/data/kana";
 import { speakJapanese, playSfx } from "@/lib/audio";
-import { Grid, Volume2 } from "lucide-react";
+import { Play, Square, Volume2 } from "lucide-react";
 
 interface KanaMasterModeProps {
   soundEnabled: boolean;
   speechRate: number;
 }
 
+type ScriptType = "hiragana" | "katakana";
+
+const SCRIPT_OPTIONS = [
+  { value: "hiragana", label: "Hiragana" },
+  { value: "katakana", label: "Katakana" },
+] as const;
+
 export function KanaMasterMode({
   soundEnabled,
   speechRate,
 }: KanaMasterModeProps) {
-  const [scriptType, setScriptType] = useState<"hiragana" | "katakana">("hiragana");
+  const [scriptType, setScriptType] = useState<ScriptType>("hiragana");
   const [quizMode, setQuizMode] = useState(false);
   const [currentPrompt, setCurrentPrompt] = useState<KanaCharacter | null>(null);
   const [kanaScore, setKanaScore] = useState(0);
@@ -48,105 +57,100 @@ export function KanaMasterMode({
     }
   };
 
+  const [lastWrong, setLastWrong] = useState<string | null>(null);
+
+  const replayPrompt = () => {
+    if (currentPrompt) speakJapanese(currentPrompt[scriptType], { rate: speechRate });
+  };
+
+  const onKanaClick = (char: KanaCharacter) => {
+    if (quizMode && currentPrompt) {
+      setLastWrong(char.romaji === currentPrompt.romaji ? null : char.romaji);
+    }
+    handleKanaClick(char);
+  };
+
   return (
-    <Card className="border-2 shadow-md">
-      <CardHeader className="pb-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <CardTitle className="text-xl font-bold flex items-center gap-2">
-              <Grid className="h-5 w-5 text-emerald-500" />
-              Kana Mastery Soundboard
-            </CardTitle>
+    <Card className="gap-5 py-5 sm:py-6">
+      <CardHeader className="gap-4 px-4 sm:px-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-1.5">
+            <CardTitle className="text-base tracking-tight">Hear every sound</CardTitle>
             <CardDescription>
-              Click any character to hear its authentic pronunciation. Toggle Quiz mode to test kana speed!
+              Tap any character to hear it. Start the drill to find each sound you hear.
             </CardDescription>
           </div>
-
-          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
-            <div className="inline-flex max-w-full p-1 rounded-lg bg-muted border">
-              <button
-                onClick={() => setScriptType("hiragana")}
-                className={`min-h-9 px-3 py-1 text-xs font-semibold rounded-md transition-all ${
-                  scriptType === "hiragana" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground"
-                }`}
-              >
-                Hiragana <span className="hidden lg:inline">(平仮名)</span>
-              </button>
-              <button
-                onClick={() => setScriptType("katakana")}
-                className={`min-h-9 px-3 py-1 text-xs font-semibold rounded-md transition-all ${
-                  scriptType === "katakana" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground"
-                }`}
-              >
-                Katakana <span className="hidden lg:inline">(片仮名)</span>
-              </button>
-            </div>
-
+          <div className="flex flex-wrap items-center gap-2">
+            <SegmentedControl
+              value={scriptType}
+              onValueChange={setScriptType}
+              options={SCRIPT_OPTIONS}
+              ariaLabel="Script"
+            />
             <Button
-              variant={quizMode ? "default" : "outline"}
-              size="sm"
+              variant={quizMode ? "secondary" : "default"}
               onClick={() => {
+                setLastWrong(null);
                 if (quizMode) {
                   setQuizMode(false);
                 } else {
                   startKanaQuiz();
                 }
               }}
-              className="min-h-9 text-xs"
             >
-              {quizMode ? `Exit Drill (${kanaScore})` : "⚡ Start Drill"}
+              {quizMode ? <Square /> : <Play />}
+              {quizMode ? "Stop drill" : "Start drill"}
             </Button>
           </div>
         </div>
 
-        {/* Drill banner */}
-        {quizMode && currentPrompt && (
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-primary/20 bg-primary/10 p-3">
-            <div className="flex items-center gap-3">
-              <Volume2
-                className="h-5 w-5 text-primary cursor-pointer hover:scale-110"
-                onClick={() => speakJapanese(currentPrompt[scriptType], { rate: speechRate })}
-              />
-              <span className="text-sm font-semibold">
-                Find sound: <span className="font-mono text-primary font-black uppercase text-base">&quot;{currentPrompt.romaji}&quot;</span>
+        {quizMode && currentPrompt ? (
+          <div
+            className="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-primary/10 px-3 py-2"
+            aria-live="polite"
+          >
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="icon" className="size-8 text-primary" onClick={replayPrompt} aria-label="Play the sound again">
+                <Volume2 />
+              </Button>
+              <span className="text-sm">
+                Find <span className="font-mono font-semibold text-primary">{currentPrompt.romaji}</span>
               </span>
+              {lastWrong ? <span className="text-sm text-destructive">Not {lastWrong}, try again</span> : null}
             </div>
-            <div className="text-xs font-bold text-muted-foreground">Score: {kanaScore}</div>
+            <span className="text-sm text-muted-foreground">
+              Score <span className="font-mono font-semibold tabular-nums text-foreground">{kanaScore}</span>
+            </span>
           </div>
-        )}
+        ) : null}
       </CardHeader>
 
-      <CardContent className="space-y-4">
-        <div className="space-y-4">
-          {KANA_ROWS.map((row, rIdx) => (
-            <div key={rIdx} className="space-y-1.5">
-              <div className="text-xs font-medium text-muted-foreground">{row.name}</div>
-              <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
-                {row.chars.map((char, cIdx) => {
-                  const displayChar = char[scriptType];
-                  const isTarget = quizMode && currentPrompt?.romaji === char.romaji;
-
-                  return (
-                    <button
-                      key={cIdx}
-                      onClick={() => handleKanaClick(char)}
-                      className={`flex min-h-14 flex-col items-center justify-center rounded-xl border p-1.5 transition-all hover:scale-105 active:scale-95 group sm:p-3 ${
-                        isTarget
-                          ? "border-primary bg-primary/5 ring-2 ring-primary/20"
-                          : "border-border/70 hover:border-emerald-500/50 hover:bg-emerald-500/5"
-                      }`}
-                    >
-                      <span className="text-2xl sm:text-3xl font-bold group-hover:text-emerald-600 transition-colors">
-                        {displayChar}
-                      </span>
-                      <span className="text-xs font-mono text-muted-foreground mt-0.5">{char.romaji}</span>
-                    </button>
-                  );
-                })}
-              </div>
+      <CardContent className="space-y-4 px-4 sm:px-6">
+        {KANA_ROWS.map((row, rIdx) => (
+          <div key={rIdx} className="space-y-1.5">
+            <p className="text-xs text-muted-foreground">{row.name}</p>
+            <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
+              {row.chars.map((char, cIdx) => (
+                <button
+                  key={cIdx}
+                  type="button"
+                  onClick={() => onKanaClick(char)}
+                  aria-label={`${char[scriptType]} ${char.romaji}`}
+                  className={cn(
+                    "flex min-h-14 flex-col items-center justify-center rounded-lg border bg-card p-1.5 transition-colors outline-none sm:p-2.5",
+                    "hover:border-primary/40 hover:bg-accent focus-visible:ring-[3px] focus-visible:ring-ring/50",
+                    lastWrong === char.romaji && "border-destructive bg-destructive/10"
+                  )}
+                >
+                  <span lang="ja" className="font-jp text-2xl font-bold sm:text-3xl">
+                    {char[scriptType]}
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">{char.romaji}</span>
+                </button>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </CardContent>
     </Card>
   );

@@ -1,27 +1,25 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api } from "@/lib/api";
-import type {
-  WordsListResponse,
-  CreateQuizPayload,
-  QuizDetail,
-} from "@/types/api";
-import { Input } from "@/components/atoms/input";
-import { Button } from "@/components/atoms/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/atoms/card";
-import { Checkbox } from "@/components/atoms/checkbox";
-import { Label } from "@/components/atoms/label";
+
+import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
+import { api } from "@/lib/api";
+import type { CreateQuizPayload, QuizDetail, WordsListResponse } from "@/types/api";
+import { Button } from "@/components/atoms/button";
+import { Card, CardContent, CardFooter } from "@/components/atoms/card";
+import { Checkbox } from "@/components/atoms/checkbox";
+import { Input } from "@/components/atoms/input";
+import { Label } from "@/components/atoms/label";
+import { PageHeader, SectionHeading } from "@/components/molecules/page-header";
+import { useLocale } from "@/components/organisms/locale-provider";
 import { ProtectedRoute } from "@/components/organisms/protected-route";
+import { WordPicker } from "@/components/organisms/quizzes/word-picker";
 
 export default function QuizCreationPage() {
+  const { t } = useLocale();
   const router = useRouter();
   const qc = useQueryClient();
   const [title, setTitle] = useState("");
@@ -29,105 +27,92 @@ export default function QuizCreationPage() {
   const [isPublic, setIsPublic] = useState(false);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
-  const { data, isLoading, isError } = useQuery({
+  const wordsQuery = useQuery({
     queryKey: ["words", { page: 1, limit: 200 }],
-    queryFn: async () =>
-      (
-        await api.get<WordsListResponse>("/words", {
-          params: { page: 1, limit: 200 },
-        })
-      ).data,
+    queryFn: async () => (await api.get<WordsListResponse>("/words", { params: { page: 1, limit: 200 } })).data,
   });
 
   const mutation = useMutation({
-    mutationFn: async (payload: CreateQuizPayload) =>
-      (await api.post<QuizDetail>("/quizzes", payload)).data,
+    mutationFn: async (payload: CreateQuizPayload) => (await api.post<QuizDetail>("/quizzes", payload)).data,
     onSuccess: (quiz) => {
-      toast.success("Quiz created");
+      toast.success(t.quizzes.created);
       qc.invalidateQueries({ queryKey: ["quizzes"] });
       router.push(`/quizzes/${quiz.id}`);
     },
-    onError: () => toast.error("Failed to create quiz"),
+    onError: () => toast.error(t.quizzes.createFailed),
   });
-
-  const toggle = (id: string) => setSelected((s) => ({ ...s, [id]: !s[id] }));
 
   const onSubmit = () => {
     const wordIds = Object.entries(selected)
-      .filter(([, v]) => v)
-      .map(([k]) => k);
-    if (!title.trim()) return toast.warning("Title is required");
-    if (wordIds.length < 1) return toast.warning("Select at least one word");
-    mutation.mutate({ title, description, isPublic, wordIds });
+      .filter(([, picked]) => picked)
+      .map(([wordId]) => wordId);
+    if (!title.trim()) return toast.warning(t.quizzes.titleRequired);
+    if (wordIds.length < 1) return toast.warning(t.quizzes.pickAtLeastOne);
+    mutation.mutate({ title: title.trim(), description, isPublic, wordIds });
   };
 
   return (
     <ProtectedRoute>
-      <div className="space-y-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>Create a Custom Quiz</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="grid sm:grid-cols-2 gap-3">
-              <div>
-                <Label htmlFor="title">Title</Label>
+      <div className="space-y-6 sm:space-y-8">
+        <PageHeader
+          eyebrow={t.quizzes.kicker}
+          title={t.quizzes.createTitle}
+          description={t.quizzes.createDesc}
+          actions={
+            <Button asChild variant="outline">
+              <Link href="/quizzes">
+                <ArrowLeft />
+                {t.quizzes.backToQuizzes}
+              </Link>
+            </Button>
+          }
+        />
+        <Card className="gap-0 py-0">
+          <CardContent className="space-y-6 p-4 sm:p-6">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-2">
+                <Label htmlFor="quiz-title">{t.quizzes.fieldTitle}</Label>
                 <Input
-                  id="title"
+                  id="quiz-title"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="My N5 Set"
+                  onChange={(event) => setTitle(event.target.value)}
+                  placeholder={t.quizzes.fieldTitlePlaceholder}
                 />
               </div>
-              <div>
-                <Label htmlFor="desc">Description</Label>
+              <div className="grid gap-2">
+                <Label htmlFor="quiz-desc">{t.quizzes.fieldDescription}</Label>
                 <Input
-                  id="desc"
+                  id="quiz-desc"
                   value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Optional"
+                  onChange={(event) => setDescription(event.target.value)}
+                  placeholder={t.quizzes.fieldDescriptionPlaceholder}
                 />
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="public"
-                checked={isPublic}
-                onCheckedChange={(v) => setIsPublic(Boolean(v))}
+            <div className="flex items-start gap-3">
+              <Checkbox id="quiz-public" checked={isPublic} onCheckedChange={(v) => setIsPublic(Boolean(v))} />
+              <div className="grid gap-1">
+                <Label htmlFor="quiz-public">{t.quizzes.makePublic}</Label>
+                <p className="text-xs text-muted-foreground">{t.quizzes.makePublicHint}</p>
+              </div>
+            </div>
+            <div className="space-y-3">
+              <SectionHeading title={t.quizzes.selectWords} />
+              <WordPicker
+                words={wordsQuery.data?.words}
+                isLoading={wordsQuery.isLoading}
+                isError={wordsQuery.isError}
+                onRetry={() => wordsQuery.refetch()}
+                selected={selected}
+                onToggle={(id) => setSelected((prev) => ({ ...prev, [id]: !prev[id] }))}
               />
-              <Label htmlFor="public">Make public</Label>
-            </div>
-            <div>
-              <p className="font-medium mb-2">Select words</p>
-              {isLoading ? (
-                <p className="text-muted-foreground">Loading words…</p>
-              ) : isError ? (
-                <p className="text-destructive">Failed to load words.</p>
-              ) : (
-                <div className="max-h-80 overflow-auto border rounded-md p-3 grid sm:grid-cols-2 md:grid-cols-3 gap-2">
-                  {data?.words.map((w) => (
-                    <label
-                      key={w.id}
-                      className="flex items-center gap-2 cursor-pointer"
-                    >
-                      <Checkbox
-                        checked={!!selected[w.id]}
-                        onCheckedChange={() => toggle(w.id)}
-                      />
-                      <span className="text-sm">
-                        {w.hiragana || w.kanji || w.romaji} — {w.english}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className="flex justify-end">
-              <Button disabled={mutation.isPending} onClick={onSubmit}>
-                {mutation.isPending ? "Creating…" : "Create Quiz"}
-              </Button>
             </div>
           </CardContent>
+          <CardFooter className="justify-end border-t border-border p-4 sm:px-6">
+            <Button className="w-full sm:w-auto" disabled={mutation.isPending} onClick={onSubmit}>
+              {mutation.isPending ? t.quizzes.creating : t.quizzes.create}
+            </Button>
+          </CardFooter>
         </Card>
       </div>
     </ProtectedRoute>

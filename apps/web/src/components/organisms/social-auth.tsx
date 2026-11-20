@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/atoms/button";
+import { Separator } from "@/components/atoms/separator";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { api, getApiBaseUrl } from "@/lib/api";
 
@@ -28,6 +29,7 @@ function GoogleMark() {
   );
 }
 
+/** Google sign-in button plus an "or" divider; hidden when the API says Google is off. */
 export function SocialAuth() {
   const { t } = useLocale();
   const [google, setGoogle] = useState(true);
@@ -50,11 +52,11 @@ export function SocialAuth() {
   if (!google) return null;
 
   return (
-    <div className="mb-4 space-y-4">
+    <div className="space-y-4">
       <Button
         type="button"
         variant="outline"
-        className="h-11 w-full"
+        className="w-full"
         onClick={() => {
           window.location.assign(`${getApiBaseUrl()}/auth/google`);
         }}
@@ -62,10 +64,10 @@ export function SocialAuth() {
         <GoogleMark />
         {t.auth.continueGoogle}
       </Button>
-      <div className="flex items-center gap-3 text-xs uppercase tracking-wide text-muted-foreground">
-        <span className="h-px flex-1 bg-border" />
-        {t.auth.orEmail}
-        <span className="h-px flex-1 bg-border" />
+      <div className="flex items-center gap-3">
+        <Separator className="flex-1" />
+        <span className="text-xs text-muted-foreground">{t.auth.orEmail}</span>
+        <Separator className="flex-1" />
       </div>
     </div>
   );

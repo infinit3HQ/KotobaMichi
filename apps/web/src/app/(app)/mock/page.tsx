@@ -1,23 +1,21 @@
 import type { Metadata } from "next";
+import { PageHeader } from "@/components/molecules/page-header";
 import { MockExamCatalog } from "@/components/organisms/mock-exam-catalog";
 import { mockExamSummaries } from "@/lib/mock-exam-data";
 
 export const metadata: Metadata = {
-  title: "Mock exam",
-  description: "Timed N3 mock sittings with the real section clocks.",
+  title: "Mock exams",
+  description: "Timed N3 mock papers with the real section clocks. Sit the full paper or any single section.",
 };
 
 export default function MockExamIndexPage() {
   return (
-    <div className="mx-auto max-w-3xl space-y-8 py-4">
-      <header>
-        <p className="font-jp text-sm text-primary">模擬試験</p>
-        <h1 className="mt-1 text-3xl font-semibold tracking-tight">Mock exam</h1>
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          A full sitting, not a quiz. Vocabulary gets 30 minutes, grammar and reading share 70, and listening
-          gets 40. The clock locks each block.
-        </p>
-      </header>
+    <div className="space-y-6 sm:space-y-8">
+      <PageHeader
+        eyebrow="模擬試験"
+        title="Mock exams"
+        description="Timed N3 papers with the real section clocks. Sit the full paper in order, or take any single section on its own. Each section runs on its own clock and locks when time is up."
+      />
       <MockExamCatalog exams={mockExamSummaries()} />
     </div>
   );

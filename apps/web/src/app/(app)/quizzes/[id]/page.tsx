@@ -1,140 +1,139 @@
 "use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { ArrowLeft, Layers } from "lucide-react";
+import { toast } from "sonner";
 import { api } from "@/lib/api";
 import type { QuizDetail, SubmitAnswer, SubmitQuizResponse } from "@/types/api";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/atoms/card";
 import { Button } from "@/components/atoms/button";
-import { Input } from "@/components/atoms/input";
-import { Volume2 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Progress } from "@/components/atoms/progress";
+import { EmptyState } from "@/components/molecules/empty-state";
+import { PageHeader } from "@/components/molecules/page-header";
+import { useLocale } from "@/components/organisms/locale-provider";
 import { ProtectedRoute } from "@/components/organisms/protected-route";
+import { QueryError } from "@/components/organisms/quizzes/query-error";
+import { buildQuizOptions } from "@/components/organisms/quizzes/quiz-options";
+import { QuizQuestionCard, QuizTakingSkeleton } from "@/components/organisms/quizzes/quiz-question-card";
 import { useResultsStore } from "@/stores/results";
-import { toast } from "sonner";
-import { speakJapanese } from "@/lib/audio";
 
 export default function QuizTakingPage() {
   const params = useParams();
   const id = params?.id as string;
-  const router = useRouter();
-  const { data, isLoading, isError } = useQuery({
+  const { t } = useLocale();
+  const query = useQuery({
     queryKey: ["quiz", id],
     queryFn: async () => (await api.get<QuizDetail>(`/quizzes/${id}`)).data,
   });
 
-  const words = useMemo(() => data?.quizWords ?? [], [data?.quizWords]);
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-
-  const mutation = useMutation({
-    mutationFn: async (answersPayload: SubmitAnswer[]) =>
-      (
-        await api.post<SubmitQuizResponse>(`/quizzes/${id}/submit`, {
-          answers: answersPayload,
-        })
-      ).data,
-    onSuccess: (res) => {
-      toast.success("Submitted");
-      // Persist results locally so results page can render detailed breakdown
-      useResultsStore.getState().save(res);
-      router.push(`/results/${res.attemptId}`);
-    },
-    onError: () => toast.error("Submission failed"),
-  });
-
-  const onAnswer = (val: string) => {
-    const wordId = words[index]?.wordId;
-    if (!wordId) return;
-    setAnswers((a) => ({ ...a, [wordId]: val }));
-  };
-
-  const onNext = () =>
-    setIndex((i) => Math.min(i + 1, Math.max(0, words.length - 1)));
-  const onPrev = () => setIndex((i) => Math.max(0, i - 1));
-  const onSubmit = () => {
-    const payload: SubmitAnswer[] = words.map((qw) => ({
-      wordId: qw.wordId,
-      answer: answers[qw.wordId] ?? "",
-    }));
-    mutation.mutate(payload);
-  };
+  const backButton = (
+    <Button asChild variant="outline">
+      <Link href="/quizzes">
+        <ArrowLeft />
+        {t.quizzes.backToQuizzes}
+      </Link>
+    </Button>
+  );
 
   return (
     <ProtectedRoute>
-      <div className="space-y-4">
-        {isLoading ? (
-          <p className="text-muted-foreground">Loading quiz…</p>
-        ) : isError || !data ? (
-          <p className="text-destructive">Failed to load quiz.</p>
+      <div className="space-y-6 sm:space-y-8">
+        <PageHeader
+          eyebrow={t.quizzes.kicker}
+          title={query.data?.title ?? t.quizzes.title}
+          description={query.data?.description ?? undefined}
+          actions={backButton}
+        />
+        {query.isLoading ? (
+          <QuizTakingSkeleton />
+        ) : query.isError || !query.data ? (
+          <QueryError
+            title={t.quizzes.quizLoadError}
+            description={t.quizzes.loadErrorBody}
+            onRetry={() => query.refetch()}
+            retryLabel={t.quizzes.retry}
+          />
+        ) : query.data.quizWords.length === 0 ? (
+          <EmptyState icon={Layers} title={t.quizzes.noWords} description={t.quizzes.noWordsBody} />
         ) : (
-          <Card>
-            <CardHeader>
-              <CardTitle>{data.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {words.length === 0 ? (
-                <p className="text-muted-foreground">No words in this quiz.</p>
-              ) : (
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>
-                      Question {index + 1} of {words.length}
-                    </span>
-                  </div>
-                  <div className="border rounded-md p-4 space-y-2">
-                    <div className="text-2xl font-semibold">
-                      {words[index].word.hiragana ||
-                        words[index].word.kanji ||
-                        words[index].word.romaji}
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        const w = words[index].word;
-                        speakJapanese(w.kanji || w.hiragana || w.romaji || "");
-                      }}
-                      aria-label="Play pronunciation"
-                    >
-                      <Volume2 className="h-4 w-4 mr-2" /> Listen
-                    </Button>
-                    <div className="text-sm text-muted-foreground">
-                      English?
-                    </div>
-                    <Input
-                      value={answers[words[index].wordId] ?? ""}
-                      onChange={(e) => onAnswer(e.target.value)}
-                      placeholder="Type your answer"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <Button
-                      variant="secondary"
-                      className="min-h-11 flex-1 sm:flex-none"
-                      onClick={onPrev}
-                      disabled={index === 0}
-                    >
-                      Previous
-                    </Button>
-                    {index < words.length - 1 ? (
-                      <Button className="min-h-11 flex-1 sm:flex-none" onClick={onNext}>Next</Button>
-                    ) : (
-                      <Button className="min-h-11 flex-1 sm:flex-none" onClick={onSubmit} disabled={mutation.isPending}>
-                        {mutation.isPending ? "Submitting…" : "Submit"}
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          <QuizRunner quiz={query.data} />
         )}
       </div>
     </ProtectedRoute>
+  );
+}
+
+function QuizRunner({ quiz }: { quiz: QuizDetail }) {
+  const { t } = useLocale();
+  const router = useRouter();
+  const words = quiz.quizWords;
+  const [index, setIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+
+  const optionsByWord = useMemo(
+    () => Object.fromEntries(words.map((qw) => [qw.wordId, buildQuizOptions(words, qw.wordId)])),
+    [words]
+  );
+
+  const mutation = useMutation({
+    mutationFn: async (payload: SubmitAnswer[]) =>
+      (await api.post<SubmitQuizResponse>(`/quizzes/${quiz.id}/submit`, { answers: payload })).data,
+    onSuccess: (res) => {
+      toast.success(t.quizzes.submitted);
+      // Keep the detailed breakdown in memory so the results page can render it.
+      useResultsStore.getState().save(res);
+      router.push(`/results/${res.attemptId}`);
+    },
+    onError: () => toast.error(t.quizzes.submitFailed),
+  });
+
+  const current = words[index];
+  const isLast = index === words.length - 1;
+  const answeredCount = words.filter((qw) => (answers[qw.wordId] ?? "").trim().length > 0).length;
+
+  const onAnswer = (value: string) => setAnswers((prev) => ({ ...prev, [current.wordId]: value }));
+  const onSubmit = () =>
+    mutation.mutate(words.map((qw) => ({ wordId: qw.wordId, answer: answers[qw.wordId] ?? "" })));
+
+  return (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-sm">
+          <span className="font-medium tabular-nums">{t.quizzes.question(index + 1, words.length)}</span>
+          <span className="text-muted-foreground tabular-nums">{t.quizzes.answered(answeredCount, words.length)}</span>
+        </div>
+        <Progress value={((index + 1) / words.length) * 100} aria-label={t.quizzes.question(index + 1, words.length)} />
+      </div>
+
+      <QuizQuestionCard
+        key={current.wordId}
+        word={current.word}
+        options={optionsByWord[current.wordId] ?? []}
+        answer={answers[current.wordId] ?? ""}
+        onAnswer={onAnswer}
+      />
+
+      <div className="flex items-center justify-between gap-2">
+        <Button
+          variant="outline"
+          className="flex-1 sm:flex-none"
+          onClick={() => setIndex((i) => Math.max(0, i - 1))}
+          disabled={index === 0}
+        >
+          {t.quizzes.previous}
+        </Button>
+        {isLast ? (
+          <Button className="flex-1 sm:flex-none" onClick={onSubmit} disabled={mutation.isPending}>
+            {mutation.isPending ? t.quizzes.submitting : t.quizzes.submit}
+          </Button>
+        ) : (
+          <Button className="flex-1 sm:flex-none" onClick={() => setIndex((i) => Math.min(i + 1, words.length - 1))}>
+            {t.quizzes.next}
+          </Button>
+        )}
+      </div>
+    </div>
   );
 }

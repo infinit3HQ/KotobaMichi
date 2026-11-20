@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG, SITE_URL } from "@/lib/seo-config";
 import { JsonLd } from "@/components/atoms/json-ld";
+import { CATALOG_STATS, formatCount } from "@/lib/catalog-stats";
+
+const WORD_COUNT = formatCount(CATALOG_STATS.words);
 
 export const metadata: Metadata = {
-  title: "Japanese Vocabulary & Kanji Explorer | JLPT N5–N1",
+  title: "JLPT Japanese Vocabulary | N5–N1",
   description:
-    "Explore over 1,000+ Japanese words with furigana, romaji, English definitions, part-of-speech tags, and native audio pronunciation.",
+    `Browse ${WORD_COUNT} JLPT Japanese words from N5 to N1 with readings, romaji, English meanings, and audio pronunciation.`,
   alternates: {
     canonical: "/words",
   },
   openGraph: {
-    title: "Japanese Words & Kanji Explorer | KotobaMichi",
+    title: "JLPT Japanese Vocabulary | KotobaMichi",
     description:
-      "Explore over 1,000+ Japanese words with furigana, romaji, English definitions, and native audio pronunciation.",
+      `Browse ${WORD_COUNT} JLPT Japanese words with readings, romaji, English meanings, and audio pronunciation.`,
     url: `${SITE_URL}/words`,
     type: "website",
     siteName: SITE_CONFIG.name,
@@ -21,15 +24,15 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "KotobaMichi Japanese Words & Kanji Explorer",
+        alt: "KotobaMichi Japanese vocabulary",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Japanese Words & Kanji Explorer | KotobaMichi",
+    title: "JLPT Japanese Vocabulary | KotobaMichi",
     description:
-      "Explore over 1,000+ Japanese words with furigana, romaji, definitions, and native audio pronunciation.",
+      `Browse ${WORD_COUNT} JLPT Japanese words with readings, romaji, meanings, and audio pronunciation.`,
   },
 };
 

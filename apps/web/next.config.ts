@@ -6,6 +6,7 @@ const monorepoRoot = path.join(__dirname, "..", "..");
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  devIndicators: false,
   outputFileTracingRoot: monorepoRoot,
   turbopack: { root: monorepoRoot },
   async headers() {

@@ -1,5 +1,6 @@
 "use client";
 
+import { SegmentedControl } from "@/components/molecules/segmented-control";
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 import { dictionaries, type Dictionary, type Locale } from "@/lib/i18n/dictionary";
 import {
@@ -96,29 +97,16 @@ export function useLocale() {
 export function LocaleSwitch({ className = "" }: { className?: string }) {
   const { selectedLocale: locale, setLocale } = useLocale();
   return (
-    <div
-      className={`inline-flex h-9 items-center rounded-full border border-border/80 bg-background/70 p-0.5 text-xs font-bold ${className}`}
-      role="group"
-      aria-label="Language"
-    >
-      {(
-        [
-          ["en", "EN"],
-          ["si", "සිං"],
-        ] as const
-      ).map(([id, label]) => (
-        <button
-          key={id}
-          type="button"
-          onClick={() => setLocale(id)}
-          className={`min-h-8 rounded-full px-2.5 ${
-            locale === id ? "bg-primary text-primary-foreground" : "text-muted-foreground"
-          }`}
-          aria-pressed={locale === id}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
+    <SegmentedControl
+      size="sm"
+      ariaLabel="Language"
+      value={locale}
+      onValueChange={(next) => setLocale(next)}
+      options={[
+        { value: "en", label: "EN", ariaLabel: "English" },
+        { value: "si", label: "සිං", ariaLabel: "සිංහල" },
+      ]}
+      className={className}
+    />
   );
 }

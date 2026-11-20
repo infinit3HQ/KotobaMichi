@@ -1,310 +1,171 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import type { ComponentType } from "react";
+import { ArrowRight, BookOpen, Languages, Layers, Repeat, Timer, Zap } from "lucide-react";
+import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent } from "@/components/atoms/card";
-import { Badge } from "@/components/atoms/badge";
-import {
-  Trophy,
-  ArrowRight,
-  Zap,
-  Headphones,
-  Volume2,
-  RotateCcw,
-  BookOpen,
-} from "lucide-react";
-import { speakJapanese } from "@/lib/audio";
-import { useLocale } from "@/components/organisms/locale-provider";
+import { WordPreviewCard } from "@/components/organisms/home/word-preview-card";
 import { LearningPath } from "@/components/organisms/learning-path";
+import { useLocale } from "@/components/organisms/locale-provider";
+import { useAuthStore } from "@/stores/auth";
+import { CATALOG_STATS, formatCount } from "@/lib/catalog-stats";
+
+type FeatureKey = "practice" | "words" | "kanji" | "quizzes" | "mock" | "review";
+
+const FEATURES: { key: FeatureKey; href: string; icon: ComponentType<{ className?: string }> }[] = [
+  { key: "practice", href: "/practice", icon: Zap },
+  { key: "review", href: "/practice?mode=flashcard", icon: Repeat },
+  { key: "mock", href: "/mock", icon: Timer },
+  { key: "words", href: "/words", icon: BookOpen },
+  { key: "kanji", href: "/kanji", icon: Languages },
+  { key: "quizzes", href: "/quizzes", icon: Layers },
+];
+
+const STEP_MARKS = ["一", "二", "三"];
 
 export default function Home() {
   const { t } = useLocale();
-  const [teaserFlipped, setTeaserFlipped] = useState(false);
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const authChecked = useAuthStore((state) => state.authChecked);
+  const signedIn = Boolean(user);
 
-  const handlePlayTeaser = async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (isAudioPlaying) return;
-    setIsAudioPlaying(true);
-    await speakJapanese("言葉道", {
-      onStart: () => setIsAudioPlaying(true),
-      onEnd: () => setIsAudioPlaying(false),
-      onError: () => setIsAudioPlaying(false),
-    });
-    setIsAudioPlaying(false);
-  };
+  const stats = [
+    { value: formatCount(CATALOG_STATS.words), label: t.home.statWords },
+    { value: formatCount(CATALOG_STATS.kanji), label: t.home.statKanji },
+    { value: formatCount(CATALOG_STATS.grammar), label: t.home.statGrammar },
+    { value: formatCount(CATALOG_STATS.mockPapers), label: t.home.statMock },
+  ];
 
   return (
-    <div className="min-h-screen space-y-16 pb-16">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-8 md:pt-16 pb-12">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-zen-radial" />
-        
-        <div className="container mx-auto px-4 text-center max-w-5xl space-y-6">
-          {/* Top Kanji Pill */}
-          <div className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-center text-xs font-semibold text-primary shadow-2xs">
-            <span className="font-jp text-sm font-black">道</span>
-            <span>{t.home.pill}</span>
-          </div>
-
-          {/* Hero Headline */}
-          <h1 className="text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground text-balance">
-            {t.home.headline}{" "}
-            <span className="text-primary underline decoration-primary/30 decoration-wavy decoration-from-font">
-              {t.home.headlineAccent}
-            </span>
+    <div className="space-y-16 pb-4 sm:space-y-24">
+      {/* Hero */}
+      <section className="grid items-center gap-10 pt-2 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:pt-8">
+        <div className="space-y-6">
+          <Badge variant="outline" className="gap-1.5 border-primary/30 bg-primary/5 px-2.5 py-1 text-primary">
+            <span className="font-jp font-bold">道</span>
+            {t.home.eyebrow}
+          </Badge>
+          <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            {t.home.headline} <span className="text-primary">{t.home.headlineAccent}</span>
           </h1>
-
-          <p className="mx-auto max-w-2xl text-base sm:text-lg text-muted-foreground text-pretty leading-relaxed">
+          <p className="max-w-xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
             {t.home.body}
           </p>
-
-          <div className="mx-auto max-w-3xl text-left">
-            <LearningPath compact />
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <Button
-              asChild
-              size="lg"
-              className="h-12 w-full px-7 text-base font-semibold gap-2.5 shadow-md bg-primary hover:bg-primary/90 text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
-            >
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Button asChild size="lg" className="w-full sm:w-auto">
               <Link href="/practice">
-                <Zap className="h-5 w-5 fill-current text-amber-300" />
-                {t.home.enterDojo}
+                {signedIn ? t.home.continueStudying : t.home.startPractising}
+                <ArrowRight />
               </Link>
             </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="h-12 w-full px-7 text-base font-semibold gap-2 border-border/80 bg-card/60 backdrop-blur-sm hover:bg-secondary transition-all sm:w-auto"
-            >
-              <Link href="/words">
-                <BookOpen className="h-4 w-4" />
-                {t.home.exploreWords}
-              </Link>
-            </Button>
+            {authChecked && !signedIn ? (
+              <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                <Link href="/auth/register">{t.home.createAccount}</Link>
+              </Button>
+            ) : (
+              <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+                <Link href="/words">{t.home.browseWords}</Link>
+              </Button>
+            )}
           </div>
-
-          {/* Interactive Teaser Flashcard */}
-          <div className="pt-8 flex flex-col items-center">
-            <p className="text-xs text-muted-foreground/80 mb-3 flex items-center gap-1.5 font-mono">
-              <span>{t.home.preview}</span>
-            </p>
-            <div
-              className="group perspective cursor-pointer w-full max-w-sm h-48 select-none"
-              onClick={() => setTeaserFlipped(!teaserFlipped)}
-            >
-              <div
-                className={`relative h-full w-full transition-transform duration-500 preserve-3d rounded-2xl ${
-                  teaserFlipped ? "rotate-y-180" : ""
-                }`}
-              >
-                {/* Front */}
-                <div className="absolute inset-0 backface-hidden rounded-2xl border border-border/80 bg-card p-6 flex flex-col justify-between shadow-sm hover:border-primary/40 hover:shadow-md transition-all">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground font-semibold text-[10px]">
-                      {t.home.coreConcept}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={handlePlayTeaser}
-                      disabled={isAudioPlaying}
-                      className="p-1.5 rounded-full hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"
-                      title={t.home.pronounce}
-                    >
-                      <Volume2 className={`h-4 w-4 ${isAudioPlaying ? "text-primary animate-pulse" : ""}`} />
-                    </button>
-                  </div>
-                  <div className="text-center my-auto space-y-0.5">
-                    <span className="font-jp text-xs text-primary/80 font-medium">ことばみち</span>
-                    <span className="font-jp text-3xl font-black text-foreground block">言葉道</span>
-                    <span className="font-mono text-xs text-muted-foreground">kotobamichi</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-2 border-t border-border/40">
-                    <span>JLPT N5 Core</span>
-                    <span className="flex items-center gap-1">
-                      {t.home.tapReveal}
-                      <RotateCcw className="h-2.5 w-2.5" />
-                    </span>
-                  </div>
-                </div>
-
-                {/* Back */}
-                <div className="absolute inset-0 rotate-y-180 backface-hidden rounded-2xl border border-primary/30 bg-card p-6 flex flex-col justify-between shadow-sm bg-gradient-to-b from-primary/5 to-card">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[10px]">
-                      {t.home.meaning}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={handlePlayTeaser}
-                      className="p-1.5 rounded-full text-primary hover:bg-primary/10 transition-colors"
-                    >
-                      <Volume2 className="h-4 w-4" />
-                    </button>
-                  </div>
-                  <div className="text-center my-auto space-y-1">
-                    <h3 className="text-2xl font-extrabold text-foreground">{t.home.pathTitle}</h3>
-                    <p className="text-xs text-muted-foreground">{t.home.pathDesc}</p>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-muted-foreground pt-2 border-t border-border/40">
-                    <span className="text-primary font-mono font-medium">言葉 (words) + 道 (path)</span>
-                    <span className="flex items-center gap-1 text-primary/80">
-                      {t.home.flipBack}
-                      <RotateCcw className="h-2.5 w-2.5" />
-                    </span>
-                  </div>
-                </div>
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-border pt-6 sm:grid-cols-4">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="text-2xl font-semibold tabular-nums tracking-tight">{stat.value}</dd>
+                <dd className="text-sm text-muted-foreground">{stat.label}</dd>
               </div>
-            </div>
-          </div>
+            ))}
+          </dl>
+        </div>
+
+        <div className="relative flex justify-center lg:justify-end">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -top-6 right-0 select-none font-jp text-[10rem] font-bold leading-none text-primary/[0.06] sm:text-[14rem]"
+          >
+            道
+          </span>
+          <WordPreviewCard />
         </div>
       </section>
 
-      {/* Feature Grid */}
-      <section className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center space-y-2 mb-10">
-          <Badge variant="outline" className="text-xs uppercase tracking-wider font-semibold">
-            {t.home.methodBadge}
-          </Badge>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-            {t.home.methodTitle}
-          </h2>
-        </div>
+      {signedIn ? (
+        <section className="space-y-4">
+          <p className="text-sm font-medium text-muted-foreground">{t.home.welcomeBack}</p>
+          <LearningPath compact />
+        </section>
+      ) : null}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <FeatureCard
-            icon={<Zap className="h-5 w-5 text-amber-500" />}
-            badge={t.home.fastTrack}
-            title={t.home.sprintTitle}
-            desc={t.home.sprintDesc}
-            cta={{ label: t.home.enterDojoShort, to: "/practice" }}
-          />
-          <FeatureCard
-            icon={<Headphones className="h-5 w-5 text-sky-500" />}
-            badge={t.home.audioNative}
-            title={t.home.listenTitle}
-            desc={t.home.listenDesc}
-            cta={{ label: t.home.trainEars, to: "/practice" }}
-          />
-          <FeatureCard
-            icon={<BookOpen className="h-5 w-5 text-emerald-500" />}
-            badge={t.home.lexicon}
-            title={t.home.vaultTitle}
-            desc={t.home.vaultDesc}
-            cta={{ label: t.home.explore, to: "/words" }}
-          />
-          <FeatureCard
-            icon={<Trophy className="h-5 w-5 text-rose-500" />}
-            badge={t.home.retention}
-            title={t.home.quizTitle}
-            desc={t.home.quizDesc}
-            cta={{ label: t.home.takeQuiz, to: "/quizzes" }}
-          />
+      {/* Features */}
+      <section className="space-y-8">
+        <div className="max-w-2xl space-y-2">
+          <p className="text-sm font-medium text-primary">{t.home.insideKicker}</p>
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t.home.insideTitle}</h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map(({ key, href, icon: Icon }) => {
+            const feature = t.home.features[key];
+            return (
+              <Link key={key} href={href} className="group rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50">
+                <Card className="h-full gap-0 py-0 transition-colors group-hover:border-primary/40">
+                  <CardContent className="flex h-full gap-4 p-4 sm:flex-col sm:gap-3 sm:p-5">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Icon className="size-4" />
+                    </span>
+                    <div className="flex flex-1 flex-col gap-1">
+                      <h3 className="font-semibold tracking-tight">{feature.title}</h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
+                      <span className="mt-auto inline-flex items-center gap-1 pt-2 text-sm font-medium text-primary">
+                        {feature.cta}
+                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      {/* Stats Ribbon */}
-      <section className="container mx-auto px-4 max-w-5xl">
-        <div className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-6 sm:p-8 shadow-xs">
-          <div className="grid grid-cols-2 gap-6 text-center sm:grid-cols-4 sm:divide-x sm:divide-border/60">
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-primary font-jp">562+</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.n5Words}</div>
-            </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-foreground">100%</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.audio}</div>
-            </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-foreground">60s</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.sprints}</div>
-            </div>
-            <div>
-              <div className="text-3xl sm:text-4xl font-black text-foreground">0ms</div>
-              <div className="text-xs sm:text-sm text-muted-foreground mt-1 font-medium">{t.home.offline}</div>
-            </div>
-          </div>
+      {/* How it works */}
+      <section className="space-y-8">
+        <div className="max-w-2xl space-y-2">
+          <p className="text-sm font-medium text-primary">{t.home.stepsKicker}</p>
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t.home.stepsTitle}</h2>
         </div>
+        <ol className="grid gap-6 sm:grid-cols-3 sm:gap-8">
+          {t.home.steps.map((step, index) => (
+            <li key={step.title} className="space-y-2 border-t-2 border-border pt-4 first:border-primary">
+              <span className="font-jp text-2xl font-bold text-primary">{STEP_MARKS[index]}</span>
+              <h3 className="font-semibold tracking-tight">{step.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
-      {/* Final Call to Action */}
-      <section className="container mx-auto px-4 max-w-4xl pt-4">
-        <div className="relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/10 via-card to-card p-8 sm:p-12 shadow-sm text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="space-y-2 max-w-xl">
-            <span className="font-jp text-primary font-bold text-sm tracking-wide">
-              今日から始めよう · {t.home.startToday}
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-              {t.home.ready}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t.home.readyBody}
-            </p>
+      {/* Sign-up call to action, only for visitors */}
+      {authChecked && !signedIn ? (
+        <section className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 sm:p-10 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl space-y-2">
+            <p className="font-jp text-sm font-medium text-primary">今日から始めよう</p>
+            <h2 className="text-2xl font-semibold tracking-tight">{t.home.ctaTitle}</h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">{t.home.ctaBody}</p>
           </div>
-
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <Button asChild size="lg" className="h-11 px-6 font-semibold shadow-sm">
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Button asChild size="lg">
               <Link href="/auth/register">{t.home.createAccount}</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="h-11 px-6 font-semibold">
+            <Button asChild size="lg" variant="outline">
               <Link href="/auth/login">{t.home.signIn}</Link>
             </Button>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </div>
-  );
-}
-
-function FeatureCard({
-  icon,
-  badge,
-  title,
-  desc,
-  cta,
-}: {
-  icon: React.ReactNode;
-  badge: string;
-  title: string;
-  desc: string;
-  cta: { label: string; to: string };
-}) {
-  return (
-    <Card className="h-full border border-border/80 bg-card/80 hover:border-primary/40 hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-      <CardContent className="p-6 flex flex-col h-full gap-4">
-        <div className="flex items-center justify-between">
-          <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-foreground group-hover:scale-105 transition-transform">
-            {icon}
-          </div>
-          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-secondary text-muted-foreground">
-            {badge}
-          </span>
-        </div>
-        
-        <div className="space-y-1.5">
-          <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">
-            {title}
-          </h3>
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            {desc}
-          </p>
-        </div>
-
-        <div className="mt-auto pt-2 border-t border-border/40">
-          <Link
-            href={cta.to}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline underline-offset-4"
-          >
-            {cta.label}
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </CardContent>
-    </Card>
   );
 }

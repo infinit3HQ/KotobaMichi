@@ -3,16 +3,16 @@ import { SITE_CONFIG, SITE_URL } from "@/lib/seo-config";
 import { JsonLd } from "@/components/atoms/json-ld";
 
 export const metadata: Metadata = {
-  title: "Interactive Practice Dojo – Speed Sprint, Kana Soundboard & 3D SRS",
+  title: "Practice Dojo – JLPT Drills, Flashcards and Kana",
   description:
-    "Accelerate your Japanese fluency with 60-second speed sprints, native audio speech listening trainer, kana soundboard, and 3D spaced repetition flashcards.",
+    "Short Japanese drills for JLPT N5 to N1: a 60-second word sprint, spaced-repetition flashcards, a kana chart with audio, and kanji, grammar, listening and reading practice.",
   alternates: {
     canonical: "/practice",
   },
   openGraph: {
-    title: "Interactive Practice Dojo | KotobaMichi",
+    title: "Practice Dojo | KotobaMichi",
     description:
-      "Accelerate your Japanese fluency with 60-second speed sprints, native audio speech listening trainer, kana soundboard, and 3D SRS flashcards.",
+      "Short Japanese drills for JLPT N5 to N1: a 60-second word sprint, spaced-repetition flashcards, a kana chart with audio, and kanji, grammar, listening and reading practice.",
     url: `${SITE_URL}/practice`,
     type: "website",
     siteName: SITE_CONFIG.name,
@@ -21,15 +21,15 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "KotobaMichi Interactive Practice Dojo",
+        alt: "KotobaMichi Practice Dojo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Interactive Practice Dojo | KotobaMichi",
+    title: "Practice Dojo | KotobaMichi",
     description:
-      "Accelerate your Japanese fluency with 60-second speed sprints, native audio speech listening trainer, kana soundboard, and 3D SRS flashcards.",
+      "Short Japanese drills for JLPT N5 to N1: a 60-second word sprint, spaced-repetition flashcards, a kana chart with audio, and kanji, grammar, listening and reading practice.",
   },
 };
 
@@ -55,9 +55,9 @@ const practiceJsonLd = {
     },
     {
       "@type": "Course",
-      name: "Interactive Japanese Practice Dojo",
+      name: "Japanese Practice Dojo",
       description:
-        "High-speed drills, listening practice, and spaced repetition flashcards for Japanese learners.",
+        "Vocabulary, kanji, grammar, listening and reading drills with spaced-repetition flashcards for Japanese learners.",
       provider: {
         "@type": "EducationalOrganization",
         name: SITE_CONFIG.name,

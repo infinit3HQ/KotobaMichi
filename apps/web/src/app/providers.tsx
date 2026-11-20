@@ -2,7 +2,6 @@
 
 import { ReactNode, useState } from "react";
 import { ThemeProvider } from "@/components/atoms/theme-provider";
-import { GlobalThemeToggle } from "@/components/atoms/global-theme-toggle";
 import { Layout } from "@/components/organisms/layout";
 import { LocaleProvider } from "@/components/organisms/locale-provider";
 import { Toaster } from "@/components/atoms/sonner";
@@ -26,7 +25,10 @@ export default function Providers({
     onRefreshSuccess: (user) => setUser(user),
     onUnauthenticated: () => logout(),
   });
-  const [queryClient] = useState(() => new QueryClient());
+  // One quick retry: a dead API should show its error state in about a second, not after ~7s of skeletons.
+  const [queryClient] = useState(
+    () => new QueryClient({ defaultOptions: { queries: { retry: 1, retryDelay: 800 } } })
+  );
 
   return (
     <ThemeProvider
@@ -40,7 +42,6 @@ export default function Providers({
           <Layout>{children}</Layout>
           <Toaster />
           <ServiceWorkerRegistration />
-          <GlobalThemeToggle position="bottom-right" />
         </LocaleProvider>
       </QueryClientProvider>
     </ThemeProvider>

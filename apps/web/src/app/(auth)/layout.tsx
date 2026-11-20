@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { default: "Auth", template: "%s | KotobaMichi(言葉道)" },
-  description: "Login or register to save progress and create quizzes.",
+  title: { default: "Account", template: "%s | KotobaMichi(言葉道)" },
+  description: "Sign in or create an account to save progress and build quizzes.",
   robots: { index: false, follow: false },
 };
 
