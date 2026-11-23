@@ -67,6 +67,7 @@ import july2010N2 from "@/data/exams/n2-2010-07.json";
 import {
   questionCount,
   toScoringShape,
+  yearFromSession,
   type MockExam,
   type MockExamSummary,
 } from "@/lib/mock-exam";
@@ -209,6 +210,7 @@ export function mockExamSummaries(): MockExamSummary[] {
     id: exam.id,
     title: exam.title,
     level: exam.level,
+    year: yearFromSession(exam.session) ?? "",
     questionCount: questionCount(exam),
     minutes: exam.sections.map((section) => section.minutes),
     scoring: toScoringShape(exam),
