@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   name: "KotobaMichi(言葉道)",
   shortName: "KotobaMichi",
   description:
-    "Free JLPT study from N5 to N1: vocabulary, kanji, grammar, reading and listening drills with spaced review, plus full N3 mock exams.",
+    "Free JLPT study from N5 to N1: vocabulary, kanji, grammar, reading and listening drills with spaced review, plus full N2 and N3 mock exams.",
   url: SITE_URL,
   ogImage: `${SITE_URL}/opengraph-image`,
   creator: "@kotobamichi",

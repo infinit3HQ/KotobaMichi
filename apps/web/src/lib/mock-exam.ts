@@ -59,7 +59,10 @@ export type ScorableExam = {
     parts: {
       id: string;
       title: string;
-      mondai: { number: number; items: { number: number; answer?: number }[] }[];
+      mondai: {
+        number: number;
+        items: { number: number; answer?: number }[];
+      }[];
     }[];
   }[];
 };
@@ -79,10 +82,12 @@ export function questionCount(exam: ScorableExam) {
     (sum, section) =>
       sum +
       section.parts.reduce(
-        (partSum, part) => partSum + part.mondai.reduce((count, mondai) => count + mondai.items.length, 0),
-        0
+        (partSum, part) =>
+          partSum +
+          part.mondai.reduce((count, mondai) => count + mondai.items.length, 0),
+        0,
       ),
-    0
+    0,
   );
 }
 
@@ -98,7 +103,9 @@ export function toScoringShape(exam: ScorableExam): ScorableExam {
         mondai: part.mondai.map((mondai) => ({
           number: mondai.number,
           items: mondai.items.map((item) =>
-            item.answer == null ? { number: item.number } : { number: item.number, answer: item.answer }
+            item.answer == null
+              ? { number: item.number }
+              : { number: item.number, answer: item.answer },
           ),
         })),
       })),
@@ -115,7 +122,9 @@ const DEFAULT_S3_PUBLIC_URL = "https://s3-kotobamichi.012140.xyz/kotobamichi";
 
 export function s3PublicBase() {
   const runtime =
-    typeof window !== "undefined" ? window.__ENV__?.NEXT_PUBLIC_S3_PUBLIC_URL : undefined;
+    typeof window !== "undefined"
+      ? window.__ENV__?.NEXT_PUBLIC_S3_PUBLIC_URL
+      : undefined;
   const fromEnv = process.env.NEXT_PUBLIC_S3_PUBLIC_URL;
   return (runtime || fromEnv || DEFAULT_S3_PUBLIC_URL).replace(/\/+$/, "");
 }
@@ -124,7 +133,12 @@ export function listeningAudioUrl(examId: string) {
   return `${s3PublicBase()}/exams/${examId}/listening.mp3`;
 }
 
-export function answerKey(sectionId: string, partId: string, mondai: number, item: number) {
+export function answerKey(
+  sectionId: string,
+  partId: string,
+  mondai: number,
+  item: number,
+) {
   return `${sectionId}:${partId}:${mondai}:${item}`;
 }
 
@@ -170,6 +184,17 @@ export const SECTION_POINTS = 60;
 export const PASS_SECTION = 19;
 export const PASS_TOTAL = 95;
 
+/** N2's two clocks are 120 altogether, so the practice line is half of that. N3 stays 95. */
+export function practicePassTotal(exam: { sections: { id: string }[] }) {
+  return exam.sections.some((section) => section.id === "language-reading")
+    ? 60
+    : PASS_TOTAL;
+}
+
+export function paperPoints(sectionCount: number) {
+  return sectionCount * SECTION_POINTS;
+}
+
 export type SectionScore = {
   id: string;
   title: string;
@@ -201,14 +226,18 @@ export type MondaiScore = {
   earned: number;
 };
 
-export function scoreByMondai(exam: ScorableExam, answers: Record<string, number>): MondaiScore[] {
+export function scoreByMondai(
+  exam: ScorableExam,
+  answers: Record<string, number>,
+): MondaiScore[] {
   const rows: MondaiScore[] = [];
   for (const section of exam.sections) {
     for (const part of section.parts) {
       for (const mondai of part.mondai) {
         let correct = 0;
         for (const item of mondai.items) {
-          const chosen = answers[answerKey(section.id, part.id, mondai.number, item.number)];
+          const chosen =
+            answers[answerKey(section.id, part.id, mondai.number, item.number)];
           if (chosen != null && chosen === item.answer) correct += 1;
         }
         rows.push({
@@ -227,7 +256,8 @@ export function scoreByMondai(exam: ScorableExam, answers: Record<string, number
 
   const parts = new Map<string, Map<string, MondaiScore[]>>();
   for (const row of rows) {
-    const sectionParts = parts.get(row.sectionId) ?? new Map<string, MondaiScore[]>();
+    const sectionParts =
+      parts.get(row.sectionId) ?? new Map<string, MondaiScore[]>();
     const partRows = sectionParts.get(row.partTitle) ?? [];
     partRows.push(row);
     sectionParts.set(row.partTitle, partRows);
@@ -239,7 +269,8 @@ export function scoreByMondai(exam: ScorableExam, answers: Record<string, number
       const mondaiShare = partShare / partRows.length;
       for (const row of partRows) {
         row.share = mondaiShare;
-        row.earned = row.total > 0 ? (row.correct / row.total) * mondaiShare : 0;
+        row.earned =
+          row.total > 0 ? (row.correct / row.total) * mondaiShare : 0;
       }
     }
   }
@@ -247,17 +278,28 @@ export function scoreByMondai(exam: ScorableExam, answers: Record<string, number
 }
 
 export function pointsForSection(rows: MondaiScore[], sectionId: string) {
-  return rows.filter((row) => row.sectionId === sectionId).reduce((sum, row) => sum + row.earned, 0);
+  return rows
+    .filter((row) => row.sectionId === sectionId)
+    .reduce((sum, row) => sum + row.earned, 0);
 }
 
-export function scoreExam(exam: ScorableExam, answers: Record<string, number>): SectionScore[] {
+export function scoreExam(
+  exam: ScorableExam,
+  answers: Record<string, number>,
+): SectionScore[] {
   return exam.sections.map((section) => {
-    const score: SectionScore = { id: section.id, title: section.title, correct: 0, total: 0 };
+    const score: SectionScore = {
+      id: section.id,
+      title: section.title,
+      correct: 0,
+      total: 0,
+    };
     for (const part of section.parts) {
       for (const mondai of part.mondai) {
         for (const item of mondai.items) {
           score.total += 1;
-          const chosen = answers[answerKey(section.id, part.id, mondai.number, item.number)];
+          const chosen =
+            answers[answerKey(section.id, part.id, mondai.number, item.number)];
           if (chosen != null && chosen === item.answer) score.correct += 1;
         }
       }

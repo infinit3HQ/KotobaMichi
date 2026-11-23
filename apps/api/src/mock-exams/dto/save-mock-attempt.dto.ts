@@ -8,7 +8,7 @@ import {
 	Max,
 	Min,
 } from 'class-validator';
-import { AT_MENU, MOCK_SECTION_IDS } from '../sections';
+import { AT_MENU, KNOWN_SECTION_IDS, MOCK_SECTION_IDS } from '../sections';
 
 export class SaveMockAttemptDto {
 	/** The open section, or -1 while the student is on the section menu. */
@@ -28,6 +28,6 @@ export class SaveMockAttemptDto {
 	@IsOptional()
 	@IsArray()
 	@ArrayMaxSize(MOCK_SECTION_IDS.length)
-	@IsIn(MOCK_SECTION_IDS, { each: true })
+	@IsIn(KNOWN_SECTION_IDS, { each: true })
 	completedSections?: string[];
 }

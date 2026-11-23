@@ -1,6 +1,6 @@
 import {
   PASS_SECTION,
-  PASS_TOTAL,
+  practicePassTotal,
   pointsForSection,
   scoreByMondai,
   scoreExam,
@@ -17,7 +17,8 @@ export type SittingSave = {
   finished?: boolean;
 };
 
-const sectionIds = (exam: ScorableExam) => exam.sections.map((section) => section.id);
+const sectionIds = (exam: ScorableExam) =>
+  exam.sections.map((section) => section.id);
 
 /** Section ids in paper order, keeping only those in `ids`. */
 function inPaperOrder(exam: ScorableExam, ids: Iterable<string>) {
@@ -25,22 +26,38 @@ function inPaperOrder(exam: ScorableExam, ids: Iterable<string>) {
   return sectionIds(exam).filter((id) => wanted.has(id));
 }
 
-export function canOpenSection(exam: ScorableExam, completed: readonly string[], index: number) {
+export function canOpenSection(
+  exam: ScorableExam,
+  completed: readonly string[],
+  index: number,
+) {
   const section = exam.sections[index];
   return section != null && !completed.includes(section.id);
 }
 
 /** The first section not done yet, in paper order, or null when the sitting is finished. */
-export function nextSuggestedSection(exam: ScorableExam, completed: readonly string[]) {
-  const index = exam.sections.findIndex((section) => !completed.includes(section.id));
+export function nextSuggestedSection(
+  exam: ScorableExam,
+  completed: readonly string[],
+) {
+  const index = exam.sections.findIndex(
+    (section) => !completed.includes(section.id),
+  );
   return index === -1 ? null : index;
 }
 
-export function completeSection(exam: ScorableExam, completed: readonly string[], sectionId: string) {
+export function completeSection(
+  exam: ScorableExam,
+  completed: readonly string[],
+  sectionId: string,
+) {
   return inPaperOrder(exam, [...completed, sectionId]);
 }
 
-export function isSittingComplete(exam: ScorableExam, completed: readonly string[]) {
+export function isSittingComplete(
+  exam: ScorableExam,
+  completed: readonly string[],
+) {
   return sectionIds(exam).every((id) => completed.includes(id));
 }
 
@@ -70,18 +87,24 @@ export type SittingSummary = {
 export function summarizeSitting(
   exam: ScorableExam,
   answers: Record<string, number>,
-  completed: readonly string[]
+  completed: readonly string[],
 ): SittingSummary {
   const rows = scoreByMondai(exam, answers);
   const sections = scoreExam(exam, answers).map((score) => {
     const taken = completed.includes(score.id);
-    return { ...score, taken, points: taken ? pointsForSection(rows, score.id) : null };
+    return {
+      ...score,
+      taken,
+      points: taken ? pointsForSection(rows, score.id) : null,
+    };
   });
   const complete = isSittingComplete(exam, completed);
   if (!complete) return { sections, complete, total: null, passes: null };
 
   const points = sections.map((section) => section.points ?? 0);
   const total = points.reduce((sum, value) => sum + value, 0);
-  const passes = total >= PASS_TOTAL && points.every((value) => value >= PASS_SECTION);
+  const passTotal = practicePassTotal(exam);
+  const passes =
+    total >= passTotal && points.every((value) => value >= PASS_SECTION);
   return { sections, complete, total, passes };
 }

@@ -69,7 +69,14 @@ export type Dictionary = {
     loading: string;
     levels: Record<"N5" | "N4" | "N3" | "N2" | "N1", string>;
     drills: Record<
-      "sprint" | "walk" | "grammar" | "kanji" | "listening" | "reading" | "flashcard" | "kana",
+      | "sprint"
+      | "walk"
+      | "grammar"
+      | "kanji"
+      | "listening"
+      | "reading"
+      | "flashcard"
+      | "kana",
       { title: string; subtitle: string }
     >;
   };
@@ -327,7 +334,7 @@ const en: Dictionary = {
     eyebrow: "JLPT N5 to N1 · free to use",
     headline: "The path of words,",
     headlineAccent: "from N5 to N1.",
-    body: "Vocabulary, kanji, grammar, reading and listening for every JLPT level. Spaced review brings each word back just before you would forget it, and full N3 mock papers show where you stand.",
+    body: "Vocabulary, kanji, grammar, reading and listening for every JLPT level. Spaced review brings each word back just before you would forget it, and full N2 and N3 mock papers show where you stand.",
     startPractising: "Start practising",
     continueStudying: "Continue studying",
     createAccount: "Create free account",
@@ -336,7 +343,7 @@ const en: Dictionary = {
     statWords: "words",
     statKanji: "kanji",
     statGrammar: "grammar points",
-    statMock: "N3 mock papers",
+    statMock: "N2 and N3 mock papers",
     previewLabel: "Try a card",
     pronounce: "Play pronunciation",
     tapReveal: "Tap to flip",
@@ -369,7 +376,7 @@ const en: Dictionary = {
       },
       mock: {
         title: "Mock exams",
-        desc: "Past-format N3 papers with real timing. Sit the whole paper or one section at a time.",
+        desc: "Past-format N2 and N3 papers with real timing. Sit the whole paper or one section at a time.",
         cta: "Sit a paper",
       },
       review: {
@@ -381,12 +388,22 @@ const en: Dictionary = {
     stepsKicker: "How it works",
     stepsTitle: "A little every day",
     steps: [
-      { title: "Pick your level", desc: "Start at N5, or go straight to the level you are studying for." },
-      { title: "Practise and review", desc: "Short drills and flashcards. Due reviews come first, new words after." },
-      { title: "Test yourself", desc: "Sit a timed mock paper and see your score for each section." },
+      {
+        title: "Pick your level",
+        desc: "Start at N5, or go straight to the level you are studying for.",
+      },
+      {
+        title: "Practise and review",
+        desc: "Short drills and flashcards. Due reviews come first, new words after.",
+      },
+      {
+        title: "Test yourself",
+        desc: "Sit a timed mock paper and see your score for each section.",
+      },
     ],
     ctaTitle: "Keep your progress",
-    ctaBody: "A free account saves your reviews, streak, quizzes and mock exam scores on every device.",
+    ctaBody:
+      "A free account saves your reviews, streak, quizzes and mock exam scores on every device.",
     welcomeBack: "Welcome back",
   },
   practice: {
@@ -514,10 +531,12 @@ const en: Dictionary = {
     mine: "Your quizzes",
     mineCount: (count) => `${count} created`,
     signInTitle: "Sign in to make your own quizzes",
-    signInBody: "Pick the words you want to drill, save them as a quiz, and keep your scores.",
+    signInBody:
+      "Pick the words you want to drill, save them as a quiz, and keep your scores.",
     signIn: "Sign in",
     emptyPublicTitle: "No community quizzes yet",
-    emptyPublicBody: "Quizzes that other learners make public will show up here.",
+    emptyPublicBody:
+      "Quizzes that other learners make public will show up here.",
     emptyMineTitle: "You haven't made a quiz yet",
     emptyMineBody: "Choose a few words and turn them into a quiz.",
     buildFirst: "Build your first quiz",
@@ -544,7 +563,8 @@ const en: Dictionary = {
     noWordsBody: "Words may have been removed after the quiz was made.",
     backToQuizzes: "Back to quizzes",
     createTitle: "Create a quiz",
-    createDesc: "Give it a title, pick the words, and choose whether other learners can take it.",
+    createDesc:
+      "Give it a title, pick the words, and choose whether other learners can take it.",
     fieldTitle: "Title",
     fieldTitlePlaceholder: "My N5 verbs",
     fieldDescription: "Description",
@@ -571,7 +591,8 @@ const en: Dictionary = {
     correct: "Correct",
     incorrect: "Incorrect",
     resultsMissingTitle: "Results aren't available",
-    resultsMissingBody: "Detailed results are shown right after you submit. If you refreshed the page, they are no longer stored.",
+    resultsMissingBody:
+      "Detailed results are shown right after you submit. If you refreshed the page, they are no longer stored.",
   },
   auth: {
     login: "Sign in",
@@ -606,12 +627,15 @@ const en: Dictionary = {
     sendResetLink: "Send reset link",
     resetSent: "If an account uses that email, a reset link is on its way.",
     resendTitle: "Resend verification email",
-    resendDesc: "Enter your email and we will send you a new verification link.",
+    resendDesc:
+      "Enter your email and we will send you a new verification link.",
     sendLink: "Send link",
-    resendSent: "If an account uses that email, a new verification link is on its way.",
+    resendSent:
+      "If an account uses that email, a new verification link is on its way.",
     sending: "Sending…",
     tryAgainIn: (seconds) => `Try again in ${seconds}s`,
-    rateLimited: (seconds) => `Too many requests. Wait ${seconds}s before trying again.`,
+    rateLimited: (seconds) =>
+      `Too many requests. Wait ${seconds}s before trying again.`,
     tooManyRequests: "Too many requests. Wait a moment and try again.",
     requestFailed: "Something went wrong. Try again.",
     rememberPassword: "Remembered it?",
@@ -623,14 +647,16 @@ const en: Dictionary = {
     updating: "Updating…",
     passwordUpdated: "Password updated. Sign in with the new one.",
     resetFailed: "Could not reset the password.",
-    missingResetToken: "This link has no reset token. Request a new reset link.",
+    missingResetToken:
+      "This link has no reset token. Request a new reset link.",
     requestNewLink: "Request a new link",
     verifyTitle: "Verify your email",
     verifyDesc: "We are checking the link from your email.",
     verifying: "Verifying your email…",
     verified: "Your email is verified. You can sign in now.",
     verifyFailed: "Verification failed.",
-    missingVerifyToken: "This link has no verification token. Use the link from your email, or request a new one.",
+    missingVerifyToken:
+      "This link has no verification token. Use the link from your email, or request a new one.",
     goToLogin: "Go to sign in",
     tryAgain: "Try again",
   },
@@ -642,12 +668,15 @@ const en: Dictionary = {
     learned: (learned, total) => `${learned} / ${total} learned`,
     continue: "Continue",
     signInTitle: "Sign in to keep your place",
-    signIn: "The dojo remembers where you stopped, which words are due and your daily streak.",
+    signIn:
+      "The dojo remembers where you stopped, which words are due and your daily streak.",
     newWords: "New words come after today's reviews.",
-    loadError: "Could not load your progress. Your practice still works and will sync later.",
+    loadError:
+      "Could not load your progress. Your practice still works and will sync later.",
   },
   footer: {
-    quote: "「千里の道も一歩から」— A journey of a thousand miles begins with a single step.",
+    quote:
+      "「千里の道も一歩から」— A journey of a thousand miles begins with a single step.",
     crafted: "Crafted with precision.",
   },
 };
@@ -677,7 +706,7 @@ const si: Dictionary = {
     eyebrow: "JLPT N5 සිට N1 දක්වා · නොමිලේ",
     headline: "වචනවල මාවත,",
     headlineAccent: "N5 සිට N1 දක්වා.",
-    body: "සෑම JLPT මට්ටමකටම වචන, කන්ජි, ව්‍යාකරණ, කියවීම සහ සවන්දීම. ඔබ අමතක කිරීමට පෙර එක් එක් වචනය නැවත පුනරීක්ෂණයට එයි, සම්පූර්ණ N3 ආදර්ශ ප්‍රශ්න පත්‍ර ඔබ සිටින තැන පෙන්වයි.",
+    body: "සෑම JLPT මට්ටමකටම වචන, කන්ජි, ව්‍යාකරණ, කියවීම සහ සවන්දීම. ඔබ අමතක කිරීමට පෙර එක් එක් වචනය නැවත පුනරීක්ෂණයට එයි, සම්පූර්ණ N2 සහ N3 ආදර්ශ ප්‍රශ්න පත්‍ර ඔබ සිටින තැන පෙන්වයි.",
     startPractising: "පුහුණුව අරඹන්න",
     continueStudying: "ඉගෙනීම දිගටම කරන්න",
     createAccount: "නොමිලේ ගිණුමක් සාදන්න",
@@ -686,7 +715,7 @@ const si: Dictionary = {
     statWords: "වචන",
     statKanji: "කන්ජි",
     statGrammar: "ව්‍යාකරණ කරුණු",
-    statMock: "N3 ආදර්ශ ප්‍රශ්න පත්‍ර",
+    statMock: "N2 සහ N3 ආදර්ශ ප්‍රශ්න පත්‍ර",
     previewLabel: "කාඩ්පතක් උත්සාහ කරන්න",
     pronounce: "උච්චාරණය අසන්න",
     tapReveal: "පෙරළීමට තට්ටු කරන්න",
@@ -719,7 +748,7 @@ const si: Dictionary = {
       },
       mock: {
         title: "ආදර්ශ විභාග",
-        desc: "සැබෑ කාල සීමා සහිත N3 ප්‍රශ්න පත්‍ර. සම්පූර්ණ පත්‍රය හෝ එක් කොටසක් පමණක් කරන්න.",
+        desc: "සැබෑ කාල සීමා සහිත N2 සහ N3 ප්‍රශ්න පත්‍ර. සම්පූර්ණ පත්‍රය හෝ එක් කොටසක් පමණක් කරන්න.",
         cta: "ප්‍රශ්න පත්‍රයක් කරන්න",
       },
       review: {
@@ -731,17 +760,28 @@ const si: Dictionary = {
     stepsKicker: "එය ක්‍රියා කරන ආකාරය",
     stepsTitle: "සෑම දිනකම ටිකක්",
     steps: [
-      { title: "ඔබේ මට්ටම තෝරන්න", desc: "N5 සිට අරඹන්න, නැතහොත් ඔබ ඉගෙන ගන්නා මට්ටමට කෙලින්ම යන්න." },
-      { title: "පුහුණු වී පුනරීක්ෂණය කරන්න", desc: "කෙටි අභ්‍යාස සහ කාඩ්පත්. නියමිත පුනරීක්ෂණ මුලින්, නව වචන පසුව." },
-      { title: "ඔබම පරීක්ෂා කරන්න", desc: "කාල සීමා සහිත ආදර්ශ ප්‍රශ්න පත්‍රයක් කර එක් එක් කොටසේ ලකුණු බලන්න." },
+      {
+        title: "ඔබේ මට්ටම තෝරන්න",
+        desc: "N5 සිට අරඹන්න, නැතහොත් ඔබ ඉගෙන ගන්නා මට්ටමට කෙලින්ම යන්න.",
+      },
+      {
+        title: "පුහුණු වී පුනරීක්ෂණය කරන්න",
+        desc: "කෙටි අභ්‍යාස සහ කාඩ්පත්. නියමිත පුනරීක්ෂණ මුලින්, නව වචන පසුව.",
+      },
+      {
+        title: "ඔබම පරීක්ෂා කරන්න",
+        desc: "කාල සීමා සහිත ආදර්ශ ප්‍රශ්න පත්‍රයක් කර එක් එක් කොටසේ ලකුණු බලන්න.",
+      },
     ],
     ctaTitle: "ඔබේ ප්‍රගතිය සුරකින්න",
-    ctaBody: "නොමිලේ ගිණුමක් ඔබේ පුනරීක්ෂණ, දින පෙළ, ප්‍රශ්නාවලි සහ ආදර්ශ විභාග ලකුණු සෑම උපාංගයකම සුරකියි.",
+    ctaBody:
+      "නොමිලේ ගිණුමක් ඔබේ පුනරීක්ෂණ, දින පෙළ, ප්‍රශ්නාවලි සහ ආදර්ශ විභාග ලකුණු සෑම උපාංගයකම සුරකියි.",
     welcomeBack: "නැවත සාදරයෙන් පිළිගනිමු",
   },
   practice: {
     title: "පුහුණු ශාලාව",
-    subtitle: "වචන, කන්ජි, ව්‍යාකරණ, සවන්දීම, කියවීම සහ කානා සඳහා කෙටි අභ්‍යාස. JLPT මට්ටමක් තෝරා, ඉන්පසු අභ්‍යාසයක් තෝරන්න.",
+    subtitle:
+      "වචන, කන්ජි, ව්‍යාකරණ, සවන්දීම, කියවීම සහ කානා සඳහා කෙටි අභ්‍යාස. JLPT මට්ටමක් තෝරා, ඉන්පසු අභ්‍යාසයක් තෝරන්න.",
     speed: "හඬ",
     speedHint: "සාමාන්‍ය සහ සෙමින් ජපන් හඬ අතර මාරු කරන්න",
     soundOn: "ශබ්ද ප්‍රයෝග නිහඬ කරන්න",
@@ -863,7 +903,8 @@ const si: Dictionary = {
     mine: "ඔබේ ප්‍රශ්නාවලි",
     mineCount: (count) => `${count} ක් සාදා ඇත`,
     signInTitle: "ඔබේම ප්‍රශ්නාවලි සෑදීමට පිවිසෙන්න",
-    signInBody: "පුහුණු වීමට අවශ්‍ය වචන තෝරා ප්‍රශ්නාවලියක් ලෙස සුරකින්න, ලකුණු තබා ගන්න.",
+    signInBody:
+      "පුහුණු වීමට අවශ්‍ය වචන තෝරා ප්‍රශ්නාවලියක් ලෙස සුරකින්න, ලකුණු තබා ගන්න.",
     signIn: "පිවිසෙන්න",
     emptyPublicTitle: "තවම ප්‍රජා ප්‍රශ්නාවලි නැත",
     emptyPublicBody: "අනෙක් ඉගෙනුම්කරුවන් පොදු කරන ප්‍රශ්නාවලි මෙහි පෙන්වයි.",
@@ -893,7 +934,8 @@ const si: Dictionary = {
     noWordsBody: "ප්‍රශ්නාවලිය සෑදූ පසු වචන ඉවත් කර තිබිය හැක.",
     backToQuizzes: "ප්‍රශ්නාවලි වෙත ආපසු",
     createTitle: "ප්‍රශ්නාවලියක් සාදන්න",
-    createDesc: "මාතෘකාවක් දී, වචන තෝරා, අනෙක් අයට එය කළ හැකිද යන්න තීරණය කරන්න.",
+    createDesc:
+      "මාතෘකාවක් දී, වචන තෝරා, අනෙක් අයට එය කළ හැකිද යන්න තීරණය කරන්න.",
     fieldTitle: "මාතෘකාව",
     fieldTitlePlaceholder: "මගේ N5 ක්‍රියා පද",
     fieldDescription: "විස්තරය",
@@ -920,7 +962,8 @@ const si: Dictionary = {
     correct: "නිවැරදියි",
     incorrect: "වැරදියි",
     resultsMissingTitle: "ප්‍රතිඵල ලබා ගත නොහැක",
-    resultsMissingBody: "විස්තරාත්මක ප්‍රතිඵල පෙන්වන්නේ යොමු කළ විගසයි. ඔබ පිටුව නැවුම් කළේ නම් ඒවා තවදුරටත් ගබඩා කර නැත.",
+    resultsMissingBody:
+      "විස්තරාත්මක ප්‍රතිඵල පෙන්වන්නේ යොමු කළ විගසයි. ඔබ පිටුව නැවුම් කළේ නම් ඒවා තවදුරටත් ගබඩා කර නැත.",
   },
   auth: {
     login: "පිවිසීම",
@@ -960,7 +1003,8 @@ const si: Dictionary = {
     resendSent: "එම ඊමේලයට ගිණුමක් ඇත්නම්, නව තහවුරු සබැඳියක් එවා ඇත.",
     sending: "යවමින්…",
     tryAgainIn: (seconds) => `තත්පර ${seconds}කින් නැවත උත්සාහ කරන්න`,
-    rateLimited: (seconds) => `ඉල්ලීම් වැඩියි. නැවත උත්සාහ කිරීමට තත්පර ${seconds}ක් රැඳී සිටින්න.`,
+    rateLimited: (seconds) =>
+      `ඉල්ලීම් වැඩියි. නැවත උත්සාහ කිරීමට තත්පර ${seconds}ක් රැඳී සිටින්න.`,
     tooManyRequests: "ඉල්ලීම් වැඩියි. මොහොතකින් නැවත උත්සාහ කරන්න.",
     requestFailed: "යමක් වැරදුණා. නැවත උත්සාහ කරන්න.",
     rememberPassword: "මතක් වුණාද?",
@@ -972,14 +1016,16 @@ const si: Dictionary = {
     updating: "යාවත්කාලීන කරමින්…",
     passwordUpdated: "මුරපදය යාවත්කාලීන වුණා. නව මුරපදයෙන් පිවිසෙන්න.",
     resetFailed: "මුරපදය යළි සැකසීමට නොහැකි වුණා.",
-    missingResetToken: "මෙම සබැඳියේ යළි සැකසීමේ ටෝකනයක් නැත. නව සබැඳියක් ඉල්ලන්න.",
+    missingResetToken:
+      "මෙම සබැඳියේ යළි සැකසීමේ ටෝකනයක් නැත. නව සබැඳියක් ඉල්ලන්න.",
     requestNewLink: "නව සබැඳියක් ඉල්ලන්න",
     verifyTitle: "ඊමේලය තහවුරු කරන්න",
     verifyDesc: "ඔබේ ඊමේලයේ සබැඳිය පරීක්ෂා කරමින් සිටිමු.",
     verifying: "ඊමේලය තහවුරු කරමින්…",
     verified: "ඔබේ ඊමේලය තහවුරුයි. දැන් පිවිසිය හැක.",
     verifyFailed: "තහවුරු කිරීම අසාර්ථකයි.",
-    missingVerifyToken: "මෙම සබැඳියේ තහවුරු ටෝකනයක් නැත. ඊමේලයේ සබැඳිය භාවිතා කරන්න, නැතහොත් නව එකක් ඉල්ලන්න.",
+    missingVerifyToken:
+      "මෙම සබැඳියේ තහවුරු ටෝකනයක් නැත. ඊමේලයේ සබැඳිය භාවිතා කරන්න, නැතහොත් නව එකක් ඉල්ලන්න.",
     goToLogin: "පිවිසීමට යන්න",
     tryAgain: "නැවත උත්සාහ කරන්න",
   },
@@ -991,9 +1037,11 @@ const si: Dictionary = {
     learned: (learned, total) => `ඉගෙනගත් ${learned} / ${total}`,
     continue: "නැවත පටන් ගන්න",
     signInTitle: "ඔබේ ස්ථානය තබා ගැනීමට පිවිසෙන්න",
-    signIn: "ඔබ නැවැත්තු තැන, නැවත බැලිය යුතු වචන සහ දෛනික පෙළ ශාලාව මතක තබා ගනී.",
+    signIn:
+      "ඔබ නැවැත්තු තැන, නැවත බැලිය යුතු වචන සහ දෛනික පෙළ ශාලාව මතක තබා ගනී.",
     newWords: "අද නැවත කියවීමෙන් පස්සේ අලුත් වචන.",
-    loadError: "ඔබේ ප්‍රගතිය පූරණය කළ නොහැකි විය. පුහුණුව තවමත් ක්‍රියා කරයි, පසුව සමමුහුර්ත වේ.",
+    loadError:
+      "ඔබේ ප්‍රගතිය පූරණය කළ නොහැකි විය. පුහුණුව තවමත් ක්‍රියා කරයි, පසුව සමමුහුර්ත වේ.",
   },
   footer: {
     quote: "「千里の道も一歩から」— සැතපුම් දහසක ගමන පටන් ගන්නේ එක පියවරකින්.",
