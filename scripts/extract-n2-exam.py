@@ -412,6 +412,23 @@ def question_number(line: dict, expected: int | None = None) -> int | None:
     return int(match.group(1))
 
 
+def blank_choice_row(text: str) -> tuple[int, list[tuple[int, str]]] | None:
+    """A grammar-blank choice line: '48 1 気になるもの 2 気になるだけ'."""
+    match = re.match(r"^([0-9]{1,2})\s+([1-4]\b.*)$", text)
+    if not match:
+        return None
+    chunks = option_chunks(match.group(2))
+    if not chunks or chunks[0][0] != 1:
+        return None
+    return int(match.group(1)), chunks
+
+
+def fills_blanks(mondai: dict | None) -> bool:
+    if not mondai:
+        return False
+    return "中に入る" in plain(mondai.get("instruction", ""))
+
+
 def option_chunks(text: str) -> list[tuple[int, str]] | None:
     raw = list(
         re.finditer(
@@ -674,12 +691,40 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                 item["options"].sort(key=lambda option: option["number"])
                 continue
 
+            if fills_blanks(mondai):
+                row = blank_choice_row(text)
+                if row and mondai is not None:
+                    blank, chunks = row
+                    item = next((it for it in mondai["items"] if it["number"] == blank), None)
+                    if item is None:
+                        item = new_item(blank, f"（{blank}）", page_no)
+                        mondai["items"].append(item)
+                    # A fresh "48 1 …" row replaces choices that were attached to the wrong blank.
+                    item["options"] = [{"number": n, "text": body} for n, body in chunks]
+                    if item["prompt"] and not item["prompt"].startswith("（"):
+                        item["prompt"] = f"（{blank}）"
+                    expected = blank + 1
+                    continue
+
             number = question_number(line, expected)
             if number != expected and expected is not None:
                 # A reconstructed paper sometimes skips one printed number.
                 if question_number(line, expected + 1) == expected + 1:
                     expected += 1
                     number = expected
+                elif (
+                    number is not None
+                    and number < expected
+                    and number >= 10
+                    and line["x"] < 70
+                    and part is not None
+                    and part["id"] == "reading"
+                    and mondai is not None
+                    and not mondai["items"]
+                    and len(plain(text)) > len(str(number)) + 4
+                ):
+                    # 問題14 sometimes repeats numbers already used by the long reading.
+                    expected = number
             if number == expected and mondai is not None:
                 rest = text[len(str(number)):].strip()
                 same_line_options = option_chunks(rest) if rest else None
@@ -753,6 +798,8 @@ def parse_paper(doc: pymupdf.Document) -> dict:
                     sec_mondai["kind"] = "reading"
                 else:
                     sec_mondai["kind"] = "choice"
+                if fills_blanks(sec_mondai):
+                    sec_mondai["items"].sort(key=lambda it: it["number"])
                 for it in sec_mondai["items"]:
                     it["prompt"] = clean(it["prompt"])
                 kept = []
@@ -1387,6 +1434,7 @@ def apply_answers(exam: dict, answers: dict) -> None:
                 bucket = answers["grammar"]
             if part["id"] == "reading":
                 bucket = answers["reading"]
+            used_reading: set[int] = set()
             for mondai in part["mondai"]:
                 for item in mondai["items"]:
                     if part["id"] == "listening":
@@ -1394,6 +1442,16 @@ def apply_answers(exam: dict, answers: dict) -> None:
                         # A missing key cell must not wipe an answer already taken from the script.
                         if value is not None:
                             item["answer"] = value
+                    elif part["id"] == "reading" and bucket is not None:
+                        number = item["number"]
+                        if number not in used_reading and bucket.get(number) is not None:
+                            item["answer"] = bucket[number]
+                            used_reading.add(number)
+                        else:
+                            nxt = next((n for n in sorted(bucket) if n not in used_reading), None)
+                            if nxt is not None:
+                                item["answer"] = bucket[nxt]
+                                used_reading.add(nxt)
                     elif bucket is not None:
                         item["answer"] = bucket.get(item["number"])
                         if (
