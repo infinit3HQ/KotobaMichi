@@ -2039,7 +2039,8 @@
                   "options": [],
                   "sourcePage": 20,
                   "spoken": "駅の<ruby>窓口<rt>まどぐち</rt></ruby>で女の人が電車の<ruby>切符<rt>きっぷ</rt></ruby>を買おうとしています。女の人はどの切符を買いますか。1問い 女の人はどの切符を買いますか。",
-                  "answer": 4
+                  "answer": 4,
+                  "image": "images/listening-1-2.png"
                 },
                 {
                   "number": 3,
