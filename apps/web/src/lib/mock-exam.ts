@@ -67,11 +67,18 @@ export type ScorableExam = {
   }[];
 };
 
+/** `2024-12` → `2024`. Returns null when the session is not a year and month. */
+export function yearFromSession(session: string): string | null {
+  return /^(\d{4})-\d{2}$/.exec(session)?.[1] ?? null;
+}
+
 /** What the catalog needs per exam, without question text. */
 export type MockExamSummary = {
   id: string;
   title: string;
   level: string;
+  /** Calendar year of the sitting, from `session` (`2024-12` → `2024`). */
+  year: string;
   questionCount: number;
   minutes: number[];
   scoring: ScorableExam;
