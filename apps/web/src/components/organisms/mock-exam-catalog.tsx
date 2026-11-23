@@ -1,17 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Timer } from "lucide-react";
+import { ArrowRight, SearchX, Timer } from "lucide-react";
 import { Badge } from "@/components/atoms/badge";
+import { Button } from "@/components/atoms/button";
 import { Card, CardContent } from "@/components/atoms/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/atoms/select";
 import { EmptyState } from "@/components/molecules/empty-state";
+import { SegmentedControl } from "@/components/molecules/segmented-control";
 import {
   formatPoints,
   paperPoints,
   SECTION_POINTS,
   type MockExamSummary,
 } from "@/lib/mock-exam";
+import {
+  ALL_LEVELS,
+  ALL_YEARS,
+  catalogLevels,
+  catalogYears,
+  filterMockExams,
+} from "@/lib/mock-catalog";
 import { completedFromSave, summarizeSitting } from "@/lib/mock-sitting";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
@@ -121,8 +131,68 @@ function ExamCard({
   );
 }
 
+function sittingCount(shown: number, total: number) {
+  const noun = total === 1 ? "sitting" : "sittings";
+  return `${shown} of ${total} ${noun}`;
+}
+
+function SittingFilters({
+  level,
+  year,
+  levels,
+  years,
+  onLevelChange,
+  onYearChange,
+}: {
+  level: string;
+  year: string;
+  levels: readonly string[];
+  years: readonly string[];
+  onLevelChange: (level: string) => void;
+  onYearChange: (year: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <div className="w-full overflow-x-auto [scrollbar-width:none] sm:w-auto [&::-webkit-scrollbar]:hidden">
+        <SegmentedControl
+          value={level}
+          onValueChange={onLevelChange}
+          options={[
+            { value: ALL_LEVELS, label: "All levels" },
+            ...levels.map((value) => ({ value, label: value })),
+          ]}
+          ariaLabel="Level"
+          fullWidth
+          className="min-w-max sm:w-fit"
+        />
+      </div>
+      <Select value={year} onValueChange={onYearChange}>
+        <SelectTrigger aria-label="Year" className="w-full sm:w-36">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent className="max-h-72">
+          <SelectItem value={ALL_YEARS}>All years</SelectItem>
+          {years.map((value) => (
+            <SelectItem key={value} value={value}>
+              {value}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+
 export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
   const { attempts } = useMyAttempts();
+  const [level, setLevel] = useState(ALL_LEVELS);
+  const [year, setYear] = useState(ALL_YEARS);
+  const levels = useMemo(() => catalogLevels(exams), [exams]);
+  const years = useMemo(() => catalogYears(exams), [exams]);
+  const filtered = useMemo(
+    () => filterMockExams(exams, { level, year }),
+    [exams, level, year],
+  );
 
   if (exams.length === 0) {
     return (
@@ -134,13 +204,46 @@ export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
     );
   }
 
+  const clearFilters = () => {
+    setLevel(ALL_LEVELS);
+    setYear(ALL_YEARS);
+  };
+
   return (
-    <ul className="grid gap-4 md:grid-cols-2">
-      {exams.map((exam) => (
-        <li key={exam.id}>
-          <ExamCard exam={exam} attempts={attempts} />
-        </li>
-      ))}
-    </ul>
+    <div className="space-y-4">
+      <div className="space-y-3">
+        <SittingFilters
+          level={level}
+          year={year}
+          levels={levels}
+          years={years}
+          onLevelChange={setLevel}
+          onYearChange={setYear}
+        />
+        <p className="text-sm text-muted-foreground tabular-nums" aria-live="polite">
+          {sittingCount(filtered.length, exams.length)}
+        </p>
+      </div>
+      {filtered.length === 0 ? (
+        <EmptyState
+          icon={SearchX}
+          title="No sittings match"
+          description="Try another level or year."
+          action={
+            <Button variant="outline" onClick={clearFilters}>
+              Clear filters
+            </Button>
+          }
+        />
+      ) : (
+        <ul className="grid gap-4 md:grid-cols-2">
+          {filtered.map((exam) => (
+            <li key={exam.id}>
+              <ExamCard exam={exam} attempts={attempts} />
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
