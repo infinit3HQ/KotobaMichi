@@ -7,6 +7,12 @@ export const MOCK_SECTION_IDS = [
 
 export type MockSectionId = (typeof MOCK_SECTION_IDS)[number];
 
+/** N2 sits 言語知識 and 読解 on one clock. N3 keeps the three ids above. */
+export const KNOWN_SECTION_IDS = [
+	...MOCK_SECTION_IDS,
+	'language-reading',
+] as const;
+
 /** `sectionIndex` while the student is on the section menu rather than inside a section. */
 export const AT_MENU = -1;
 
@@ -18,12 +24,13 @@ export const AT_MENU = -1;
 export function completedSectionsFor(
 	raw: readonly string[] | undefined,
 	sectionIndex: number,
-	finished: boolean
-): MockSectionId[] {
+	finished: boolean,
+	sectionIds: readonly string[] = MOCK_SECTION_IDS
+): string[] {
 	if (raw) {
 		const wanted = new Set(raw);
-		return MOCK_SECTION_IDS.filter(id => wanted.has(id));
+		return sectionIds.filter(id => wanted.has(id));
 	}
-	if (finished) return [...MOCK_SECTION_IDS];
-	return MOCK_SECTION_IDS.slice(0, Math.max(0, sectionIndex));
+	if (finished) return [...sectionIds];
+	return sectionIds.slice(0, Math.max(0, sectionIndex));
 }

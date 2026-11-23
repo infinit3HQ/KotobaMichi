@@ -25,8 +25,20 @@ const exam: ScorableExam = {
           id: "p1",
           title: "文字・語彙",
           mondai: [
-            { number: 1, items: [{ number: 1, answer: 1 }, { number: 2, answer: 2 }] },
-            { number: 2, items: [{ number: 3, answer: 3 }, { number: 4, answer: 4 }] },
+            {
+              number: 1,
+              items: [
+                { number: 1, answer: 1 },
+                { number: 2, answer: 2 },
+              ],
+            },
+            {
+              number: 2,
+              items: [
+                { number: 3, answer: 3 },
+                { number: 4, answer: 4 },
+              ],
+            },
           ],
         },
       ],
@@ -35,15 +47,27 @@ const exam: ScorableExam = {
       id: "B",
       title: "Listening",
       parts: [
-        { id: "p2", title: "聴解 1", mondai: [{ number: 1, items: [{ number: 1, answer: 1 }] }] },
-        { id: "p3", title: "聴解 2", mondai: [{ number: 1, items: [{ number: 1, answer: 2 }, { number: 2 }] }] },
+        {
+          id: "p2",
+          title: "聴解 1",
+          mondai: [{ number: 1, items: [{ number: 1, answer: 1 }] }],
+        },
+        {
+          id: "p3",
+          title: "聴解 2",
+          mondai: [
+            { number: 1, items: [{ number: 1, answer: 2 }, { number: 2 }] },
+          ],
+        },
       ],
     },
   ],
 };
 
 const all = (pairs: [string, string, number, number, number][]) =>
-  Object.fromEntries(pairs.map(([s, p, m, i, choice]) => [answerKey(s, p, m, i), choice]));
+  Object.fromEntries(
+    pairs.map(([s, p, m, i, choice]) => [answerKey(s, p, m, i), choice]),
+  );
 
 describe("scoreExam", () => {
   it("counts correct answers per section", () => {
@@ -70,8 +94,14 @@ describe("scoreByMondai", () => {
     const rows = scoreByMondai(exam, {});
     const a = rows.filter((row) => row.sectionId === "A");
     const b = rows.filter((row) => row.sectionId === "B");
-    expect(a.map((row) => row.share)).toEqual([SECTION_POINTS / 2, SECTION_POINTS / 2]);
-    expect(b.map((row) => row.share)).toEqual([SECTION_POINTS / 2, SECTION_POINTS / 2]);
+    expect(a.map((row) => row.share)).toEqual([
+      SECTION_POINTS / 2,
+      SECTION_POINTS / 2,
+    ]);
+    expect(b.map((row) => row.share)).toEqual([
+      SECTION_POINTS / 2,
+      SECTION_POINTS / 2,
+    ]);
   });
 
   it("awards the full section for a perfect paper", () => {
@@ -81,7 +111,9 @@ describe("scoreByMondai", () => {
       ["A", "p1", 2, 3, 3],
       ["A", "p1", 2, 4, 4],
     ]);
-    expect(pointsForSection(scoreByMondai(exam, answers), "A")).toBeCloseTo(SECTION_POINTS);
+    expect(pointsForSection(scoreByMondai(exam, answers), "A")).toBeCloseTo(
+      SECTION_POINTS,
+    );
   });
 
   it("gives partial credit inside a 問題", () => {
@@ -105,6 +137,44 @@ describe("responseBand", () => {
   });
 });
 
+describe("N2 papers", () => {
+  const n2 = MOCK_EXAMS.filter((exam) => exam.level === "N2");
+
+  it("keeps the official two clocks and an answer on every item", () => {
+    expect(n2).toHaveLength(32);
+    expect(MOCK_EXAMS.filter((exam) => exam.level === "N3")).toHaveLength(30);
+    for (const exam of n2) {
+      expect(
+        exam.sections.map((section) => [section.id, section.minutes]),
+      ).toEqual([
+        ["language-reading", 105],
+        ["listening", 50],
+      ]);
+      expect(exam.sections[0]?.parts.map((part) => part.id)).toEqual([
+        "vocabulary",
+        "grammar",
+        "reading",
+      ]);
+      for (const section of exam.sections) {
+        for (const part of section.parts) {
+          for (const mondai of part.mondai) {
+            for (const item of mondai.items) {
+              expect(
+                item.answer,
+                `${exam.id} ${section.id} ${mondai.number}.${item.number}`,
+              ).toBeGreaterThanOrEqual(1);
+              expect(
+                item.answer,
+                `${exam.id} ${section.id} ${mondai.number}.${item.number}`,
+              ).toBeLessThanOrEqual(4);
+            }
+          }
+        }
+      }
+    }
+  });
+});
+
 describe("catalog summaries", () => {
   it("score past attempts exactly like the full exam does", () => {
     for (const full of MOCK_EXAMS) {
@@ -113,14 +183,18 @@ describe("catalog summaries", () => {
         for (const part of section.parts) {
           for (const mondai of part.mondai) {
             for (const item of mondai.items) {
-              answers[answerKey(section.id, part.id, mondai.number, item.number)] = (item.number % 4) + 1;
+              answers[
+                answerKey(section.id, part.id, mondai.number, item.number)
+              ] = (item.number % 4) + 1;
             }
           }
         }
       }
       const slim = toScoringShape(full);
       expect(scoreExam(slim, answers)).toEqual(scoreExam(full, answers));
-      expect(scoreByMondai(slim, answers)).toEqual(scoreByMondai(full, answers));
+      expect(scoreByMondai(slim, answers)).toEqual(
+        scoreByMondai(full, answers),
+      );
       expect(questionCount(slim)).toBe(questionCount(full));
     }
   });

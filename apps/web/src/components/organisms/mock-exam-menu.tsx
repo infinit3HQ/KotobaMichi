@@ -22,39 +22,60 @@ function SectionCards({
   onOpen: (index: number) => void;
 }) {
   return (
-    <ol className="grid gap-4 sm:grid-cols-3">
+    <ol
+      className={
+        exam.sections.length > 2
+          ? "grid gap-4 sm:grid-cols-3"
+          : "grid gap-4 sm:grid-cols-2"
+      }
+    >
       {exam.sections.map((section, index) => {
         const done = completed.includes(section.id);
         const isNext = index === suggested;
         return (
           <li key={section.id}>
-            <Card className={cn("h-full gap-0 py-0", isNext && !done && "border-primary/50", done && "bg-muted/40")}>
+            <Card
+              className={cn(
+                "h-full gap-0 py-0",
+                isNext && !done && "border-primary/50",
+                done && "bg-muted/40",
+              )}
+            >
               <CardContent className="flex h-full flex-col gap-3 p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-xs text-muted-foreground">Section {index + 1}</p>
+                  <p className="text-xs text-muted-foreground">
+                    Section {index + 1}
+                  </p>
                   {done ? (
                     <Badge variant="secondary" className="gap-1">
                       <Check aria-hidden />
                       Done
                     </Badge>
                   ) : isNext ? (
-                    <Badge variant="outline" className="border-primary/40 text-primary">
+                    <Badge
+                      variant="outline"
+                      className="border-primary/40 text-primary"
+                    >
                       Next
                     </Badge>
                   ) : null}
                 </div>
-                <p className="font-jp font-semibold tracking-tight">{section.title}</p>
+                <p className="font-jp font-semibold tracking-tight">
+                  {section.title}
+                </p>
                 <p
                   className={cn(
                     "font-mono text-2xl font-semibold tabular-nums tracking-tight",
-                    done && "text-muted-foreground"
+                    done && "text-muted-foreground",
                   )}
                 >
                   {section.minutes}:00
                 </p>
                 <div className="mt-auto pt-1">
                   {done ? (
-                    <p className="text-sm text-muted-foreground">Closed and saved for scoring.</p>
+                    <p className="text-sm text-muted-foreground">
+                      Closed and saved for scoring.
+                    </p>
                   ) : (
                     <Button
                       type="button"
@@ -100,7 +121,12 @@ export function MockExamBrief({
         description={exam.note}
         actions={
           first ? (
-            <Button type="button" size="lg" className="w-full sm:w-auto" onClick={() => onBegin(0)}>
+            <Button
+              type="button"
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => onBegin(0)}
+            >
               <Play />
               Start the full paper
             </Button>
@@ -109,12 +135,25 @@ export function MockExamBrief({
       />
       <section className="space-y-3">
         <SectionHeading title="Sections" meta="Or start any one on its own" />
-        <SectionCards exam={exam} completed={[]} suggested={0} onOpen={onBegin} />
+        <SectionCards
+          exam={exam}
+          completed={[]}
+          suggested={0}
+          onOpen={onBegin}
+        />
       </section>
       <section className="space-y-3">
         <SectionHeading title="How the sitting works" />
         <ul className="list-disc space-y-1.5 pl-5 text-sm text-muted-foreground marker:text-border">
-          {BRIEF_RULES.map((rule) => (
+          {(exam.sections.length === 3
+            ? BRIEF_RULES
+            : [
+                "Take the sections in the paper’s order or pick any one. Each runs on its own clock.",
+                "A section locks when its clock ends or you close it. Leftover time does not move forward.",
+                "N2 gives you 105 minutes for 言語知識・読解, then 50 minutes for 聴解. The total out of 120 and the pass line appear once both sections are done.",
+                "Answers stay hidden until the sitting is over.",
+              ]
+          ).map((rule) => (
             <li key={rule}>{rule}</li>
           ))}
           <li>
@@ -130,10 +169,12 @@ export function MockExamBrief({
 
 function EndSittingConfirm({
   left,
+  sectionCount,
   onCancel,
   onEnd,
 }: {
   left: readonly string[];
+  sectionCount: number;
   onCancel: () => void;
   onEnd: () => void;
 }) {
@@ -141,11 +182,26 @@ function EndSittingConfirm({
     <Card className="gap-0 py-0">
       <CardContent className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <p className="text-sm">
-          End now? <span className="font-jp">{left.join("、")}</span> will not be scored, and there is no total out of
-          180 without all three.
+          {sectionCount === 3 ? (
+            <>
+              End now? <span className="font-jp">{left.join("、")}</span> will
+              not be scored, and there is no total out of 180 without all three.
+            </>
+          ) : (
+            <>
+              End now? <span className="font-jp">{left.join("、")}</span> will
+              not be scored, and there is no total out of {sectionCount * 60}{" "}
+              without both sections.
+            </>
+          )}
         </p>
         <div className="flex gap-2">
-          <Button type="button" variant="ghost" className="flex-1 sm:flex-none" onClick={onCancel}>
+          <Button
+            type="button"
+            variant="ghost"
+            className="flex-1 sm:flex-none"
+            onClick={onCancel}
+          >
             Keep going
           </Button>
           <Button type="button" className="flex-1 sm:flex-none" onClick={onEnd}>
@@ -171,7 +227,9 @@ export function MockSectionMenu({
   const [confirmEnd, setConfirmEnd] = useState(false);
   const suggested = nextSuggestedSection(exam, completed);
   const next = suggested == null ? null : exam.sections[suggested];
-  const left = exam.sections.filter((section) => !completed.includes(section.id)).map((section) => section.title);
+  const left = exam.sections
+    .filter((section) => !completed.includes(section.id))
+    .map((section) => section.title);
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -188,15 +246,32 @@ export function MockSectionMenu({
               </Button>
             )}
             {completed.length > 0 && (
-              <Button type="button" variant="outline" onClick={() => setConfirmEnd(true)} disabled={confirmEnd}>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setConfirmEnd(true)}
+                disabled={confirmEnd}
+              >
                 End sitting
               </Button>
             )}
           </>
         }
       />
-      {confirmEnd && <EndSittingConfirm left={left} onCancel={() => setConfirmEnd(false)} onEnd={onEnd} />}
-      <SectionCards exam={exam} completed={completed} suggested={suggested} onOpen={onOpen} />
+      {confirmEnd && (
+        <EndSittingConfirm
+          left={left}
+          sectionCount={exam.sections.length}
+          onCancel={() => setConfirmEnd(false)}
+          onEnd={onEnd}
+        />
+      )}
+      <SectionCards
+        exam={exam}
+        completed={completed}
+        suggested={suggested}
+        onOpen={onOpen}
+      />
     </div>
   );
 }

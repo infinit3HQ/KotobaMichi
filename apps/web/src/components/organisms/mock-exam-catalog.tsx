@@ -6,19 +6,35 @@ import { ArrowRight, Timer } from "lucide-react";
 import { Badge } from "@/components/atoms/badge";
 import { Card, CardContent } from "@/components/atoms/card";
 import { EmptyState } from "@/components/molecules/empty-state";
-import { formatPoints, SECTION_POINTS, type MockExamSummary } from "@/lib/mock-exam";
+import {
+  formatPoints,
+  paperPoints,
+  SECTION_POINTS,
+  type MockExamSummary,
+} from "@/lib/mock-exam";
 import { completedFromSave, summarizeSitting } from "@/lib/mock-sitting";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
 
 /** "Last estimate 112.4/180." for a full sitting, or "Last sitting: 聴解 41.2/60." for a partial one. */
 function lastSittingLine(exam: MockExamSummary, attempt: RemoteMockAttempt) {
-  const completed = completedFromSave(exam.scoring, { ...attempt, finished: true });
-  const summary = summarizeSitting(exam.scoring, attempt.answers ?? {}, completed);
-  if (summary.total != null) return `Last estimate ${formatPoints(summary.total)}/180.`;
+  const completed = completedFromSave(exam.scoring, {
+    ...attempt,
+    finished: true,
+  });
+  const summary = summarizeSitting(
+    exam.scoring,
+    attempt.answers ?? {},
+    completed,
+  );
+  if (summary.total != null)
+    return `Last estimate ${formatPoints(summary.total)}/${paperPoints(exam.scoring.sections.length)}.`;
   const taken = summary.sections
     .filter((section) => section.points != null)
-    .map((section) => `${section.title} ${formatPoints(section.points ?? 0)}/${SECTION_POINTS}`);
+    .map(
+      (section) =>
+        `${section.title} ${formatPoints(section.points ?? 0)}/${SECTION_POINTS}`,
+    );
   return `Last sitting: ${taken.join(", ") || "no section"}.`;
 }
 
@@ -47,9 +63,19 @@ function useMyAttempts() {
   return { signedIn: Boolean(user), attempts };
 }
 
-function ExamCard({ exam, attempts }: { exam: MockExamSummary; attempts: readonly RemoteMockAttempt[] }) {
-  const mine = attempts.filter((attempt) => attempt.examId === exam.id && attempt.status === "finished");
-  const open = attempts.some((attempt) => attempt.examId === exam.id && attempt.status === "in_progress");
+function ExamCard({
+  exam,
+  attempts,
+}: {
+  exam: MockExamSummary;
+  attempts: readonly RemoteMockAttempt[];
+}) {
+  const mine = attempts.filter(
+    (attempt) => attempt.examId === exam.id && attempt.status === "finished",
+  );
+  const open = attempts.some(
+    (attempt) => attempt.examId === exam.id && attempt.status === "in_progress",
+  );
   const latest = mine[0];
   const status = [
     open ? "A sitting is still open." : "",
@@ -77,7 +103,9 @@ function ExamCard({ exam, attempts }: { exam: MockExamSummary; attempts: readonl
               {exam.scoring.sections.map((section, index) => (
                 <span key={section.id}>
                   <span className="font-jp">{section.title}</span>{" "}
-                  <span className="font-mono tabular-nums">{exam.minutes[index]}m</span>
+                  <span className="font-mono tabular-nums">
+                    {exam.minutes[index]}m
+                  </span>
                 </span>
               ))}
             </p>
@@ -97,7 +125,13 @@ export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
   const { attempts } = useMyAttempts();
 
   if (exams.length === 0) {
-    return <EmptyState icon={Timer} title="No mock papers yet" description="Mock papers will show up here once added." />;
+    return (
+      <EmptyState
+        icon={Timer}
+        title="No mock papers yet"
+        description="Mock papers will show up here once added."
+      />
+    );
   }
 
   return (

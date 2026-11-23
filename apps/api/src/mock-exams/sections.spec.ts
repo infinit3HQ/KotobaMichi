@@ -51,6 +51,16 @@ describe('SaveMockAttemptDto', () => {
 		expect(await errorsFor({ ...base, sectionIndex: 1 })).toEqual([]);
 	});
 
+	it('accepts an N2 language-and-reading section', async () => {
+		expect(
+			await errorsFor({
+				...base,
+				sectionIndex: 0,
+				completedSections: ['language-reading'],
+			})
+		).toEqual([]);
+	});
+
 	it('rejects unknown section ids and positions below the menu', async () => {
 		expect(
 			await errorsFor({
