@@ -163,7 +163,7 @@ function SittingFilters({
           ]}
           ariaLabel="Level"
           fullWidth
-          className="min-w-max sm:w-fit"
+          className="sm:w-max"
         />
       </div>
       <Select value={year} onValueChange={onYearChange}>
