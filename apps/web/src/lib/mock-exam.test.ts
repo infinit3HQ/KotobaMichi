@@ -175,6 +175,48 @@ describe("N2 papers", () => {
   });
 });
 
+describe("N1 papers", () => {
+  const n1 = MOCK_EXAMS.filter((exam) => exam.level === "N1");
+
+  it("keeps the official two clocks", () => {
+    expect(n1).toHaveLength(32);
+    for (const exam of n1) {
+      expect(
+        exam.sections.map((section) => [section.id, section.minutes, section.title]),
+      ).toEqual([
+        ["language-reading", 110, "言語知識（文字・語彙・文法）・読解"],
+        ["listening", 55, "聴解"],
+      ]);
+      expect(exam.sections[0]?.parts.map((part) => part.id)).toEqual([
+        "vocabulary",
+        "grammar",
+        "reading",
+      ]);
+    }
+  });
+
+  it("gives July and December 2025 a choice and an answer on every printed item", () => {
+    for (const exam of n1.filter((paper) => paper.session === "2025-07" || paper.session === "2025-12")) {
+      for (const section of exam.sections) {
+        for (const part of section.parts) {
+          for (const mondai of part.mondai) {
+            for (const item of mondai.items) {
+              expect(item.answer, `${exam.id} ${mondai.number}.${item.number}`).toBeGreaterThanOrEqual(1);
+              expect(item.answer, `${exam.id} ${mondai.number}.${item.number}`).toBeLessThanOrEqual(4);
+              const printed = section.id !== "listening";
+              if (printed) {
+                expect(item.options, `${exam.id} ${mondai.number}.${item.number}`).toHaveLength(4);
+              } else if (item.options.length > 0) {
+                expect(item.options, `${exam.id} ${mondai.number}.${item.number}`).toHaveLength(4);
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+});
+
 describe("catalog summaries", () => {
   it("score past attempts exactly like the full exam does", () => {
     for (const full of MOCK_EXAMS) {

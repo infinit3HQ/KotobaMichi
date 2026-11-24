@@ -1,0 +1,2511 @@
+{
+  "id": "n1-2010-12",
+  "level": "N1",
+  "session": "2010-12",
+  "title": "N1 mock · December 2010",
+  "note": "Reconstructed from the sitting's question paper. The answer key is the one printed with that paper, not an official JLPT score.",
+  "audio": {
+    "file": "2010年12月JLPT日语能力考试N1历年真题听力.mp3",
+    "note": "One listening track for the sitting. Start and stop times are not marked yet."
+  },
+  "sections": [
+    {
+      "id": "language-reading",
+      "title": "言語知識（文字・語彙・文法）・読解",
+      "minutes": 110,
+      "parts": [
+        {
+          "id": "vocabulary",
+          "title": "文字・語彙",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題1 <slot/>の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "話しが<u>本筋</u>からずれてしまった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "もとすじ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "もときん"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ほんすじ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ほんきん"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 2,
+                  "prompt": "友人にピアノの<u>伴奏</u>を頼まれた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "はんそう"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ばんそう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "はんそ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ばんそ"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 3,
+                  "prompt": "名探偵の<u>推理</u>で事件は無事に解決した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "しんり"
+                    },
+                    {
+                      "number": 2,
+                      "text": "すいり"
+                    },
+                    {
+                      "number": 3,
+                      "text": "どうり"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ろんり"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 4,
+                  "prompt": "先日の会議では、<u>極めて</u>重要な問題が話し合われた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "きわめて"
+                    },
+                    {
+                      "number": 2,
+                      "text": "あらためて"
+                    },
+                    {
+                      "number": 3,
+                      "text": "つとめて"
+                    },
+                    {
+                      "number": 4,
+                      "text": "つきつめて"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 5,
+                  "prompt": "もう少しアイディアを<u>練って</u>からお話しします。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "けずって"
+                    },
+                    {
+                      "number": 2,
+                      "text": "つのって"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ほって"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ねって"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 6,
+                  "prompt": "靴のひもを<u>締めた</u>。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "からめた"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ゆるめた"
+                    },
+                    {
+                      "number": 3,
+                      "text": "はめた"
+                    },
+                    {
+                      "number": 4,
+                      "text": "しめた"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 2,
+              "instruction": "問題2 （　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 7,
+                  "prompt": "各国のテレビがそのニュースを（　）。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "投じた"
+                    },
+                    {
+                      "number": 2,
+                      "text": "配送した"
+                    },
+                    {
+                      "number": 3,
+                      "text": "報じた"
+                    },
+                    {
+                      "number": 4,
+                      "text": "配布した"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 8,
+                  "prompt": "森林伐採が環境に（　）影響は大きい。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "及ぼす"
+                    },
+                    {
+                      "number": 2,
+                      "text": "授ける"
+                    },
+                    {
+                      "number": 3,
+                      "text": "費やす"
+                    },
+                    {
+                      "number": 4,
+                      "text": "掲げる"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 9,
+                  "prompt": "吉田さんは弁護士として20年もの（　）を積んできた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ベテラン"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ポジション"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ステータス"
+                    },
+                    {
+                      "number": 4,
+                      "text": "キャリア"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 10,
+                  "prompt": "この小説の主人公は、歴史（　）の人物をモデルにしている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "上"
+                    },
+                    {
+                      "number": 2,
+                      "text": "面"
+                    },
+                    {
+                      "number": 3,
+                      "text": "側"
+                    },
+                    {
+                      "number": 4,
+                      "text": "内"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 11,
+                  "prompt": "交渉が（　）進み、無事に契約することができた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "しとやかに"
+                    },
+                    {
+                      "number": 2,
+                      "text": "しなやかに"
+                    },
+                    {
+                      "number": 3,
+                      "text": "円滑に"
+                    },
+                    {
+                      "number": 4,
+                      "text": "急性に"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 12,
+                  "prompt": "次の大会に向けて、チームの（　）を強めよう。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "収束"
+                    },
+                    {
+                      "number": 2,
+                      "text": "結束"
+                    },
+                    {
+                      "number": 3,
+                      "text": "親密"
+                    },
+                    {
+                      "number": 4,
+                      "text": "緊密"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 13,
+                  "prompt": "その企業は巨大な資本を（　）に、海外の市場に進出した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "背景"
+                    },
+                    {
+                      "number": 2,
+                      "text": "根源"
+                    },
+                    {
+                      "number": 3,
+                      "text": "後援"
+                    },
+                    {
+                      "number": 4,
+                      "text": "発端"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 3,
+              "instruction": "問題3 <slot/>の言葉に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 14,
+                  "prompt": "今回の研修会は、出席者が<u>まばらだった</u>。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "多かった"
+                    },
+                    {
+                      "number": 2,
+                      "text": "少なかった"
+                    },
+                    {
+                      "number": 3,
+                      "text": "まじめだった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ふまじめだった"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 15,
+                  "prompt": "昨日は一日中<u>どんよりした</u>天気だった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "曇っていて暗かった"
+                    },
+                    {
+                      "number": 2,
+                      "text": "晴れていて明るかった"
+                    },
+                    {
+                      "number": 3,
+                      "text": "風が吹いて涼しかった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "雨が降って蒸し暑かった"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 16,
+                  "prompt": "父は毎朝、<u>丹念に</u>新聞に目を通す",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ぼうっと"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ちらっと"
+                    },
+                    {
+                      "number": 3,
+                      "text": "じっくりと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ざっと"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 17,
+                  "prompt": "最近、仕事が<u>はかどっている</u>",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "予想外に遅れている"
+                    },
+                    {
+                      "number": 2,
+                      "text": "順調に進んでいる"
+                    },
+                    {
+                      "number": 3,
+                      "text": "徐々に減っている"
+                    },
+                    {
+                      "number": 4,
+                      "text": "急激に増えている"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 18,
+                  "prompt": "検討の結果、この計画は<u>見合わせる</u>ことになりました。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "承認する"
+                    },
+                    {
+                      "number": 2,
+                      "text": "実施する"
+                    },
+                    {
+                      "number": 3,
+                      "text": "変更する"
+                    },
+                    {
+                      "number": 4,
+                      "text": "中止する"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 19,
+                  "prompt": "激しい雨のため、<u>やむをえず</u>試合は延期することになった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "しかたなく"
+                    },
+                    {
+                      "number": 2,
+                      "text": "まもなく"
+                    },
+                    {
+                      "number": 3,
+                      "text": "思いがけなく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "限りなく"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 4,
+              "instruction": "問題4 次の言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 20,
+                  "prompt": "調達",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "新しい事業のために、資金を<u>調達</u>しなければならない。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "インターネットで奨学金の申請方法を調達した。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "希望の職種に就くためには、早めに必要な資格を<u>調達</u>したほうがいい。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "環境問題に対する各国の若者の意識を調達した。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 21,
+                  "prompt": "細心",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "初めて一人で海外旅行をしたときは、細心の思いをした。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "この二つの言葉は似ているが、<u>細心</u>のところでは意味が異なる。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "美術品の運搬には、<u>細心</u>の注意を払う必要がある。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "イベントの概要は伺いましたが、<u>細心</u>の説明はまだです。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 22,
+                  "prompt": "意地",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "彼は何がやりたいのか、<u>意地</u>がはっきりしない。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "そう<u>意地</u>を張らずに、素直に謝ったほうがいいよ。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "会議で、この調査の<u>意地</u>を説明した。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "わが社は顧客の<u>意地</u>に沿った商品開発を目指している。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 2
+                },
+                {
+                  "number": 23,
+                  "prompt": "めきめき",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "あの人は発言するたびに意見がめきめき変わる。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "入院して、健康のありがたみをめきめき感じた。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "遠慮しないで、<u>めきめき</u>召し上がってくださいね。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "水泳教室に通ったおかげで、<u>めきめき</u>上達した。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 24,
+                  "prompt": "目先",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "田中さんはつい<u>目先</u>に帰ってしまいましたよ。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "あのモデルのファッションは流行の<u>目先</u>を行っている。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "<u>目先</u>の利益を追うのではなく、会社の将来を考えるべきだ。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "決勝戦を<u>目先</u>に控え、選手はだいぶ緊張しているようだ。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 25,
+                  "prompt": "見落とす",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "人が困っているのを<u>見落とす</u>わけにはいかない。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "飛行機に乗っている間、窓からずっと海を<u>見落とし</u>ていた。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "部長は、気づいていたようだが、今回の失敗を<u>見落とし</u>てくれた。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "メールが多すぎて、重要な連絡を<u>見落とし</u>ていた。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                }
+              ],
+              "kind": "choice"
+            }
+          ]
+        },
+        {
+          "id": "grammar",
+          "title": "文法",
+          "mondai": [
+            {
+              "number": 5,
+              "instruction": "問題5 次の文の（　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 26,
+                  "prompt": "山川鉄道は、3月で開業90周年を迎えるの（　）最新型車両を導入し、15日から運営運転を開始する。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "を限りに"
+                    },
+                    {
+                      "number": 2,
+                      "text": "を皮切りに"
+                    },
+                    {
+                      "number": 3,
+                      "text": "をよそに"
+                    },
+                    {
+                      "number": 4,
+                      "text": "を機に"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 27,
+                  "prompt": "いかなる理論でも、データによって実証されなければ多くの人に（　）しない。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "受け入れは"
+                    },
+                    {
+                      "number": 2,
+                      "text": "受け入れられは"
+                    },
+                    {
+                      "number": 3,
+                      "text": "受け入れられては"
+                    },
+                    {
+                      "number": 4,
+                      "text": "受け入れられることは"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 2
+                },
+                {
+                  "number": 28,
+                  "prompt": "(テレビのコマーシャルで)「こちらは添加物を（　）使用していない、ヘルシーな食用油です。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "いっさい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "とても"
+                    },
+                    {
+                      "number": 3,
+                      "text": "きっと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "まさか"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 29,
+                  "prompt": "「今回のプロジェクトを任され、その責任の重さに身が引き締まる（　）です。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "考え"
+                    },
+                    {
+                      "number": 2,
+                      "text": "見込み"
+                    },
+                    {
+                      "number": 3,
+                      "text": "思い"
+                    },
+                    {
+                      "number": 4,
+                      "text": "始末"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 30,
+                  "prompt": "「このたびは、私どもの商品発送ミスにより、お客様に大変ご迷惑をかけましたことを深く（　）。申し訳ございませんでした。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "わびていただきます"
+                    },
+                    {
+                      "number": 2,
+                      "text": "わびていらっしゃいます"
+                    },
+                    {
+                      "number": 3,
+                      "text": "おわびいただきます"
+                    },
+                    {
+                      "number": 4,
+                      "text": "おわび申し上げます"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 31,
+                  "prompt": "上司「君、困る（　）！資料にミスがあったぞ。君のせいで大恥をかいたよ。」部下「すみません。うっかりしておりまして……」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "じゃないか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "のではないか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "じゃないのか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "のではないのか"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 1
+                },
+                {
+                  "number": 32,
+                  "prompt": "地球温暖化抑制への貢献が、ここ10年あまりの間に、優良企業の条件の一つ（　）ようだ。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "としうる"
+                    },
+                    {
+                      "number": 2,
+                      "text": "となりうる"
+                    },
+                    {
+                      "number": 3,
+                      "text": "としつつある"
+                    },
+                    {
+                      "number": 4,
+                      "text": "となりつつある"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 4
+                },
+                {
+                  "number": 33,
+                  "prompt": "子ども「お母さん、来週の日曜日、さくら山に行ってもいい？」(33)母親「だめよ。今の季節、あの山にはハチがたくさん出るのよ。万が一、（　）大変でしょ。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "刺されさえしたら"
+                    },
+                    {
+                      "number": 2,
+                      "text": "刺されでもしたら"
+                    },
+                    {
+                      "number": 3,
+                      "text": "刺させるなどしても"
+                    },
+                    {
+                      "number": 4,
+                      "text": "刺させるくらいしても"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                },
+                {
+                  "number": 34,
+                  "prompt": "自慢する（　）が、私は入社以来10年、一度も遅刻をしたことがない。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "だけのことではない"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ほどのことではない"
+                    },
+                    {
+                      "number": 3,
+                      "text": "だけのことに過ぎない"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ほどのことに過ぎない"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                },
+                {
+                  "number": 35,
+                  "prompt": "「いくら注意しても、後輩が同じ失敗を繰り返します。私は注意し続けるべきでしょうか。それとも本人が気づくまで、もう何も言う（　）。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "べきでしょうか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "べきなのでしょうか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "べきのではないでしょうか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "べきなのではないでしょう"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 6,
+              "instruction": "問題6 次の文の★に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 36,
+                  "prompt": "山田監督は私の恩人です。今の<slot/> <slot/> <star/> <slot/>ことです。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "あっての"
+                    },
+                    {
+                      "number": 2,
+                      "text": "あるのも"
+                    },
+                    {
+                      "number": 3,
+                      "text": "私が"
+                    },
+                    {
+                      "number": 4,
+                      "text": "監督"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 4
+                },
+                {
+                  "number": 37,
+                  "prompt": "いったん仕事を引き受けた<slot/> <slot/> <star/> <slot/>最後までやり通すに違いない。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "彼の性格"
+                    },
+                    {
+                      "number": 2,
+                      "text": "からして"
+                    },
+                    {
+                      "number": 3,
+                      "text": "からには"
+                    },
+                    {
+                      "number": 4,
+                      "text": "責任感の強い"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 1
+                },
+                {
+                  "number": 38,
+                  "prompt": "ちょっと考えれば、さっきの話が冗談<slot/> <slot/> <star/> <slot/>、単純な彼は簡単に信じてしまった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "わかるだろう"
+                    },
+                    {
+                      "number": 2,
+                      "text": "だって"
+                    },
+                    {
+                      "number": 3,
+                      "text": "に"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ことぐらい"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 1
+                },
+                {
+                  "number": 39,
+                  "prompt": "かつて映画スターであった山田氏が初挑戦で知事選に勝利したのは、能力という<slot/> <slot/> <star/> <slot/>大きい。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ところが"
+                    },
+                    {
+                      "number": 2,
+                      "text": "より"
+                    },
+                    {
+                      "number": 3,
+                      "text": "よる"
+                    },
+                    {
+                      "number": 4,
+                      "text": "人気と知名度に"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 3
+                },
+                {
+                  "number": 40,
+                  "prompt": "この植物はとても強いので、<slot/> <slot/> <star/> <slot/>ちゃんと育ちますよ。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "水やりを"
+                    },
+                    {
+                      "number": 2,
+                      "text": "さえ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "しなければ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "忘れ"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                }
+              ],
+              "kind": "star"
+            },
+            {
+              "number": 7,
+              "instruction": "問題7 次の文章を読んで、文章全体の趣旨を踏まえて、41から45の中に入る最もよいものを、1・2・",
+              "items": [
+                {
+                  "number": 3,
+                  "prompt": "4から一つ選びなさい。いまはコミュニケーション能力が過剰に求められる時代である。職場でも学校でも、あるいはもっとプライベートな空間でもいい。あらゆる人間関係において、自分の価値を認めてもらうためには高度なコミュニケーション能力が必要とされる。書店に行けばコミュニケーション能力を高めるための自己啓発本があり余るほどでているし、わざわざそのための学校に41。確かに、いまの産業のあり方をみると、コミュニケーションが富を生み出す経済活動の中心にきていることがわかる。製造業は人件費の安い海外に工場をどんどん移転させ、国内に残っているのは、マネジメントや企画、研究開発、マーケティングといった本社機能的な仕事ばかり。そこでは、組織をまとめあげる、アイディアをだす、交渉する、プレゼンをする、ディスカッションをするといった、高いコミュニケーション能力が必要とされる活動がどうしても物を言う。社会のあり方が、工場中心からコミュニケーション中心へと大きく転換しているのである。しかし、コミュニケーション能力が、人々の価値を決める独占的な尺度になることは42。事実、コミュニケーションべたで自己アピールにそれほど長けていなくても、能力のある人はいっぱいいる。私も大学でゼミを指導していると、ゼミの議論では目立<ruby>ってい<rt>（注1）</rt></ruby>てもリポートの出来はそれほどでもない学生や、逆にゼミではおとなしくても素晴らしいリポートを書いてくる学生に頻繁にであう。コミュニケーションの巧みさと本人の能力は必ずしも一致しない。もちろんコミュニケーション能力も人間の能力の一つではある。だから、それが評価基準の一つになることは当然あっていい。43、コミュニケーション能力をめぐる過当な競争は、人間関係にひずみをももたらすだろう。引きこもりは、社会のなかで要求されるコミュニケーション能力があまりに高いため、一度他者とのコミュニケーションにつまずくと、なかなか新たなコミュニケーションに踏み出せなくなってしまうことから生まれる。引きこもりまでいかなくても、周りとのコミュニケーションのなかで自分がまともに相手にされなければ、誰だって心を閉ざしてしまい、内にこもりがちになるだろう。コミュニケーション能力をめぐる競争が激しい社会は、44人にとても冷淡だ。また、いじめは、子供たちのコミュニケーション能力の欠如から起きているのではなく、逆に、みんなが空気を読みすぎることで生じるストレスのはけ口を特定の人間に向けることで起きている。こうしたストレスや重圧は、子供に限った問題ではない。空気を壊してはならないという圧力は、人々とコミュニケーション能力をさらに要求するだろう。しかしそれが進めば、社会のなかで同調圧力が強まり、社会そのものが萎縮45。",
+                  "options": [
+                    {
+                      "number": 4,
+                      "text": "月9日付朝日新聞朝刊による）"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": null
+                },
+                {
+                  "number": 4,
+                  "prompt": "通う人がいるのだろうか",
+                  "options": [],
+                  "sourcePage": 5,
+                  "answer": null
+                },
+                {
+                  "number": 41,
+                  "prompt": "（41）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "通う人もいるほどだ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "通うまでもなかろう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "通うべきである"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 1
+                },
+                {
+                  "number": 42,
+                  "prompt": "（42）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "極めて当然のことではないか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "極めて可能性が低いのではないか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "はたして健全なのだろうか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "はたして起こり得ないのだろうか"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 3
+                },
+                {
+                  "number": 43,
+                  "prompt": "（43）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "したがって"
+                    },
+                    {
+                      "number": 2,
+                      "text": "すなわち"
+                    },
+                    {
+                      "number": 3,
+                      "text": "それどころか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "とはいえ"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 4
+                },
+                {
+                  "number": 44,
+                  "prompt": "（44）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "こうしてつまずかせる"
+                    },
+                    {
+                      "number": 2,
+                      "text": "そこから踏み出させる"
+                    },
+                    {
+                      "number": 3,
+                      "text": "それにつまずいてしまった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ここから踏み出してしまった"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 3
+                },
+                {
+                  "number": 45,
+                  "prompt": "（45）",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "してしまうのだろうか"
+                    },
+                    {
+                      "number": 2,
+                      "text": "してしまうだけである"
+                    },
+                    {
+                      "number": 3,
+                      "text": "してしまうものでもない"
+                    },
+                    {
+                      "number": 4,
+                      "text": "してしまうとも言えまい"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "answer": 2
+                }
+              ],
+              "kind": "choice"
+            }
+          ]
+        },
+        {
+          "id": "reading",
+          "title": "読解",
+          "mondai": [
+            {
+              "number": 8,
+              "instruction": "問題8 次の(1)から(4)の文章を読んで、あとの問いに対する答えとして最もよいものを1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 46,
+                  "prompt": "筆者によると、いまの時代に創造力を養うには何が必要か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "失敗を経験しながら課題を見つけ出す力"
+                    },
+                    {
+                      "number": 2,
+                      "text": "失敗を重ねながら課題をこなしていく力"
+                    },
+                    {
+                      "number": 3,
+                      "text": "失敗を生かしながら課題を遂行する力"
+                    },
+                    {
+                      "number": 4,
+                      "text": "失敗を受け入れながら課題を解く力"
+                    }
+                  ],
+                  "sourcePage": 5,
+                  "passage": "（1）",
+                  "answer": 2
+                },
+                {
+                  "number": 47,
+                  "prompt": "この文章で最も伝えたいことは何か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "アサクラ株式会社の国際課が 1月に山中ビルに移転すること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "アサクラ株式会社の国際課が12月に山中ビルに移転すること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "アサクラ株式会社の本社と国際課が 1月に山中ビルに移転すること"
+                    },
+                    {
+                      "number": 4,
+                      "text": "アサクラ株式会社の本社と国際課が12月に山中ビルに移転すること"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "passage": "（2）",
+                  "answer": 3
+                },
+                {
+                  "number": 48,
+                  "prompt": "筆者は、<u>すれ違い</u>が起こる原因をどのように説明しているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "見る雲の形はどの世代でも変わらないが、一人一人は違う雲の形を見ているため"
+                    },
+                    {
+                      "number": 2,
+                      "text": "見る雲の形はどの世代でも同じだが、一人一人の記憶の中で雲の形が変わっていくため"
+                    },
+                    {
+                      "number": 3,
+                      "text": "見る雲の形は世代によって違うが、一人一人は雲の形はいつも同じだと思っているため"
+                    },
+                    {
+                      "number": 4,
+                      "text": "見る雲の形は世代によって異なるが、一人一人の好きな雲の形はそれ以上に違うため"
+                    }
+                  ],
+                  "sourcePage": 6,
+                  "passage": "（3）",
+                  "answer": 2
+                },
+                {
+                  "number": 49,
+                  "prompt": "筆者によると、報道に携わる人間が備えておくべき必須条件とは何か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "示されたデータから影の部分を取り除く力"
+                    },
+                    {
+                      "number": 2,
+                      "text": "示されたデータは偏ったものではないか見抜く力"
+                    },
+                    {
+                      "number": 3,
+                      "text": "示されたデータをありのまま分かりやすく伝える力"
+                    },
+                    {
+                      "number": 4,
+                      "text": "示されたデータから報道目的の合ったものを選び取る力"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "passage": "（4）",
+                  "answer": 4
+                }
+              ],
+              "passages": [
+                {
+                  "label": "（1）",
+                  "questionNumbers": [
+                    46
+                  ],
+                  "text": "他の人の成功事例をマネすることが、必ずしも自分の成功を約束するものではなくなったのがいまの時代です。昨日までの成功は、今日の成功を意味しません。そのような時代に大切なのは、やはり創造力です。そして創造力とは新しいものをつくりだす力を意味している以上、失敗を避けて培えるものではありません。創造力を身につける上でまず第一に必要なのは、決められた課題に解を出すことではなく、自分で課題を設定する能力です。\n（畑村洋太郎『失敗学のすすめ』による）"
+                },
+                {
+                  "label": "（2）",
+                  "questionNumbers": [
+                    47
+                  ],
+                  "text": "2010年11月10日\nエーピーシー株式会社\n海外営業部長 田中春子 様\nアサクラ株式会社\n国際課長 西田良雄\n拝啓\n貴社はますますご盛栄のこととお喜び申し上げます。\n先日お知らせいたしました通り、弊社は、事業拡大のため、来月1月に本社を現在の朝日ビル(北森区)から山中ビル(西川区)に移転いたします。それに先立ちまして、これまで東川区にございました国際課も、12月3日に山中ビル5階に移転することになりました。つきましては、以下の通り新住所および連絡先をお知らせいたします。\n今後とも、なお一層のご愛顧のことお願い申し上げます。\n敬具\n記\n新住所 ：〒141-0023 東京都西川区大町1－5－20 山中ビル5階新電話番号 ：03－7434－5656\n新FAX 番号 ：03－7434－5657\n以上",
+                  "image": "images/reading-8-2.png",
+                  "lead": "以下は、ある会社が取引先に出した文章である。"
+                },
+                {
+                  "label": "（3）",
+                  "questionNumbers": [
+                    48
+                  ],
+                  "text": "価値観や科学的常識は、誰にとってもいつの世でも、変わらぬものだと感じがちです。しかしそれは雲の形のように、一見、静止しているように見えて、じつはゆっくりと変化しています。あまりにもゆっくり変化するため、多くの人が、雲は静止画のように変化しないものだと信じているのです。誰もが、たまたま自分の成長期に見ていた雲こそが「正しい雲の形」だと思い込みます。こうしてそれぞれの世代の人の脳裏にある雲の姿は、お互いに少しずつズレてきて、<u>すれ違い</u>が起こるのです。（藤沢晃治『「わかりやすい教え方」の技術―「教え上手」になるための13のポイント』による）"
+                },
+                {
+                  "label": "（4）",
+                  "questionNumbers": [
+                    49
+                  ],
+                  "text": "データが示す姿は光の部分もあれば影の部分もある。そのどちらか一方だけを強調することは、分かりやすさという面はあるものの、徒に対立軸を先鋭化させたり、無用の混乱を生じさせる危険性がある。これらをいちいち意識しているのは大変である<ruby>が、<rt>（注）</rt></ruby>少なくともデータをやみくもに信じてしまう態度だけはとるべきでない。データの罠を見分ける力、すなわちデータリテラシーは、多くの人にとって必要なものではあるが、本来は、公平で客観的な報道に努めるべきメディアに携わる人間が、しっかりと備えていなければならない必須の条件である。\n（田村秀『データの罠―世論はこうしてつくられる』による）\n（注）：先鋭化させる：ここでは、目立たせる。"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 9,
+              "instruction": "問題9 次の(1)から(3)の文章を読んで、後の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 50,
+                  "prompt": "筆者は<u>近代の冒険は、その後者が重要なのだ</u>と述べているが、それはどのような意味か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "誰もが難関と感じる対象を探し、命をかけて挑戦することが重要だ。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "先駆者が偉業を成し遂げた場所に、新たな決意で挑戦することが重要だ。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "新たな冒険の対象を見いだし、独自の方法でそれに挑戦することが重要だ。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "誰も踏み入ったことのない場所に、独創的な方法で挑戦することが重要だ。"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "passage": "（1）",
+                  "answer": 4
+                },
+                {
+                  "number": 51,
+                  "prompt": "<u>地理的な空白がなくなった</u>とはどういうことか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "誰も考えつかないような冒険のルートがなくなった。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "自分なりの方法で冒険できる場所がなくなった。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "冒険に値するルートがすべて行き尽くされた。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "誰も冒険したことがない場所がなくなった。"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "passage": "（1）",
+                  "answer": 1
+                },
+                {
+                  "number": 52,
+                  "prompt": "筆者が、<u>冒険者はアーティストでもある</u>と述べているのはなぜか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "冒険者もアーティストのように創造性のある自己表現が求められるから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "冒険者もアーティストのように表現力をつけることで注目度が増すから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "冒険者もアーティストのように自然と向き合って自己表現するから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "冒険者もアーティストのように主体的な表現が許されているから"
+                    }
+                  ],
+                  "sourcePage": 7,
+                  "passage": "（1）",
+                  "answer": 3
+                },
+                {
+                  "number": 53,
+                  "prompt": "このへんで食糧の危機管理体制を考えておく必要があるとあるが、なぜか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "今すぐ食糧を確保し国民一人一人の生活を守らなければならないから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "アジアを中心として食料の生産や流通に非常事態が起きているから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "食糧の確保が今後ますます難しくなることが予想されるから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "食料輸出国の危機管理体制が確固としたものではないから"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "passage": "（2）",
+                  "answer": 3
+                },
+                {
+                  "number": 54,
+                  "prompt": "<u>体制を制度にして</u>とあるが、どうすることか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "生産から流通までの体制を考える。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "国民が活動できるような体制を整える。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "政府主導で実施できるような仕組みを作る。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "生産や流通に国民が責任を持つ仕組みを作る。"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "passage": "（2）",
+                  "answer": 3
+                },
+                {
+                  "number": 55,
+                  "prompt": "政府が検討すべき食糧の危機管理体制について、筆者の考えに合うものはどれか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "必要が生じた時には、国民の同意を得て実施するべきだ。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "今すぐ実施した方が良いので、速やかに制度化するべきだ。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "平常時は実施する必要はないが、制度自体は早く整えるべきだ。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "平和な時に限らず、国民が自由に活動できる環境を整えるべきだ。"
+                    }
+                  ],
+                  "sourcePage": 8,
+                  "passage": "（2）",
+                  "answer": 4
+                },
+                {
+                  "number": 56,
+                  "prompt": "<u>日本の建築は寿命が短い</u>とあるが、なぜか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "木材自体に耐久性がないため、メンテナンスが難しいから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "建築に適した木材の入手が難しく、修理もあまりしないから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "木造建築は老朽化が速いだけでなく、火事や地震にも弱いから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "丈夫な木材があまり使えないうえ、災害で失われることも多いから"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": "（3）",
+                  "answer": 2
+                },
+                {
+                  "number": 57,
+                  "prompt": "<u>これ</u>は何を指すか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "建物が老朽化してくる同じように建て直すことで、外観が保持されること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "建物が老朽化してくる外観を全く変えずに建て直すことで景観が維持されること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "建物が老朽化してくる、材料を再利用して同じ間取りに建て直すこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "建物が老朽化してくる、景観の維持を優先して見た目を変えずに建て直すこと"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": "（3）",
+                  "answer": 3
+                },
+                {
+                  "number": 58,
+                  "prompt": "筆者は、木造建築が更新されることにはどのような利点があると考えているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "質の良い木材の入手が容易になるだけでなく、職人の技術が向上する。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "樹木の生育に合った条件が整う上、美しい街並みも守られる。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "植林が進むので環境によい上、職人の技術も受け継がれる。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "木材の供給が安定するだけでなく、美しい風景が守られる。"
+                    }
+                  ],
+                  "sourcePage": 9,
+                  "passage": "（3）",
+                  "answer": 4
+                }
+              ],
+              "passages": [
+                {
+                  "label": "（1）",
+                  "questionNumbers": [
+                    50,
+                    51,
+                    52
+                  ],
+                  "text": "すでに地図の空白がなくなった現在、地理的な冒険や探検といった行為は、時間が経つにつれてどんどん不可能になってきている。ジャーナリストの本多勝一氏は、冒険の条件として「命の危険性」と「行為の主体性」の二つをあげているが、<u>近代の冒険は、その後者が重要なのだ</u>。それはつまり自己表現の問題とも密接に関わってくる。ここでいう表現とは、地図上に誰もたどったことがない軌跡を描くという意味である。これまでの人類の歩みを俯瞰して、その隙間を見つけ、自分なりの方法で空白を埋めていく行為と言い換えることもできる。わかりやす<ruby>いとこ<rt>（注1）</rt></ruby>ろでは、登山におけるバリエーション・ルートや、8000メートル峰を無酸素で登ることや、厳冬期にどこそこを横断するとか、はじめて大陸の最高峰に全部登るとか、そう<ruby>いう<rt>（注2）</rt></ruby>ことだ。未踏の地がなければ、点と点を結んで誰もおこなっていないことをすればいい。そうした点と点を結ぶのが<ruby>厳し<rt>（注3）</rt></ruby>い土地、アクセスの難しい場所、思いもよらないルールを形成するなら、なおさらその注目度は増していく。冒険の世界には、海でも山でも空でも、そういう志向が必ずどこかに存在している。白紙のキャンバスに絵を描くためには表現力が必要なように、<u>地理的な空白がなくなった</u>時代を生きる現代の冒険家たち<ruby>は、<rt>（注4）</rt></ruby>そこに特別な自分なりの題材を見つけなくてはいけない。だからこそ<u>冒険者は</u><u>アーティストでもある</u>といえる。\n（石川直樹『最高の冒険家』による）（注1）：俯瞰する：全体を眺める\n（注2）：8000 メートル峰：8000 メートル級の山\n（注3）：末踏：まだ誰も足を踏み入れたことがないこと\n（注4）：キャンバス：絵を描くための布地"
+                },
+                {
+                  "label": "（2）",
+                  "questionNumbers": [
+                    53,
+                    54,
+                    55
+                  ],
+                  "text": "世界の食糧供給の頭打ち、かつての日本と同じように、経済成長のために農業を衰退させ、一方では食生活の向上を図るアジア<ruby>の動き<rt>（注1）</rt></ruby>など、私たちが暮らしている輸入大国の基盤は意外に脆い。私たちは、このへんで食料の危機管理体制を考えておく必要があるのではないか。\n危機管理とは、いったんことが起きた時に、生産から流通までをどうするか、前もって体制作りを考えておくことである。<u>体制を制度にして</u>おかないと、食糧確保のためのある程度強制力を持った政策を実施することなど不可能である。畑にはイモ類を優先的植えなければならない。個人的に嫌だという人がいても、国民が最小限の栄養をとるために協力してもらう必要がある。この点を制度化しておく方が良いのではないか、ということである。\n平和な時には、この制度は眠らせておけばいい。いざという時に政府が発動するのである。普段は、政府はなるべく食料の生産や流通には介入すべきではない。<ruby>それぞ<rt>（注2）</rt></ruby>れの立場の人<ruby>たちが<rt>（注3）</rt></ruby>、自由に活動出来るような環境を整えておく役割だけでいい。しかし何かの時には、食料管理に責任を持つ仕組みに移行のである。多くの場合は、異常事態が過ぎ去るまでの一時的な措置になるだろう。\n（中略）\n食糧の危機管理体制とは、非常事態に備えた生産から流通までの仕組み作りである。発動することがないように祈りながら、制度を検討しておく必要があるのではないか。\n（中村靖彦『コンビニ ファミレス 回転寿司』による）（注1）頭打ち：限界に達して、それ以上に伸びなくなること\n（注2）いざという時に：非常事態の起こった時に\n（注3）発動する：ここでは、制度を実際に使う"
+                },
+                {
+                  "label": "（3）",
+                  "questionNumbers": [
+                    56,
+                    57,
+                    58
+                  ],
+                  "text": "<u>日本の建築は寿命が短い</u>が、これは木造自体の耐久性から決まるのではない。木造建築でも百年や二百年は持つ。千年以上持たせることも可能である。しかし、構造部材のメンテナンスが必要なので耐久性を考えると大材を用いたほうが良い。しかし、城郭や宮<ruby>殿、館<rt>（注1）</rt></ruby>、寺院仏閣の類でないとなかなか大材を用い<ruby>ること<rt>（注2）</rt></ruby>ができない。入手も難しいし加工<ruby>にも手<rt>（注3）</rt></ruby>間暇がかかる。<ruby>また、<rt>（注4）</rt></ruby>一般的に木造建築は火事や地震で失われることも少なくない。\n日本人は白木の新しい建物を愛したが、時が経つと木の表面が黒ずんでくる。そこで、余裕がある者は、地震や火災に遭った時は勿論、ある程度老朽化してくると建て直し、周囲はその建て主のことを「甲斐性がある」といって褒め称えた。しかし、建て直すと言っても、大まかにいえばもとと同じものが建つ。勿論少<ruby>し大き<rt>（注6）</rt></ruby>くなったり小さくなったり間取りが変わったりするが見た目に大差がない。そこで、街並みや風景は長期にわたって維持される。しかも木材はリユース、リサイクルされた。\n<u>これ</u>は、日本独特の更新の文化と呼んでも良い。この<ruby>典型が<rt>（注7）</rt></ruby>伊勢神宮である。二十年ごとに隣合う敷地に交互に建て直されるが、建てられるものは全く同じである。建物を更新するためには、木材が必要であり、樹木も植林によって更新される。若木のほうが二酸化炭素の吸収能力が優れているから、若木への更新は環境上も評価できる。同時に職人技術も更新される。更新は環境に優しく、人々に仕事を与え、ゆっくりとした変化をもたらす木の国の優れた文化である。\n（小西敏正『平成 日本らしき宣言』による）（注1）構造部材：建物に加わる力を支える材料（例えば、柱）\n（注2）大材：ここでは、長期の使用に耐える大きな木材\n（注3）城郭：城とその外側の囲い\n（注4）仏閣：寺の建物\n（注5）手間暇：労力と時間\n（注6）甲斐性がある：ここでは、何かを行う経済力があって立派だ\n（注7）リユース：再使用"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 10,
+              "instruction": "問題10 次の文章を読んで、後の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 59,
+                  "prompt": "サルにレバー押しをさせる目的は何か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "サルを訓練して、人間の意図を読み取れるようにすること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "サルを訓練して、動物だけが持つ見えない能力を開発すること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "サルの行動を通して、動物に対する人間の心の動きを探ること"
+                    },
+                    {
+                      "number": 4,
+                      "text": "サルの行動を通して、目に見えない動物の心や意識を研究する"
+                    }
+                  ],
+                  "sourcePage": 10,
+                  "passage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 60,
+                  "prompt": "この実験室の訓練で、人間はサルに対してどのように対応しているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "サルをレバーの近くに連れて行き、目標の行動をしたらすぐにエサをやる。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "サルがレバーを押したらエサを指し示し、目標の行動をするまでじっと待つ。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "サルにレバーを指し示し、人間が期待する次の行動をしたらすぐにエサをやる。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "サルがレバーを見たらエサをやり、人間が期待する次の行動ををするまでじっと待つ。"
+                    }
+                  ],
+                  "sourcePage": 10,
+                  "passage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 61,
+                  "prompt": "<u>そのとき</u>とは、どんなときか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "「エサやり」というメッセージを繰り返し送ることで人間とサルの行動の違いがわかったとき"
+                    },
+                    {
+                      "number": 2,
+                      "text": "「エサやり」というメッセージを送る過程を通して、サルの心がつかめたと感じたとき"
+                    },
+                    {
+                      "number": 3,
+                      "text": "レバー押しの訓練が進むにつれて、サルが筆者の心をわかってくれたと感じたとき"
+                    },
+                    {
+                      "number": 4,
+                      "text": "レバー押しの訓練によって教科書には書かれていないサルの行動が解明されたとき"
+                    }
+                  ],
+                  "sourcePage": 10,
+                  "passage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 62,
+                  "prompt": "筆者がこの訓練をしてわかったことは何か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "動物を目標の行動に近づける訓練では、「エサやり」を通して動物が人間に慣れることが大切だ。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "動物を訓練するためには気持ちをつかむことが重要であり、それは自分で体験して初めてわかる。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "動物の心理を探るためには、まず教科書に書いてあるとおりのことを実践することが大事だ。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "動物の心をつかむには目に見える行動だけに注目することが大切だが、そのことは教科書に書いていな"
+                    }
+                  ],
+                  "sourcePage": 10,
+                  "passage": null,
+                  "answer": 4
+                }
+              ],
+              "passages": [
+                {
+                  "label": null,
+                  "questionNumbers": [
+                    59,
+                    60,
+                    61,
+                    62
+                  ],
+                  "text": "心は目に見えない。だから客観的に知ることはできない。ならば、心とか意識なんて面倒なことを考えるよりも、目で見える、定規で測れるものだけを考えることにしよう。そう考える人がいても不思議ではない。行動主義心理学と呼ばれるこの流派では、サルやネズミなどにレバー押しなどの行動を訓練し、その行動から動物<ruby>の心を<rt>（注1）</rt></ruby>探っていく。しかし動物に「まずはレバーを押し<ruby>てみて<rt>（注2）</rt></ruby>ください」と頼むわけにはいかない。例えば、初めて実験室につれてこられたサルは、そもそもレバーにさえ気づかないからだ。では、サルにどうやってレバーを押させるのか？ポイントは二つ。ひたすら待つ。そして少しずつ目標に近づける。\n例えば、サルが少しでもチラッとレバーを見たとする。そこですかさずエサを与える。これを何度か繰り返すと、サルの注意が次第にレバーに向いてくる。ここでいったんエサやりを止める。するとサルは、うろつきまわったりキョロキョロしたり、色々なことを試し始める。ここが我慢のしどころ。試行錯誤の中、サルの手がレバーに伸びるのをじっと待つ。そして手が少しでも伸びれば、すかさずエサを与える。こうして、適切なタイミングでエサをやりながら、少しずつ目標の行動に近づけていくのである。私はこのやり方を、大学院生の頃、助手の先生に教わった。それは教科書に書いてあるとおりのことだった。が、実際にやってみると、それは衝撃の体験だった。\nエサやりのボタンを右手に持ち、白黒のモニターごしに、サルの行動をじっと見つめる。私はエサに念じていた。「振り向け、レバーに振り向け」。伝わらない思いを伝えたい。ふいにサルがレバーに近づく。と、すかさず「エサやり」というメッセージを送る。それは紛れもなくコミュニケーションであった。この訓練をずっとやっていると、徐々にサルの気持ちがつかめて<ruby>くる。<rt>（注3）</rt></ruby>そして、気持ちがつかめてくると、訓練は格段に早く進む。行動だけを見よといいながら、その実、うまく訓練するにはサルの心がつかめていなければならないのだ。心は行動からしかつかめない。<ruby>しかしそ<rt>（注4）</rt></ruby>れがつかめたとき、手の中にサルの心があるように思えてくる。<u>そのとき</u>私は、学問の本当に大事なことは、教科書には書いていないことを知ったのだった。\n（金沢創『心体観測』2009年2月8日付朝日新聞日曜版による）\n（注 1）行動主義心理学：人間や動物などの行動を観察して研究する学問。\n（注 2）レバー：機器を操作するときにつかんで動かす棒。\n（注 3）紛れもなく：間違いなく。\n（注 4）その実：実際には。\nい。"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 11,
+              "instruction": "問題11 次のA とＢの意見文を読んで、後の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 63,
+                  "prompt": "A とＢが共通して問題だと指摘していることは何か。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "家庭ごみが所定の場所以外に捨てられること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ゴミ処理の費用を消費者が負担すること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ゴミ問題への生産者側の意識が薄いこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "家庭で出されるゴミが減らないこと"
+                    }
+                  ],
+                  "sourcePage": 11,
+                  "passage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 64,
+                  "prompt": "家庭ごみ収集の有料化についてＡとＢはどのように述べているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ＡとＢも、ゴミ処理費用を消費者が負担することになるので、ゴミの減少に貢献するだろうと述べている。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ＡもＢも、有料化しても家庭ごみは減らないばかりか、ゴミ捨ての規則を守らない人が出てくるだろうと述べている。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "Ａでは有料化すればごみに対する考え方が変わるだろうと述べ、Ｂでは有料化する前に意識改革が必要だと述べている。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "Ａでは有料化すれば資源の無駄遣いが少なくなるだろうと述べ、Ｂでは有料化すれば便利さに対する意識が変わると述べている。"
+                    }
+                  ],
+                  "sourcePage": 11,
+                  "passage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 65,
+                  "prompt": "ごみ問題についてＡとＢはどのように考えているか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "A もＢも、生産者と消費者の双方が協力すれば改善できると考えている。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "A もＢも、自治体の協力を得て消費者自身が対応すべき問題だと考えている。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "A では消費者が対応すべきだと考えているのに対し、Ｂでは主に生産者が取り組むべきだと考えている。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "A は自治体が対応すればいいと考えているのに対し、Ｂは生産者や消費者の意識も大切だと考えている。"
+                    }
+                  ],
+                  "sourcePage": 11,
+                  "passage": null,
+                  "answer": 4
+                }
+              ],
+              "passages": [
+                {
+                  "label": null,
+                  "questionNumbers": [
+                    63,
+                    64,
+                    65
+                  ],
+                  "text": "テレビや新聞などで年々深刻化するゴミ問題が取り上げられている。例えば一般的な家庭ごみとして、生ゴミのほかにも食品容器や商品などの過剰包装による廃棄物が多く見られるという報告がある。最近では指定されたゴミ袋を買ってごみを捨てたり、客に買い物袋の持参を促したりする動きがあるが、ごみの量に変化は見られない。\nもし、自治体が家庭ごみ一個の収集につき○○円と有料化すればごみは減るかもしれない。ごみ自体の廃棄にもお金がかかるようになれば、誰もがごみを出す前に考えるようになるだろう。そうなれば消費者は不必要な包装を断り、使用可能な物まで捨ててしまうことも減少するのではないだろうか。\nB\n現代社会は数十年前と比較にならないほど便利な生活が可能になった。しかし、不要になった物を再利用することよりも便利さを優先してきた結果、家庭ごみは増え続ける一方だ。\n家庭ごみを減量するため、現在、ゴミ袋を有料化し消費者が処理費用の一部を負担することになっている。しかし、それだけでは不十分であり、所定の場所でのゴミの収集にかかる費用を消費者に負担させようという意見も出ているが、そうなればごみを所定以外の所に隠れて捨てるおそれも出てくる。このような問題を解決せずに安易にこれを実行に移すのには賛成しかねる。\n物が生産され、消費者が購入し、不要なものは廃棄されごみになるという循環を考えると、新しい製品を次々と作りだす生産者も、それに慣れ切ってしまった消費者も便利さに対する意識を変える必要があるのではないか。",
+                  "image": "images/reading-11-body.png",
+                  "lead": "A"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 12,
+              "instruction": "問題12 次の文章を読んで、後の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 3,
+                  "prompt": "年前からずっとその仕事ぶりを観てきた上司と、異動していきなり論田くんのミスに出くわした上司と、論田くんへの印象は同じだろうか？両者のミスの「情報占有率」がちがう。つまり、3年間のつきあいの中で、ミスが占める割合と、たった",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "回初めて論田くんと接した中で、ミスが占める割合だ。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "付き合いの長い上司との関係の中で、論田くんがミスを"
+                    },
+                    {
+                      "number": 3,
+                      "text": "回した場合"
+                    }
+                  ],
+                  "sourcePage": 11,
+                  "passage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 4,
+                  "prompt": "付き合いの短い上司との関係の中で、論田くんがミスを3回した場合",
+                  "options": [],
+                  "sourcePage": 12,
+                  "passage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 6,
+                  "prompt": "7 <u>自分にうそのないふるまい</u>とはどのようなものか。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "その時々のすなおな気持ちを表すこと"
+                    },
+                    {
+                      "number": 2,
+                      "text": "いつも正直に自分の考えを伝えること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "いつもどおりの姿を見せること"
+                    },
+                    {
+                      "number": 4,
+                      "text": "うそをつかず正直に話すこと"
+                    }
+                  ],
+                  "sourcePage": 12,
+                  "passage": null,
+                  "answer": 1
+                }
+              ],
+              "passages": [
+                {
+                  "label": null,
+                  "questionNumbers": [
+                    3,
+                    4,
+                    6
+                  ],
+                  "text": "例えば、3年間ずっとノーミスでやってきた論田くんが、はじめてミスを出した。\n相手は、あなたが過去からずっと積み上げてきたすべての情報で、あなたを判断するのではない。結局は、そのとき相手が持っている情報だけで判断される。その中で、いい情報の占める割合が多ければ「いい人だ」となる。\nあなたが「優しい人」で10年間怒ったことがなかったとしても、10年ぶりに怒ったとき、たまたまでくわした初対面の相手にとっては、それが100％だ。あなたを「恐い人」だと思う。自分にふさわしい「メディア力」を相手の中に刻むために、ちょっと「情報占有率」を意識してみるといい。\nコミュニケーションでは、出会いからはじまって、相手から見たあなたの「メディア力」が決まるまでの間が肝心だ。つまり、初めの方が慎重さがいる。ここで、かっこつけるのでもなく、でも、あなた以下にもならず、等身大のあなたの良さが伝わるのが理想だ。\nいつも質の高<ruby>い仕事<rt>（注1）</rt></ruby>をしているなら、はじめての仕事先に対して、決していつもの質を落としてはいけない。ふだん静かな人なら、初対面の相手にも、奇をてらったりせず、普段どおり静かにしていればいい。自分にうそのないふるまいをする、ということは、初対面の相手にこそ大切だ。\nさて、ここで問題なのは、ふだんとても穏やかなあなたが、その日はたまたま嫌なことが重なり、攻撃的になっているという場合だ。自分にうそのないということで、相手にきついことを言ってしまったらどうだの100％になる。\n初対面の相手、まだ付き合いの浅い相手には、すこし慎重になって考えてほしい。\n何が、<u>自分にうそのないふるまい</u>か？自分の正直な姿を伝えるとはどういうことか？日ごろ99％穏やかなあなたなら、1％の異常よりも、いつもの穏やかさを伝えるほうが、結局は、正直な姿を伝えている。相手の中に、あなたの実像に近い「メディア力」が形成されるからだ。初対面の相手にこそ、平常心であること、普段どおりにやることが大切だ。\n（山田ズーニー『あなたの話はなぜ「通じない」のか』による）（注 1）等身大の：誇張のない\n（注 2）奇をてらう：変わったことをして、他人の気をひこうとする\n66 筆者によれば、上司にとって論田くんのミスの「情報占有率」が上がるのはどのような場合か。\n68 筆者は、なぜ初対面の相手に慎重になったほうがいいと述べているのか。\n1 普段どおりの態度では、相手に自分の良さを十分に伝えられないから2 自分に関する一部の情報で相手がすべてを判断するかもしれないから3 相手の性格が自分と合うかどうかがまだよくわかっていないから4 初対面の相手には慎重な姿が実像だと思わせる必要があるから\n69 自分に「メディア力」について、筆者はどのようにするのがよいと述べているか。1 相手に自分の「メディア力」が正確に伝わるように意識する。2 相手に普段の自分以上の「メディア力」を伝えるようにする。\n3 相手に刻まれた自分の「メディア力」を気にせず平常心でいる。4 相手に見せる自分の「メディア力」を下げないように静かにしている。"
+                }
+              ],
+              "kind": "reading"
+            },
+            {
+              "number": 13,
+              "instruction": "問題13 次のページは、留学生向けの奨学金募集の案内である。下の問いに対する答えとして最もよいものを、1・2・3・4から一つ選びなさい",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "募集人員 30名",
+                  "options": [],
+                  "sourcePage": 12,
+                  "passage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 2,
+                  "prompt": "奨学金の支給額・支給方法など① 支給額 大学院修士課程(博士前期課程) 月額100000円大学院博士課程(博士後期課程) 月額120000円",
+                  "options": [
+                    {
+                      "number": 3,
+                      "text": "年間"
+                    }
+                  ],
+                  "sourcePage": 12,
+                  "passage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 3,
+                  "prompt": "応募資格①国籍・ビザについて・日本以外の国籍を有し、勉強または研究のための在留資格(例えば留学)で、日本に入国した者②対象・日本国内の大学院で、理学、工学、農学の分野を専攻している者",
+                  "options": [
+                    {
+                      "number": 2,
+                      "text": "年次で、2011年"
+                    },
+                    {
+                      "number": 3,
+                      "text": "0)で、心身ともに健康な者"
+                    },
+                    {
+                      "number": 4,
+                      "text": "月時点で、修士課程の 1年次、博士課程の 1年次か 2年次に在籍している者、"
+                    }
+                  ],
+                  "sourcePage": 12,
+                  "passage": null
+                },
+                {
+                  "number": 4,
+                  "prompt": "応募方法①提出書類(指定のものは当財団ホームページからダウンロードして使用すること)・2011年度日本留学生奨学財団奨学生応募用紙(指定のもの)・在学証明書と2009年度の成績が分かる成績証明書・在籍大学院の指導教授からの推薦書・研究計画書(3000字以内)、書式は自由②応募締め切り 2010年7月31日必着なお、申請者が直接応募するのではなく、必ず所属の大学院を通じて応募すること",
+                  "options": [],
+                  "sourcePage": 13,
+                  "passage": null
+                },
+                {
+                  "number": 5,
+                  "prompt": "選考方法応募書類、面接を総合的に判断して決定する",
+                  "options": [],
+                  "sourcePage": 13,
+                  "passage": null
+                },
+                {
+                  "number": 6,
+                  "prompt": "決定通知2010年9月10日までに所属の大学院を通じ、書面で通知する",
+                  "options": [],
+                  "sourcePage": 13,
+                  "passage": null
+                },
+                {
+                  "number": 7,
+                  "prompt": "問い合わせ先日本留学生奨学財団 http://www.ryugaku.or.jp/名前 国籍 月時点の在籍専攻成績 成績 学金の受給予定の有",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "年 電子工学"
+                    },
+                    {
+                      "number": 2,
+                      "text": "年 農学 2.9 無"
+                    },
+                    {
+                      "number": 3,
+                      "text": "0 有"
+                    },
+                    {
+                      "number": 4,
+                      "text": "年 理学 3.0 無"
+                    }
+                  ],
+                  "sourcePage": 13,
+                  "passage": null
+                }
+              ],
+              "passages": [
+                {
+                  "label": null,
+                  "questionNumbers": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                  ],
+                  "text": "財団法人 日本留学生奨学財団\n2011年度 外国人留学生奨学生募集要項\n③ 支給方法 毎月一回決まった日に、受給者本人名義の銀行口座に直接振り込む\n・2011年度に、それぞれの政府、日本政府、他の財団などの奨学金支給を受けない者2010年42011年度他の奨\n年次 無\n70 日本の大学・大学院に在学している次の学生のうち、この奨学金に応募できるのは誰か。1 ソムシリーさん 2 ワンさん\n3 アフマドさん 4 ジョンさん\n71 キムさんは、2010年4月現在、日本の大学院の修士課程2年生で農学を専攻している。2011年度には博士課程に進学予定である。キムさんが、この奨学金に応募する場合、応募時に必ずしなければならないのは、次のどれか。\n1 ホームページから研究計画書の様式をダウンロードする。\n2 博士課程進学が決定していることを証明する書類をもらう。"
+                }
+              ],
+              "kind": "reading",
+              "image": "images/reading-info.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listening",
+      "title": "聴解",
+      "minutes": 55,
+      "parts": [
+        {
+          "id": "listening",
+          "title": "聴解",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "荷造りをする"
+                    },
+                    {
+                      "number": 2,
+                      "text": "トラックに荷物を運ぶ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "友達の家にベッドを運ぶ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "部屋の掃除をする"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "spoken": "：女の人と男の人が話しています。男の人はこの後何をしますか。女：おはよう、今日は朝早くから引っ越し手伝わせてごめんね。男：いや、こういうのはお互い様だしね。女：本当に助かる。男：それで、早速だけど、何から始めようか。荷作り、終わってる？女：うん、持ってくものは全部ダンボールに入れといた。トラックにダンボール運んでってくれる？男：ベッドとか大きな家具はどうやって運ぶ？女：ああ、それは友達が欲しいって言ってるから、そのままでいいよ。運ぶのを終わったら休んでて。その間に簡単に部屋の掃除するから。男：了解。質問:男の人はこの後何をしますか。答案：2解题要点：男的要帮女的搬家，男的先问是否需要打包？女的说所有的东西都已经装入纸箱中了，要求把纸箱搬上卡车。男的又问床和家具如何搬运？女的说自己的朋友想要，放在那里就可以了。因此可知，男的接下来是要把纸箱搬上卡车。注释：荷作(にづく)り（打包）；ダンボール（纸箱）",
+                  "answer": 2
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "プリンターの修理を頼む"
+                    },
+                    {
+                      "number": 2,
+                      "text": "プリンターの見積もりを頼む"
+                    },
+                    {
+                      "number": 3,
+                      "text": "プリンターの買う許可をとる"
+                    },
+                    {
+                      "number": 4,
+                      "text": "プリンターを注文する"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "spoken": "：テレビで栄養学の専門家が話しています。女：コーヒーは体に悪いというイメージを持つ人もいるようですが、病気を予防する効果もあることが報告されています。ええ、ある調査では、コーヒーを一日三杯以上飲む人は、糖尿病が発症する可能性が、ほとんど飲まない人より40 パーセント少ないという結果が出ています。癌や心臓病の予防に効果があるという報告もあります。コーヒーを飲むと、胃が荒れるという話があるかもしれませんが、それは過剰な摂取によるものと思われます。まあ、コーヒーに限らず、なんでも過剰な摂取はよくありません。質問:この専門家は何の話をしていますか。1.コーヒーを飲む人の割合2.コーヒーの効果3.コーヒーの成分4.コーヒーの消費量答案：2解题要点：有人认为咖啡对身体不好，但是有报告说咖啡有预防疾病的效果。数据表明，一天喝3 杯以上的咖啡的人比几乎不喝咖啡的人，得糖尿病的可能性低40%，还有报告说可预防癌症和心脏病。主要谈的是咖啡的效果。注释：摂取(せっしゅ)（摄取、吸收）；胃(い)が荒(あわ)れる（心慌、反胃）",
+                  "answer": 2
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ニーズ調査の実施"
+                    },
+                    {
+                      "number": 2,
+                      "text": "販売の対象者の決定"
+                    },
+                    {
+                      "number": 3,
+                      "text": "企画書の修正"
+                    },
+                    {
+                      "number": 4,
+                      "text": "試食会の実施"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "spoken": "：留守番電話のメッセージを聞いています。男：お世話になっております。朝日商事の佐藤です。あの、先日ご注文いただいた商品の件なんですが、ご依頼の100 個は入手できませんでしたが、80 個はなんとか確保いたしました。で、この80 個でよろしいかどうか、お教えください。商品の価格はご希望の範囲に抑えられそうですし、お届けの日も先日お伝えしたとおりで変更はありません。後ほどこちらからお電話いたしますので、ご指示お願いいたします。それでは失礼致します。質問:何についてのメッセージですか。1.商品の数の確認2.価格の交渉3.配達日の変更4.注文方法の変更答案：1解题要点：客户订的100 件商品只能确保有80 件，希望告知这个数量可不可以。另外，商品的价格还可以商量，控制在希望范围内，配送时间不变。即这是一个关于确认商品数量的留言。注释：抑(おさ)える（控制）",
+                  "answer": 3
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "教育政策と経済効果"
+                    },
+                    {
+                      "number": 2,
+                      "text": "教育政策の国際比較"
+                    },
+                    {
+                      "number": 3,
+                      "text": "日本の教育政策の課題"
+                    },
+                    {
+                      "number": 4,
+                      "text": "日本の教育政策の歴史"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "spoken": ":テレビで作家がインタビューに答えます。女：先生は世界各地を回られて旅行の本をたくさん書かれていますが、海外旅行を計画している人たちに一言お願いします。男：そうですね、有名な遺跡に行く人も多いと思うんですが、僕は誰も住んでいない遺跡を目の前にしても自分の部屋でガイドブックを眺めているような感じを受けてしまうんです。普通の人が暮らす町に行ったほうが異国へ来たことを肌で感じることが出来ます。人々が住んでいるところを散策してみてはどうでしょうか。生活から生まれる音やざわめき、匂い、そういうものほど五感を刺激するものはないと思うんです。これはその国の歴史を学ぶだけでは得られないものです。質問:作家が伝えたいことは何ですか。1.旅行の本を読んでおいた方がいい2.遺跡を訪れた方がいい3.人々の生活に触れた方がいい4,その国の歴史を学ぶべきだ答案：3解题要点：对我来说，那些无人居住的遗迹摆在我的眼前，就像在自己的房间里观看旅游指南似的。不如去普通人生活的城镇走走，能亲身体会来到异国他乡的感受。所以作家建议到人们生活居住的地方随便走走，同时认为，没有比从生活中产生的声音、吵闹、气味更刺激感官的。这些是只靠学习该国历史而学不到的东西。因此，作家要说的是希望大家更多地了解、接触当地居民的生活。注释：ざわめき（低语；低声的怨言；呜囔）；散策(さんさく)（散步,随便走走）",
+                  "answer": 1
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "商店街を掃除する"
+                    },
+                    {
+                      "number": 2,
+                      "text": "駅までの道を掃除する"
+                    },
+                    {
+                      "number": 3,
+                      "text": "集めたのごみを回収する"
+                    },
+                    {
+                      "number": 4,
+                      "text": "駐車場に掃除用具を取りに行く"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "spoken": ":社長が新入社員に話しています。男：新入社員の皆さん、皆さんは昨今の競争社会を生き抜くためには誰にも負けない何かを一つ持っていることが大切だと思っているかもしれません。ですが、この不確かな時代いつどんな経験がどんな場面で役立つかは誰にもわかりません。ですから始めから一つのことに的を絞るのは視野が狭くなり、得策とは言えないでしょう。自分には専門外だと思ってもそれに全力で取り組み、その経験を重ねていくことは後々その人の宝になります。何事にも挑戦する気持ちを忘れず、自分に向いていないと思ったことにも前向きに取り組んでいくことが肝要だと思います。質問:社長が伝えたいことは何ですか。1.得意分野を持ってほしい2.さまざまな経験をつんでほしい3.自分の専門をいかしてほしい4.競争心を持ってほしい。答案：2解题要点：大家也许会认为在近年来的竞争社会中，拥有一个本领是重要的。但是在这个不稳定的时代，何时、何种经验、在何地，能发挥作用，谁也不知。因此，从开始就把自己缩小到一个事物上，也缩小了自己的视野，这不能说是一种好办法。即使认为自己是外行，也全力以赴，不断积累经验，日后一定会成为那个人的财富。对于任何事情，不要忘了要有挑战精神。即使认为有些事情不适合自己，但我认为努力积极向前的精神是最重要的。因此，社长是希望大家多积累各种经验。注释：得策(とくさく)（上策,好办法）；的(まと)を絞(しぼ)る（集中要点）",
+                  "answer": 3
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "会社に戻る"
+                    },
+                    {
+                      "number": 2,
+                      "text": "課長と取引先に行く"
+                    },
+                    {
+                      "number": 3,
+                      "text": "駅で待つ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "田中さんに連絡する"
+                    }
+                  ],
+                  "sourcePage": 15,
+                  "spoken": ":テレビのニュースでアナウンサーがある栽培方法について話しています。この栽培方法はどうして最近注目されていますか。男：野菜を栽培するとき、屋内で、人工的に環境を作って育てるという方法があります。外で栽培するのと違って、天候に左右されず、害虫の被害の心配もなく、効率的に無農薬で野菜を栽培することが可能です。ただし、光熱費などがかさみ、従来の野菜より高くなってしまうことが懸念されたため、ほとんどの農家が利用してきませんでした。しかし、季節に関係なく、また天候にも影響されず、いつでも野菜が収穫できるという点に、ここ数年、多くの人の期待が集まっています。このため、徐々にこの方法に変える農家も出てきたということです。質問:この栽培方法はどうして最近注目されていますか。答案：4解题要点：不受季节、天气影响，任何时候都能收获蔬菜，这些在近年来受到很多人的期待，因此这种栽培方法受关注的原因是可以稳定供应蔬菜。注释：懸(け)念(ねん)（担忧,担心）答案：2解题要点：从10 年前开始开展志愿者活动，一直说到现在的情况。回顾了志愿者小组的历史沿革。",
+                  "answer": 1
+                }
+              ],
+              "kind": "listening"
+            },
+            {
+              "number": 2,
+              "instruction": "問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "海外支社に勤務するため"
+                    },
+                    {
+                      "number": 2,
+                      "text": "人事評価を上げるため"
+                    },
+                    {
+                      "number": 3,
+                      "text": "留学用のしょうがくきんを得るため"
+                    },
+                    {
+                      "number": 4,
+                      "text": "国際部に異動するため"
+                    }
+                  ],
+                  "sourcePage": 16
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "予算が不十分だったから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "人員が足りなかったから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "時間が短かったから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "調査の方法が悪かったから"
+                    }
+                  ],
+                  "sourcePage": 16
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "テレビで映画が宣伝されたから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "有名な俳優が出ているから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "インターネットで評判になったから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "映画情報誌で高く評価されたから"
+                    }
+                  ],
+                  "sourcePage": 16
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "支店が販売目標を達成したこと"
+                    },
+                    {
+                      "number": 2,
+                      "text": "支店の販売実績を毎月更新できたこと"
+                    },
+                    {
+                      "number": 3,
+                      "text": "支店の年間総売上げが伸びたこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "支店の社員全員が目標を達成したこと"
+                    }
+                  ],
+                  "sourcePage": 16
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "選手のスキー技術を向上させること"
+                    },
+                    {
+                      "number": 2,
+                      "text": "選手の精神面を支えること"
+                    },
+                    {
+                      "number": 3,
+                      "text": "コーチ自身のスキー技術をみがくこと"
+                    },
+                    {
+                      "number": 4,
+                      "text": "コーチ自身の精神面をきたえること"
+                    }
+                  ],
+                  "sourcePage": 16
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "無農薬で野菜がさいばいできるため"
+                    },
+                    {
+                      "number": 2,
+                      "text": "施設をいじするのにお金がかからないため"
+                    },
+                    {
+                      "number": 3,
+                      "text": "短期間で野菜が収穫できるため"
+                    },
+                    {
+                      "number": 4,
+                      "text": "野菜の安定供給ができるため"
+                    }
+                  ],
+                  "sourcePage": 16
+                },
+                {
+                  "number": 7,
+                  "prompt": "7番",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "データに不備があったから"
+                    },
+                    {
+                      "number": 2,
+                      "text": "課長が出席できなくなったから"
+                    },
+                    {
+                      "number": 3,
+                      "text": "会議の資料作成をやり直すから"
+                    },
+                    {
+                      "number": 4,
+                      "text": "会議の場所が確保できなかったから"
+                    }
+                  ],
+                  "sourcePage": 16
+                }
+              ],
+              "kind": "listening"
+            },
+            {
+              "number": 3,
+              "instruction": "問題3問題3 では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1 から4 の中なかから、最もよいものを一つ選んでください。－メモ－",
+              "items": [],
+              "kind": "audio-only"
+            },
+            {
+              "number": 4,
+              "instruction": "問題4問題4 では、問題用紙に何も印刷されていません。まず文を聞いてください。それから、それに対する返事を聞いて、1 から3の中から、最もよいものを一つ選んでください。－メモ－",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": "：あの、何か書くもの拝借してもよろしいですか。1.じゃあ、拝見しましょう。2.これでよろしければ。3.すぐお返しします。答案：2解题要点：对不起，能借本读物吗？这个怎么样？",
+                  "answer": 2
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": "：よし、今度の試験合格してみせるぞ。1.やったね、おめでとう。2.じゃあ、受けてみるね。3.受かるといいね。答案：3解题要点：好，这次考试，我一定考及格。能考及格就好了。",
+                  "answer": 3
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":お忙しいところ恐れ入りますが、一度うちの事務所にお越し願えませんか。1.ずいぶんお忙しいんですね。2.来週なら伺えますが。3.もうお越しいただきましたので。答案：2解题要点：在您百忙之中，真是对不起。能到我们办公处来一趟吗？下周的话，有时间去拜访。",
+                  "answer": 2
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":山田貿易の業績、最近、ずいぶん伸びてるね。1.ちょっと短くした方がいいね。2.今の景気では難しいんだね。3.うちも負けていられないね。答案：3解题要点：山田贸易公司的业绩，最近，大有增长啊。我们也不能落后。",
+                  "answer": 3
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":さっき返した会議の資料、もう一度見せてくれない？気にかかることがあって。1.どこか間違ってたでしょうか。2.拝見してもよろしいですか。3.気に入ってもらえましたか。答案：1解题要点：刚才归还的会议资料，再给我看一下行吗？有些地方我有些担心。是不是哪里出错了？",
+                  "answer": 1
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":今度の社員旅行、行きたいのは山々なんですけど。1.え、行けないんですか。2.今度は山なんですか。3.それは楽しみですね。答案：1解题要点：“……たいのは山々だが、……”，意为“虽然很想……，但是……”，本题为“虽然很想去这次的员工旅游，但是去不了”之意。故回答为“唉，你去不了吗？”",
+                  "answer": 1
+                },
+                {
+                  "number": 7,
+                  "prompt": "7番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":悪いけど、今日はゆっくりしてられないんだ。1.どうやって？2.なんかあんの？3.余裕あるんだね。答案：2解题要点：对不起，今天不能多坐一会儿了。发生什么事了？",
+                  "answer": 2
+                },
+                {
+                  "number": 8,
+                  "prompt": "8番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":面接のときこの服じゃまずいかな。1.そんなことないと思うけど。2.上手だとは思わないよ。3.そういうわけじゃないんだね。答案：1解题要点：面试的时候，穿这样的衣服不合适吧。我觉得没什么。",
+                  "answer": 1
+                },
+                {
+                  "number": 9,
+                  "prompt": "9番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":明日のプレゼン、データ整理に手間取ってて、グラフまで手が回らないよ。1.大変だね。手伝おうか。2.もう少し近くに持っていこうか。3.けっこうすんなり終わったね。答案：1解题要点：明天的企划说明会，要花时间整理数据材料，还要制作表格，人手不够啊。真够呛啊，我来帮忙吧。",
+                  "answer": 1
+                },
+                {
+                  "number": 10,
+                  "prompt": "10番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":あの、これ、気持ちばかりのものですが。1.お口にあうかどうかわかりませんが。2.ええ、お気持ちはよくわかります。3.かえってお気を使わせてしまいまして。答案：3解题要点：这个，一点心意，请收下。啊，实在是让您费心了。",
+                  "answer": 3
+                },
+                {
+                  "number": 11,
+                  "prompt": "11番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":ねえ、今月の売り上げもトップなんだって。もうかなわないなあ。1.今度こそがんばります。2.や、運がよかっただけです。3.ええ、かなうといいですね。答案：2解题要点：听说你这个月的销售额竟然第一，我实在是赶不上你啊。不，只是运气好而已。",
+                  "answer": 2
+                },
+                {
+                  "number": 12,
+                  "prompt": "12番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":せっかく来たのに、休みだなんて。1.来られなくて残念だったね。2.休みだと思ってたのに。3.仕方ないよ。また来よう。答案：3解题要点：特意过来，竟然休息。没办法，下次再来吧。",
+                  "answer": 3
+                },
+                {
+                  "number": 13,
+                  "prompt": "13番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":山田先生って経済学ではちょっと名の知れた先生らしいね。1.学生のこと、よく知ってるよね。2.本もたくさん書いてるもんね。3.よくある名前だからね。答案：2解题要点：山田老师，好像是在经济学上知名的老师啊。他也写了很多书呢。",
+                  "answer": 2
+                },
+                {
+                  "number": 14,
+                  "prompt": "14番",
+                  "options": [],
+                  "sourcePage": 0,
+                  "spoken": ":出張の件だったら部長に聞くまでもないよ。1.じゃあ、聞かないとだめですね。2.でも、念のため聞いてみます。3.やっぱり聞いたほうがいいですか。答案：2解题要点：如果是出差的事，不必问部长了。但是，为了慎重起见，还是去问问。",
+                  "answer": 2
+                }
+              ],
+              "kind": "audio-only"
+            },
+            {
+              "number": 5,
+              "instruction": "問題5問題5では、長めの話を聞きます。この問題には練習はありません。メモをとってもかまいません。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": 17
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": 17
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": 17
+                },
+                {
+                  "number": 4,
+                  "prompt": "質問1",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "総合的研修"
+                    },
+                    {
+                      "number": 2,
+                      "text": "コミュニケーションスキル"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ビジネスマナー"
+                    },
+                    {
+                      "number": 4,
+                      "text": "プレゼンスキル"
+                    }
+                  ],
+                  "sourcePage": 17
+                },
+                {
+                  "number": 5,
+                  "prompt": "質問2",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "総合的研修"
+                    },
+                    {
+                      "number": 2,
+                      "text": "コミュニケーションスキル"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ビジネスマナー"
+                    },
+                    {
+                      "number": 4,
+                      "text": "プレゼンスキル文字词汇：2345678910322431411112131415161718192032123241212223242532434文法：26272829303132333435421341422336373839404142434445423432读解：464748495051525354552324433356575859606162636465434424346667686970714224听力：23456二123422332467三12345四 12422213223346789101112121331314五123女：おはよう、今日は朝早くから引っ越し手伝わせてごめんね。男：いや、こういうのはお互い様だしね。女：本当に助かる。男：それで、早速だけど、何から始めようか。荷作り、終わってる？女：うん、持ってくものは全部ダンボールに入れといた。トラックにダンボール運んでってくれる？男：ベッドとか大きな家具はどうやって運ぶ？女：ああ、それは友達が欲しいって言ってるから、そのままでいいよ。運ぶのを終わったら休んでて。その間に簡単に部屋の掃除するから。男：了解。質問:男の人はこの後何をしますか。"
+                    }
+                  ],
+                  "sourcePage": 17
+                }
+              ],
+              "kind": "listening"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

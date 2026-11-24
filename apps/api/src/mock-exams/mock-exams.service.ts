@@ -65,6 +65,38 @@ import december2011N2 from './keys/n2-2011-12.json';
 import july2011N2 from './keys/n2-2011-07.json';
 import december2010N2 from './keys/n2-2010-12.json';
 import july2010N2 from './keys/n2-2010-07.json';
+import july2026N1 from './keys/n1-2026-07.json';
+import december2025N1 from './keys/n1-2025-12.json';
+import july2025N1 from './keys/n1-2025-07.json';
+import december2024N1 from './keys/n1-2024-12.json';
+import july2024N1 from './keys/n1-2024-07.json';
+import december2023N1 from './keys/n1-2023-12.json';
+import july2023N1 from './keys/n1-2023-07.json';
+import december2022N1 from './keys/n1-2022-12.json';
+import july2022N1 from './keys/n1-2022-07.json';
+import december2021N1 from './keys/n1-2021-12.json';
+import july2021N1 from './keys/n1-2021-07.json';
+import december2020N1 from './keys/n1-2020-12.json';
+import december2019N1 from './keys/n1-2019-12.json';
+import july2019N1 from './keys/n1-2019-07.json';
+import december2018N1 from './keys/n1-2018-12.json';
+import july2018N1 from './keys/n1-2018-07.json';
+import december2017N1 from './keys/n1-2017-12.json';
+import july2017N1 from './keys/n1-2017-07.json';
+import december2016N1 from './keys/n1-2016-12.json';
+import july2016N1 from './keys/n1-2016-07.json';
+import december2015N1 from './keys/n1-2015-12.json';
+import july2015N1 from './keys/n1-2015-07.json';
+import december2014N1 from './keys/n1-2014-12.json';
+import july2014N1 from './keys/n1-2014-07.json';
+import december2013N1 from './keys/n1-2013-12.json';
+import july2013N1 from './keys/n1-2013-07.json';
+import december2012N1 from './keys/n1-2012-12.json';
+import july2012N1 from './keys/n1-2012-07.json';
+import december2011N1 from './keys/n1-2011-12.json';
+import july2011N1 from './keys/n1-2011-07.json';
+import december2010N1 from './keys/n1-2010-12.json';
+import july2010N1 from './keys/n1-2010-07.json';
 import { SaveMockAttemptDto } from './dto/save-mock-attempt.dto';
 import { completedSectionsFor, MOCK_SECTION_IDS } from './sections';
 
@@ -131,6 +163,38 @@ const ANSWER_KEYS: Record<string, Record<string, number>> = {
 	'n2-2011-07': july2011N2,
 	'n2-2010-12': december2010N2,
 	'n2-2010-07': july2010N2,
+	'n1-2026-07': july2026N1,
+	'n1-2025-12': december2025N1,
+	'n1-2025-07': july2025N1,
+	'n1-2024-12': december2024N1,
+	'n1-2024-07': july2024N1,
+	'n1-2023-12': december2023N1,
+	'n1-2023-07': july2023N1,
+	'n1-2022-12': december2022N1,
+	'n1-2022-07': july2022N1,
+	'n1-2021-12': december2021N1,
+	'n1-2021-07': july2021N1,
+	'n1-2020-12': december2020N1,
+	'n1-2019-12': december2019N1,
+	'n1-2019-07': july2019N1,
+	'n1-2018-12': december2018N1,
+	'n1-2018-07': july2018N1,
+	'n1-2017-12': december2017N1,
+	'n1-2017-07': july2017N1,
+	'n1-2016-12': december2016N1,
+	'n1-2016-07': july2016N1,
+	'n1-2015-12': december2015N1,
+	'n1-2015-07': july2015N1,
+	'n1-2014-12': december2014N1,
+	'n1-2014-07': july2014N1,
+	'n1-2013-12': december2013N1,
+	'n1-2013-07': july2013N1,
+	'n1-2012-12': december2012N1,
+	'n1-2012-07': july2012N1,
+	'n1-2011-12': december2011N1,
+	'n1-2011-07': july2011N1,
+	'n1-2010-12': december2010N1,
+	'n1-2010-07': july2010N1,
 };
 
 type AttemptRow = typeof mockExamAttempts.$inferSelect;

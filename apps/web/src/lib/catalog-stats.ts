@@ -9,7 +9,7 @@ export const CATALOG_STATS = {
   words: Object.values(WORD_TOTALS).reduce((sum, count) => sum + count, 0),
   kanji: 979,
   grammar: 826,
-  mockPapers: 62,
+  mockPapers: 94,
 } as const;
 
 export const formatCount = (value: number) => value.toLocaleString("en-US");

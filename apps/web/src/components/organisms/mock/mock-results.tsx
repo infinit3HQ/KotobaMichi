@@ -252,7 +252,9 @@ export function MockResults({
           <MondaiTable rows={mondaiScores} />
           <p className="text-xs leading-relaxed text-muted-foreground">
             {exam.sections.some((section) => section.id === "language-reading")
-              ? "Each clock is 60. 言語知識・読解 splits that 60 across 文字・語彙, 文法 and 読解, then across each 問題. 聴解 is its own 60. The real N2 report scores 言語知識, 読解 and 聴解 separately, out of 180, and a pass is 90 with 19 in each. Letters are the report’s bands: A is 67% or more, B is 34–66%, C is under 34%."
+              ? exam.level === "N1"
+                ? "Each clock is 60. 言語知識（文字・語彙・文法）・読解 splits that 60 across 文字・語彙, 文法 and 読解, then across each 問題. 聴解 is its own 60. The real N1 report scores 言語知識, 読解 and 聴解 separately, out of 180, and a pass is 100 with 19 in each. Letters are the report’s bands: A is 67% or more, B is 34–66%, C is under 34%."
+                : "Each clock is 60. 言語知識・読解 splits that 60 across 文字・語彙, 文法 and 読解, then across each 問題. 聴解 is its own 60. The real N2 report scores 言語知識, 読解 and 聴解 separately, out of 180, and a pass is 90 with 19 in each. Letters are the report’s bands: A is 67% or more, B is 34–66%, C is under 34%."
               : "Each paper is 60. 文字・語彙 is one part, so its five 問題 split that 60. 文法・読解 has two parts, so grammar and reading are 30 each, then each 問題 splits that 30, then the items split the 問題. The real report groups vocabulary with grammar instead, and shifts the number for item difficulty, which is not published. Vocabulary and grammar letters are the report’s bands: A is 67% or more, B is 34–66%, C is under 34%."}
           </p>
         </section>

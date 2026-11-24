@@ -1,0 +1,1170 @@
+{
+  "id": "n1-2022-12",
+  "level": "N1",
+  "session": "2022-12",
+  "title": "N1 mock · December 2022",
+  "note": "Reconstructed from the sitting's question paper. The answer key is the one printed with that paper, not an official JLPT score.",
+  "audio": {
+    "file": "2022年12月JLPT日语能力考试N1历年真题听力.mp3",
+    "note": "One listening track for the sitting. Start and stop times are not marked yet."
+  },
+  "sections": [
+    {
+      "id": "language-reading",
+      "title": "言語知識（文字・語彙・文法）・読解",
+      "minutes": 110,
+      "parts": [
+        {
+          "id": "vocabulary",
+          "title": "文字・語彙",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題1 ＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "チームの新しい<u>監督</u>が決まった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "かんどく"
+                    },
+                    {
+                      "number": 2,
+                      "text": "がんどく"
+                    },
+                    {
+                      "number": 3,
+                      "text": "かんとく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "がんとく"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 2,
+                  "prompt": "これは、外国語から<u>派生</u>した言葉です。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "はしょう"
+                    },
+                    {
+                      "number": 2,
+                      "text": "はせい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "はっしょう"
+                    },
+                    {
+                      "number": 4,
+                      "text": "はっせい"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 3,
+                  "prompt": "文字が<u>透けて</u>いる。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ぼけて"
+                    },
+                    {
+                      "number": 2,
+                      "text": "かけて"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ぬけて"
+                    },
+                    {
+                      "number": 4,
+                      "text": "すけて"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 4,
+                  "prompt": "この村は湖の<u>恩恵</u>を受けている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "おんけい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "おんえい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "いんけい"
+                    },
+                    {
+                      "number": 4,
+                      "text": "いんえい"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 5,
+                  "prompt": "厳しい練習に<u>臨む</u>選手たちの姿を目にした。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "いどむ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "はげむ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "なやむ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "のぞむ"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 6,
+                  "prompt": "調査データは、地球の温暖化を<u>如実</u>に示している。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "じょじつに"
+                    },
+                    {
+                      "number": 2,
+                      "text": "じょうじつに"
+                    },
+                    {
+                      "number": 3,
+                      "text": "にょじつに"
+                    },
+                    {
+                      "number": 4,
+                      "text": "にょうじつに"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 2,
+              "instruction": "問題2 （　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 7,
+                  "prompt": "被害者について報道するときは、仮名を用いてプライバシーを（　）している。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "保護"
+                    },
+                    {
+                      "number": 2,
+                      "text": "防御"
+                    },
+                    {
+                      "number": 3,
+                      "text": "警備"
+                    },
+                    {
+                      "number": 4,
+                      "text": "支援"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 8,
+                  "prompt": "この模型は、実際にあった建物を20分の1の大きさで（　）再現した物だ。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "従順に"
+                    },
+                    {
+                      "number": 2,
+                      "text": "厳正に"
+                    },
+                    {
+                      "number": 3,
+                      "text": "忠実に"
+                    },
+                    {
+                      "number": 4,
+                      "text": "均等に"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 9,
+                  "prompt": "川の水が澄んでいてきれいだったので、両手で（　）、顔を洗った。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "めくって"
+                    },
+                    {
+                      "number": 2,
+                      "text": "すくって"
+                    },
+                    {
+                      "number": 3,
+                      "text": "はさんで"
+                    },
+                    {
+                      "number": 4,
+                      "text": "つまんで"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 10,
+                  "prompt": "一生懸命働いて、ついに（　）のマイホームを手に入れた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "志望"
+                    },
+                    {
+                      "number": 2,
+                      "text": "本意"
+                    },
+                    {
+                      "number": 3,
+                      "text": "欲求"
+                    },
+                    {
+                      "number": 4,
+                      "text": "念願"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 11,
+                  "prompt": "きれいな写真を撮るためには、まずカメラの（　）を合わせることが大切です。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ポーズ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "カーソル"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ピント"
+                    },
+                    {
+                      "number": 4,
+                      "text": "テンポ"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 12,
+                  "prompt": "全国大会は初出場だったが、厳しい試合を勝ち抜いて何とか上位に（　）。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "乗り込んだ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "食い込んだ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "駆け込んだ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "追い込んだ"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 13,
+                  "prompt": "道案内をしてくれたので、（　）地元の人かと思ったら、実は観光客だった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "てっきり"
+                    },
+                    {
+                      "number": 2,
+                      "text": "きっぱり"
+                    },
+                    {
+                      "number": 3,
+                      "text": "しっかり"
+                    },
+                    {
+                      "number": 4,
+                      "text": "はっきり"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 3,
+              "instruction": "問題3 ＿の言葉に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 14,
+                  "prompt": "必要な資金を<u>調達</u>した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "払った"
+                    },
+                    {
+                      "number": 2,
+                      "text": "預かった"
+                    },
+                    {
+                      "number": 3,
+                      "text": "返却した"
+                    },
+                    {
+                      "number": 4,
+                      "text": "用意した"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 15,
+                  "prompt": "山田さんは<u>温和</u>な性格だ。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "さわやかな"
+                    },
+                    {
+                      "number": 2,
+                      "text": "おだやかな"
+                    },
+                    {
+                      "number": 3,
+                      "text": "こまやかな"
+                    },
+                    {
+                      "number": 4,
+                      "text": "かろやかな"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 16,
+                  "prompt": "おすすめの<u>スポット</u>を教えてください。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "場所"
+                    },
+                    {
+                      "number": 2,
+                      "text": "商品"
+                    },
+                    {
+                      "number": 3,
+                      "text": "方法"
+                    },
+                    {
+                      "number": 4,
+                      "text": "時期"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 1
+                },
+                {
+                  "number": 17,
+                  "prompt": "各国のチームの実力は<u>拮抗</u>している。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "差がある"
+                    },
+                    {
+                      "number": 2,
+                      "text": "差がない"
+                    },
+                    {
+                      "number": 3,
+                      "text": "高くなっている"
+                    },
+                    {
+                      "number": 4,
+                      "text": "低くなっている"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 2
+                },
+                {
+                  "number": 18,
+                  "prompt": "住民からの<u>風当たり</u>は相当なものだった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "要求"
+                    },
+                    {
+                      "number": 2,
+                      "text": "信頼"
+                    },
+                    {
+                      "number": 3,
+                      "text": "期待"
+                    },
+                    {
+                      "number": 4,
+                      "text": "批判"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 4
+                },
+                {
+                  "number": 19,
+                  "prompt": "カメラは子供たちの<u>あどけない</u>表情を捉えていた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "不安そうな"
+                    },
+                    {
+                      "number": 2,
+                      "text": "真剣な"
+                    },
+                    {
+                      "number": 3,
+                      "text": "無邪気な"
+                    },
+                    {
+                      "number": 4,
+                      "text": "羨ましそうな"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                }
+              ],
+              "kind": "choice"
+            },
+            {
+              "number": 4,
+              "instruction": "問題4 次の言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 20,
+                  "prompt": "出荷",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "有名俳優の出荷によって、公演のチケットはすぐに完売した。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "海外の需要が高まり、アメリカに新店舗の出荷が決定した。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "好評により注文が殺到していて、商品の出荷が遅れている。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "今回の展覧会では、絵画の出荷が大半を占めた。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 21,
+                  "prompt": "譲る",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "私は早朝起きて、新聞を各家庭に譲る仕事をしている。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "学校の倉庫の鍵を職員室に譲るのをすっかり忘れていた。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "新しいテレビを買ったので、古いテレビを友人に譲った。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "今朝、自宅近くの公園で拾った財布を交番に譲った。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 22,
+                  "prompt": "底力",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "毎日体を鍛えているので、腕の底力なら誰にも負けない。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "彼は目立たない存在だが、大事な場面での底力はすごい。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "石原さんは、動物の言葉が分かる特別な底力を持っている。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "留学して、英語を話す底力を伸ばしたいと思っている。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 2
+                },
+                {
+                  "number": 23,
+                  "prompt": "絶大",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "絶大な開発によって、町の風景がすっかり変わった。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "世界を旅して、絶大な山々の姿を写真に収めた。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "これまで誰も釣ったことがないような絶大な魚を釣りたい。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "あの歌手は、若い人たちに絶大な人気がある。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 4
+                },
+                {
+                  "number": 24,
+                  "prompt": "手痛い",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "仕事で手痛いミスをして、周りに迷惑をかけた。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "来週までは、手痛い運動をなるべく避けてください。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "秋が終わって、とうとう手痛い冬がやってきた。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "今川さんは、ほかの人より手痛いスピードで作業した。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 25,
+                  "prompt": "誘致",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "駐車場で、係員が車を何台も誘致している。"
+                    },
+                    {
+                      "number": 2,
+                      "text": "議会は町の経済を活性化させるために、工場を誘致することを決めた。"
+                    },
+                    {
+                      "number": 3,
+                      "text": "人材が不足しているため、今年は100人以上の新入社員を誘致した。"
+                    },
+                    {
+                      "number": 4,
+                      "text": "あの学校は新しい教授法を誘致したことで、人々の関心を集めている。"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 2
+                }
+              ],
+              "kind": "choice"
+            }
+          ]
+        },
+        {
+          "id": "grammar",
+          "title": "文法",
+          "mondai": [
+            {
+              "number": 5,
+              "instruction": "問題5 次の文の（　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+              "items": [
+                {
+                  "number": 26,
+                  "prompt": "このレストランのシェフはまだ20代だが、著名な料理評論家（　）満足させる腕の持ち主であると、テレビや雑誌で評判になっている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "をも"
+                    },
+                    {
+                      "number": 2,
+                      "text": "とを"
+                    },
+                    {
+                      "number": 3,
+                      "text": "にまで"
+                    },
+                    {
+                      "number": 4,
+                      "text": "までが"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 27,
+                  "prompt": "はっきりとは覚えていないが、この町には（　）来たことがある。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "また"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ついに"
+                    },
+                    {
+                      "number": 3,
+                      "text": "いつか"
+                    },
+                    {
+                      "number": 4,
+                      "text": "まもなく"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 28,
+                  "prompt": "（ホームページで）星山市北体育館は老朽化のため、本年3月15日（　）閉館しました。長年のご利用、ありがとうございました。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "につき"
+                    },
+                    {
+                      "number": 2,
+                      "text": "に至るまで"
+                    },
+                    {
+                      "number": 3,
+                      "text": "をもって"
+                    },
+                    {
+                      "number": 4,
+                      "text": "を皮切りに"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 3
+                },
+                {
+                  "number": 29,
+                  "prompt": "高校に入学して、特に入りたいクラブもなかったので、友人に（　）、テニス部に入った。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "誘われるまま"
+                    },
+                    {
+                      "number": 2,
+                      "text": "誘われようが"
+                    },
+                    {
+                      "number": 3,
+                      "text": "誘われた上に"
+                    },
+                    {
+                      "number": 4,
+                      "text": "誘われない限り"
+                    }
+                  ],
+                  "sourcePage": 3,
+                  "answer": 1
+                },
+                {
+                  "number": 30,
+                  "prompt": "（ホームページで）当店では、商品に欠陥がある（　）、返品および交換はお受けできませんので、あらかじめご了承ください。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "点に加えて"
+                    },
+                    {
+                      "number": 2,
+                      "text": "点を除いて"
+                    },
+                    {
+                      "number": 3,
+                      "text": "場合に加えて"
+                    },
+                    {
+                      "number": 4,
+                      "text": "場合を除いて"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 4
+                },
+                {
+                  "number": 31,
+                  "prompt": "（取引先へのメールで）来週の打ち合わせの資料をお送りします。お忙しいとは（　）が、ご確認いただければ幸いです。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "いたします"
+                    },
+                    {
+                      "number": 2,
+                      "text": "存じます"
+                    },
+                    {
+                      "number": 3,
+                      "text": "いらっしゃいます"
+                    },
+                    {
+                      "number": 4,
+                      "text": "申し上げます"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                },
+                {
+                  "number": 32,
+                  "prompt": "学生時代はずっとサッカーをしていたのだが、社会人に（　）、運動する機会がすっかり減ってしまった。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "なってからであっても"
+                    },
+                    {
+                      "number": 2,
+                      "text": "なったばかりなのか"
+                    },
+                    {
+                      "number": 3,
+                      "text": "なってからというもの"
+                    },
+                    {
+                      "number": 4,
+                      "text": "なったばかりだとして"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 3
+                },
+                {
+                  "number": 33,
+                  "prompt": "自転車の鍵が見当たらないと思ったら、昨日はいていたズボンのポケットに（　）。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "入れたつもりだった"
+                    },
+                    {
+                      "number": 2,
+                      "text": "入れっぱなしだった"
+                    },
+                    {
+                      "number": 3,
+                      "text": "入れっこなかった"
+                    },
+                    {
+                      "number": 4,
+                      "text": "入れるべきではなかった"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 2
+                },
+                {
+                  "number": 34,
+                  "prompt": "A「ねえねえ、北市にできた動物園、行ったんでしょう？あそこ、相当広いらしいね。」B「（　）。一日じゃ全部回れなかったよ。」",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "広くないはずなんだよ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "広いなんてことはないよ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "広くないわけじゃないんだよ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "広いなんてもんじゃないよ"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 4
+                },
+                {
+                  "number": 35,
+                  "prompt": "私は昔からバイクが大好きだ。小さいころは、よく父のバイクの後ろに（　）。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "乗りたがったものだ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "乗りたがったところだ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "乗ってほしがったものだ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "乗ってほしがったところだ"
+                    }
+                  ],
+                  "sourcePage": 4,
+                  "answer": 1
+                }
+              ],
+              "kind": "choice"
+            }
+          ]
+        },
+        {
+          "id": "reading",
+          "title": "読解",
+          "mondai": []
+        }
+      ]
+    },
+    {
+      "id": "listening",
+      "title": "聴解",
+      "minutes": 55,
+      "parts": [
+        {
+          "id": "listening",
+          "title": "聴解",
+          "mondai": [
+            {
+              "number": 1,
+              "instruction": "問題1問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください｡",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                }
+              ],
+              "kind": "listening"
+            },
+            {
+              "number": 2,
+              "instruction": "問題2問題2では、まず質問を聞いてください。そのあと、問題用紙の選択肢を読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください｡",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                }
+              ],
+              "kind": "listening"
+            },
+            {
+              "number": 3,
+              "instruction": "問題3問題3では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問と選択肢を聞いて、1から4の中から、最もよいものを一つ選んでください｡",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                }
+              ],
+              "kind": "audio-only"
+            },
+            {
+              "number": 4,
+              "instruction": "問題4問題4では、問題用紙に何も印刷されていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください｡",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                },
+                {
+                  "number": 4,
+                  "prompt": "4番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 5,
+                  "prompt": "5番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 6,
+                  "prompt": "6番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                },
+                {
+                  "number": 7,
+                  "prompt": "7番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 8,
+                  "prompt": "8番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 9,
+                  "prompt": "9番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 10,
+                  "prompt": "10番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 11,
+                  "prompt": "11番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                }
+              ],
+              "kind": "audio-only"
+            },
+            {
+              "number": 5,
+              "instruction": "問題5問題5では、長めの話を聞きます。この問題には練習はありません。問題用紙にメモをとってもかまいません。2番 まず話を聞いてください。それから、二つの質問を聞いて、それぞれ問題用紙の1から",
+              "items": [
+                {
+                  "number": 1,
+                  "prompt": "1番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 4
+                },
+                {
+                  "number": 2,
+                  "prompt": "2番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 3
+                },
+                {
+                  "number": 3,
+                  "prompt": "3番",
+                  "options": [],
+                  "sourcePage": null,
+                  "answer": 1
+                }
+              ],
+              "kind": "listening"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

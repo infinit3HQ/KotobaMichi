@@ -150,7 +150,9 @@ export function MockExamBrief({
             : [
                 "Take the sections in the paper’s order or pick any one. Each runs on its own clock.",
                 "A section locks when its clock ends or you close it. Leftover time does not move forward.",
-                "N2 gives you 105 minutes for 言語知識・読解, then 50 minutes for 聴解. The total out of 120 and the pass line appear once both sections are done.",
+                exam.level === "N1"
+                  ? "N1 gives you 110 minutes for 言語知識（文字・語彙・文法）・読解, then 55 minutes for 聴解. The total out of 120 and the pass line appear once both sections are done."
+                  : "N2 gives you 105 minutes for 言語知識・読解, then 50 minutes for 聴解. The total out of 120 and the pass line appear once both sections are done.",
                 "Answers stay hidden until the sitting is over.",
               ]
           ).map((rule) => (
