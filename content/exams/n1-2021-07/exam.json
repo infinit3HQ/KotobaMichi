@@ -24,7 +24,31 @@
               "items": [
                 {
                   "number": 1,
-                  "prompt": "いがい 2.いかん 3.いかく 4. いかり[2]この門は常時<u>閉鎖</u>されている。",
+                  "prompt": "今回の件について、大変<u>遺憾</u>に思っております。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "いがい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "いかん"
+                    },
+                    {
+                      "number": 3,
+                      "text": "いかく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "いかり"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 2
+                },
+                {
+                  "number": 2,
+                  "prompt": "この門は常時<u>閉鎖</u>されている。",
                   "options": [
                     {
                       "number": 1,
@@ -44,12 +68,35 @@
                     }
                   ],
                   "sourcePage": 1,
-                  "passage": null,
-                  "answer": 1
+                  "answer": 4
                 },
                 {
                   "number": 3,
-                  "prompt": "こころうかがい 4.こころよい[4]彼はまっ赤にして<u>憤った</u>。",
+                  "prompt": "どんな時にも、周りの<u>心遣い</u>を忘れてはいけない。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "こころあつかい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "こころづかい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "こころうかがい"
+                    },
+                    {
+                      "number": 4,
+                      "text": "こころよい"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 2
+                },
+                {
+                  "number": 4,
+                  "prompt": "彼はまっ赤にして<u>憤った</u>。",
                   "options": [
                     {
                       "number": 1,
@@ -69,8 +116,55 @@
                     }
                   ],
                   "sourcePage": 1,
-                  "passage": null,
-                  "answer": 4
+                  "answer": 3
+                },
+                {
+                  "number": 5,
+                  "prompt": "<u>貧富</u>の差が大きくなっているようだ。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ぴんぶ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ひんぷう"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ひんぷ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "ぴんぷう"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 3
+                },
+                {
+                  "number": 6,
+                  "prompt": "<u>治癒</u>するには１か月程度かかる。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "ちゆ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ちよ"
+                    },
+                    {
+                      "number": 3,
+                      "text": "じゆ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "じよ"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 1
                 }
               ],
               "passages": [
@@ -90,8 +184,32 @@
               "instruction": "問題 2（　）に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
               "items": [
                 {
-                  "number": 1,
-                  "prompt": "脱却 2.駆除 3.却下 4.除去[8]この子は好奇心が（　）で、分からないことは何でも知りたがる。",
+                  "number": 7,
+                  "prompt": "上司は私の提案を（　）した。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "脱却"
+                    },
+                    {
+                      "number": 2,
+                      "text": "駆除"
+                    },
+                    {
+                      "number": 3,
+                      "text": "却下"
+                    },
+                    {
+                      "number": 4,
+                      "text": "除去"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 3
+                },
+                {
+                  "number": 8,
+                  "prompt": "この子は好奇心が（　）で、分からないことは何でも知りたがる。",
                   "options": [
                     {
                       "number": 1,
@@ -111,7 +229,126 @@
                     }
                   ],
                   "sourcePage": 1,
-                  "passage": null,
+                  "answer": 2
+                },
+                {
+                  "number": 9,
+                  "prompt": "このテーブルは、脚の部分に美しい彫刻が（　）いる。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "設けられて"
+                    },
+                    {
+                      "number": 2,
+                      "text": "装われて"
+                    },
+                    {
+                      "number": 3,
+                      "text": "据えられて"
+                    },
+                    {
+                      "number": 4,
+                      "text": "施されて"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 4
+                },
+                {
+                  "number": 10,
+                  "prompt": "原油価格が高騰し、その（　）が世界中に広がっている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "転移"
+                    },
+                    {
+                      "number": 2,
+                      "text": "投影"
+                    },
+                    {
+                      "number": 3,
+                      "text": "感染"
+                    },
+                    {
+                      "number": 4,
+                      "text": "余波"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 4
+                },
+                {
+                  "number": 11,
+                  "prompt": "（　）の利益ばかり考えないで、もっと長期的に物事を捉えなければならない。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "目先"
+                    },
+                    {
+                      "number": 2,
+                      "text": "手中"
+                    },
+                    {
+                      "number": 3,
+                      "text": "足場"
+                    },
+                    {
+                      "number": 4,
+                      "text": "背後"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 1
+                },
+                {
+                  "number": 12,
+                  "prompt": "小さなけんかがもとで、友達との関係が（　）している。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "しょんぼり"
+                    },
+                    {
+                      "number": 2,
+                      "text": "ぎくしゃく"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ぼんやり"
+                    },
+                    {
+                      "number": 4,
+                      "text": "うろちょろ"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 2
+                },
+                {
+                  "number": 13,
+                  "prompt": "社長は、会社の将来を（　）人材の育成に力を入れている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "になう"
+                    },
+                    {
+                      "number": 2,
+                      "text": "いたわる"
+                    },
+                    {
+                      "number": 3,
+                      "text": "やしなう"
+                    },
+                    {
+                      "number": 4,
+                      "text": "かかげる"
+                    }
+                  ],
+                  "sourcePage": 2,
                   "answer": 1
                 }
               ],

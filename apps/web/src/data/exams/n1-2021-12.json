@@ -24,7 +24,31 @@
               "items": [
                 {
                   "number": 1,
-                  "prompt": "しゃかく2.しゃっかく3.さかく4. さっかく［2」尊い命を大切に守ろう。",
+                  "prompt": "この絵は目の<u>錯覚</u>を利用した作品です。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "しゃかく"
+                    },
+                    {
+                      "number": 2,
+                      "text": "しゃっかく"
+                    },
+                    {
+                      "number": 3,
+                      "text": "さかく"
+                    },
+                    {
+                      "number": 4,
+                      "text": "さっかく"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 4
+                },
+                {
+                  "number": 2,
+                  "prompt": "<u>尊い</u>命を大切に守ろう。",
                   "options": [
                     {
                       "number": 1,
@@ -44,8 +68,79 @@
                     }
                   ],
                   "sourcePage": 1,
-                  "passage": null,
-                  "answer": 4
+                  "answer": 3
+                },
+                {
+                  "number": 3,
+                  "prompt": "このまま使い続けていたら、天然資源はいずれ<u>枯渇</u>してしまうだろう。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "こかつ"
+                    },
+                    {
+                      "number": 2,
+                      "text": "こけい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "かかつ"
+                    },
+                    {
+                      "number": 4,
+                      "text": "かけい"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 1
+                },
+                {
+                  "number": 4,
+                  "prompt": "その手紙は、私の心を<u>慰めて</u>くれた。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "なだめて"
+                    },
+                    {
+                      "number": 2,
+                      "text": "なぐさめて"
+                    },
+                    {
+                      "number": 3,
+                      "text": "あらためて"
+                    },
+                    {
+                      "number": 4,
+                      "text": "とどめて"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 2
+                },
+                {
+                  "number": 5,
+                  "prompt": "この文書には、当時の生活の様子が<u>克明</u>に記憶されている。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "きょくめい"
+                    },
+                    {
+                      "number": 2,
+                      "text": "きょうめい"
+                    },
+                    {
+                      "number": 3,
+                      "text": "こくめい"
+                    },
+                    {
+                      "number": 4,
+                      "text": "こうめい"
+                    }
+                  ],
+                  "sourcePage": 1,
+                  "answer": 3
                 }
               ],
               "passages": [
@@ -105,8 +200,32 @@
               "instruction": "問題3の言葉に意味が最も近いものを、1·2·3·4から一つ選びなさい",
               "items": [
                 {
-                  "number": 1,
-                  "prompt": "利益2. 変化3. 危険4. 反論［15］その教師は生徒が出したアイディアを絶賛した。",
+                  "number": 14,
+                  "prompt": "新しい事業を始めるときには、<u>リスク</u>を伴う。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "利益"
+                    },
+                    {
+                      "number": 2,
+                      "text": "変化"
+                    },
+                    {
+                      "number": 3,
+                      "text": "危険"
+                    },
+                    {
+                      "number": 4,
+                      "text": "反論"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 15,
+                  "prompt": "その教師は生徒が出したアイディアを<u>絶賛</u>した。",
                   "options": [
                     {
                       "number": 1,
@@ -126,12 +245,35 @@
                     }
                   ],
                   "sourcePage": 2,
-                  "passage": null,
-                  "answer": 4
+                  "answer": 1
                 },
                 {
-                  "number": 3,
-                  "prompt": "ゆっくりして4.びっくりして［17］その件はうやむやにされた。",
+                  "number": 16,
+                  "prompt": "彼は今ごろ、<u>くつろいで</u>いるだろう。",
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "すっきりして"
+                    },
+                    {
+                      "number": 2,
+                      "text": "がっかりして"
+                    },
+                    {
+                      "number": 3,
+                      "text": "ゆっくりして"
+                    },
+                    {
+                      "number": 4,
+                      "text": "びっくりして"
+                    }
+                  ],
+                  "sourcePage": 2,
+                  "answer": 3
+                },
+                {
+                  "number": 17,
+                  "prompt": "その件は<u>うやむや</u>にされた。",
                   "options": [
                     {
                       "number": 1,
@@ -151,8 +293,7 @@
                     }
                   ],
                   "sourcePage": 2,
-                  "passage": null,
-                  "answer": 1
+                  "answer": 2
                 }
               ],
               "passages": [

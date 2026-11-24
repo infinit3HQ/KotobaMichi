@@ -1761,12 +1761,20 @@
                   "prompt": "質問1",
                   "options": [
                     {
+                      "number": 1,
+                      "text": "コース1"
+                    },
+                    {
                       "number": 2,
                       "text": "コース2"
                     },
                     {
                       "number": 3,
-                      "text": "コース34 コース4"
+                      "text": "コース3"
+                    },
+                    {
+                      "number": 4,
+                      "text": "コース4"
                     }
                   ],
                   "sourcePage": 35,
@@ -1775,7 +1783,24 @@
                 {
                   "number": 3,
                   "prompt": "質問2",
-                  "options": [],
+                  "options": [
+                    {
+                      "number": 1,
+                      "text": "コース1"
+                    },
+                    {
+                      "number": 2,
+                      "text": "コース2"
+                    },
+                    {
+                      "number": 3,
+                      "text": "コース3"
+                    },
+                    {
+                      "number": 4,
+                      "text": "コース4"
+                    }
+                  ],
                   "sourcePage": 35
                 }
               ],

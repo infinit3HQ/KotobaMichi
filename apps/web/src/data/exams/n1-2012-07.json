@@ -64,7 +64,7 @@
                     }
                   ],
                   "sourcePage": 2,
-                  "answer": 4
+                  "answer": 2
                 },
                 {
                   "number": 3,
@@ -88,7 +88,7 @@
                     }
                   ],
                   "sourcePage": 2,
-                  "answer": 1
+                  "answer": 3
                 },
                 {
                   "number": 4,
@@ -594,7 +594,7 @@
               "items": [
                 {
                   "number": 36,
-                  "prompt": "良心は残っているはずだ。",
+                  "prompt": "<slot/> <star/> <slot/> <slot/> 良心は残っているはずだ。",
                   "options": [
                     {
                       "number": 1,

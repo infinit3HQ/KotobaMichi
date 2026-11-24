@@ -47,8 +47,12 @@
                   "prompt": "子どものおもちゃは、安全性を考慮して選ぶようにしている。",
                   "options": [
                     {
+                      "number": 1,
+                      "text": "こうろ"
+                    },
+                    {
                       "number": 2,
-                      "text": "さえぎる"
+                      "text": "こうりょ"
                     },
                     {
                       "number": 3,
@@ -60,7 +64,7 @@
                     }
                   ],
                   "sourcePage": 2,
-                  "answer": 3
+                  "answer": 2
                 },
                 {
                   "number": 5,

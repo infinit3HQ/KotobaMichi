@@ -765,7 +765,7 @@
                 },
                 {
                   "number": 40,
-                  "prompt": "-姿勢を持つことが重要である。",
+                  "prompt": "<slot/> <slot/> <star/> <slot/> 姿勢を持つことが重要である。",
                   "options": [
                     {
                       "number": 1,

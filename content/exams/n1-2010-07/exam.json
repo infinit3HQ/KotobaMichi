@@ -52,7 +52,7 @@
                   "options": [
                     {
                       "number": 1,
-                      "text": "もうかって"
+                      "text": "せいやく"
                     },
                     {
                       "number": 2,
@@ -68,7 +68,7 @@
                     }
                   ],
                   "sourcePage": 2,
-                  "answer": 4
+                  "answer": 2
                 },
                 {
                   "number": 4,
@@ -753,7 +753,7 @@
               "items": [
                 {
                   "number": 36,
-                  "prompt": "このレストランは、と評判だ。",
+                  "prompt": "このレストランは、<slot/> <slot/> <star/> <slot/> と評判だ。",
                   "options": [
                     {
                       "number": 1,
