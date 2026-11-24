@@ -64,6 +64,38 @@ import december2011N2 from "@/data/exams/n2-2011-12.json";
 import july2011N2 from "@/data/exams/n2-2011-07.json";
 import december2010N2 from "@/data/exams/n2-2010-12.json";
 import july2010N2 from "@/data/exams/n2-2010-07.json";
+import july2026N1 from "@/data/exams/n1-2026-07.json";
+import december2025N1 from "@/data/exams/n1-2025-12.json";
+import july2025N1 from "@/data/exams/n1-2025-07.json";
+import december2024N1 from "@/data/exams/n1-2024-12.json";
+import july2024N1 from "@/data/exams/n1-2024-07.json";
+import december2023N1 from "@/data/exams/n1-2023-12.json";
+import july2023N1 from "@/data/exams/n1-2023-07.json";
+import december2022N1 from "@/data/exams/n1-2022-12.json";
+import july2022N1 from "@/data/exams/n1-2022-07.json";
+import december2021N1 from "@/data/exams/n1-2021-12.json";
+import july2021N1 from "@/data/exams/n1-2021-07.json";
+import december2020N1 from "@/data/exams/n1-2020-12.json";
+import december2019N1 from "@/data/exams/n1-2019-12.json";
+import july2019N1 from "@/data/exams/n1-2019-07.json";
+import december2018N1 from "@/data/exams/n1-2018-12.json";
+import july2018N1 from "@/data/exams/n1-2018-07.json";
+import december2017N1 from "@/data/exams/n1-2017-12.json";
+import july2017N1 from "@/data/exams/n1-2017-07.json";
+import december2016N1 from "@/data/exams/n1-2016-12.json";
+import july2016N1 from "@/data/exams/n1-2016-07.json";
+import december2015N1 from "@/data/exams/n1-2015-12.json";
+import july2015N1 from "@/data/exams/n1-2015-07.json";
+import december2014N1 from "@/data/exams/n1-2014-12.json";
+import july2014N1 from "@/data/exams/n1-2014-07.json";
+import december2013N1 from "@/data/exams/n1-2013-12.json";
+import july2013N1 from "@/data/exams/n1-2013-07.json";
+import december2012N1 from "@/data/exams/n1-2012-12.json";
+import july2012N1 from "@/data/exams/n1-2012-07.json";
+import december2011N1 from "@/data/exams/n1-2011-12.json";
+import july2011N1 from "@/data/exams/n1-2011-07.json";
+import december2010N1 from "@/data/exams/n1-2010-12.json";
+import july2010N1 from "@/data/exams/n1-2010-07.json";
 import {
   questionCount,
   toScoringShape,
@@ -136,7 +168,72 @@ export const N2_JULY_2011 = july2011N2 as MockExam;
 export const N2_DECEMBER_2010 = december2010N2 as MockExam;
 export const N2_JULY_2010 = july2010N2 as MockExam;
 
+export const N1_JULY_2026 = july2026N1 as MockExam;
+export const N1_DECEMBER_2025 = december2025N1 as MockExam;
+export const N1_JULY_2025 = july2025N1 as MockExam;
+export const N1_DECEMBER_2024 = december2024N1 as MockExam;
+export const N1_JULY_2024 = july2024N1 as MockExam;
+export const N1_DECEMBER_2023 = december2023N1 as MockExam;
+export const N1_JULY_2023 = july2023N1 as MockExam;
+export const N1_DECEMBER_2022 = december2022N1 as MockExam;
+export const N1_JULY_2022 = july2022N1 as MockExam;
+export const N1_DECEMBER_2021 = december2021N1 as MockExam;
+export const N1_JULY_2021 = july2021N1 as MockExam;
+export const N1_DECEMBER_2020 = december2020N1 as MockExam;
+export const N1_DECEMBER_2019 = december2019N1 as MockExam;
+export const N1_JULY_2019 = july2019N1 as MockExam;
+export const N1_DECEMBER_2018 = december2018N1 as MockExam;
+export const N1_JULY_2018 = july2018N1 as MockExam;
+export const N1_DECEMBER_2017 = december2017N1 as MockExam;
+export const N1_JULY_2017 = july2017N1 as MockExam;
+export const N1_DECEMBER_2016 = december2016N1 as MockExam;
+export const N1_JULY_2016 = july2016N1 as MockExam;
+export const N1_DECEMBER_2015 = december2015N1 as MockExam;
+export const N1_JULY_2015 = july2015N1 as MockExam;
+export const N1_DECEMBER_2014 = december2014N1 as MockExam;
+export const N1_JULY_2014 = july2014N1 as MockExam;
+export const N1_DECEMBER_2013 = december2013N1 as MockExam;
+export const N1_JULY_2013 = july2013N1 as MockExam;
+export const N1_DECEMBER_2012 = december2012N1 as MockExam;
+export const N1_JULY_2012 = july2012N1 as MockExam;
+export const N1_DECEMBER_2011 = december2011N1 as MockExam;
+export const N1_JULY_2011 = july2011N1 as MockExam;
+export const N1_DECEMBER_2010 = december2010N1 as MockExam;
+export const N1_JULY_2010 = july2010N1 as MockExam;
+
 export const MOCK_EXAMS = [
+  N1_JULY_2026,
+  N1_DECEMBER_2025,
+  N1_JULY_2025,
+  N1_DECEMBER_2024,
+  N1_JULY_2024,
+  N1_DECEMBER_2023,
+  N1_JULY_2023,
+  N1_DECEMBER_2022,
+  N1_JULY_2022,
+  N1_DECEMBER_2021,
+  N1_JULY_2021,
+  N1_DECEMBER_2020,
+  N1_DECEMBER_2019,
+  N1_JULY_2019,
+  N1_DECEMBER_2018,
+  N1_JULY_2018,
+  N1_DECEMBER_2017,
+  N1_JULY_2017,
+  N1_DECEMBER_2016,
+  N1_JULY_2016,
+  N1_DECEMBER_2015,
+  N1_JULY_2015,
+  N1_DECEMBER_2014,
+  N1_JULY_2014,
+  N1_DECEMBER_2013,
+  N1_JULY_2013,
+  N1_DECEMBER_2012,
+  N1_JULY_2012,
+  N1_DECEMBER_2011,
+  N1_JULY_2011,
+  N1_DECEMBER_2010,
+  N1_JULY_2010,
   N2_JULY_2026,
   N2_DECEMBER_2025,
   N2_JULY_2025,

@@ -80,11 +80,13 @@ describe("published mock catalog", () => {
     const in2024 = filterMockExams(exams, { level: ALL_LEVELS, year });
     expect(in2024.length).toBeGreaterThan(0);
     expect(in2024.every((exam) => exam.year === year)).toBe(true);
+    expect(in2024.some((exam) => exam.id === "n1-2024-12")).toBe(true);
     expect(in2024.some((exam) => exam.id === "n2-2024-12")).toBe(true);
     expect(in2024.some((exam) => exam.id === "n3-2024-12")).toBe(true);
 
     expect(filterMockExams(exams, { level: "N3", year: "2026" })).toEqual([]);
-    expect(catalogLevels(exams)).toEqual(["N2", "N3"]);
+    expect(filterMockExams(exams, { level: "N1", year: ALL_YEARS }).every((exam) => exam.level === "N1")).toBe(true);
+    expect(catalogLevels(exams)).toEqual(["N1", "N2", "N3"]);
     expect(catalogYears(exams)[0]).toBe("2026");
   });
 });
