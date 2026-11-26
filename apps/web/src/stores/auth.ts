@@ -38,10 +38,10 @@ export const useAuthStore = create<AuthState>()(
       // allow automatic rehydration so persisted `user` is loaded
       partialize: (state) => ({ user: state.user }),
       onRehydrateStorage: () => () => {
-        // mark hydrated after rehydration and notify subscribers
-        try {
-          useAuthStore.setState({ hydrated: true });
-        } catch {}
+        // localStorage rehydrates synchronously while `create` is still running,
+        // before `useAuthStore` is assigned. Defer, or the setState throws and
+        // `hydrated` stays false, leaving protected pages blank after a reload.
+        queueMicrotask(() => useAuthStore.setState({ hydrated: true }));
       },
   })
 );

@@ -7,5 +7,6 @@ import { LearningService } from './learning.service';
 	imports: [DrizzleModule],
 	controllers: [LearningController],
 	providers: [LearningService],
+	exports: [LearningService],
 })
 export class LearningModule {}

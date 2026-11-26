@@ -1,27 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import type { ComponentType } from "react";
-import { ArrowRight, BookOpen, Languages, Layers, Repeat, Timer, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
-import { Card, CardContent } from "@/components/atoms/card";
 import { WordPreviewCard } from "@/components/organisms/home/word-preview-card";
-import { LearningPath } from "@/components/organisms/learning-path";
+import { FeatureGrid } from "@/components/organisms/home/feature-grid";
+import { LearnerHome } from "@/components/organisms/home/learner-home";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { useAuthStore } from "@/stores/auth";
 import { CATALOG_STATS, formatCount } from "@/lib/catalog-stats";
-
-type FeatureKey = "practice" | "words" | "kanji" | "quizzes" | "mock" | "review";
-
-const FEATURES: { key: FeatureKey; href: string; icon: ComponentType<{ className?: string }> }[] = [
-  { key: "practice", href: "/practice", icon: Zap },
-  { key: "review", href: "/practice?mode=flashcard", icon: Repeat },
-  { key: "mock", href: "/mock", icon: Timer },
-  { key: "words", href: "/words", icon: BookOpen },
-  { key: "kanji", href: "/kanji", icon: Languages },
-  { key: "quizzes", href: "/quizzes", icon: Layers },
-];
 
 const STEP_MARKS = ["一", "二", "三"];
 
@@ -30,6 +18,8 @@ export default function Home() {
   const user = useAuthStore((state) => state.user);
   const authChecked = useAuthStore((state) => state.authChecked);
   const signedIn = Boolean(user);
+
+  if (signedIn) return <LearnerHome />;
 
   const stats = [
     { value: formatCount(CATALOG_STATS.words), label: t.home.statWords },
@@ -92,12 +82,6 @@ export default function Home() {
         </div>
       </section>
 
-      {signedIn ? (
-        <section className="space-y-4">
-          <p className="text-sm font-medium text-muted-foreground">{t.home.welcomeBack}</p>
-          <LearningPath compact />
-        </section>
-      ) : null}
 
       {/* Features */}
       <section className="space-y-8">
@@ -105,30 +89,7 @@ export default function Home() {
           <p className="text-sm font-medium text-primary">{t.home.insideKicker}</p>
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t.home.insideTitle}</h2>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map(({ key, href, icon: Icon }) => {
-            const feature = t.home.features[key];
-            return (
-              <Link key={key} href={href} className="group rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50">
-                <Card className="h-full gap-0 py-0 transition-colors group-hover:border-primary/40">
-                  <CardContent className="flex h-full gap-4 p-4 sm:flex-col sm:gap-3 sm:p-5">
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="size-4" />
-                    </span>
-                    <div className="flex flex-1 flex-col gap-1">
-                      <h3 className="font-semibold tracking-tight">{feature.title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
-                      <span className="mt-auto inline-flex items-center gap-1 pt-2 text-sm font-medium text-primary">
-                        {feature.cta}
-                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
-        </div>
+        <FeatureGrid />
       </section>
 
       {/* How it works */}

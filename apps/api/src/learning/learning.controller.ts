@@ -15,6 +15,7 @@ import {
 	QueueQueryDto,
 	ReviewBatchDto,
 	ReviewDto,
+	SaveGoalDto,
 	SavePlaceDto,
 } from './dto/review.dto';
 import { LearningService } from './learning.service';
@@ -26,29 +27,34 @@ export class LearningController {
 
 	@Get('summary')
 	summary(@Req() req: AuthenticatedRequest, @Query('day') day?: string) {
-		return this.learningService.summary(req.user.sub, this.day(day));
+		return this.learningService.summary(req.user.userId, this.day(day));
 	}
 
 	@Get('queue')
 	queue(@Req() req: AuthenticatedRequest, @Query() query: QueueQueryDto) {
-		return this.learningService.queue(req.user.sub, query);
+		return this.learningService.queue(req.user.userId, query);
 	}
 
 	@Post('reviews')
 	@Throttle({ default: { ttl: seconds(60), limit: 240 } })
 	review(@Req() req: AuthenticatedRequest, @Body() dto: ReviewDto) {
-		return this.learningService.review(req.user.sub, dto);
+		return this.learningService.review(req.user.userId, dto);
 	}
 
 	@Post('reviews/batch')
 	@Throttle({ default: { ttl: seconds(60), limit: 10 } })
 	reviewBatch(@Req() req: AuthenticatedRequest, @Body() dto: ReviewBatchDto) {
-		return this.learningService.reviewBatch(req.user.sub, dto);
+		return this.learningService.reviewBatch(req.user.userId, dto);
+	}
+
+	@Put('goal')
+	saveGoal(@Req() req: AuthenticatedRequest, @Body() dto: SaveGoalDto) {
+		return this.learningService.saveGoal(req.user.userId, dto);
 	}
 
 	@Put('place')
 	savePlace(@Req() req: AuthenticatedRequest, @Body() dto: SavePlaceDto) {
-		return this.learningService.savePlace(req.user.sub, dto);
+		return this.learningService.savePlace(req.user.userId, dto);
 	}
 
 	private day(value?: string) {

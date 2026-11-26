@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { MOCK_EXAMS } from "@/lib/mock-exam-data";
 import { SITE_URL } from "@/lib/seo-config";
 
 const API =
@@ -66,6 +67,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  base.push({
+    url: `${SITE}/mock`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.9,
+  });
+  const mockUrls: MetadataRoute.Sitemap = MOCK_EXAMS.map((exam) => ({
+    url: `${SITE}/mock/${exam.id}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
   const quizzes = await getPublicQuizzes();
   const quizUrls: MetadataRoute.Sitemap = quizzes.map((q) => ({
     url: `${SITE}/quizzes/${q.id}`,
@@ -74,5 +87,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...base, ...quizUrls];
+  return [...base, ...mockUrls, ...quizUrls];
 }

@@ -451,6 +451,20 @@ export const learnerState = pgTable('learner_state', {
 		.default({}),
 	streakDays: integer('streak_days').notNull().default(0),
 	lastActiveOn: date('last_active_on', { mode: 'string' }),
+	// Earned every seventh streak day, spent to cover a missed day.
+	streakFreezes: integer('streak_freezes').notNull().default(0),
+	// The JLPT sitting the learner is working towards.
+	targetLevel: varchar('target_level', { length: 8 }),
+	examDate: date('exam_date', { mode: 'string' }),
+	// Cards a day the learner aims to study.
+	dailyGoal: integer('daily_goal').notNull().default(20),
+	// Email nudges. The hour is local to the learner, via their UTC offset.
+	remindersEnabled: boolean('reminders_enabled').notNull().default(false),
+	reminderHour: smallint('reminder_hour').notNull().default(19),
+	weeklyRecap: boolean('weekly_recap').notNull().default(false),
+	tzOffsetMinutes: smallint('tz_offset_minutes').notNull().default(0),
+	lastRemindedOn: date('last_reminded_on', { mode: 'string' }),
+	lastRecapOn: date('last_recap_on', { mode: 'string' }),
 	updatedAt: timestamp('updated_at', { withTimezone: false })
 		.notNull()
 		.defaultNow()

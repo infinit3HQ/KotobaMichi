@@ -4,7 +4,7 @@ import { CATALOG_STATS, formatCount } from "@/lib/catalog-stats";
 export const runtime = "edge";
 
 export const alt =
-  "KotobaMichi – JLPT N5 to N1 vocabulary, kanji, grammar and N2 and N3 mock exams";
+  "KotobaMichi – JLPT N5 to N1 vocabulary, kanji, grammar and N3, N2 and N1 mock exams";
 export const size = {
   width: 1200,
   height: 630,
@@ -22,7 +22,7 @@ const STATS = [
   { value: formatCount(CATALOG_STATS.grammar), label: "grammar points" },
   {
     value: formatCount(CATALOG_STATS.mockPapers),
-    label: "N2 and N3 mock papers",
+    label: "N3, N2 and N1 mock papers",
   },
 ];
 
@@ -81,7 +81,7 @@ export default async function Image() {
           }}
         >
           Vocabulary, kanji, grammar, reading and listening for every JLPT
-          level, with spaced review and full N2 and N3 mock papers.
+          level, with spaced review and timed N3, N2 and N1 mock papers.
         </div>
       </div>
 

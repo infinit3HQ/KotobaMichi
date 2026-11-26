@@ -4,7 +4,7 @@
  * - The API lives on another origin and is never intercepted, so account data is never cached.
  * Bump VERSION to drop every cache on the next visit.
  */
-const VERSION = "v1";
+const VERSION = "v2";
 const STATIC_CACHE = `kotoba-static-${VERSION}`;
 const PAGE_CACHE = `kotoba-pages-${VERSION}`;
 const OFFLINE_URL = "/offline.html";

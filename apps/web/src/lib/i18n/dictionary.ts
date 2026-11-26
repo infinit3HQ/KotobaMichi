@@ -255,6 +255,7 @@ export type Dictionary = {
     creatingAccount: string;
     haveAccount: string;
     registered: string;
+    registeredNoEmail: string;
     registerFailed: string;
     passwordMin: string;
     passwordsMismatch: string;
@@ -334,7 +335,7 @@ const en: Dictionary = {
     eyebrow: "JLPT N5 to N1 · free to use",
     headline: "The path of words,",
     headlineAccent: "from N5 to N1.",
-    body: "Vocabulary, kanji, grammar, reading and listening for every JLPT level. Spaced review brings each word back just before you would forget it, and full N2 and N3 mock papers show where you stand.",
+    body: "Vocabulary, kanji, grammar, reading and listening for every JLPT level. Spaced review brings each word back just before you would forget it, and timed N3, N2 and N1 mock papers show where you stand.",
     startPractising: "Start practising",
     continueStudying: "Continue studying",
     createAccount: "Create free account",
@@ -343,7 +344,7 @@ const en: Dictionary = {
     statWords: "words",
     statKanji: "kanji",
     statGrammar: "grammar points",
-    statMock: "N2 and N3 mock papers",
+    statMock: "N3, N2 and N1 mock papers",
     previewLabel: "Try a card",
     pronounce: "Play pronunciation",
     tapReveal: "Tap to flip",
@@ -376,12 +377,12 @@ const en: Dictionary = {
       },
       mock: {
         title: "Mock exams",
-        desc: "Past-format N2 and N3 papers with real timing. Sit the whole paper or one section at a time.",
+        desc: "N3, N2 and N1 past papers from 2010 to 2026, timed like exam day. Sit the whole paper or one section, and turn what you missed into review cards.",
         cta: "Sit a paper",
       },
       review: {
         title: "Spaced review",
-        desc: "Words you study come back on a schedule, so they stay. Your streak and due reviews are always in view.",
+        desc: "Words and missed mock questions come back on a schedule, so they stay. A daily plan, streak and exam countdown keep you on track.",
         cta: "Start reviewing",
       },
     },
@@ -398,7 +399,7 @@ const en: Dictionary = {
       },
       {
         title: "Test yourself",
-        desc: "Sit a timed mock paper and see your score for each section.",
+        desc: "Sit a timed mock paper, see your score for each section, and review the questions you missed.",
       },
     ],
     ctaTitle: "Keep your progress",
@@ -619,6 +620,7 @@ const en: Dictionary = {
     creatingAccount: "Creating account…",
     haveAccount: "Already have an account?",
     registered: "Account created. Check your email to verify it, then sign in.",
+    registeredNoEmail: "Account created, but we could not send the verification email. Request a new link below.",
     registerFailed: "Could not create the account.",
     passwordMin: "Use at least 6 characters.",
     passwordsMismatch: "Passwords do not match.",
@@ -706,7 +708,7 @@ const si: Dictionary = {
     eyebrow: "JLPT N5 සිට N1 දක්වා · නොමිලේ",
     headline: "වචනවල මාවත,",
     headlineAccent: "N5 සිට N1 දක්වා.",
-    body: "සෑම JLPT මට්ටමකටම වචන, කන්ජි, ව්‍යාකරණ, කියවීම සහ සවන්දීම. ඔබ අමතක කිරීමට පෙර එක් එක් වචනය නැවත පුනරීක්ෂණයට එයි, සම්පූර්ණ N2 සහ N3 ආදර්ශ ප්‍රශ්න පත්‍ර ඔබ සිටින තැන පෙන්වයි.",
+    body: "සෑම JLPT මට්ටමකටම වචන, කන්ජි, ව්‍යාකරණ, කියවීම සහ සවන්දීම. ඔබ අමතක කිරීමට පෙර එක් එක් වචනය නැවත පුනරීක්ෂණයට එයි, කාල සීමා සහිත N3, N2 සහ N1 ආදර්ශ ප්‍රශ්න පත්‍ර ඔබ සිටින තැන පෙන්වයි.",
     startPractising: "පුහුණුව අරඹන්න",
     continueStudying: "ඉගෙනීම දිගටම කරන්න",
     createAccount: "නොමිලේ ගිණුමක් සාදන්න",
@@ -715,7 +717,7 @@ const si: Dictionary = {
     statWords: "වචන",
     statKanji: "කන්ජි",
     statGrammar: "ව්‍යාකරණ කරුණු",
-    statMock: "N2 සහ N3 ආදර්ශ ප්‍රශ්න පත්‍ර",
+    statMock: "N3, N2 සහ N1 ආදර්ශ ප්‍රශ්න පත්‍ර",
     previewLabel: "කාඩ්පතක් උත්සාහ කරන්න",
     pronounce: "උච්චාරණය අසන්න",
     tapReveal: "පෙරළීමට තට්ටු කරන්න",
@@ -748,12 +750,12 @@ const si: Dictionary = {
       },
       mock: {
         title: "ආදර්ශ විභාග",
-        desc: "සැබෑ කාල සීමා සහිත N2 සහ N3 ප්‍රශ්න පත්‍ර. සම්පූර්ණ පත්‍රය හෝ එක් කොටසක් පමණක් කරන්න.",
+        desc: "2010 සිට 2026 දක්වා N3, N2 සහ N1 පසුගිය ප්‍රශ්න පත්‍ර, විභාග දිනයේ කාල සීමා සමඟ. සම්පූර්ණ පත්‍රය හෝ එක් කොටසක් කරන්න, වැරදුණු ප්‍රශ්න පුනරීක්ෂණ කාඩ්පත් බවට පත් කරන්න.",
         cta: "ප්‍රශ්න පත්‍රයක් කරන්න",
       },
       review: {
         title: "කාලානුරූප පුනරීක්ෂණය",
-        desc: "ඔබ ඉගෙන ගන්නා වචන නියමිත කාලයට නැවත එයි. ඔබේ දින පෙළ සහ පුනරීක්ෂණ සැමවිටම පෙනේ.",
+        desc: "වචන සහ වැරදුණු ආදර්ශ ප්‍රශ්න නියමිත කාලයට නැවත එයි. දෛනික සැලැස්ම, දින පෙළ සහ විභාග ගණන් කිරීම ඔබව නිවැරදි මඟේ තබයි.",
         cta: "පුනරීක්ෂණය අරඹන්න",
       },
     },
@@ -770,7 +772,7 @@ const si: Dictionary = {
       },
       {
         title: "ඔබම පරීක්ෂා කරන්න",
-        desc: "කාල සීමා සහිත ආදර්ශ ප්‍රශ්න පත්‍රයක් කර එක් එක් කොටසේ ලකුණු බලන්න.",
+        desc: "කාල සීමා සහිත ආදර්ශ ප්‍රශ්න පත්‍රයක් කර, එක් එක් කොටසේ ලකුණු බලා, වැරදුණු ප්‍රශ්න නැවත පුනරීක්ෂණය කරන්න.",
       },
     ],
     ctaTitle: "ඔබේ ප්‍රගතිය සුරකින්න",
@@ -990,6 +992,7 @@ const si: Dictionary = {
     creatingAccount: "ගිණුම සාදමින්…",
     haveAccount: "දැනටමත් ගිණුමක් තිබේද?",
     registered: "ගිණුම සෑදුණා. ඊමේලය තහවුරු කර, පසුව පිවිසෙන්න.",
+    registeredNoEmail: "ගිණුම සෑදුණා, නමුත් තහවුරු කිරීමේ ඊමේලය යැවිය නොහැකි වුණා. පහතින් නව සබැඳියක් ඉල්ලන්න.",
     registerFailed: "ගිණුම සෑදීමට නොහැකි වුණා.",
     passwordMin: "අවම වශයෙන් අකුරු 6ක් භාවිතා කරන්න.",
     passwordsMismatch: "මුරපද නොගැළපේ.",

@@ -26,10 +26,34 @@ export type LearningBookmark = {
   cursor: number;
 };
 
+export type LearningGoal = {
+  targetLevel: JLPTLevel | null;
+  examDate: string | null;
+  dailyGoal: number;
+  remindersEnabled: boolean;
+  reminderHour: number;
+  weeklyRecap: boolean;
+};
+
+export const DEFAULT_GOAL: LearningGoal = {
+  targetLevel: null,
+  examDate: null,
+  dailyGoal: 20,
+  remindersEnabled: false,
+  reminderHour: 19,
+  weeklyRecap: false,
+};
+
 export type LearningSummary = {
   streak: number;
+  /** Missing on responses from an API that predates streak freezes. */
+  freezes?: number;
+  freezesNeeded?: number;
   studiedToday: number;
   dueNow: number;
+  mistakesDue?: number;
+  mistakesTotal?: number;
+  goal?: LearningGoal;
   place: LearningPlace | null;
   bookmarks: Partial<Record<JLPTLevel, LearningBookmark>>;
   levels: { level: JLPTLevel; seen: number; learned: number; due: number }[];
