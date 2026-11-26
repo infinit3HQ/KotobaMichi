@@ -18,6 +18,7 @@ import { QueryError } from "@/components/organisms/quizzes/query-error";
 import { buildQuizOptions } from "@/components/organisms/quizzes/quiz-options";
 import { QuizQuestionCard, QuizTakingSkeleton } from "@/components/organisms/quizzes/quiz-question-card";
 import { useResultsStore } from "@/stores/results";
+import { track } from "@/lib/analytics/posthog";
 
 export default function QuizTakingPage() {
   const params = useParams();
@@ -81,6 +82,9 @@ function QuizRunner({ quiz }: { quiz: QuizDetail }) {
     mutationFn: async (payload: SubmitAnswer[]) =>
       (await api.post<SubmitQuizResponse>(`/quizzes/${quiz.id}/submit`, { answers: payload })).data,
     onSuccess: (res) => {
+      track("quiz_submitted", { quiz_id: quiz.id, score: res.score, total_questions: res.totalQuestions,
+        percent: res.totalQuestions ? Math.round((res.score / res.totalQuestions) * 100) : 0,
+      });
       toast.success(t.quizzes.submitted);
       // Keep the detailed breakdown in memory so the results page can render it.
       useResultsStore.getState().save(res);

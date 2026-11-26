@@ -16,6 +16,7 @@ import {
   type PracticeMode,
 } from "@/components/organisms/practice/drills";
 import { NORMAL_RATE, SLOW_RATE, VoiceControls } from "@/components/organisms/practice/voice-controls";
+import { track } from "@/lib/analytics/posthog";
 
 const PHONE_QUERY = "(max-width: 639px)";
 
@@ -45,11 +46,13 @@ export default function PracticeDojoPage() {
   }, []);
 
   const selectDrill = (next: PracticeMode) => {
+    track("practice_drill_selected", { drill: next, level: selectedLevel });
     setMode(next);
     revealDrill();
   };
 
   const selectLevel = (level: JLPTLevel) => {
+    track("practice_level_selected", { level, drill: mode });
     setSelectedLevel(level);
     setSelectedTopic("All");
   };

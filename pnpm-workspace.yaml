@@ -12,6 +12,7 @@ publicHoistPattern:
   - '@next/*'
 
 allowBuilds:
+  core-js: false
   '@swc/core': true
   bcrypt: true
   esbuild: true

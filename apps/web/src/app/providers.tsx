@@ -7,6 +7,7 @@ import { LocaleProvider } from "@/components/organisms/locale-provider";
 import { AccountCacheReset } from "@/components/organisms/account-cache-reset";
 import { Toaster } from "@/components/atoms/sonner";
 import { ServiceWorkerRegistration } from "@/components/atoms/service-worker-registration";
+import { AnalyticsProvider } from "@/components/atoms/analytics-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { setAuthHandlers } from "@/lib/api";
 import { useAuthStore } from "@/stores/auth";
@@ -44,6 +45,7 @@ export default function Providers({
           <Layout>{children}</Layout>
           <Toaster />
           <ServiceWorkerRegistration />
+          <AnalyticsProvider />
         </LocaleProvider>
       </QueryClientProvider>
     </ThemeProvider>

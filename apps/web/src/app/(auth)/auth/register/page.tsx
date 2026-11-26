@@ -12,6 +12,7 @@ import { api, getApiError } from "@/lib/api";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { SocialAuth } from "@/components/organisms/social-auth";
 import { AuthAlert, AuthCard, AuthFooterLink } from "@/components/organisms/auth/auth-card";
+import { track } from "@/lib/analytics/posthog";
 
 function registerSchema(messages: { passwordMin: string; passwordsMismatch: string }) {
   return z
@@ -44,6 +45,7 @@ export default function RegisterPage() {
         email: values.email,
         password: values.password,
       });
+      track("signed_up", { email_sent: data?.emailSent !== false });
       // The account exists even when the mail server failed, so send them to request a new link.
       if (data?.emailSent === false) {
         toast.warning(t.auth.registeredNoEmail);

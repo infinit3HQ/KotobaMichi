@@ -1,6 +1,7 @@
 import { api } from "@/lib/api";
 import type { MockMode } from "@/lib/mock-clock";
 import type { SectionScore } from "@/lib/mock-exam";
+import { track } from "@/lib/analytics/posthog";
 
 export type RemoteMockAttempt = {
   id: string;
@@ -49,5 +50,6 @@ export async function saveMockAttempt(examId: string, payload: AttemptPayload) {
 
 export async function finishMockAttempt(examId: string, payload: AttemptPayload) {
   const response = await api.post<RemoteMockAttempt>(`/mock-exams/${examId}/finish`, payload);
+  track("mock_exam_finished", { exam_id: examId, mode: payload.mode, answered: Object.keys(payload.answers).length });
   return response.data;
 }

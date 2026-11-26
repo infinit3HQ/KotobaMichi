@@ -28,6 +28,7 @@ import { LocaleSwitch, useLocale } from "@/components/organisms/locale-provider"
 import { useAuth } from "@/hooks/use-auth";
 import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics/posthog";
 
 type NavKey = "practice" | "words" | "kanji" | "quizzes" | "mock";
 
@@ -110,6 +111,7 @@ export function Navbar() {
     } catch {
       // The session cookie may already be gone; signing out locally is still right.
     }
+    track("logged_out", { source: "navbar" });
     logout();
     toast.success("Signed out");
     setMenuOpen(false);

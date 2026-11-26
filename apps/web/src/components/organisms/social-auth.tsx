@@ -5,6 +5,7 @@ import { Button } from "@/components/atoms/button";
 import { Separator } from "@/components/atoms/separator";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { api, getApiBaseUrl } from "@/lib/api";
+import { track } from "@/lib/analytics/posthog";
 
 function GoogleMark() {
   return (
@@ -58,6 +59,7 @@ export function SocialAuth() {
         variant="outline"
         className="w-full"
         onClick={() => {
+          track("google_sign_in_started", { page: window.location.pathname });
           window.location.assign(`${getApiBaseUrl()}/auth/google`);
         }}
       >

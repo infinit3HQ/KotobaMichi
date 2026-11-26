@@ -11,6 +11,7 @@ import { api } from "@/lib/api";
 import type { MockExam } from "@/lib/mock-exam";
 import { missedReviewable } from "@/lib/mock-mistakes";
 import { shareQuery } from "@/lib/share-card";
+import { track } from "@/lib/analytics/posthog";
 
 type AddResult = { added: number; existing: number; missed: number };
 
@@ -84,9 +85,11 @@ function ShareResult({
     try {
       if (navigator.share) {
         await navigator.share({ title, url });
+        track("mock_result_shared", { exam_id: examId, method: "native", total: Math.round(total), max, passes });
         return;
       }
       await navigator.clipboard.writeText(url);
+      track("mock_result_shared", { exam_id: examId, method: "clipboard", total: Math.round(total), max, passes });
       toast.success("Link copied");
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return;
