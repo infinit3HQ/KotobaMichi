@@ -6,6 +6,8 @@ import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent } from "@/components/atoms/card";
 import { PageHeader, SectionHeading } from "@/components/molecules/page-header";
+import { SegmentedControl } from "@/components/molecules/segmented-control";
+import type { MockMode } from "@/lib/mock-clock";
 import type { MockExam } from "@/lib/mock-exam";
 import { nextSuggestedSection } from "@/lib/mock-sitting";
 import { cn } from "@/lib/utils";
@@ -103,13 +105,56 @@ const BRIEF_RULES = [
   "Answers stay hidden until the sitting is over.",
 ];
 
+const MODE_OPTIONS = [
+  { value: "strict", label: "Strict" },
+  { value: "practice", label: "Practice" },
+] as const;
+
+const MODE_NOTES: Record<MockMode, string> = {
+  strict:
+    "Strict runs like the real exam: the clock never stops, and the listening recording plays once, straight through.",
+  practice:
+    "Practice lets you pause the clock and replay, skip and slow down the listening recording. Scores are marked as practice.",
+};
+
+function ModePicker({
+  mode,
+  onModeChange,
+}: {
+  mode: MockMode;
+  onModeChange: (mode: MockMode) => void;
+}) {
+  return (
+    <section className="space-y-3">
+      <SectionHeading title="Mode" meta="Fixed once the sitting starts" />
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <SegmentedControl
+          value={mode}
+          onValueChange={onModeChange}
+          options={MODE_OPTIONS}
+          ariaLabel="Sitting mode"
+          fullWidth
+          className="sm:w-max"
+        />
+        <p className="text-sm text-muted-foreground" aria-live="polite">
+          {MODE_NOTES[mode]}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export function MockExamBrief({
   exam,
   signedIn,
+  mode,
+  onModeChange,
   onBegin,
 }: {
   exam: MockExam;
   signedIn: boolean;
+  mode: MockMode;
+  onModeChange: (mode: MockMode) => void;
   onBegin: (index: number) => void;
 }) {
   const first = exam.sections[0];
@@ -128,11 +173,12 @@ export function MockExamBrief({
               onClick={() => onBegin(0)}
             >
               <Play />
-              Start the full paper
+              {mode === "practice" ? "Practise the full paper" : "Start the full paper"}
             </Button>
           ) : null
         }
       />
+      <ModePicker mode={mode} onModeChange={onModeChange} />
       <section className="space-y-3">
         <SectionHeading title="Sections" meta="Or start any one on its own" />
         <SectionCards
@@ -158,6 +204,9 @@ export function MockExamBrief({
           ).map((rule) => (
             <li key={rule}>{rule}</li>
           ))}
+          {mode === "practice" ? (
+            <li>In practice, the clock pauses on its own when you leave the page.</li>
+          ) : null}
           <li>
             {signedIn
               ? "This sitting, including every answer, is saved on your account."

@@ -50,6 +50,13 @@
       "when": 1763600000000,
       "tag": "0006_mock_exam_completed_sections",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1764100000000,
+      "tag": "0007_mock_exam_mode",
+      "breakpoints": true
     }
   ]
 }

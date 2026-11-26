@@ -157,6 +157,10 @@ export type SavedAttempt = {
   /** Sections already closed. Saves from before sections could be taken in any order have none. */
   completedSections?: string[];
   finished: boolean;
+  /** Missing on saves from before practice mode; those sittings are strict. */
+  mode?: string;
+  /** When a practice clock was paused, or null while it runs. */
+  pausedAt?: number | null;
 };
 
 const storageKey = (examId: string) => `kotobamichi-mock:${examId}`;

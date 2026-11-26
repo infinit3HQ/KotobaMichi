@@ -6,6 +6,7 @@ import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { Card, CardContent } from "@/components/atoms/card";
 import { PageHeader, SectionHeading } from "@/components/molecules/page-header";
+import type { MockMode } from "@/lib/mock-clock";
 import {
   type MockExam,
   formatPoints,
@@ -140,12 +141,14 @@ export function MockResults({
   answers,
   completed,
   signedIn,
+  mode,
   onAgain,
 }: {
   exam: MockExam;
   answers: Record<string, number>;
   completed: readonly string[];
   signedIn: boolean;
+  mode: MockMode;
   onAgain: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -170,9 +173,15 @@ export function MockResults({
   return (
     <div className="space-y-6 sm:space-y-8">
       <PageHeader
-        eyebrow="結果"
+        eyebrow={mode === "practice" ? "結果 · Practice" : "結果"}
         title={exam.title}
-        description={`${passLine(summary.passes, exam.sections.length, practicePassTotal(exam))}${signedIn ? " This paper is saved on your account." : ""}`}
+        description={[
+          passLine(summary.passes, exam.sections.length, practicePassTotal(exam)),
+          mode === "practice" ? "This was a practice run with the clock paused and the recording replayable, so read the score as a guide." : "",
+          signedIn ? "This paper is saved on your account." : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
         actions={
           <>
             <Button type="button" onClick={onAgain}>

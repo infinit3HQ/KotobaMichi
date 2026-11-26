@@ -1,8 +1,10 @@
 "use client";
 
-import { Maximize2, Minimize2 } from "lucide-react";
+import { Maximize2, Minimize2, Pause, Play } from "lucide-react";
+import { Badge } from "@/components/atoms/badge";
 import { Button } from "@/components/atoms/button";
 import { Progress } from "@/components/atoms/progress";
+import { canPause, type MockMode } from "@/lib/mock-clock";
 import { formatClock } from "@/lib/mock-exam";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +14,8 @@ type SessionTopBarProps = {
   sectionCount: number;
   mondaiNumber: number | null;
   remaining: number;
+  mode: MockMode;
+  paused: boolean;
   answered: number;
   totalItems: number;
   focus: boolean;
@@ -19,12 +23,15 @@ type SessionTopBarProps = {
   /** Pin below the site navbar (off in focus mode, where the bar already sits at the top). */
   pinned: boolean;
   onToggleFocus: () => void;
+  onPause: () => void;
+  onResume: () => void;
   onAskFinish: () => void;
   onCancelFinish: () => void;
   onConfirmFinish: () => void;
 };
 
-function clockTone(remaining: number) {
+function clockTone(remaining: number, paused: boolean) {
+  if (paused) return "bg-muted text-muted-foreground";
   if (remaining < 60_000) return "bg-destructive text-white";
   if (remaining < 5 * 60_000) return "bg-primary/10 text-primary";
   return "bg-muted text-foreground";
@@ -37,12 +44,16 @@ export function SessionTopBar({
   sectionCount,
   mondaiNumber,
   remaining,
+  mode,
+  paused,
   answered,
   totalItems,
   focus,
   confirmEnd,
   pinned,
   onToggleFocus,
+  onPause,
+  onResume,
   onAskFinish,
   onCancelFinish,
   onConfirmFinish,
@@ -57,7 +68,14 @@ export function SessionTopBar({
     >
       <div className="flex items-center gap-2 px-4 py-2 sm:gap-3 sm:px-5">
         <div className="min-w-0 flex-1">
-          <p className="truncate font-jp text-sm font-semibold">{sectionTitle}</p>
+          <p className="flex items-center gap-2 truncate text-sm font-semibold">
+            <span className="truncate font-jp">{sectionTitle}</span>
+            {canPause(mode) ? (
+              <Badge variant="outline" className="shrink-0 font-normal">
+                Practice
+              </Badge>
+            ) : null}
+          </p>
           <p className="truncate text-xs text-muted-foreground">
             Section {sectionNumber} of {sectionCount}
             {mondaiNumber != null ? <span className="font-jp"> · 問題{mondaiNumber}</span> : null}
@@ -66,13 +84,24 @@ export function SessionTopBar({
         <div
           className={cn(
             "flex h-9 items-center rounded-md px-2.5 font-mono text-base font-semibold tabular-nums sm:text-lg",
-            clockTone(remaining)
+            clockTone(remaining, paused)
           )}
           aria-live="polite"
-          aria-label={`Time left ${formatClock(remaining)}`}
+          aria-label={`Time left ${formatClock(remaining)}${paused ? ", paused" : ""}`}
         >
           {formatClock(remaining)}
         </div>
+        {canPause(mode) ? (
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            aria-label={paused ? "Resume the clock" : "Pause the clock"}
+            onClick={paused ? onResume : onPause}
+          >
+            {paused ? <Play /> : <Pause />}
+          </Button>
+        ) : null}
         <Button type="button" variant={confirmEnd ? "secondary" : "outline"} onClick={onAskFinish}>
           Finish
         </Button>

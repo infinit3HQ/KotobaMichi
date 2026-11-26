@@ -22,12 +22,30 @@ import {
 } from "@/lib/mock-sitting";
 import { MockExamBrief, MockSectionMenu } from "@/components/organisms/mock-exam-menu";
 import { ListeningTrack } from "@/components/organisms/mock/listening-track";
+import { PausedPanel } from "@/components/organisms/mock/paused-panel";
 import { MockResults } from "@/components/organisms/mock/mock-results";
 import { MondaiNav, type MondaiNavItem } from "@/components/organisms/mock/mondai-nav";
 import { MondaiSheet } from "@/components/organisms/mock/mondai-sheet";
 import { SessionTopBar } from "@/components/organisms/mock/session-top-bar";
+import {
+  canPause,
+  DEFAULT_MODE,
+  modeFromSave,
+  remainingMs,
+  resumeClock,
+  type MockMode,
+} from "@/lib/mock-clock";
 import { useAuthStore } from "@/stores/auth";
 type Phase = "brief" | "menu" | "running" | "done";
+
+/**
+ * A restored practice section comes back paused, so time spent away from the
+ * page is not charged to it. Strict sections never pause.
+ */
+function restoredPause(mode: MockMode, saved: number | null | undefined) {
+  if (!canPause(mode)) return null;
+  return saved ?? Date.now();
+}
 
 function mondaiOf(section: MockSection) {
   return section.parts.flatMap((part) =>
@@ -42,6 +60,8 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   const [completed, setCompleted] = useState<string[]>([]);
   const [mondaiIndex, setMondaiIndex] = useState(0);
   const [startedAt, setStartedAt] = useState(0);
+  const [mode, setMode] = useState<MockMode>(DEFAULT_MODE);
+  const [pausedAt, setPausedAt] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [now, setNow] = useState(() => Date.now());
   const [confirmEnd, setConfirmEnd] = useState(false);
@@ -52,13 +72,15 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   const finishedSent = useRef(false);
   const user = useAuthStore((state) => state.user);
   const authChecked = useAuthStore((state) => state.authChecked);
-  const snapshot = useRef({ phase, sectionIndex, startedAt, answers, completed });
-  snapshot.current = { phase, sectionIndex, startedAt, answers, completed };
+  const snapshot = useRef({ phase, sectionIndex, startedAt, answers, completed, mode, pausedAt });
+  snapshot.current = { phase, sectionIndex, startedAt, answers, completed, mode, pausedAt };
 
   useEffect(() => {
     const saved = loadAttempt(exam.id);
     if (saved) {
       const done = completedFromSave(exam, saved);
+      const savedMode = modeFromSave(saved.mode);
+      setMode(savedMode);
       setAnswers(saved.answers);
       setCompleted(done);
       if (saved.finished) {
@@ -67,6 +89,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       } else if (canOpenSection(exam, done, saved.sectionIndex)) {
         setSectionIndex(saved.sectionIndex);
         setStartedAt(saved.sectionStartedAt);
+        setPausedAt(restoredPause(savedMode, saved.pausedAt));
         setPhase("running");
       } else {
         setSectionIndex(AT_MENU);
@@ -89,11 +112,14 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
         if (cancel) return;
         if (remote.current) {
           const done = completedFromSave(exam, remote.current);
+          const remoteMode = modeFromSave(remote.current.mode);
+          setMode(remoteMode);
           setAnswers(remote.current.answers ?? {});
           setCompleted(done);
           if (canOpenSection(exam, done, remote.current.sectionIndex)) {
             setSectionIndex(remote.current.sectionIndex);
             setStartedAt(remote.current.sectionStartedAt);
+            setPausedAt(restoredPause(remoteMode, remote.current.pausedAt));
             setPhase("running");
             setFocus(true);
           } else {
@@ -108,6 +134,8 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
           sectionStartedAt: local.startedAt || Date.now(),
           answers: local.answers,
           completedSections: local.completed,
+          mode: local.mode,
+          pausedAt: local.pausedAt,
         };
         if (local.phase === "done") {
           finishedSent.current = true;
@@ -132,6 +160,8 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       sectionStartedAt: startedAt || Date.now(),
       answers,
       completedSections: completed,
+      mode,
+      pausedAt,
     };
     const handle = window.setTimeout(() => {
       if (phase === "done") {
@@ -145,13 +175,13 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       void saveMockAttempt(exam.id, payload).catch(() => undefined);
     }, 700);
     return () => window.clearTimeout(handle);
-  }, [accountSynced, user, phase, sectionIndex, startedAt, answers, completed, exam.id]);
+  }, [accountSynced, user, phase, sectionIndex, startedAt, answers, completed, mode, pausedAt, exam.id]);
 
   useEffect(() => {
-    if (phase !== "running") return;
+    if (phase !== "running" || pausedAt != null) return;
     const id = window.setInterval(() => setNow(Date.now()), 250);
     return () => window.clearInterval(id);
-  }, [phase]);
+  }, [phase, pausedAt]);
 
   useEffect(() => {
     if (!ready || phase === "brief") return;
@@ -161,8 +191,41 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
       answers,
       completedSections: completed,
       finished: phase === "done",
+      mode,
+      pausedAt,
     });
-  }, [ready, phase, sectionIndex, startedAt, answers, completed, exam.id]);
+  }, [ready, phase, sectionIndex, startedAt, answers, completed, mode, pausedAt, exam.id]);
+
+  // Practice pauses itself when the page is hidden or closed. The save is written here
+  // directly because a state update would not render before the page goes away.
+  useEffect(() => {
+    if (phase !== "running" || !canPause(mode)) return;
+    const pauseNow = () => {
+      const local = snapshot.current;
+      if (local.pausedAt != null) return;
+      const stamp = Date.now();
+      saveAttempt(exam.id, {
+        sectionIndex: local.sectionIndex,
+        sectionStartedAt: local.startedAt,
+        answers: local.answers,
+        completedSections: local.completed,
+        finished: false,
+        mode: local.mode,
+        pausedAt: stamp,
+      });
+      setPausedAt(stamp);
+      setNow(stamp);
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") pauseNow();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pagehide", pauseNow);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pagehide", pauseNow);
+    };
+  }, [phase, mode, exam.id]);
 
   useEffect(() => {
     if (phase !== "running") return;
@@ -176,7 +239,23 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   const section = phase === "running" ? exam.sections[sectionIndex] : undefined;
   const sheets = useMemo(() => (section ? mondaiOf(section) : []), [section]);
   const current = sheets[mondaiIndex];
-  const remaining = section ? section.minutes * 60_000 - (now - startedAt) : 0;
+  const paused = pausedAt != null;
+  const remaining = section ? remainingMs(section.minutes, { startedAt, pausedAt }, now) : 0;
+
+  const pause = () => {
+    if (!canPause(mode) || paused) return;
+    const stamp = Date.now();
+    setPausedAt(stamp);
+    setNow(stamp);
+  };
+
+  const resume = () => {
+    const stamp = Date.now();
+    const next = resumeClock({ startedAt, pausedAt }, stamp);
+    setStartedAt(next.startedAt);
+    setPausedAt(next.pausedAt);
+    setNow(stamp);
+  };
 
   const finishSection = useCallback(() => {
     if (locked.current || !section) return;
@@ -186,6 +265,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     setCompleted(done);
     setSectionIndex(AT_MENU);
     setMondaiIndex(0);
+    setPausedAt(null);
     setFocus(false);
     setPhase(isSittingComplete(exam, done) ? "done" : "menu");
   }, [exam, completed, section]);
@@ -215,6 +295,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     setSectionIndex(index);
     setMondaiIndex(0);
     setStartedAt(stamp);
+    setPausedAt(null);
     setNow(stamp);
     setPhase("running");
     setFocus(true);
@@ -232,6 +313,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     setSectionIndex(index);
     setMondaiIndex(0);
     setStartedAt(stamp);
+    setPausedAt(null);
     setNow(stamp);
     setPhase("running");
     setFocus(true);
@@ -246,7 +328,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   };
 
   const choose = (partId: string, mondai: number, item: number, option: number) => {
-    if (phase !== "running" || !section) return;
+    if (phase !== "running" || !section || paused) return;
     setAnswers((prev) => ({
       ...prev,
       [answerKey(section.id, partId, mondai, item)]: option,
@@ -272,7 +354,15 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   }
 
   if (phase === "brief") {
-    return <MockExamBrief exam={exam} signedIn={Boolean(user)} onBegin={begin} />;
+    return (
+      <MockExamBrief
+        exam={exam}
+        signedIn={Boolean(user)}
+        mode={mode}
+        onModeChange={setMode}
+        onBegin={begin}
+      />
+    );
   }
 
   if (phase === "menu") {
@@ -286,6 +376,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
         answers={answers}
         completed={completed}
         signedIn={Boolean(user)}
+        mode={mode}
         onAgain={() => {
           clearAttempt(exam.id);
           finishedSent.current = false;
@@ -321,6 +412,10 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
         sectionCount={exam.sections.length}
         mondaiNumber={current ? current.mondai.number : null}
         remaining={remaining}
+        mode={mode}
+        paused={paused}
+        onPause={pause}
+        onResume={resume}
         answered={answeredSection}
         totalItems={itemsSection}
         focus={focus}
@@ -340,10 +435,17 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
             <MondaiNav items={navItems} current={mondaiIndex} onSelect={setMondaiIndex} layout="row" />
 
             {section.id === "listening" && (
-              <ListeningTrack examId={exam.id} onFailed={() => setAudioFailed(true)} />
+              <ListeningTrack
+                examId={exam.id}
+                mode={mode}
+                paused={paused}
+                onFailed={() => setAudioFailed(true)}
+              />
             )}
 
-            {current && (
+            {paused ? (
+              <PausedPanel remaining={remaining} onResume={resume} />
+            ) : current && (
               <MondaiSheet
                 examId={exam.id}
                 mondai={current.mondai}
