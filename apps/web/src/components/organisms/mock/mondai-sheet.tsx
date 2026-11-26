@@ -3,6 +3,7 @@
 import { Button } from "@/components/atoms/button";
 import { ExamText } from "@/components/atoms/exam-text";
 import { type MockMondai, answerKey, examAsset } from "@/lib/mock-exam";
+import { groupItemsByPassage } from "@/lib/mock-passages";
 import { cn } from "@/lib/utils";
 
 export type ChooseHandler = (partId: string, mondai: number, item: number, option: number) => void;
@@ -131,20 +132,7 @@ export function MondaiSheet({
   showSpoken?: boolean;
   onChoose: ChooseHandler;
 }) {
-  const used = new Set<number>();
-  const groups = (mondai.passages ?? []).map((passage, index) => {
-    const numbers = new Set(passage.questionNumbers ?? []);
-    const items = mondai.items.filter((item) => {
-      if (used.has(item.number)) return false;
-      const claimed =
-        numbers.has(item.number) || (passage.label != null && passage.label !== "" && item.passage === passage.label);
-      if (!claimed) return false;
-      used.add(item.number);
-      return true;
-    });
-    return { passage, items, index };
-  });
-  const rest = mondai.items.filter((item) => !used.has(item.number));
+  const { groups, rest } = groupItemsByPassage(mondai);
   const blankChoices = sectionId === "listening" ? listeningChoiceCount(mondai) : 0;
   const renderItem = (item: MockMondai["items"][number]) => (
     <QuestionBlock
