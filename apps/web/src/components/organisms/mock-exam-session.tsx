@@ -36,6 +36,7 @@ import {
   type MockMode,
 } from "@/lib/mock-clock";
 import { useAuthStore } from "@/stores/auth";
+import { track } from "@/lib/analytics/posthog";
 type Phase = "brief" | "menu" | "running" | "done";
 
 /**
@@ -262,13 +263,18 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
     locked.current = true;
     setConfirmEnd(false);
     const done = completeSection(exam, completed, section.id);
+    const answered = Object.keys(answers).length;
+    track("mock_section_finished", { ...mockProps(exam, mode), section: section.id, answered });
+    if (isSittingComplete(exam, done)) {
+      track("mock_exam_completed", { ...mockProps(exam, mode), answered, signed_in: Boolean(user) });
+    }
     setCompleted(done);
     setSectionIndex(AT_MENU);
     setMondaiIndex(0);
     setPausedAt(null);
     setFocus(false);
     setPhase(isSittingComplete(exam, done) ? "done" : "menu");
-  }, [exam, completed, section]);
+  }, [exam, completed, section, answers, mode, user]);
 
   useEffect(() => {
     locked.current = false;
@@ -291,6 +297,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
 
   const openSection = (index: number) => {
     if (!canOpenSection(exam, completed, index)) return;
+    track("mock_section_opened", { ...mockProps(exam, mode), section: exam.sections[index]?.id ?? String(index) });
     const stamp = Date.now();
     setSectionIndex(index);
     setMondaiIndex(0);
@@ -305,6 +312,7 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
 
   const begin = (index: number) => {
     if (!exam.sections[index]) return;
+    track("mock_exam_started", { ...mockProps(exam, mode), section: exam.sections[index].id });
     const stamp = Date.now();
     clearAttempt(exam.id);
     finishedSent.current = false;
@@ -493,4 +501,8 @@ export function MockExamSession({ exam }: { exam: MockExam }) {
   }
 
   return <div className="flex min-h-[70dvh] flex-col sm:rounded-xl sm:border sm:border-border sm:bg-card">{shell}</div>;
+}
+
+function mockProps(exam: { id: string; level: string }, mode: string) {
+  return { exam_id: exam.id, level: exam.level, mode };
 }

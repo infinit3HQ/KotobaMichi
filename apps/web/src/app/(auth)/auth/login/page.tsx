@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useLocale } from "@/components/organisms/locale-provider";
 import { SocialAuth } from "@/components/organisms/social-auth";
 import { AuthAlert, AuthCard, AuthFooterLink } from "@/components/organisms/auth/auth-card";
+import { track } from "@/lib/analytics/posthog";
 
 const schema = z.object({
   email: z.string().email(),
@@ -43,6 +44,7 @@ export default function LoginPage() {
         user: { id: string; email: string; role: "USER" | "ADMIN" };
       };
       setUser(user);
+      track("logged_in", { method: "password" });
       toast.success(t.auth.loggedIn);
       router.push("/");
     } catch (e) {

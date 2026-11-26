@@ -20,6 +20,7 @@ import {
   type SendBatch,
 } from "@/lib/review-outbox";
 import { localDueQueue } from "@/lib/srs";
+import { track } from "@/lib/analytics/posthog";
 
 /** Network errors, 5xx, 429, and auth failures are worth retrying later. Other 4xx are not. */
 function shouldRetry(error: unknown) {
@@ -74,6 +75,7 @@ export function useLearning(level?: JLPTLevel) {
   const record = useCallback(
     async (itemKey: string, itemLevel: JLPTLevel, grade: LearningGrade) => {
       const review = { itemKey, level: itemLevel, grade, day: localDay(), reviewedAt: Date.now() };
+      track("card_reviewed", { level: itemLevel, grade, signed_in: Boolean(userId) });
       if (!userId) {
         enqueueReview({ ...review, userId: null });
         return;

@@ -17,6 +17,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { api } from "@/lib/api";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import type { UserAttemptsResponse, UserProfile } from "@/types/api";
+import { track } from "@/lib/analytics/posthog";
 
 /** Card shell shared by the profile blocks so they all line up. */
 export function ProfileCard({
@@ -79,6 +80,7 @@ export function AccountCard() {
     } catch {
       // The session cookie may already be gone; signing out locally is still right.
     }
+    track("logged_out", { source: "profile" });
     logout();
     toast.success("Signed out");
     router.push("/");
