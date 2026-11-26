@@ -40,7 +40,16 @@ export default function RegisterPage() {
   const onSubmit = async (values: FormVals) => {
     setError(null);
     try {
-      await api.post("/auth/register", { email: values.email, password: values.password });
+      const { data } = await api.post<{ emailSent?: boolean }>("/auth/register", {
+        email: values.email,
+        password: values.password,
+      });
+      // The account exists even when the mail server failed, so send them to request a new link.
+      if (data?.emailSent === false) {
+        toast.warning(t.auth.registeredNoEmail);
+        router.push("/auth/resend-verification");
+        return;
+      }
       toast.success(t.auth.registered);
       router.push("/auth/login");
     } catch (e) {

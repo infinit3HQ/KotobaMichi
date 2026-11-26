@@ -4,18 +4,28 @@ import { v7 as uuidv7 } from 'uuid';
 import { DbService } from '@/db/drizzle.service';
 import { learnerCards, learnerState, type LearnerBookmark } from '@/db/schema';
 import {
+	LEVELS,
 	QueueQueryDto,
 	ReviewBatchDto,
 	ReviewDto,
+	SaveGoalDto,
 	SavePlaceDto,
+	type CardKind,
+	type Level,
 } from './dto/review.dto';
 import { scheduleReview } from './scheduler';
+import { advanceStreak, liveStreak } from './streak';
 
-const LEVELS = ['N5', 'N4', 'N3', 'N2', 'N1'] as const;
 /** Guest reviews older than this are dropped on sync. */
 const SYNC_WINDOW_MS = 180 * 86_400_000;
 /** Allow a device clock to run a little ahead of the server. */
 const CLOCK_SKEW_MS = 5 * 60_000;
+
+type StateRow = typeof learnerState.$inferSelect;
+
+export type NewCard = { itemKey: string; level: Level; kind: CardKind };
+
+type LevelBucket = { seen: number; learned: number; due: number };
 
 @Injectable()
 export class LearningService {
@@ -27,11 +37,10 @@ export class LearningService {
 
 	async summary(userId: string, day: string) {
 		const [state, cards] = await Promise.all([
-			this.db.query.learnerState.findFirst({
-				where: eq(learnerState.userId, userId),
-			}),
+			this.findState(userId),
 			this.db
 				.select({
+					kind: learnerCards.kind,
 					level: learnerCards.level,
 					learnedAt: learnerCards.learnedAt,
 					nextReviewAt: learnerCards.nextReviewAt,
@@ -42,40 +51,49 @@ export class LearningService {
 		]);
 
 		const now = Date.now();
-		const byLevel = new Map<
-			string,
-			{ seen: number; learned: number; due: number; today: number }
-		>();
+		const byLevel = new Map<string, LevelBucket>();
 		let studiedToday = 0;
 		let dueNow = 0;
+		let mistakesDue = 0;
+		let mistakesTotal = 0;
 		for (const card of cards) {
+			const isDue =
+				card.nextReviewAt != null && card.nextReviewAt.getTime() <= now;
+			if (card.lastSeenDay === day) studiedToday += 1;
+			if (card.kind === 'mock') {
+				mistakesTotal += 1;
+				if (isDue) mistakesDue += 1;
+				continue;
+			}
 			const bucket = byLevel.get(card.level) ?? {
 				seen: 0,
 				learned: 0,
 				due: 0,
-				today: 0,
 			};
-			bucket.seen += 1;
-			if (card.learnedAt) bucket.learned += 1;
-			if (card.nextReviewAt && card.nextReviewAt.getTime() <= now) {
-				bucket.due += 1;
-				dueNow += 1;
-			}
-			if (card.lastSeenDay === day) {
-				bucket.today += 1;
-				studiedToday += 1;
-			}
-			byLevel.set(card.level, bucket);
+			byLevel.set(card.level, {
+				seen: bucket.seen + 1,
+				learned: bucket.learned + (card.learnedAt ? 1 : 0),
+				due: bucket.due + (isDue ? 1 : 0),
+			});
+			if (isDue) dueNow += 1;
 		}
 
+		const streak = liveStreak(
+			state?.streakDays ?? 0,
+			state?.lastActiveOn ?? null,
+			state?.streakFreezes ?? 0,
+			day
+		);
+
 		return {
-			streak: this.liveStreak(
-				state?.streakDays ?? 0,
-				state?.lastActiveOn ?? null,
-				day
-			),
+			streak: streak.streak,
+			freezes: state?.streakFreezes ?? 0,
+			freezesNeeded: streak.freezesNeeded,
 			studiedToday,
 			dueNow,
+			mistakesDue,
+			mistakesTotal,
+			goal: this.presentGoal(state),
 			place: state
 				? {
 						level: state.level,
@@ -89,9 +107,9 @@ export class LearningService {
 				const row = byLevel.get(level);
 				return {
 					level,
-					seen: Number(row?.seen || 0),
-					learned: Number(row?.learned || 0),
-					due: Number(row?.due || 0),
+					seen: row?.seen ?? 0,
+					learned: row?.learned ?? 0,
+					due: row?.due ?? 0,
 				};
 			}),
 		};
@@ -99,16 +117,17 @@ export class LearningService {
 
 	async queue(userId: string, query: QueueQueryDto) {
 		const now = new Date();
+		const kind = query.kind ?? 'word';
+		const filters = [
+			eq(learnerCards.userId, userId),
+			eq(learnerCards.kind, kind),
+			lte(learnerCards.nextReviewAt, now),
+		];
+		if (query.level) filters.push(eq(learnerCards.level, query.level));
 		const due = await this.db
 			.select({ itemKey: learnerCards.itemKey })
 			.from(learnerCards)
-			.where(
-				and(
-					eq(learnerCards.userId, userId),
-					eq(learnerCards.level, query.level),
-					lte(learnerCards.nextReviewAt, now)
-				)
-			)
+			.where(and(...filters))
 			.orderBy(asc(learnerCards.nextReviewAt))
 			.limit(40);
 
@@ -160,6 +179,52 @@ export class LearningService {
 			streak = await this.touchStreak(userId, day);
 		}
 		return { applied, skipped, streak };
+	}
+
+	/**
+	 * Adds cards that are due straight away, such as questions missed on a mock.
+	 * Cards the learner already has are left alone so their schedule is kept.
+	 */
+	async addCards(userId: string, cards: readonly NewCard[]) {
+		if (cards.length === 0) return { added: 0, existing: 0 };
+		const now = new Date();
+		const inserted = await this.db
+			.insert(learnerCards)
+			.values(
+				cards.map(card => ({
+					id: uuidv7(),
+					userId,
+					itemKey: card.itemKey,
+					kind: card.kind,
+					level: card.level,
+					nextReviewAt: now,
+				}))
+			)
+			.onConflictDoNothing({
+				target: [learnerCards.userId, learnerCards.itemKey],
+			})
+			.returning({ id: learnerCards.id });
+		return { added: inserted.length, existing: cards.length - inserted.length };
+	}
+
+	async saveGoal(userId: string, dto: SaveGoalDto) {
+		const values: Partial<typeof learnerState.$inferInsert> = {};
+		if (dto.targetLevel !== undefined) values.targetLevel = dto.targetLevel;
+		if (dto.examDate !== undefined) values.examDate = dto.examDate;
+		if (dto.dailyGoal !== undefined) values.dailyGoal = dto.dailyGoal;
+		if (dto.remindersEnabled !== undefined)
+			values.remindersEnabled = dto.remindersEnabled;
+		if (dto.reminderHour !== undefined) values.reminderHour = dto.reminderHour;
+		if (dto.weeklyRecap !== undefined) values.weeklyRecap = dto.weeklyRecap;
+		if (dto.tzOffsetMinutes !== undefined)
+			values.tzOffsetMinutes = dto.tzOffsetMinutes;
+
+		const [row] = await this.db
+			.insert(learnerState)
+			.values({ userId, ...values })
+			.onConflictDoUpdate({ target: learnerState.userId, set: values })
+			.returning();
+		return this.presentGoal(row ?? null);
 	}
 
 	/** Returns null when the card already has a later review than `at`. */
@@ -216,9 +281,7 @@ export class LearningService {
 	}
 
 	async savePlace(userId: string, dto: SavePlaceDto) {
-		const current = await this.db.query.learnerState.findFirst({
-			where: eq(learnerState.userId, userId),
-		});
+		const current = await this.findState(userId);
 		const bookmarks: Record<string, LearnerBookmark> = {
 			...(current?.bookmarks ?? {}),
 			[dto.level]: {
@@ -249,55 +312,56 @@ export class LearningService {
 		return { ok: true as const };
 	}
 
-	private async touchStreak(userId: string, day: string) {
-		const current = await this.db.query.learnerState.findFirst({
+	private findState(userId: string) {
+		return this.db.query.learnerState.findFirst({
 			where: eq(learnerState.userId, userId),
 		});
+	}
+
+	private presentGoal(state: StateRow | null | undefined) {
+		return {
+			targetLevel: (state?.targetLevel as Level | null) ?? null,
+			examDate: state?.examDate ?? null,
+			dailyGoal: state?.dailyGoal ?? 20,
+			remindersEnabled: state?.remindersEnabled ?? false,
+			reminderHour: state?.reminderHour ?? 19,
+			weeklyRecap: state?.weeklyRecap ?? false,
+		};
+	}
+
+	private async touchStreak(userId: string, day: string) {
+		const current = await this.findState(userId);
 		// A day before the last active day can't extend or reset the streak.
 		if (current?.lastActiveOn && day < current.lastActiveOn) {
 			return current.streakDays;
 		}
-		const streak = this.nextStreak(
-			current?.streakDays ?? 0,
-			current?.lastActiveOn ?? null,
+		const next = advanceStreak(
+			{
+				streak: current?.streakDays ?? 0,
+				lastActiveOn: current?.lastActiveOn ?? null,
+				freezes: current?.streakFreezes ?? 0,
+			},
 			day
 		);
+		const values = {
+			streakDays: next.streak,
+			streakFreezes: next.freezes,
+			lastActiveOn: day,
+		};
 		if (current) {
-			if (current.lastActiveOn !== day || current.streakDays !== streak) {
+			if (
+				current.lastActiveOn !== day ||
+				current.streakDays !== next.streak ||
+				current.streakFreezes !== next.freezes
+			) {
 				await this.db
 					.update(learnerState)
-					.set({ streakDays: streak, lastActiveOn: day })
+					.set(values)
 					.where(eq(learnerState.userId, userId));
 			}
 		} else {
-			await this.db.insert(learnerState).values({
-				userId,
-				streakDays: streak,
-				lastActiveOn: day,
-			});
+			await this.db.insert(learnerState).values({ userId, ...values });
 		}
-		return streak;
-	}
-
-	private liveStreak(streak: number, lastActiveOn: string | null, day: string) {
-		if (!lastActiveOn) return 0;
-		if (lastActiveOn === day || lastActiveOn === this.shiftDay(day, -1))
-			return streak;
-		return 0;
-	}
-
-	private nextStreak(streak: number, lastActiveOn: string | null, day: string) {
-		if (lastActiveOn === day) return Math.max(streak, 1);
-		if (lastActiveOn === this.shiftDay(day, -1)) return Math.max(streak, 0) + 1;
-		return 1;
-	}
-
-	private shiftDay(day: string, delta: number) {
-		const year = Number(day.slice(0, 4));
-		const month = Number(day.slice(5, 7));
-		const date = Number(day.slice(8, 10));
-		const value = new Date(Date.UTC(year, month - 1, date));
-		value.setUTCDate(value.getUTCDate() + delta);
-		return value.toISOString().slice(0, 10);
+		return next.streak;
 	}
 }

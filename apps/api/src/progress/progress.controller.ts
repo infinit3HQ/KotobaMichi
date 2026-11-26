@@ -10,6 +10,6 @@ export class ProgressController {
 	@UseGuards(JwtAuthGuard)
 	@Get()
 	getUserProgress(@Req() req: AuthenticatedRequest) {
-		return this.progressService.getUserProgress(req.user.sub);
+		return this.progressService.getUserProgress(req.user.userId);
 	}
 }

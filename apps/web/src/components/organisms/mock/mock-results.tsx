@@ -19,6 +19,7 @@ import {
 } from "@/lib/mock-exam";
 import { summarizeSitting } from "@/lib/mock-sitting";
 import { MondaiSheet } from "./mondai-sheet";
+import { ResultsActions } from "./results-actions";
 
 type MondaiScore = ReturnType<typeof scoreByMondai>[number];
 type SectionSummary = ReturnType<typeof summarizeSitting>["sections"][number];
@@ -213,6 +214,26 @@ export function MockResults({
           )}
         </CardContent>
       </Card>
+
+      <ResultsActions
+        exam={exam}
+        answers={answers}
+        completed={completed}
+        signedIn={signedIn}
+        score={
+          summary.total != null && summary.passes != null
+            ? {
+                total: summary.total,
+                max: paperPoints(exam.sections.length),
+                passes: summary.passes,
+                sections: summary.sections.map((section) => ({
+                  id: section.id,
+                  points: section.points ?? 0,
+                })),
+              }
+            : null
+        }
+      />
 
       <div
         className={

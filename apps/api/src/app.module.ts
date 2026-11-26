@@ -13,6 +13,7 @@ import { EmailModule } from './email/email.module';
 import { ProgressModule } from './progress/progress.module';
 import { LearningModule } from './learning/learning.module';
 import { MockExamsModule } from './mock-exams/mock-exams.module';
+import { NudgesModule } from './nudges/nudges.module';
 
 @Module({
 	imports: [
@@ -35,6 +36,7 @@ import { MockExamsModule } from './mock-exams/mock-exams.module';
 		ProgressModule,
 		LearningModule,
 		MockExamsModule,
+		NudgesModule,
 	],
 	controllers: [AppController],
 	providers: [AppService, { provide: APP_GUARD, useClass: ThrottlerGuard }],

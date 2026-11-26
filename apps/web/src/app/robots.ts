@@ -21,12 +21,14 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: [
       {
         userAgent: "*",
-        allow: ["/", "/practice", "/words", "/kanji", "/quizzes"],
+        allow: ["/", "/practice", "/words", "/kanji", "/quizzes", "/mock"],
         disallow: [
           "/auth/",
           "/dashboard",
           "/profile",
           "/results/",
+          "/review",
+          "/share/",
           "/quizzes/create",
           "/reset-password",
           "/verify-email",

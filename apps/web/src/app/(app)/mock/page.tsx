@@ -5,10 +5,24 @@ import { PageHeader } from "@/components/molecules/page-header";
 import { MockExamCatalog } from "@/components/organisms/mock-exam-catalog";
 import { mockExamSummaries } from "@/lib/mock-exam-data";
 
+const DESCRIPTION =
+  "94 free JLPT N3, N2 and N1 past papers from 2010 to 2026, timed with the real section clocks. Sit the full paper or any single section, in strict or practice mode.";
+
 export const metadata: Metadata = {
-  title: "Mock exams",
-  description:
-    "Timed N1, N2 and N3 mock papers with the real section clocks. Sit the full paper or any single section, in strict or practice mode.",
+  title: "JLPT Mock Exams – N3, N2 and N1 Past Papers",
+  description: DESCRIPTION,
+  alternates: { canonical: "/mock" },
+  openGraph: {
+    title: "JLPT Mock Exams – N3, N2 and N1 Past Papers | KotobaMichi",
+    description: DESCRIPTION,
+    url: "/mock",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JLPT Mock Exams – N3, N2 and N1 Past Papers | KotobaMichi",
+    description: DESCRIPTION,
+  },
 };
 
 function CatalogFallback() {

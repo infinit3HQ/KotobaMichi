@@ -308,10 +308,19 @@ export class AuthService {
 	async register(registerUserDto: RegisterUserDto) {
 		const { email, password } = registerUserDto;
 
-		// Check if user already exists
 		const existingUser = await this.getUserByEmail(email);
 
 		if (existingUser) {
+			// Someone whose verification email never arrived can sign up again to get a
+			// fresh link. The stored password is left alone, so this cannot take over an account.
+			if (!existingUser.isEmailVerified && existingUser.password) {
+				await this.enforceVerificationRateLimit(existingUser.id);
+				const emailSent = await this.trySendVerification(
+					existingUser.id,
+					existingUser.email
+				);
+				return this.registrationResult(emailSent);
+			}
 			this.logger.warn(`Registration attempt with existing email: ${email}`);
 			throw new ConflictException('User with this email already exists');
 		}
@@ -331,14 +340,33 @@ export class AuthService {
 			.returning();
 		if (!user) throw new Error('Failed to create user');
 
-		// create verification token and send email
-		await this.issueAndSendEmailVerification(user.id, user.email);
-		this.logger.log(`User registered and verification email queued: ${email}`);
+		const emailSent = await this.trySendVerification(user.id, user.email);
+		this.logger.log(`User registered (verification email sent: ${emailSent})`);
 
 		// For security, we don't auto-login until email verified
+		return this.registrationResult(emailSent);
+	}
+
+	/**
+	 * The account is created either way. When the mail server is down the learner is told
+	 * to request a new link, rather than seeing an error for an account that now exists.
+	 */
+	private async trySendVerification(userId: string, email: string) {
+		try {
+			await this.issueAndSendEmailVerification(userId, email);
+			return true;
+		} catch {
+			// issueAndSendEmailVerification already logged the cause.
+			return false;
+		}
+	}
+
+	private registrationResult(emailSent: boolean) {
 		return {
-			message:
-				'Registration successful. Please verify your email to log in.' as const,
+			message: emailSent
+				? 'Registration successful. Please verify your email to log in.'
+				: 'Account created, but the verification email could not be sent. Request a new link to verify it.',
+			emailSent,
 		};
 	}
 

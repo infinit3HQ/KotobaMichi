@@ -21,7 +21,7 @@ function listeningChoiceCount(mondai: MockMondai) {
   return 4;
 }
 
-function optionTone({ selected, correct, wrong }: { selected: boolean; correct: boolean; wrong: boolean }) {
+export function optionTone({ selected, correct, wrong }: { selected: boolean; correct: boolean; wrong: boolean }) {
   if (correct) return "border-chart-3/60 bg-chart-3/10 disabled:opacity-100 dark:border-chart-3/60 dark:bg-chart-3/10";
   if (wrong) return "border-destructive/50 bg-destructive/10 disabled:opacity-100 dark:border-destructive/50 dark:bg-destructive/10";
   if (selected) return "border-primary bg-primary/10 hover:bg-primary/15 disabled:opacity-100 dark:border-primary dark:bg-primary/15 dark:hover:bg-primary/20";

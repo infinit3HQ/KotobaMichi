@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${SITE_CONFIG.name} – JLPT N5 to N1 vocabulary, kanji, grammar and mock exams`,
+        alt: `${SITE_CONFIG.name} – JLPT N5 to N1 vocabulary, kanji, grammar and N3, N2 and N1 mock exams`,
       },
     ],
   },
@@ -86,8 +86,12 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: "/favicon.ico",
-    apple: "/icons/apple-touch-icon.png",
+    // app/favicon.ico is linked automatically; these add PNG sizes for sharper tabs and shortcuts.
+    icon: [
+      { url: "/icons/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: { url: "/icons/apple-touch-icon.png", sizes: "180x180" },
   },
 };
 
@@ -115,7 +119,7 @@ const websiteJsonLd = {
       "@id": `${SITE_URL}/#organization`,
       name: SITE_CONFIG.name,
       url: SITE_URL,
-      logo: `${SITE_URL}/favicon.ico`,
+      logo: `${SITE_URL}/icons/icon-512.png`,
       sameAs: [SITE_CONFIG.links.twitter, SITE_CONFIG.links.github],
     },
     {
