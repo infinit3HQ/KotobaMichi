@@ -377,7 +377,7 @@ const en: Dictionary = {
       },
       mock: {
         title: "Mock exams",
-        desc: "N3, N2 and N1 past papers from 2010 to 2026, timed like exam day. Sit the whole paper or one section, and turn what you missed into review cards.",
+        desc: "N3, N2 and N1 mock exams, timed like exam day. Sit the whole paper or one section, and turn what you missed into review cards.",
         cta: "Sit a paper",
       },
       review: {
@@ -750,7 +750,7 @@ const si: Dictionary = {
       },
       mock: {
         title: "ආදර්ශ විභාග",
-        desc: "2010 සිට 2026 දක්වා N3, N2 සහ N1 පසුගිය ප්‍රශ්න පත්‍ර, විභාග දිනයේ කාල සීමා සමඟ. සම්පූර්ණ පත්‍රය හෝ එක් කොටසක් කරන්න, වැරදුණු ප්‍රශ්න පුනරීක්ෂණ කාඩ්පත් බවට පත් කරන්න.",
+        desc: "N3, N2 සහ N1 ආදර්ශ ප්‍රශ්න පත්‍ර, විභාග දිනයේ කාල සීමා සමඟ. සම්පූර්ණ පත්‍රය හෝ එක් කොටසක් කරන්න, වැරදුණු ප්‍රශ්න පුනරීක්ෂණ කාඩ්පත් බවට පත් කරන්න.",
         cta: "ප්‍රශ්න පත්‍රයක් කරන්න",
       },
       review: {

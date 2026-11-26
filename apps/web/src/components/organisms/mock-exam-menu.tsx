@@ -163,7 +163,6 @@ export function MockExamBrief({
       <PageHeader
         eyebrow="模擬試験"
         title={exam.title}
-        description={exam.note}
         actions={
           first ? (
             <Button

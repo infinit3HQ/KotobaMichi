@@ -66,7 +66,7 @@ export default async function SharedMockResult({ searchParams }: Props) {
         </CardContent>
       </Card>
       <div className="space-y-3 text-center">
-        <p className="text-sm text-muted-foreground">Every JLPT past paper from N3 to N1, timed like the real exam. Free.</p>
+        <p className="text-sm text-muted-foreground">Free JLPT mock exams from N3 to N1, timed like the real exam.</p>
         <Button asChild size="lg">
           <Link href="/mock">
             Try a mock exam
