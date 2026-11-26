@@ -6,21 +6,21 @@ import { MockExamCatalog } from "@/components/organisms/mock-exam-catalog";
 import { mockExamSummaries } from "@/lib/mock-exam-data";
 
 const DESCRIPTION =
-  "94 free JLPT N3, N2 and N1 past papers from 2010 to 2026, timed with the real section clocks. Sit the full paper or any single section, in strict or practice mode.";
+  "94 free JLPT-style N3, N2 and N1 mock exams, timed with the real section clocks. Sit the full paper or any single section, in strict or practice mode.";
 
 export const metadata: Metadata = {
-  title: "JLPT Mock Exams – N3, N2 and N1 Past Papers",
+  title: "JLPT Mock Exams – Free N3, N2 and N1 Practice Tests",
   description: DESCRIPTION,
   alternates: { canonical: "/mock" },
   openGraph: {
-    title: "JLPT Mock Exams – N3, N2 and N1 Past Papers | KotobaMichi",
+    title: "JLPT Mock Exams – Free N3, N2 and N1 Practice Tests | KotobaMichi",
     description: DESCRIPTION,
     url: "/mock",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "JLPT Mock Exams – N3, N2 and N1 Past Papers | KotobaMichi",
+    title: "JLPT Mock Exams – Free N3, N2 and N1 Practice Tests | KotobaMichi",
     description: DESCRIPTION,
   },
 };

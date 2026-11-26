@@ -26,7 +26,7 @@ export const SITE_CONFIG = {
     "Speed drills",
     "Japanese quizzes",
     "JLPT mock exam",
-    "JLPT past papers",
+    "JLPT practice tests",
     "JLPT N1 mock exam",
     "JLPT N2 mock exam",
     "JLPT N3 mock exam",

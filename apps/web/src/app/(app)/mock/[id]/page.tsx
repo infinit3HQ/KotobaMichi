@@ -19,7 +19,7 @@ export async function generateMetadata({
   const label = examLabel(exam.id);
   const title = `JLPT ${label} Mock Exam`;
   const minutes = exam.sections.reduce((sum, section) => sum + section.minutes, 0);
-  const description = `Free timed JLPT ${label} past paper: ${exam.sections.length} sections, ${minutes} minutes, with the listening audio. Sit it in strict exam mode or pausable practice mode and see your score for each section.`;
+  const description = `Free timed JLPT ${label} mock exam: ${exam.sections.length} sections, ${minutes} minutes, with the listening audio. Sit it in strict exam mode or pausable practice mode and see your score for each section.`;
   return {
     title,
     description,
