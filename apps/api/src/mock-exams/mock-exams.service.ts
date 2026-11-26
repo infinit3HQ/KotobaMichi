@@ -98,7 +98,11 @@ import july2011N1 from './keys/n1-2011-07.json';
 import december2010N1 from './keys/n1-2010-12.json';
 import july2010N1 from './keys/n1-2010-07.json';
 import { SaveMockAttemptDto } from './dto/save-mock-attempt.dto';
-import { completedSectionsFor, MOCK_SECTION_IDS } from './sections';
+import {
+	completedSectionsFor,
+	MOCK_SECTION_IDS,
+	type MockMode,
+} from './sections';
 
 const ANSWER_KEYS: Record<string, Record<string, number>> = {
 	'n3-2025-12': n3December2025,
@@ -236,6 +240,7 @@ export class MockExamsService {
 	async save(userId: string, examId: string, dto: SaveMockAttemptDto) {
 		const answers = this.cleanAnswers(examId, dto.answers);
 		const started = this.startedAt(dto.sectionStartedAt);
+		const timing = this.timing(dto);
 		const completedSections = completedSectionsFor(
 			dto.completedSections,
 			dto.sectionIndex,
@@ -249,6 +254,7 @@ export class MockExamsService {
 				.set({
 					sectionIndex: dto.sectionIndex,
 					sectionStartedAt: started,
+					...timing,
 					completedSections,
 					answers,
 					updatedAt: new Date(),
@@ -267,6 +273,7 @@ export class MockExamsService {
 				status: 'in_progress',
 				sectionIndex: dto.sectionIndex,
 				sectionStartedAt: started,
+				...timing,
 				completedSections,
 				answers,
 			})
@@ -279,6 +286,7 @@ export class MockExamsService {
 		const answers = this.cleanAnswers(examId, dto.answers);
 		const scores = this.score(examId, answers);
 		const started = this.startedAt(dto.sectionStartedAt);
+		const timing = { ...this.timing(dto), pausedAt: null };
 		const completedSections = completedSectionsFor(
 			dto.completedSections,
 			dto.sectionIndex,
@@ -294,6 +302,7 @@ export class MockExamsService {
 					status: 'finished',
 					sectionIndex: dto.sectionIndex,
 					sectionStartedAt: started,
+					...timing,
 					completedSections,
 					answers,
 					scores,
@@ -314,6 +323,7 @@ export class MockExamsService {
 				status: 'finished',
 				sectionIndex: dto.sectionIndex,
 				sectionStartedAt: started,
+				...timing,
 				completedSections,
 				answers,
 				scores,
@@ -362,6 +372,18 @@ export class MockExamsService {
 			throw new BadRequestException('Invalid section start');
 		}
 		return date;
+	}
+
+	/** Strict sittings never pause, so a stray pausedAt from a client is dropped. */
+	private timing(dto: SaveMockAttemptDto): {
+		mode: MockMode;
+		pausedAt: Date | null;
+	} {
+		const mode: MockMode = dto.mode ?? 'strict';
+		if (mode === 'strict' || dto.pausedAt == null) {
+			return { mode, pausedAt: null };
+		}
+		return { mode, pausedAt: this.startedAt(dto.pausedAt) };
 	}
 
 	private cleanAnswers(examId: string, raw: Record<string, number>) {
@@ -416,6 +438,8 @@ export class MockExamsService {
 			sectionStartedAt: row.sectionStartedAt.getTime(),
 			answers: row.answers ?? {},
 			completedSections: row.completedSections ?? [],
+			mode: row.mode === 'practice' ? 'practice' : 'strict',
+			pausedAt: row.pausedAt ? row.pausedAt.getTime() : null,
 			scores: row.scores ?? null,
 			finishedAt: row.finishedAt ? row.finishedAt.getTime() : null,
 		};

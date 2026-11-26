@@ -8,7 +8,13 @@ import {
 	Max,
 	Min,
 } from 'class-validator';
-import { AT_MENU, KNOWN_SECTION_IDS, MOCK_SECTION_IDS } from '../sections';
+import {
+	AT_MENU,
+	KNOWN_SECTION_IDS,
+	MOCK_MODES,
+	MOCK_SECTION_IDS,
+	type MockMode,
+} from '../sections';
 
 export class SaveMockAttemptDto {
 	/** The open section, or -1 while the student is on the section menu. */
@@ -30,4 +36,15 @@ export class SaveMockAttemptDto {
 	@ArrayMaxSize(MOCK_SECTION_IDS.length)
 	@IsIn(KNOWN_SECTION_IDS, { each: true })
 	completedSections?: string[];
+
+	/** Older clients leave this out; their sittings are strict. */
+	@IsOptional()
+	@IsIn(MOCK_MODES)
+	mode?: MockMode;
+
+	/** When the practice clock was paused, or null while it runs. Ignored in strict mode. */
+	@IsOptional()
+	@IsInt()
+	@Min(0)
+	pausedAt?: number | null;
 }

@@ -1,4 +1,5 @@
 import { api } from "@/lib/api";
+import type { MockMode } from "@/lib/mock-clock";
 import type { SectionScore } from "@/lib/mock-exam";
 
 export type RemoteMockAttempt = {
@@ -10,6 +11,9 @@ export type RemoteMockAttempt = {
   answers: Record<string, number>;
   /** Missing on responses from an API that predates section picking. */
   completedSections?: string[];
+  /** Missing on responses from an API that predates practice mode. */
+  mode?: string;
+  pausedAt?: number | null;
   scores: SectionScore[] | null;
   finishedAt: number | null;
 };
@@ -24,6 +28,8 @@ export type AttemptPayload = {
   sectionStartedAt: number;
   answers: Record<string, number>;
   completedSections: string[];
+  mode: MockMode;
+  pausedAt: number | null;
 };
 
 export async function fetchMockExamState(examId: string) {

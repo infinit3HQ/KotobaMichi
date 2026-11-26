@@ -487,6 +487,10 @@ export const mockExamAttempts = pgTable(
 			.$type<string[]>()
 			.notNull()
 			.default([]),
+		// 'strict' runs the real clock and plays the audio once; 'practice' can pause.
+		mode: varchar('mode', { length: 16 }).notNull().default('strict'),
+		// Set while a practice section's clock is paused.
+		pausedAt: timestamp('paused_at', { withTimezone: false }),
 		finishedAt: timestamp('finished_at', { withTimezone: false }),
 		createdAt: timestamp('created_at', { withTimezone: false })
 			.notNull()

@@ -1,52 +1,36 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import { ArrowRight, SearchX, Timer } from "lucide-react";
-import { Badge } from "@/components/atoms/badge";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { SearchX, Timer } from "lucide-react";
 import { Button } from "@/components/atoms/button";
-import { Card, CardContent } from "@/components/atoms/card";
+import { Card } from "@/components/atoms/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/atoms/select";
 import { EmptyState } from "@/components/molecules/empty-state";
 import { SegmentedControl } from "@/components/molecules/segmented-control";
+import { CatalogRow, ContinueStrip } from "@/components/organisms/mock/catalog-row";
+import type { MockExamSummary } from "@/lib/mock-exam";
+import { ALL_LEVELS, ALL_YEARS, catalogLevels, catalogYears, filterMockExams } from "@/lib/mock-catalog";
 import {
-  formatPoints,
-  paperPoints,
-  SECTION_POINTS,
-  type MockExamSummary,
-} from "@/lib/mock-exam";
-import {
-  ALL_LEVELS,
-  ALL_YEARS,
-  catalogLevels,
-  catalogYears,
-  filterMockExams,
-} from "@/lib/mock-catalog";
-import { completedFromSave, summarizeSitting } from "@/lib/mock-sitting";
+  ALL_STATUSES,
+  attemptsByExam,
+  catalogQuery,
+  examProgress,
+  filterByStatus,
+  groupByYear,
+  parseCatalogParams,
+  type CatalogFilters,
+  type CatalogStatus,
+} from "@/lib/mock-catalog-view";
 import { listMockAttempts, type RemoteMockAttempt } from "@/lib/mock-attempts";
 import { useAuthStore } from "@/stores/auth";
 
-/** "Last estimate 112.4/180." for a full sitting, or "Last sitting: 聴解 41.2/60." for a partial one. */
-function lastSittingLine(exam: MockExamSummary, attempt: RemoteMockAttempt) {
-  const completed = completedFromSave(exam.scoring, {
-    ...attempt,
-    finished: true,
-  });
-  const summary = summarizeSitting(
-    exam.scoring,
-    attempt.answers ?? {},
-    completed,
-  );
-  if (summary.total != null)
-    return `Last estimate ${formatPoints(summary.total)}/${paperPoints(exam.scoring.sections.length)}.`;
-  const taken = summary.sections
-    .filter((section) => section.points != null)
-    .map(
-      (section) =>
-        `${section.title} ${formatPoints(section.points ?? 0)}/${SECTION_POINTS}`,
-    );
-  return `Last sitting: ${taken.join(", ") || "no section"}.`;
-}
+const STATUS_LABELS: Record<CatalogStatus, string> = {
+  all: "Any status",
+  new: "Not taken",
+  open: "In progress",
+  done: "Done",
+};
 
 function useMyAttempts() {
   const user = useAuthStore((state) => state.user);
@@ -73,62 +57,17 @@ function useMyAttempts() {
   return { signedIn: Boolean(user), attempts };
 }
 
-function ExamCard({
-  exam,
-  attempts,
-}: {
-  exam: MockExamSummary;
-  attempts: readonly RemoteMockAttempt[];
-}) {
-  const mine = attempts.filter(
-    (attempt) => attempt.examId === exam.id && attempt.status === "finished",
+/** Filters live in the URL, so back, refresh and shared links keep them. */
+function useCatalogFilters(levels: readonly string[], years: readonly string[]) {
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const filters = parseCatalogParams(params, { levels, years });
+  const setFilters = useCallback(
+    (next: CatalogFilters) => router.replace(`${pathname}${catalogQuery(next)}`, { scroll: false }),
+    [router, pathname],
   );
-  const open = attempts.some(
-    (attempt) => attempt.examId === exam.id && attempt.status === "in_progress",
-  );
-  const latest = mine[0];
-  const status = [
-    open ? "A sitting is still open." : "",
-    latest ? `${lastSittingLine(exam, latest)} ${mine.length} saved.` : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  return (
-    <Link
-      href={`/mock/${exam.id}`}
-      className="group block h-full rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-    >
-      <Card className="h-full gap-0 py-0 transition-colors group-hover:border-primary/40">
-        <CardContent className="flex h-full flex-col gap-3 p-4 sm:p-5">
-          <div className="flex items-start justify-between gap-3">
-            <h2 className="font-semibold tracking-tight">{exam.title}</h2>
-            <Badge variant="secondary" className="font-jp shrink-0">
-              {exam.level}
-            </Badge>
-          </div>
-          <div className="space-y-1 text-xs text-muted-foreground">
-            <p>{exam.questionCount} questions</p>
-            <p className="flex flex-wrap gap-x-3 gap-y-1">
-              {exam.scoring.sections.map((section, index) => (
-                <span key={section.id}>
-                  <span className="font-jp">{section.title}</span>{" "}
-                  <span className="font-mono tabular-nums">
-                    {exam.minutes[index]}m
-                  </span>
-                </span>
-              ))}
-            </p>
-          </div>
-          {status ? <p className="text-sm">{status}</p> : null}
-          <span className="mt-auto inline-flex items-center gap-1 pt-1 text-sm font-medium text-primary">
-            {open ? "Continue the sitting" : "Open the paper"}
-            <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-          </span>
-        </CardContent>
-      </Card>
-    </Link>
-  );
+  return [filters, setFilters] as const;
 }
 
 function sittingCount(shown: number, total: number) {
@@ -137,38 +76,33 @@ function sittingCount(shown: number, total: number) {
 }
 
 function SittingFilters({
-  level,
-  year,
+  filters,
   levels,
   years,
-  onLevelChange,
-  onYearChange,
+  showStatus,
+  onChange,
 }: {
-  level: string;
-  year: string;
+  filters: CatalogFilters;
   levels: readonly string[];
   years: readonly string[];
-  onLevelChange: (level: string) => void;
-  onYearChange: (year: string) => void;
+  showStatus: boolean;
+  onChange: (next: CatalogFilters) => void;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
       <div className="w-full overflow-x-auto [scrollbar-width:none] sm:w-auto [&::-webkit-scrollbar]:hidden">
         <SegmentedControl
-          value={level}
-          onValueChange={onLevelChange}
-          options={[
-            { value: ALL_LEVELS, label: "All levels" },
-            ...levels.map((value) => ({ value, label: value })),
-          ]}
+          value={filters.level}
+          onValueChange={(level) => onChange({ ...filters, level })}
+          options={[{ value: ALL_LEVELS, label: "All levels" }, ...levels.map((value) => ({ value, label: value }))]}
           ariaLabel="Level"
           fullWidth
           className="sm:w-max"
         />
       </div>
-      <Select value={year} onValueChange={onYearChange}>
-        <SelectTrigger aria-label="Year" className="w-full sm:w-36">
-          <SelectValue />
+      <Select value={filters.year} onValueChange={(year) => onChange({ ...filters, year })}>
+        <SelectTrigger aria-label="Year" className="flex-1 sm:w-36 sm:flex-none">
+          <SelectValue>{filters.year === ALL_YEARS ? "All years" : filters.year}</SelectValue>
         </SelectTrigger>
         <SelectContent className="max-h-72">
           <SelectItem value={ALL_YEARS}>All years</SelectItem>
@@ -179,56 +113,73 @@ function SittingFilters({
           ))}
         </SelectContent>
       </Select>
+      {showStatus ? (
+        <Select
+          value={filters.status}
+          onValueChange={(status) => onChange({ ...filters, status: status as CatalogStatus })}
+        >
+          <SelectTrigger aria-label="Status" className="flex-1 sm:w-40 sm:flex-none">
+            <SelectValue>{STATUS_LABELS[filters.status]}</SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            {(Object.keys(STATUS_LABELS) as CatalogStatus[]).map((value) => (
+              <SelectItem key={value} value={value}>
+                {STATUS_LABELS[value]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      ) : null}
     </div>
   );
 }
 
 export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
-  const { attempts } = useMyAttempts();
-  const [level, setLevel] = useState(ALL_LEVELS);
-  const [year, setYear] = useState(ALL_YEARS);
+  const { signedIn, attempts } = useMyAttempts();
   const levels = useMemo(() => catalogLevels(exams), [exams]);
   const years = useMemo(() => catalogYears(exams), [exams]);
-  const filtered = useMemo(
-    () => filterMockExams(exams, { level, year }),
-    [exams, level, year],
+  const [filters, setFilters] = useCatalogFilters(levels, years);
+  const byExam = useMemo(() => attemptsByExam(attempts), [attempts]);
+  // Signed-out visitors have no statuses, so a status from a shared link is ignored.
+  const status = signedIn ? filters.status : ALL_STATUSES;
+  const groups = useMemo(() => {
+    const shown = filterByStatus(filterMockExams(exams, filters), status, byExam);
+    return groupByYear(shown);
+  }, [exams, filters, status, byExam]);
+  const openExams = useMemo(
+    () => exams.filter((exam) => examProgress(byExam, exam.id) === "open"),
+    [exams, byExam],
   );
 
   if (exams.length === 0) {
     return (
-      <EmptyState
-        icon={Timer}
-        title="No mock papers yet"
-        description="Mock papers will show up here once added."
-      />
+      <EmptyState icon={Timer} title="No mock papers yet" description="Mock papers will show up here once added." />
     );
   }
 
-  const clearFilters = () => {
-    setLevel(ALL_LEVELS);
-    setYear(ALL_YEARS);
-  };
+  const shownCount = groups.reduce((sum, group) => sum + group.exams.length, 0);
+  const clearFilters = () => setFilters({ level: ALL_LEVELS, year: ALL_YEARS, status: ALL_STATUSES });
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
+      <ContinueStrip exams={openExams} />
       <div className="space-y-3">
         <SittingFilters
-          level={level}
-          year={year}
+          filters={{ ...filters, status }}
           levels={levels}
           years={years}
-          onLevelChange={setLevel}
-          onYearChange={setYear}
+          showStatus={signedIn}
+          onChange={setFilters}
         />
         <p className="text-sm text-muted-foreground tabular-nums" aria-live="polite">
-          {sittingCount(filtered.length, exams.length)}
+          {sittingCount(shownCount, exams.length)}
         </p>
       </div>
-      {filtered.length === 0 ? (
+      {shownCount === 0 ? (
         <EmptyState
           icon={SearchX}
           title="No sittings match"
-          description="Try another level or year."
+          description="Try another level, year or status."
           action={
             <Button variant="outline" onClick={clearFilters}>
               Clear filters
@@ -236,13 +187,30 @@ export function MockExamCatalog({ exams }: { exams: MockExamSummary[] }) {
           }
         />
       ) : (
-        <ul className="grid gap-4 md:grid-cols-2">
-          {filtered.map((exam) => (
-            <li key={exam.id}>
-              <ExamCard exam={exam} attempts={attempts} />
-            </li>
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <section key={group.year} className="space-y-2" aria-labelledby={`mock-year-${group.year}`}>
+              <h2
+                id={`mock-year-${group.year}`}
+                className="flex items-baseline justify-between text-sm font-semibold tracking-tight"
+              >
+                {group.year}
+                <span className="text-xs font-normal text-muted-foreground tabular-nums">
+                  {group.exams.length} {group.exams.length === 1 ? "paper" : "papers"}
+                </span>
+              </h2>
+              <Card className="gap-0 overflow-hidden py-0">
+                <ul className="divide-y divide-border">
+                  {group.exams.map((exam) => (
+                    <li key={exam.id}>
+                      <CatalogRow exam={exam} entry={byExam.get(exam.id)} />
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </section>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

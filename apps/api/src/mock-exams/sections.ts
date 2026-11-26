@@ -13,6 +13,11 @@ export const KNOWN_SECTION_IDS = [
 	'language-reading',
 ] as const;
 
+/** How a sitting runs: the real exam rules, or a pausable practice run. */
+export const MOCK_MODES = ['strict', 'practice'] as const;
+
+export type MockMode = (typeof MOCK_MODES)[number];
+
 /** `sectionIndex` while the student is on the section menu rather than inside a section. */
 export const AT_MENU = -1;
 
